@@ -8,19 +8,20 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "CLIENTS_TYPE")
+@Table(name = "user_role")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ClientType {
+public class UserRole {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long clientTypeId;
+    private Long userRoleId;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private Client client;
+    private User user;
 
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    private Type type;
+    private Role role;
 }
