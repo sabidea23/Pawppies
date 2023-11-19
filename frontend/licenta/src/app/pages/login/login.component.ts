@@ -15,7 +15,8 @@ export class LoginComponent implements OnInit {
     password: '',
   };
 
-  constructor(private snack: MatSnackBar, private login: LoginService, private router: Router) { }
+  constructor(private snack: MatSnackBar, private login: LoginService,
+              private router: Router) { }
 
   ngOnInit(): void { }
 
@@ -41,12 +42,10 @@ export class LoginComponent implements OnInit {
           next: (user: any) => {
             this.login.setUser(user);
             if (this.login.getUserRole() == 'ADMIN') {
-              // window.location.href = "/admin";
               this.router.navigate(['admin']);
               this.login.loginStatusSubject.next(true);
             }
             else if (this.login.getUserRole() == 'NORMAL') {
-              // window.location.href = "/user-dashboard";
               this.router.navigate(['user-dashboard']);
               this.login.loginStatusSubject.next(true);
             }
