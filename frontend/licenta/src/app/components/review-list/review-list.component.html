@@ -49,38 +49,6 @@
           <button (click)="goToAddReview()" *ngIf="user && universityId" class="add-button" mat-fab>
             <mat-icon>add</mat-icon>
           </button>
-
-        </div>
-
-        <div *ngIf="allReviews.length > 0 && enableSummOnlyOnUniver()" class="col-md-3">
-
-          <div class="container text-center sticky-column" style="padding-top: 17.5%;">
-            <mat-card style="background-color: lightgrey">
-              <mat-card-content>
-                <header>
-                  <h2>Summarization</h2>
-                </header>
-
-                <button (click)="summarize()" *ngIf="!summarizationLoading" mat-raised-button
-                  style="background-color: rgb(130, 130, 130); color: white;">
-                  Start
-                </button>
-
-                <div *ngIf="summarizationLoading" style="background-color: lightgrey">
-                  <div aria-hidden="true" class="spinner-grow spinner-grow-sm" role="status">
-                    <span class="sr-only">Loading...</span>
-                  </div>
-                </div>
-
-                <mat-card style="background-color: rgb(220, 220, 220); margin: 5%;">
-                  <mat-card-content>
-                    <p style="margin-top: 10px;">{{ summarizedText }}</p>
-                  </mat-card-content>
-                </mat-card>
-              </mat-card-content>
-            </mat-card>
-          </div>
-
         </div>
 
       </div>

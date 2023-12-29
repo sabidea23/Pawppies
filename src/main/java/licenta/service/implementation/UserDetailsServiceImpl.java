@@ -1,7 +1,7 @@
 package licenta.service.implementation;
 
-import licenta.entity.User;
-import licenta.resources.UserRepository;
+import licenta.model.User;
+import licenta.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

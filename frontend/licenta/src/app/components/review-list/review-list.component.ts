@@ -5,7 +5,6 @@ import { ReviewService } from '../../services/review.service';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GuidelinesService } from 'src/app/services/guidelines.service';
-import { SummarizationService } from 'src/app/services/summarization.service';
 import { UniversityService } from 'src/app/services/university.service';
 
 const MIN_WORDS = 50;
@@ -13,9 +12,6 @@ const MAX_WORDS = 300;
 const MAX_UPPERCASE_PERCENTAGE = 10;
 const MAX_NONALPHA_PERCENTAGE = 10;
 const MAX_MISSPELLED_WORDS_PERCENTAGE = 35;
-
-const MIN_CHARS = 50;
-const SUMMARIZATION_REVIEWS_PERCENTAGE = 30;
 
 @Component({
   selector: 'app-review-list',
@@ -42,9 +38,6 @@ export class ReviewListComponent implements OnInit {
   detectedMisspelling: boolean = false;
 
   articleText: string = '';
-  summarizedText: string = '';
-  isSummarizationReady: boolean = false;
-  summarizationLoading: boolean = false;
 
   constructor(
     private login: LoginService,
@@ -53,7 +46,6 @@ export class ReviewListComponent implements OnInit {
     private route: ActivatedRoute,
     private snack: MatSnackBar,
     private guidelinesService: GuidelinesService,
-    private summarizationService: SummarizationService,
     private universityService: UniversityService
   ) {
     this.mapping = new Map<string, Function>();
@@ -260,79 +252,12 @@ export class ReviewListComponent implements OnInit {
         class="swal2-input"
         style="width: 90%; height: 275px; font-size: 16px;"
         placeholder="Text">
-        ${review.text
-          .replace(/^[ \t]+/gm, '')
-          .replace(/ +/g, ' ')
-          .replace(/\n{3,}/g, '\n')
-          .replace(/^\s*$/gm, '')
-          .trimEnd()}
+        ${review.text.trim()}
       </textarea>
-      <div id="checkboxes" style="font-size: 15px;">
-        ${this.getMappingKeys
-          .map(
-            (key, i) =>
-              `
-          <div style="margin: 1%;">
-            <image
-              name="${key}"
-              alt="checkbox${i}"
-              id="checkbox${i}"
-              src="assets/checkbox_empty.png"
-              style="width: 3%;"
-            >
-
-            <label for="checkbox${i}">${key}</label>
-          </div>
-          `
-          )
-          .join('')}
-      </div>
       `,
       focusConfirm: false,
-      didOpen: () => {
-        const textarea = document.getElementById('swal-input');
-        const checkboxes = document.querySelectorAll('[id^="checkbox"]');
-
-        // Event listener for `textarea` element
-        textarea?.addEventListener('input', () => {
-          this.inputText = (
-            document.getElementById('swal-input') as HTMLInputElement
-          ).value;
-          this.inputText = this.inputText
-            .replace(/^[ \t]+/gm, '')
-            .replace(/ +/g, ' ')
-            .replace(/\n{3,}/g, '\n')
-            .replace(/^\s*$/gm, '')
-            .trimEnd();
-          this.verifyText();
-
-          // Update checkboxes in real time
-          checkboxes.forEach((checkbox) => {
-            var checkboxName = (checkbox as HTMLImageElement).name;
-            if (this.passed.includes(checkboxName)) {
-              (checkbox as HTMLImageElement).src = 'assets/checkbox_filled.png';
-            } else {
-              (checkbox as HTMLImageElement).src = 'assets/checkbox_empty.png';
-            }
-          });
-        });
-      },
       preConfirm: () => {
-        let text = (document.getElementById('swal-input') as HTMLInputElement)
-          .value;
-        text = text
-          .replace(/^[ \t]+/gm, '')
-          .replace(/ +/g, ' ')
-          .replace(/\n{3,}/g, '\n')
-          .replace(/^\s*$/gm, '')
-          .trimEnd();
-
-        this.inputText = text;
-        this.verifyText();
-        if (!this.isFormValid()) {
-          Swal.showValidationMessage(`Please enter a valid text.`);
-        }
-
+        const text = (document.getElementById('swal-input') as HTMLInputElement).value.trim();
         return { text };
       },
     }).then((result) => {
@@ -341,6 +266,7 @@ export class ReviewListComponent implements OnInit {
 
         this.reviewService.updateReview(review).subscribe({
           next: (_) => {
+            // Actualizează lista de review-uri
             this.allReviews = this.allReviews.map((r: any) => {
               if (r.id === review.id) {
                 r = review;
@@ -509,72 +435,5 @@ export class ReviewListComponent implements OnInit {
     }
   }
 
-  /**
-   * Summarization
-   */
 
-  public initSummarization() {
-    this.summarizationService.initSummarizationModule().subscribe({
-      next: (_: any) => {
-      },
-      error: (_: any) => {
-        alert('Could not initialize the summarization model');
-      },
-    });
-  }
-
-  public summarize() {
-    // Reset some variables
-    this.isSummarizationReady = false;
-    this.summarizationLoading = true;
-    this.summarizedText = '';
-
-    // Sort the `this.allReviews` array by `likes` in descending order
-    // and `dislikes` in ascending order (to get the most appreciated reviews)
-    let sortedReviews = [...this.allReviews].sort((r1: any, r2: any) => {
-      if (r1.likes > r2.likes) return -1;
-      if (r1.likes < r2.likes) return 1;
-      if (r1.dislikes > r2.dislikes) return 1;
-      if (r1.dislikes < r2.dislikes) return -1;
-      return 0;
-    });
-
-    // Get the first `SUMMARIZATION_REVIEWS_PERCENTAGE` reviews
-    let reviews = sortedReviews.slice(
-      0,
-      Math.ceil((sortedReviews.length * SUMMARIZATION_REVIEWS_PERCENTAGE) / 100)
-    );
-
-    // Concate all the reviews into a single string, separated by `=====`
-    this.articleText = reviews.map((r: any) => r.text).join('\n\n=====\n\n');
-
-    // If the input text is too short, then return
-    if (this.articleText.length < MIN_CHARS) {
-      alert('Please provide a longer text to summarize.');
-      this.summarizationLoading = false;
-      return;
-    }
-
-    // Make the `summarization` request
-    this.summarizationService.getSummary(this.articleText).subscribe({
-      next: (data: any) => {
-        // Append the `data.summary` character by character to the `this.summarizedText` variable
-        // this will make the text appear as if it is being typed
-        for (let i = 0; i < data.summary.length; i++) {
-          setTimeout(() => {
-            this.summarizedText += data.summary[i];
-          }, i * 25);
-        }
-
-        // Wait `data.summary.length * 25` milliseconds before setting the `isSummarizationReady` variable to true
-        setTimeout(() => {
-          this.isSummarizationReady = true;
-          this.summarizationLoading = false;
-        }, data.summary.length * 25);
-      },
-      error: (_: any) => {
-        alert('Error occurred while summarizing the text.');
-      },
-    });
-  }
 }

@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class ErrorHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler({ UserAlreadyExists.class, AnimalCenterAlreadyExists.class })
+    @ExceptionHandler({ UserAlreadyExists.class, UniversityAlreadyExists.class })
     @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
     public ErrorResponse getUserAlreadyExistsException(HttpServletRequest request, Exception exception) {
         return ErrorResponse.of(exception.getMessage());
     }
 
-    @ExceptionHandler({ UserNotFoundException.class, AnimalCenterNotFoundException.class, AnimalNotFoundExeption.class })
+    @ExceptionHandler({ UserNotFoundException.class, UniversityNotFoundException.class, ReviewNotFoundException.class })
     @ResponseStatus(code = HttpStatus.NOT_FOUND)
     @ResponseBody
     public ResponseEntity<?> exceptionHandler(Exception ex) {

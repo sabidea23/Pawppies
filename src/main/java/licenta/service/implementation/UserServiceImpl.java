@@ -1,13 +1,12 @@
 package licenta.service.implementation;
 
-
-import licenta.entity.User;
-import licenta.entity.UserRole;
 import licenta.exeptions.UserAlreadyExists;
 import licenta.exeptions.UserNotFoundException;
-import licenta.resources.RoleRepository;
-import licenta.resources.UserRepository;
-import licenta.resources.UserRoleRepository;
+import licenta.model.User;
+import licenta.model.UserRole;
+import licenta.repo.RoleRepository;
+import licenta.repo.UserRepository;
+import licenta.repo.UserRoleRepository;
 import licenta.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -5,7 +5,6 @@
         <div class="container text-center">
           <header>
             <h1>Add University</h1>
-
           </header>
         </div>
         <div class="row">
@@ -19,19 +18,27 @@
               </div>
 
               <div>
-                <!-- University location -->
+                <!-- University description -->
                 <mat-form-field appearance="fill" class="full-width">
-                  <input [(ngModel)]="formInput.location" matInput name="location" placeholder="University Location" />
+                  <textarea [(ngModel)]="formInput.description" matInput name="description"
+                            placeholder="University Description"></textarea>
                 </mat-form-field>
               </div>
 
               <div>
-                <!-- University description -->
+                <!-- Longitude -->
                 <mat-form-field appearance="fill" class="full-width">
-                  <textarea [(ngModel)]="formInput.description" matInput name="description"
-                    placeholder="University Description"></textarea>
+                  <input [(ngModel)]="formInput.longitude" matInput name="longitude" placeholder="Longitude" />
                 </mat-form-field>
               </div>
+
+              <div>
+                <!-- Latitude -->
+                <mat-form-field appearance="fill" class="full-width">
+                  <input [(ngModel)]="formInput.latitude" matInput name="latitude" placeholder="Latitude" />
+                </mat-form-field>
+              </div>
+
               <div class="text-center">
                 <button [disabled]="!isFormValid()" mat-raised-button type="submit">
                   Add

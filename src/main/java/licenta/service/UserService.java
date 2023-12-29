@@ -1,7 +1,7 @@
 package licenta.service;
 
-import licenta.entity.User;
-import licenta.entity.UserRole;
+import licenta.model.User;
+import licenta.model.UserRole;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

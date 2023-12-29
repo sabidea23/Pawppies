@@ -4,7 +4,7 @@
       <mat-form-field>
         <span matPrefix> </span>
         <input (ngModelChange)="searchUniversity(searchItem)" [(ngModel)]="searchItem" matInput name="search"
-          placeholder="Search University" style="text-align: center;" type="search" />
+               placeholder="Search University" style="text-align: center;" type="search"/>
         <mat-icon matSuffix>search</mat-icon>
       </mat-form-field>
     </form>
@@ -16,14 +16,14 @@
           <mat-card style="background-color: lightgrey;" w3-light-grey>
             <div>
               <header (click)="goToReviews(university)" class="zoom-on-hover">
-                <h1>{{ university.name }} -
-                  {{ university.location }}</h1>
+                <h1>{{ university.name }}             </h1>
+                <h2> Latitude: {{ university.latitude }}, Longitude: {{university.longitude }}     </h2>
                 <p>{{
                   university.description
                   }}</p>
               </header>
             </div>
-            <br />
+            <br/>
             <mat-card-actions *ngIf="getUserRole() === 'ADMIN'" align="end">
               <button (click)="editUniversity(university)" mat-button>
                 EDIT
@@ -33,7 +33,7 @@
               </button>
             </mat-card-actions>
           </mat-card>
-          <br />
+          <br/>
         </div>
       </div>
 

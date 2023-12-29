@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
 import { Router, Scroll } from '@angular/router';
-import { SummarizationService } from 'src/app/services/summarization.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,8 +13,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     public login: LoginService,
-    public router: Router,
-    private summarizationService: SummarizationService) {
+    public router: Router) {
       this.router.events.subscribe((event: any) => {
         if (event instanceof Scroll && event.anchor) {
           setTimeout(() => {
@@ -33,7 +31,7 @@ export class NavbarComponent implements OnInit {
       targetElement.scrollIntoView({ behavior: 'smooth' });
     }
   }
-  
+
   private isInViewport = (elem: any) => {
     const bounding = elem.getBoundingClientRect();
     return (
@@ -52,7 +50,6 @@ export class NavbarComponent implements OnInit {
       this.user = this.login.getUser();
     });
 
-    // Set the `sessionStorage` item for summarization module initialization
     let itemJson = {
       value: 'true',
       timestamp: new Date().getTime(),
@@ -63,8 +60,6 @@ export class NavbarComponent implements OnInit {
       // Update the `sessionStorage` item
       sessionStorage.setItem('initSumm', JSON.stringify(itemJson));
 
-      // Initialize the summarization module
-      this.summarizationService.initSummarizationModule().subscribe((_) => { });
     } else {
       // Check if the `sessionStorage` item is fresh or old
       const summStorageItemJson = JSON.parse(summStorageItem);
@@ -82,8 +77,6 @@ export class NavbarComponent implements OnInit {
         // Update the `sessionStorage` item
         sessionStorage.setItem('initSumm', JSON.stringify(itemJson));
 
-        // Reinitialize the summarization module
-        this.summarizationService.initSummarizationModule().subscribe((_) => { });
       }
     }
   }

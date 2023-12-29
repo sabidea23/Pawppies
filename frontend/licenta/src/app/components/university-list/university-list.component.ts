@@ -65,30 +65,35 @@ export class UniversityListComponent implements OnInit {
       title: 'Edit university',
       background: 'rgb(230, 230, 230)',
       html: `<input id="swal-input1" class="swal2-input" placeholder="Name" value="${university.name}">
-      <input id="swal-input2" class="swal2-input" placeholder="Location" value="${university.location}">
-      <textarea id="swal-input3" class="swal2-input" style="min-height: 200px" placeholder="Description">${university.description}`,
+      <input id="swal-input2" class="swal2-input" placeholder="Longitude" value="${university.longitude}">
+      <input id="swal-input3" class="swal2-input" placeholder="Latitude" value="${university.latitude}">
+      <textarea id="swal-input4" class="swal2-input" style="min-height: 200px" placeholder="Description">${university.description}`,
       focusConfirm: false,
       preConfirm: () => {
         const name = (
           document.getElementById('swal-input1') as HTMLInputElement
         ).value;
-        const location = (
+        const longitude = (
           document.getElementById('swal-input2') as HTMLInputElement
         ).value;
-        const description = (
+        const latitude = (
           document.getElementById('swal-input3') as HTMLInputElement
         ).value;
+        const description = (
+          document.getElementById('swal-input4') as HTMLInputElement
+        ).value;
 
-        if (!name || !location || !description) {
+        if (!name || !longitude || !latitude || !description) {
           Swal.showValidationMessage(`Please fill in all fields`);
         }
 
-        return { name, location, description };
+        return { name, longitude, latitude, description };
       },
     }).then((result) => {
       if (result.isConfirmed && result.value) {
         university.name = result.value.name;
-        university.location = result.value.location;
+        university.longitude = result.value.longitude;
+        university.latitude = result.value.latitude;
         university.description = result.value.description;
 
         // Remove authorities from user object before sending to server, as the server cannot deserialize it (for now)
@@ -122,6 +127,7 @@ export class UniversityListComponent implements OnInit {
       }
     });
   }
+
 
   public deleteUniversity(university: any) {
     Swal.fire({
