@@ -1,0 +1,43 @@
+<mat-card *ngIf="user" class="all" xmlns="http://www.w3.org/1999/html">
+  <mat-card-content>
+
+    <div class="bootstrap-wrapper">
+      <div class="row">
+
+        <div [ngClass]="enableSummOnlyOnUniver() ? 'col-md-9' : 'col-md-12'">
+
+          <header>
+            <div class="container text-center">
+              <h1 *ngIf="!university">Reviews</h1>
+              <h1 *ngIf="university">Reviews of {{ university.name }}</h1>
+            </div>
+          </header>
+
+          <div *ngFor="let review of allReviews" class="container">
+            <mat-card style="background-color: lightgrey" w3-light-grey>
+              <mat-card-content style="white-space: pre-line;">
+                <p style="margin: 10px 10px 10px 10px">{{ review.text }}</p>
+              </mat-card-content>
+              <mat-card-actions align="end" style="margin-top: -20px">
+                <button (click)="editReview(review)" *ngIf="hasEditRights(review)" mat-button
+                        style="margin-right: 20px">
+                  EDIT
+                </button>
+                <button style="margin-right: 20px" (click)="deleteReview(review)" *ngIf="getUserRole() === 'ADMIN'"
+                        mat-button>
+                  DELETE
+                </button>
+              </mat-card-actions>
+            </mat-card>
+            <br />
+          </div>
+
+          <button (click)="goToAddReview()"  *ngIf="user "  class="add-button" mat-fab>
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
