@@ -45,10 +45,10 @@ public class AnimalCenterController {
         return this.animalCenterService.getAnimalCenters();
     }
 
-    @GetMapping("/{animal-centerid}")
+    @GetMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)
-    public AnimalCenter getAnimalCenterById(@PathVariable("animal-centerid") Long animalCenterId) throws Exception {
-        return this.animalCenterService.getAnimalCenter(animalCenterId);
+    public AnimalCenter getAnimalCenterById(@PathVariable("id") Long id) throws Exception {
+        return this.animalCenterService.getAnimalCenter(id);
     }
 
     @DeleteMapping("/{animal-centerid}")

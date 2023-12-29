@@ -1,18 +1,18 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {UserManagementComponent} from './user-management.component';
+import {AnimalAddComponent} from './animal-add.component';
 
-describe('UserManagementComponent', () => {
-  let component: UserManagementComponent;
-  let fixture: ComponentFixture<UserManagementComponent>;
+describe('AnimalAddComponent', () => {
+  let component: AnimalAddComponent;
+  let fixture: ComponentFixture<AnimalAddComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UserManagementComponent]
+      declarations: [AnimalAddComponent]
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(UserManagementComponent);
+    fixture = TestBed.createComponent(AnimalAddComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

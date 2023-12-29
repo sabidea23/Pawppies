@@ -43,9 +43,9 @@ public class AnimalController {
         return this.animalService.getAnimal(animalId);
     }
 
-    @GetMapping("/animal-center/{animal-center-id}")
+    @GetMapping("/animal-center/{animalCenterId}")
     @ResponseStatus(code = HttpStatus.OK)
-    public List<Animal> getAnimalsByAnimalCenteId(@PathVariable("animal-center-id") Long animalCenterId) throws Exception {
+    public List<Animal> getAnimalsByAnimalCenteId(@PathVariable("animalCenterId") Long animalCenterId) throws Exception {
         return this.animalService.getAnimalByAnimalCenterId(animalCenterId);
     }
 
@@ -55,8 +55,8 @@ public class AnimalController {
         return this.animalService.getAnimalByAuthorId(authorId);
     }
 
-    @GetMapping("/animal-center/{animal-center-Id}/author/{authorId}")
-    public List<Animal> getAnimalsByAnimaCenterIdAndAuthorId   (@PathVariable("animal-center-Id") Long animalCenterId,
+    @GetMapping("/animal-center/{animalCenterId}/author/{authorId}")
+    public List<Animal> getAnimalsByAnimaCenterIdAndAuthorId(@PathVariable("animalCenterId") Long animalCenterId,
                                                             @PathVariable("authorId") Long authorId) throws Exception {
         return this.animalService.getAnimalByAnimalCenterIdAndAuthorId(animalCenterId, authorId);
     }

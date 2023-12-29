@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { LoginService } from 'src/app/services/login.service';
-import { UserService } from 'src/app/services/user.service';
+import {Component, OnInit} from '@angular/core';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {LoginService} from 'src/app/services/login.service';
+import {UserService} from 'src/app/services/user.service';
 import FuzzySearch from 'fuzzy-search';
 
 @Component({
@@ -17,11 +17,8 @@ export class UserManagementComponent implements OnInit {
 
   roles = ['ADMIN', 'NORMAL'];
 
-  constructor(
-    private login: LoginService,
-    private snack: MatSnackBar,
-    private userService: UserService
-  ) { }
+  constructor(private login: LoginService, private snack: MatSnackBar, private userService: UserService) {
+  }
 
   ngOnInit(): void {
     this.userService.getAllUsers().subscribe({

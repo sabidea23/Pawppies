@@ -1,0 +1,32 @@
+<mat-card *ngIf="user" class="all">
+  <mat-card-content>
+    <div class="bootstrap-wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="container text-center">
+              <header style="align-self: center">
+                <h1>Add a new Animal</h1>
+              </header>
+            </div>
+
+            <form (ngSubmit)="formSubmit()" class="container">
+              <div style="width: 100%;">
+                <mat-form-field appearance="outline" class="full-width" style="width: 100%;">
+                  <mat-label>Description for animal</mat-label>
+                  <textarea [(ngModel)]="inputText" matInput name="text" rows="10" style="font-size: 16px;"></textarea>
+                </mat-form-field>
+              </div>
+
+              <div class="text-center">
+                <button color="primary" mat-raised-button type="submit">
+                  Add
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
