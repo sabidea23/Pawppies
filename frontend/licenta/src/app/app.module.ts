@@ -15,7 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HomeComponent } from './pages/home/home.component';
@@ -29,13 +29,14 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { MatListModule } from '@angular/material/list';
 import { SidebarComponent } from './pages/admin/sidebar/sidebar.component';
 import { MatTableModule } from '@angular/material/table';
-import { AnimalCenterAddComponent } from './pages/admin/animal-center-add/animal-center-add.component';
-import { AnimalCenterComponent } from './components/animal-center-list/animal-center.component';
+import { UniversityAddComponent } from './pages/admin/university-add/university-add.component';
+import { UniversityListComponent } from './components/university-list/university-list.component';
 import { SidebarUserComponent } from './pages/user/sidebar-user/sidebar-user.component';
+import { ReviewListComponent } from './components/review-list/review-list.component';
+import { ReviewAddComponent } from './components/review-add/review-add.component';
 import { UserManagementComponent } from './pages/admin/user-management/user-management.component';
+import { UniversityTopComponent } from './components/university-top/university-top.component';
 import { RouterOutlet } from '@angular/router';
-import {AnimalListComponent} from "./components/animal-list/animal-list.component";
-import {AnimalAddComponent} from "./components/animal-add/animal-add.component";
 
 @NgModule({
   declarations: [
@@ -48,11 +49,12 @@ import {AnimalAddComponent} from "./components/animal-add/animal-add.component";
     DashboardComponent,
     UserDashboardComponent,
     ProfileComponent,
+    ReviewAddComponent,
+    ReviewListComponent,
     SidebarComponent,
-    AnimalListComponent,
-    AnimalAddComponent,
-    AnimalCenterAddComponent,
-    AnimalCenterComponent,
+    UniversityAddComponent,
+    UniversityListComponent,
+    UniversityTopComponent,
     SidebarUserComponent,
     UserManagementComponent
   ],
