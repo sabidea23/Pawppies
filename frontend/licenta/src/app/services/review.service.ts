@@ -6,7 +6,8 @@ import baseUrl from "./helper";
   providedIn: 'root'
 })
 export class ReviewService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   // Add review
   public addReview(review: any) {
@@ -46,35 +47,5 @@ export class ReviewService {
   // Delete review by id
   public deleteReviewById(id: number) {
     return this.http.delete(`${baseUrl}/review/${id}`);
-  }
-
-  // Like review with review id `reviewId` by user with user id `userId`
-  public likeReview(reviewId: number, userId: number) {
-    return this.http.put(`${baseUrl}/review/${reviewId}/like/${userId}`, null);
-  }
-
-  // Dislike review with review id `reviewId` by user with user id `userId`
-  public dislikeReview(reviewId: number, userId: number) {
-    return this.http.put(`${baseUrl}/review/${reviewId}/dislike/${userId}`, null);
-  }
-
-  // Get like status for review with id `reviewId` by user with id `userId`
-  public getLikeStatus(reviewId: number, userId: number) {
-    return this.http.get(`${baseUrl}/review/${reviewId}/like-status/${userId}`);
-  }
-
-  // Get dislike status for review with id `reviewId` by user with id `userId`
-  public getDislikeStatus(reviewId: number, userId: number) {
-    return this.http.get(`${baseUrl}/review/${reviewId}/dislike-status/${userId}`);
-  }
-
-  // Get reviews liked by user with id `userId`
-  public getReviewsLikedByUser(userId: number) {
-    return this.http.get(`${baseUrl}/review/liked-reviews/${userId}`);
-  }
-
-  // Get reviews disliked by user with id `userId`
-  public getReviewsDislikedByUser(userId: number) {
-    return this.http.get(`${baseUrl}/review/disliked-reviews/${userId}`);
   }
 }

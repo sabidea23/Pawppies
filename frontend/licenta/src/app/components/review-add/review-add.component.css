@@ -13,22 +13,12 @@
 .add-button:hover {
   transform: scale(1.1);
 }
-
-.liked {
-  background-color: 'primary';
-}
-
+F
 header {
   margin: 0 auto -3px;
   text-align: center;
 }
 
-.like_btn {}
-
-.btn-like-container {
-  display: flex;
-  justify-content: flex-start;
-}
 
 button {
   color: #252537;
@@ -75,10 +65,6 @@ header h1 {
 
 header p {
   letter-spacing: 0.05em;
-}
-
-.disliked {
-  background-color: 'primary';
 }
 
 

@@ -55,7 +55,6 @@ export class ReviewAddComponent implements OnInit {
     this.review.author = this.user;
     this.review.university = this.university;
 
-    // Remove authorities from university admin object before sending to server, as the server cannot deserialize it (for now)
     const backedUpAdminAuthorities = this.university.admin.authorities;
     this.university.admin.authorities = undefined;
 
@@ -69,7 +68,21 @@ export class ReviewAddComponent implements OnInit {
           duration: 3000,
         });
 
-        this.router.navigate(['/']); // Redirect to the homepage or another appropriate page
+        const user_role = this.login.getUserRole();
+        if (user_role == 'ADMIN')
+          this.router
+            .navigate([
+              '/admin/university-reviews',
+              { universityId: this.universityId },
+            ])
+            .then((_) => { });
+        else if (user_role == 'NORMAL')
+          this.router
+            .navigate([
+              '/user-dashboard/university-reviews',
+              { universityId: this.universityId },
+            ])
+            .then((_) => { });
       },
       error: (error) => {
         this.snack.open(error.error.message, 'OK', {

@@ -6,15 +6,14 @@
           <div class="col-md-8">
             <div class="container text-center">
               <header style="align-self: center">
-                <h1>Add Review</h1>
+                <h1>Add Animal</h1>
               </header>
             </div>
 
             <form (ngSubmit)="formSubmit()" class="container">
               <div style="width: 100%;">
-                <!-- Review text -->
                 <mat-form-field appearance="outline" class="full-width" style="width: 100%;">
-                  <mat-label>Review Text</mat-label>
+                  <mat-label>Animal Description</mat-label>
                   <textarea [(ngModel)]="inputText" matInput name="text" rows="10" style="font-size: 16px;"></textarea>
                 </mat-form-field>
               </div>

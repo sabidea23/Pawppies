@@ -4,20 +4,9 @@
 }
 
 
-.liked {
-  background-color: 'primary';
-}
-
 header {
   margin: 0 auto -3px;
   text-align: center;
-}
-
-.like_btn {}
-
-.btn-like-container {
-  display: flex;
-  justify-content: flex-start;
 }
 
 
@@ -59,9 +48,6 @@ header p {
   letter-spacing: 0.05em;
 }
 
-.disliked {
-  background-color: 'primary';
-}
 
 
 /* Fonts Form Google Font ::- https://fonts.google.com/  -:: */

@@ -1,45 +1,36 @@
-import { Component, OnInit } from '@angular/core';
-import { LoginService } from 'src/app/services/login.service';
-import { Router, Scroll } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {LoginService} from 'src/app/services/login.service';
+import {Router, Scroll} from '@angular/router';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css'],
+  selector: 'app-navbar', templateUrl: './navbar.component.html', styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
   isLoggedIn = false;
   user: any = null;
 
-  constructor(
-    public login: LoginService,
-    public router: Router) {
-      this.router.events.subscribe((event: any) => {
-        if (event instanceof Scroll && event.anchor) {
-          setTimeout(() => {
-            this.scroll('#' + event.anchor);
-          }, 100);
-        }
-      });
+  constructor(public login: LoginService, public router: Router) {
+    this.router.events.subscribe((event: any) => {
+      if (event instanceof Scroll && event.anchor) {
+        setTimeout(() => {
+          this.scroll('#' + event.anchor);
+        }, 100);
+      }
+    });
   }
 
   private scroll(query: string) {
     const targetElement = document.querySelector(query);
     if (!targetElement) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({top: 0, behavior: 'smooth'});
     } else if (!this.isInViewport(targetElement)) {
-      targetElement.scrollIntoView({ behavior: 'smooth' });
+      targetElement.scrollIntoView({behavior: 'smooth'});
     }
   }
 
   private isInViewport = (elem: any) => {
     const bounding = elem.getBoundingClientRect();
-    return (
-      bounding.top >= 0 &&
-      bounding.left >= 0 &&
-      bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-      bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
+    return (bounding.top >= 0 && bounding.left >= 0 && bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) && bounding.right <= (window.innerWidth || document.documentElement.clientWidth));
   };
 
   ngOnInit(): void {
@@ -51,8 +42,7 @@ export class NavbarComponent implements OnInit {
     });
 
     let itemJson = {
-      value: 'true',
-      timestamp: new Date().getTime(),
+      value: 'true', timestamp: new Date().getTime(),
     }
     const summStorageItem = sessionStorage.getItem('initSumm');
 
@@ -70,8 +60,7 @@ export class NavbarComponent implements OnInit {
       if (timeDiffInSeconds >= 300) {
         // Update timestamp
         itemJson = {
-          value: 'true',
-          timestamp: new Date().getTime(),
+          value: 'true', timestamp: new Date().getTime(),
         }
 
         // Update the `sessionStorage` item
@@ -90,30 +79,30 @@ export class NavbarComponent implements OnInit {
     // If the user is on the `login` or `signup` page, then redirect to the `home` page
     const currentUrl = this.router.url;
     if (currentUrl == '/login' || currentUrl == '/signup') {
-      this.router.navigate(['/']).then((_) => { });
+      this.router.navigate(['/']).then((_) => {
+      });
       return;
     }
 
     // If the user is not logged in, then redirect to the `login` page
     if (!this.login.isLoggedIn()) {
-      this.router.navigate(['/login']).then((_) => { });
+      this.router.navigate(['/login']).then((_) => {
+      });
       return;
     }
 
     // If the user is logged in, then redirect to the `dashboard` page
     const user_role = this.login.getUserRole();
-    if (user_role == 'ADMIN')
-      this.router.navigate(['/admin']).then((_) => { });
-    else if (user_role == 'NORMAL')
-      this.router.navigate(['/user-dashboard']).then((_) => { });
+    if (user_role == 'ADMIN') this.router.navigate(['/admin']).then((_) => {
+    }); else if (user_role == 'NORMAL') this.router.navigate(['/user-dashboard']).then((_) => {
+    });
   }
 
   public toProfileSettings() {
     const user_role = this.login.getUserRole();
-    if (user_role == 'ADMIN')
-      this.router.navigate(['/admin/profile']).then((_) => { });
-    else if (user_role == 'NORMAL')
-      this.router.navigate(['/user-dashboard/profile']).then((_) => { });
+    if (user_role == 'ADMIN') this.router.navigate(['/admin/profile']).then((_) => {
+    }); else if (user_role == 'NORMAL') this.router.navigate(['/user-dashboard/profile']).then((_) => {
+    });
   }
 
   public removeFixedNavbar() {
