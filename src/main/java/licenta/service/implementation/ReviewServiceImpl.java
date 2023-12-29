@@ -89,9 +89,6 @@ public class ReviewServiceImpl implements ReviewService {
         if (!review.addLike(userId)) {
             // User already liked this review, therefore the like is removed
             review.removeLike(userId);
-        } else {
-            // User liked this review, therefore the possibly existing dislike is removed
-            review.removeDislike(userId);
         }
 
         this.reviewRepository.save(review);
@@ -105,13 +102,7 @@ public class ReviewServiceImpl implements ReviewService {
             throw new ReviewNotFoundException("Review with id `" + reviewId + "` not found");
         }
 
-        if (!review.addDislike(userId)) {
-            // User already disliked this review, therefore the dislike is removed
-            review.removeDislike(userId);
-        } else {
-            // User disliked this review, therefore the possibly existing like is removed
-            review.removeLike(userId);
-        }
+        review.removeLike(userId);
 
         this.reviewRepository.save(review);
         return review;
@@ -128,24 +119,8 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public boolean getDislikeStatus(Long reviewId, Long userId) throws ReviewNotFoundException {
-        Review review = this.getReview(reviewId);
-        if (review == null) {
-            throw new ReviewNotFoundException("Review with id `" + reviewId + "` not found");
-        }
-
-        return review.isDislikedBy(userId);
-    }
-
-    @Override
     public List<Review> getLikedReviews(Long userId) {
         List<Review> reviews = this.reviewRepository.findAll();
         return reviews.stream().filter((review) -> review.isLikedBy(userId)).collect(Collectors.toList());
-    }
-
-    @Override
-    public List<Review> getDislikedReviews(Long userId) {
-        List<Review> reviews = this.reviewRepository.findAll();
-        return reviews.stream().filter((review) -> review.isDislikedBy(userId)).collect(Collectors.toList());
     }
 }

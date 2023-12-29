@@ -94,22 +94,9 @@ public class ReviewController {
         return this.reviewService.getLikeStatus(reviewId, userId);
     }
 
-    @GetMapping("/{reviewId}/dislike-status/{userId}")
-    @ResponseStatus(code = HttpStatus.OK)
-    public boolean getDislikeStatus(@PathVariable("reviewId") Long reviewId, @PathVariable("userId") Long userId)
-            throws Exception {
-        return this.reviewService.getDislikeStatus(reviewId, userId);
-    }
-
     @GetMapping("/liked-reviews/{userId}")
     @ResponseStatus(code = HttpStatus.OK)
     public List<Review> getLikedReviews(@PathVariable("userId") Long userId) throws Exception {
         return this.reviewService.getLikedReviews(userId);
-    }
-
-    @GetMapping("/disliked-reviews/{userId}")
-    @ResponseStatus(code = HttpStatus.OK)
-    public List<Review> getDislikedReviews(@PathVariable("userId") Long userId) throws Exception {
-        return this.reviewService.getDislikedReviews(userId);
     }
 }

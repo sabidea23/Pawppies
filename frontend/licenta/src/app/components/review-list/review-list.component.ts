@@ -15,12 +15,10 @@ import { UniversityService } from 'src/app/services/university.service';
 export class ReviewListComponent implements OnInit {
   university: any = undefined;
   user = this.login.getUser();
-  ownReviews: any = [];
   allReviews: any = [];
   universityId: any;
   userId: any;
   likedReviews: any = [];
-  dislikedReviews: any = [];
 
   constructor(
     private login: LoginService,
@@ -33,7 +31,7 @@ export class ReviewListComponent implements OnInit {
   ) {
   }
 
-  hydrateAllReviews() {
+  getFavouriteReviews() {
     if (this.universityId && this.userId) {
       // Get reviews by university id and author id
       this.reviewService
@@ -53,12 +51,11 @@ export class ReviewListComponent implements OnInit {
         error: (_) => { },
       });
     } else if (this.userId) {
-      // Get reviews by author id
-      this.reviewService.getReviewsByAuthorId(this.userId).subscribe({
+      //Get favourite reviews
+      this.reviewService.getReviewsLikedByUser(this.user.id).subscribe({
         next: (data) => {
           this.allReviews = data;
         },
-        error: (_) => { },
       });
     } else {
       // Get all reviews
@@ -89,15 +86,7 @@ export class ReviewListComponent implements OnInit {
       })
       : undefined;
 
-    this.hydrateAllReviews();
-
-    // Get own reviews
-    this.reviewService.getReviewsByAuthorId(this.user.id).subscribe({
-      next: (data) => {
-        this.ownReviews = data;
-      },
-      error: (_) => { },
-    });
+    this.getFavouriteReviews();
 
     this.reviewService.getReviewsLikedByUser(this.user.id).subscribe({
       next: (data) => {
@@ -105,11 +94,6 @@ export class ReviewListComponent implements OnInit {
       },
     });
 
-    this.reviewService.getReviewsDislikedByUser(this.user.id).subscribe({
-      next: (data) => {
-        this.dislikedReviews = data;
-      },
-    });
   }
 
   public enableSummOnlyOnUniver() {
@@ -142,10 +126,6 @@ export class ReviewListComponent implements OnInit {
     return this.likedReviews.some((r: any) => r.id === review.id);
   }
 
-  public isDisliked(review: any) {
-    return this.dislikedReviews.some((r: any) => r.id === review.id);
-  }
-
   public likeReview(review: any) {
     this.reviewService.likeReview(review.id, this.user.id).subscribe({
       next: (updatedReview: any) => {
@@ -156,15 +136,7 @@ export class ReviewListComponent implements OnInit {
           },
         });
 
-        // Update disliked reviews
-        this.reviewService.getReviewsDislikedByUser(this.user.id).subscribe({
-          next: (data) => {
-            this.dislikedReviews = data;
-          },
-        });
-
         review.likes = updatedReview.likes;
-        review.dislikes = updatedReview.dislikes;
       },
       error: (error) => {
         this.snack.open(error.error.message, 'OK', {
@@ -174,40 +146,6 @@ export class ReviewListComponent implements OnInit {
     });
   }
 
-  public dislikeReview(review: any) {
-    this.reviewService.dislikeReview(review.id, this.user.id).subscribe({
-      next: (updatedReview: any) => {
-        // Update liked reviews
-        this.reviewService.getReviewsLikedByUser(this.user.id).subscribe({
-          next: (data) => {
-            this.likedReviews = data;
-          },
-        });
-
-        // Update disliked reviews
-        this.reviewService.getReviewsDislikedByUser(this.user.id).subscribe({
-          next: (data) => {
-            this.dislikedReviews = data;
-          },
-        });
-
-        review.likes = updatedReview.likes;
-        review.dislikes = updatedReview.dislikes;
-      },
-      error: (error) => {
-        this.snack.open(error.error.message, 'OK', {
-          duration: 3000,
-        });
-      },
-    });
-  }
-
-  public hasEditRights(review: any) {
-    return (
-      this.login.getUserRole() == 'ADMIN' ||
-      this.ownReviews.some((r: any) => r.id == review.id)
-    );
-  }
 
   public editReview(review: any) {
     Swal.fire({

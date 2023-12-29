@@ -18,7 +18,6 @@ public class Appreciator {
 
     public enum AppreciationType {
         LIKE,
-        DISLIKE
     }
 
     @Id
@@ -35,13 +34,5 @@ public class Appreciator {
 
     public User getUser() {
         return user;
-    }
-
-    public AppreciationType getAppreciationType() {
-        return appreciationType;
-    }
-
-    public void setAppreciationType(AppreciationType appreciationType) {
-        this.appreciationType = appreciationType;
     }
 }
