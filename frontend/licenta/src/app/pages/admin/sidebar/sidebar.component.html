@@ -1,23 +1,28 @@
 <mat-card class="all">
   <mat-action-list>
     <button mat-list-item routerLink="/admin">
-      <mat-icon>home</mat-icon>Dashboard
+      <mat-icon>home</mat-icon>
+      Dashboard
     </button>
 
     <button mat-list-item routerLink="/admin/universities">
-      <mat-icon>school</mat-icon>Universities
+      <mat-icon>school</mat-icon>
+      Animal Center
     </button>
 
-    <button mat-list-item [routerLink]="['/admin/my-reviews', { userId: this.user.id }]">
-      <mat-icon>rate_review</mat-icon>My Reviews
+    <button [routerLink]="['/admin/my-reviews', { userId: this.user.id }]" mat-list-item>
+      <mat-icon>rate_review</mat-icon>
+      My Animals
     </button>
 
     <button mat-list-item routerLink="/admin/users">
-      <mat-icon>supervised_user_circle</mat-icon>User Management
+      <mat-icon>supervised_user_circle</mat-icon>
+      User Management
     </button>
 
     <button (click)="logout()" *ngIf="isLoggedIn" mat-list-item routerLink="/login">
-      <mat-icon>logout</mat-icon>Logout
+      <mat-icon>logout</mat-icon>
+      Logout
     </button>
   </mat-action-list>
 </mat-card>

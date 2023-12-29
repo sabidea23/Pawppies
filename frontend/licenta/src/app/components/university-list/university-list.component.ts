@@ -62,7 +62,7 @@ export class UniversityListComponent implements OnInit {
 
   public editUniversity(university: any) {
     Swal.fire({
-      title: 'Edit university',
+      title: 'Edit Animal Center',
       background: 'rgb(230, 230, 230)',
       html: `<input id="swal-input1" class="swal2-input" placeholder="Name" value="${university.name}">
       <input id="swal-input2" class="swal2-input" placeholder="Longitude" value="${university.longitude}">

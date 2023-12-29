@@ -8,8 +8,8 @@
 
           <header>
             <div class="container text-center">
-              <h1 *ngIf="!university">Reviews</h1>
-              <h1 *ngIf="university">Reviews of {{ university.name }}</h1>
+              <h1 *ngIf="!university">Animals</h1>
+              <h1 *ngIf="university">Animals from {{ university.name }}</h1>
             </div>
           </header>
 
@@ -46,7 +46,7 @@
             <br />
           </div>
 
-          <button (click)="goToAddReview()" *ngIf="user && universityId" class="add-button" mat-fab>
+          <button (click)="goToAddReview()" *ngIf="user && universityId && getUserRole() === 'ADMIN'"  class="add-button" mat-fab>
             <mat-icon>add</mat-icon>
           </button>
         </div>

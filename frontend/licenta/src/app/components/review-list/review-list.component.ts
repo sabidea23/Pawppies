@@ -236,7 +236,7 @@ export class ReviewListComponent implements OnInit {
 
   public hasEditRights(review: any) {
     return (
-      this.login.getUserRole() == 'ADMIN' ||
+      this.login.getUserRole() == 'ADMIN' &&
       this.ownReviews.some((r: any) => r.id == review.id)
     );
   }
@@ -244,7 +244,7 @@ export class ReviewListComponent implements OnInit {
   public editReview(review: any) {
     Swal.fire({
       width: '800px',
-      title: 'Edit review',
+      title: 'Edit Animal Description',
       background: 'rgb(230, 230, 230)',
       html: `
       <textarea

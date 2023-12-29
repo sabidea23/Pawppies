@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoginService } from '../../services/login.service';
-import { ReviewService } from '../../services/review.service';
+import { LoginService } from '../../../services/login.service';
+import { ReviewService } from '../../../services/review.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UniversityService } from 'src/app/services/university.service';
 
@@ -68,8 +68,21 @@ export class ReviewAddComponent implements OnInit {
         this.snack.open('Review added successfully', 'OK', {
           duration: 3000,
         });
-
-        this.router.navigate(['/']); // Redirect to the homepage or another appropriate page
+        const user_role = this.login.getUserRole();
+        if (user_role == 'ADMIN')
+          this.router
+            .navigate([
+              '/admin/universities/',
+              { universityId: this.universityId },
+            ])
+            .then((_) => { });
+        else if (user_role == 'NORMAL')
+          this.router
+            .navigate([
+              '/user-dashboard/universities/',
+              { universityId: this.universityId },
+            ])
+            .then((_) => { });
       },
       error: (error) => {
         this.snack.open(error.error.message, 'OK', {

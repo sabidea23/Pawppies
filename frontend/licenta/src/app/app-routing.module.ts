@@ -11,7 +11,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ReviewListComponent } from './components/review-list/review-list.component';
 import { UniversityAddComponent } from './pages/admin/university-add/university-add.component';
 import { UniversityListComponent } from './components/university-list/university-list.component';
-import { ReviewAddComponent } from './components/review-add/review-add.component';
+import { ReviewAddComponent } from './pages/admin/review-add/review-add.component';
 import { UserManagementComponent } from './pages/admin/user-management/user-management.component';
 import { UniversityTopComponent } from './components/university-top/university-top.component';
 
