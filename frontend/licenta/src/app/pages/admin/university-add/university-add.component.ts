@@ -55,7 +55,6 @@ export class UniversityAddComponent implements OnInit {
       this.university[key] = this.formInput[key];
     }
 
-    // Remove authorities from user object before sending to server, as the server cannot deserialize it (for now)
     const backedUpAuthorities = this.user.authorities;
     this.user.authorities = undefined;
 
@@ -63,12 +62,11 @@ export class UniversityAddComponent implements OnInit {
 
     this.universityService.addUniversity(this.university).subscribe({
       next: (data) => {
-        // Restore authorities, maybe it will be needed later
         this.user.authorities = backedUpAuthorities;
 
         Swal.fire({
           title: 'Success!',
-          text: 'University added successfully',
+          text: 'Animal Center added successfully',
           icon: 'success',
           background: 'rgb(230, 230, 230)',
         }).then((_) => {
@@ -82,4 +80,12 @@ export class UniversityAddComponent implements OnInit {
       },
     });
   }
+
+  clearForm() {
+    this.formInput.name = '';
+    this.formInput.description = '';
+    this.formInput.longitude = '';
+    this.formInput.latitude = '';
+  }
+
 }

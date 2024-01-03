@@ -19,7 +19,6 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public Review createReview(Review review) {
-        // Create review
         return this.reviewRepository.save(review);
     }
 
@@ -87,7 +86,6 @@ public class ReviewServiceImpl implements ReviewService {
         }
 
         if (!review.addLike(userId)) {
-            // User already liked this review, therefore the like is removed
             review.removeLike(userId);
         }
 

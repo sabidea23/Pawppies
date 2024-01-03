@@ -26,7 +26,15 @@ public class Review {
 
     @NotNull
     @Column(length = 3000)
-    private String text;
+    private String name;
+
+    @NotNull
+    @Column()
+    private Integer age;
+
+    @NotNull
+    @Column()
+    private String breed;
 
     @NotNull
     @JsonIgnore
@@ -50,17 +58,13 @@ public class Review {
     private int likes;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "review_images",
-                joinColumns = {
-            @JoinColumn(name = "review_id")
-                },
-    inverseJoinColumns = {
-            @JoinColumn(name = "image_id")
-    })
+    @JoinTable(name = "review_images", joinColumns = {@JoinColumn(name = "review_id")}, inverseJoinColumns = {@JoinColumn(name = "image_id")})
     private Set<ImageModel> reviewImages;
 
-    public Review(String text, User author, University university) {
-        this.text = text;
+    public Review(String name, Integer age, String breed, User author, University university, int likes) {
+        this.name = name;
+        this.age = age;
+        this.breed = breed;
         this.author = author;
         this.university = university;
         this.likes = 0;
@@ -74,12 +78,28 @@ public class Review {
         this.reviewImages = reviewImages;
     }
 
-    public String getText() {
-        return text;
+    public String getName() {
+        return name;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getBreed() {
+        return breed;
+    }
+
+    public void setBreed(String breed) {
+        this.breed = breed;
     }
 
     @JsonIgnore

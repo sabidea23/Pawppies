@@ -58,7 +58,9 @@ public class ReviewController {
             throw new ReviewNotFoundException("Review with id `" + requestBodyReview.getId() + "` not found");
         }
 
-        originalReview.setText(requestBodyReview.getText());
+        originalReview.setAge(requestBodyReview.getAge());
+        originalReview.setBreed(requestBodyReview.getName());
+        originalReview.setName(requestBodyReview.getName());
 
         return this.reviewService.updateReview(originalReview);
     }

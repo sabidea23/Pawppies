@@ -126,4 +126,13 @@ export class ProfileComponent implements OnInit {
     this.userInput.phone = this.user.phone;
     this.userInput.password = '';
   }
+
+  clearForm() {
+    this.userInput.firstName = '';
+    this.userInput.lastName = '';
+    this.userInput.email = '';
+    this.userInput.phone = '';
+    this.userInput.password = '';
+  }
+
 }

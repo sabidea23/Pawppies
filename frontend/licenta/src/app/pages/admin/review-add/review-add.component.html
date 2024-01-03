@@ -1,36 +1,62 @@
 <mat-card *ngIf="user" class="all">
   <mat-card-content>
-    <div class="bootstrap-wrapper">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8">
-            <div class="container text-center">
-              <header style="align-self: center">
-                <h1>Add Animal</h1>
-              </header>
-            </div>
+    <form (ngSubmit)="formSubmit()" class="container">
+      <div class="con">
 
-            <form (ngSubmit)="formSubmit()" class="container">
-                <mat-form-field appearance="outline">
-                  <mat-label>Animal Description</mat-label>
-                  <textarea [(ngModel)]="inputText" matInput name="text" rows="10" style="font-size: 16px;"></textarea>
-                </mat-form-field>
+        <header style="align-self: center">
+          <h1>Add Animal</h1>
+        </header>
 
+        <div class="field-set">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label><mat-icon>pets</mat-icon> Animal Name</mat-label>
+            <input [(ngModel)]="inputName" matInput name="name" placeholder="Animal Name"/>
+            <button mat-icon-button matSuffix (click)="inputName=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label><mat-icon>event</mat-icon> Animal Age</mat-label>
+            <input [(ngModel)]="inputAge" matInput name="age" placeholder="Animal Age"/>
+            <button mat-icon-button matSuffix (click)="inputAge=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label><mat-icon>category</mat-icon> Animal Breed</mat-label>
+            <input [(ngModel)]="inputBreed" matInput name="breed" placeholder="Animal Breed"/>
+            <button mat-icon-button matSuffix (click)="inputBreed=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <div>
+            <div class="col-6">
               <div>
-                <input #selectFile (change)="onFileSelected({event : $event})" multiple type="file" value="select">
-
+                <input #selectFile (change)="onFileSelected($event)" multiple type="file" value="select">
               </div>
 
-              <div class="text-center">
-                <button color="primary" mat-raised-button type="submit">
-                  Add
-                </button>
+              <div class="image-grid">
+                <div *ngFor="let file of this.review.reviewImages">
+                  <img [src]='file.url'>
+                </div>
               </div>
-            </form>
 
+            </div>
           </div>
+
+        </div>
+        <div class="text-center">
+          <button [disabled]="!isFormValid()" mat-raised-button type="submit">
+            Add
+          </button>
+          <button mat-raised-button type="button" (click)="clearForm()">
+            Clear
+          </button>
         </div>
       </div>
-    </div>
+    </form>
   </mat-card-content>
 </mat-card>
