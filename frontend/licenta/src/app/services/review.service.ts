@@ -8,7 +8,7 @@ import baseUrl from "./helper";
 export class ReviewService {
   constructor(private http: HttpClient) { }
 
-  public addReview(review: any) {
+  public addReview(review: FormData) {
     return this.http.post(`${baseUrl}/review/`, review);
   }
 

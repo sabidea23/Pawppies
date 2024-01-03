@@ -1,13 +1,19 @@
 package licenta.controller;
 
 import licenta.exeptions.ReviewNotFoundException;
+import licenta.model.ImageModel;
 import licenta.model.Review;
 import licenta.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @RestController
@@ -18,10 +24,30 @@ public class ReviewController {
     @Autowired
     private ReviewService reviewService;
 
-    @PostMapping("/")
+    @PostMapping(value = {"/"}, consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Review createReview(@RequestBody Review review) {
-        return this.reviewService.createReview(review);
+    public Review createReview(@RequestPart("review") Review review,
+                               @RequestPart("imageFile") MultipartFile[] file) {
+        try {
+            Set<ImageModel> imageModels = uploadImage(file);
+            review.setReviewImages(imageModels);
+            return this.reviewService.createReview(review);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    public Set<ImageModel> uploadImage(MultipartFile[] multipartFiles) throws IOException {
+        Set<ImageModel> imageModels = new HashSet<>();
+        for (MultipartFile file:multipartFiles) {
+            ImageModel imageModel = new ImageModel(
+                    file.getOriginalFilename(),
+                    file.getContentType(),
+                    file.getBytes());
+            imageModels.add(imageModel);
+        }
+        return imageModels;
     }
 
     @PutMapping("/")

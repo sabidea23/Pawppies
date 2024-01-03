@@ -4,6 +4,8 @@ import { LoginService } from '../../../services/login.service';
 import { ReviewService } from '../../../services/review.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UniversityService } from 'src/app/services/university.service';
+import {FileModel} from "../../../model/file-handle.model";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-review-add',
@@ -20,6 +22,7 @@ export class ReviewAddComponent implements OnInit {
   public review: any = {
     university: undefined,
     author: undefined,
+    reviewImages: []
   };
 
   constructor(
@@ -29,6 +32,7 @@ export class ReviewAddComponent implements OnInit {
     private route: ActivatedRoute,
     private reviewService: ReviewService,
     private universityService: UniversityService,
+    private sanitazer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
@@ -48,20 +52,18 @@ export class ReviewAddComponent implements OnInit {
   formSubmit() {
     this.review['text'] = this.inputText;
 
-    // Remove authorities from user object before sending to server, as the server cannot deserialize it (for now)
     const backedUpUserAuthorities = this.user.authorities;
     this.user.authorities = undefined;
 
     this.review.author = this.user;
     this.review.university = this.university;
 
-    // Remove authorities from university admin object before sending to server, as the server cannot deserialize it (for now)
     const backedUpAdminAuthorities = this.university.admin.authorities;
     this.university.admin.authorities = undefined;
 
-    this.reviewService.addReview(this.review).subscribe({
+    const reviewFormData = this.prepareFormData(this.review)
+    this.reviewService.addReview(reviewFormData).subscribe({
       next: (data) => {
-        // Restore authorities, maybe it will be needed later
         this.user.authorities = backedUpUserAuthorities;
         this.university.admin.authorities = backedUpAdminAuthorities;
 
@@ -90,5 +92,39 @@ export class ReviewAddComponent implements OnInit {
         });
       },
     });
+  }
+
+
+  prepareFormData(review: any): FormData {
+    const formData = new FormData();
+
+    formData.append(
+      'review',
+      new Blob([JSON.stringify(review)], {type: 'application/json'})
+    );
+
+    for(var i = 0; i < review.reviewImages.length; i++) {
+      formData.append(
+        'imageFile',
+        review.reviewImages[i].file,
+        review.reviewImages[i].file.name
+      );
+    }
+
+    return formData;
+  }
+
+
+  onFileSelected({event}: { event: any }) {
+    if (event.target.files) {
+      const file = event.target.files[0];
+
+      const fileHandler : FileModel = {
+        file: file,
+        url: this.sanitazer.bypassSecurityTrustUrl(window.URL.createObjectURL(file))
+      }
+
+      this.review.reviewImages.push(fileHandler);
+    }
   }
 }

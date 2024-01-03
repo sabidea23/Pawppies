@@ -49,11 +49,29 @@ public class Review {
     @NotNull
     private int likes;
 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "review_images",
+                joinColumns = {
+            @JoinColumn(name = "review_id")
+                },
+    inverseJoinColumns = {
+            @JoinColumn(name = "image_id")
+    })
+    private Set<ImageModel> reviewImages;
+
     public Review(String text, User author, University university) {
         this.text = text;
         this.author = author;
         this.university = university;
         this.likes = 0;
+    }
+
+    public Set<ImageModel> getReviewImages() {
+        return reviewImages;
+    }
+
+    public void setReviewImages(Set<ImageModel> reviewImages) {
+        this.reviewImages = reviewImages;
     }
 
     public String getText() {

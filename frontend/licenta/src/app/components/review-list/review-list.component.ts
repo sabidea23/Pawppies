@@ -33,7 +33,6 @@ export class ReviewListComponent implements OnInit {
 
   getFavouriteReviews() {
     if (this.universityId && this.userId) {
-      // Get reviews by university id and author id
       this.reviewService
         .getReviewsByUniversityIdAndAuthorId(this.universityId, this.userId)
         .subscribe({
@@ -43,7 +42,6 @@ export class ReviewListComponent implements OnInit {
           error: (_) => { },
         });
     } else if (this.universityId) {
-      // Get reviews by university id
       this.reviewService.getReviewsByUniversityId(this.universityId).subscribe({
         next: (data) => {
           this.allReviews = data;
@@ -51,14 +49,12 @@ export class ReviewListComponent implements OnInit {
         error: (_) => { },
       });
     } else if (this.userId) {
-      //Get favourite reviews
       this.reviewService.getReviewsLikedByUser(this.user.id).subscribe({
         next: (data) => {
           this.allReviews = data;
         },
       });
     } else {
-      // Get all reviews
       this.reviewService.getAllReviews().subscribe({
         next: (data) => {
           this.allReviews = data;

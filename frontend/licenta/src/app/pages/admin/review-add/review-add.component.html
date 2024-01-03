@@ -11,11 +11,14 @@
             </div>
 
             <form (ngSubmit)="formSubmit()" class="container">
-              <div style="width: 100%;">
-                <mat-form-field appearance="outline" class="full-width" style="width: 100%;">
+                <mat-form-field appearance="outline">
                   <mat-label>Animal Description</mat-label>
                   <textarea [(ngModel)]="inputText" matInput name="text" rows="10" style="font-size: 16px;"></textarea>
                 </mat-form-field>
+
+              <div>
+                <input #selectFile (change)="onFileSelected({event : $event})" multiple type="file" value="select">
+
               </div>
 
               <div class="text-center">
@@ -24,6 +27,7 @@
                 </button>
               </div>
             </form>
+
           </div>
         </div>
       </div>
