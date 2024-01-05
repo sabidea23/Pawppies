@@ -27,11 +27,9 @@ import { DashboardComponent } from './pages/admin/dashboard/dashboard.component'
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { MatListModule } from '@angular/material/list';
-import { SidebarComponent } from './pages/admin/sidebar/sidebar.component';
 import { MatTableModule } from '@angular/material/table';
 import { UniversityAddComponent } from './pages/admin/university-add/university-add.component';
 import { UniversityListComponent } from './components/university-list/university-list.component';
-import { SidebarUserComponent } from './pages/user/sidebar-user/sidebar-user.component';
 import { ReviewListComponent } from './components/review-list/review-list.component';
 import { ReviewAddComponent } from './pages/admin/review-add/review-add.component';
 import { UserManagementComponent } from './pages/admin/user-management/user-management.component';
@@ -54,11 +52,9 @@ import {MatMenuModule} from "@angular/material/menu";
     ProfileComponent,
     ReviewAddComponent,
     ReviewListComponent,
-    SidebarComponent,
     UniversityAddComponent,
     UniversityListComponent,
     UniversityTopComponent,
-    SidebarUserComponent,
     UserManagementComponent,
     MapDialogComponent
   ],
