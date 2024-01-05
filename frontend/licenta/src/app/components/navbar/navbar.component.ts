@@ -118,6 +118,14 @@ export class NavbarComponent implements OnInit {
       this.router.navigate(['/user-dashboard/profile']).then((_) => { });
   }
 
+  public redirectAnimalCenter() {
+    const user_role = this.login.getUserRole();
+    if (user_role == 'ADMIN')
+      this.router.navigate(['/admin/universities']).then((_) => { });
+    else if (user_role == 'NORMAL')
+      this.router.navigate(['/user-dashboard/universities']).then((_) => { });
+  }
+
   public removeFixedNavbar() {
     const navbar = document.getElementById('navbar');
     if (navbar != null) {
@@ -140,5 +148,13 @@ export class NavbarComponent implements OnInit {
     if (this.isSubMenuOpen) {
       this.isSubMenuOpen = !this.isSubMenuOpen;
     }
+  }
+
+  public getUserRole() {
+    return this.login.getUserRole();
+  }
+  public goToAddUniversity() {
+    this.router.navigate(['/admin/universities/add']).then((_) => {
+    });
   }
 }

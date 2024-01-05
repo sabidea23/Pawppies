@@ -46,8 +46,8 @@
   <div *ngIf="isSubMenuOpen && !profileDetailMenu" class="sub-menu">
     <a class="sub-menu-item"  mat-button [matMenuTriggerFor]="adoptMenu" >ADOPT OR GET INVOLVED</a>
     <mat-menu class="custom-menu submeniu" #adoptMenu="matMenu">
-      <button class="mat-menu-customize-item" mat-menu-item>Opțiunea 1</button>
-      <button class="mat-menu-customize-item" mat-menu-item>Opțiunea 2</button>
+      <button class="mat-menu-customize-item" mat-menu-item>About Pawppies</button>
+      <button class="mat-menu-customize-item" mat-menu-item (click)="redirectAnimalCenter()">Animal Centers</button>
     </mat-menu>
 
     <a class="sub-menu-item" mat-button [matMenuTriggerFor]="dogs">DOGS & PUPPIES</a>
@@ -68,11 +68,6 @@
       <button class="mat-menu-customize-item" mat-menu-item>Opțiunea 2</button>
     </mat-menu>
 
-    <a class="sub-menu-item" mat-button [matMenuTriggerFor]="pets">YOUR PETS</a>
-    <mat-menu class="custom-menu submeniu" #pets="matMenu">
-      <button class="mat-menu-customize-item" mat-menu-item>Opțiunea 1</button>
-      <button class="mat-menu-customize-item" mat-menu-item>Opțiunea 2</button>
-    </mat-menu>
 
     <a class="sub-menu-item" mat-button [matMenuTriggerFor]="contact">CONTACT</a>
     <mat-menu class="custom-menu submeniu" #contact="matMenu">
@@ -80,6 +75,19 @@
       <button class="mat-menu-customize-item" mat-menu-item>Opțiunea 2</button>
     </mat-menu>
 
+    <a *ngIf="isLoggedIn && user && getUserRole() === 'ADMIN'"  class="sub-menu-item" mat-button [matMenuTriggerFor]="admin">
+      ADMINISTRATION</a>
+    <mat-menu class="custom-menu submeniu" #admin="matMenu">
+      <button class="mat-menu-customize-item" mat-menu-item routerLink="/admin/users">Change roles</button>
+      <button class="mat-menu-customize-item" mat-menu-item (click)="goToAddUniversity()">Add Animal Center</button>
+    </mat-menu>
+
+    <a *ngIf="isLoggedIn && user && getUserRole() === 'NORMAL'"  class="sub-menu-item" mat-button [matMenuTriggerFor]="userSubMenu">
+      YOUR PETS</a>
+    <mat-menu class="custom-menu submeniu" #userSubMenu="matMenu">
+      <button class="mat-menu-customize-item" mat-menu-item [routerLink]="['/user-dashboard/my-reviews', { userId: this.user.id }]">Favourite animals</button>
+      <button class="mat-menu-customize-item" mat-menu-item>Plan to adopt</button>
+    </mat-menu>
   </div>
 </mat-toolbar>
 
