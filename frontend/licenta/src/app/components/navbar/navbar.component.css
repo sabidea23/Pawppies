@@ -4,7 +4,6 @@
 
 .example-spacer {
   flex: 1 1 auto;
-  background-color: rgb(200, 200, 200);
   z-index: 999;
 }
 
@@ -12,24 +11,29 @@
   position: fixed;
 }
 
-a {
-  font-size: 250%;
-  font-family: 'Playfair Display', serif;
-  color: #3e403f;
+.example-icon {
+  font-family: 'Montserrat', sans-serif; /* Aplică fontul Montserrat */
+  font-size: 1em; /* Mărește dimensiunea fontului */
+  color: #54428E; /* Setează culoarea textului */
+  margin: 10px 20px 20px 10px;
   font-weight: bold;
 }
 
-.example-icon {
-  font-size: 18px;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  margin-left: 10px;
-  margin-right: 20px;
-  text-decoration: none;
-  outline: none;
+.example-icon:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
 }
 
-.example-icon:hover {
+.menu-button button {
+  font-family: 'Montserrat', sans-serif; /* Aplică fontul Montserrat */
+  font-size: 1em; /* Mărește dimensiunea fontului */
+  color: #54428E; /* Setează culoarea textului */
+  display: flex; /* Utilizează flexbox pentru alinierea textului și a săgeții */
+  align-items: center; /* Centrează elementele pe verticală */
+  justify-content: space-between; /* Plasează textul și săgeata la capetele opuse */
+}
+
+.menu-button:hover {
   transform: scale(1.1);
   transition: transform 0.2s ease-in-out;
 }
@@ -42,3 +46,124 @@ a {
   font-size: 25px;
   margin-left: 10px;
 }
+
+/* Stiluri pentru navbar */
+.top-nav {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  width: 100%;
+  justify-content: space-between; /* Aliniază copiii la capetele opuse ale containerului */
+  align-items: center; /* Centrează elementele vertical */
+}
+
+/* Stiluri pentru primul rând din navbar */
+.top-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.menu-button {
+  margin-left: 20px;
+}
+
+.auth-buttons {
+  margin-left: auto;
+  margin-right: 0;
+  color: #54428E;
+  font-size: 0.8em; /* Dimensiunea fontului redusă */
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 5px;
+}
+
+/* Stiluri pentru sub-menu (al doilea rând) */
+.sub-menu {
+  display: flex;
+  background-color: #54428E; /* Culoarea de fundal pe întregul rând */
+  padding: 15px;
+  justify-content: space-between;
+  align-items: center; /* Asigură alinierea verticală a elementelor în interiorul sub-menu */
+  width: 100%; /* Extinde sub-menu pe întreaga lățime a părintelui */
+  font-family: 'Montserrat', sans-serif;
+  height: 100%;
+  font-size: 0.8em; /* Dimensiunea fontului redusă */
+  color: white; /* Setează culoarea textului la alb */
+  animation: fadeIn 0.4s; /* Schimbă durata după preferințe */
+}
+
+.sub-menu-item {
+  color: white !important;
+  margin-right: 20px;
+  text-decoration: none;
+  font-weight: 200;
+}
+
+.sub-menu-item:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.menu-button mat-icon {
+  color: #54428E; /* Culoarea săgeții */
+}
+
+.rotate {
+  transform: rotate(180deg); /* Rotește săgeata cu 180 grade când submenu-ul este deschis */
+}
+
+/* Stiluri pentru butonul utilizatorului */
+.user-menu button {
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif; /* Aplică fontul Montserrat */
+  font-size: 1.1em; /* Mărește dimensiunea fontului */
+  transition: background-color 0.3s, color 0.3s; /* Adaugă tranziție pentru culoare și fundal */
+}
+
+.user-menu mat-icon {
+  transition: color 0.3s; /* Adaugă tranziție pentru culoarea iconiței */
+}
+
+/* Când butonul este activ */
+.user-menu button.active {
+  background-color: #52408C; /* Culoarea de fundal când este apăsat */
+  color: white; /* Culoarea textului când este apăsat */
+}
+
+.user-menu button.active mat-icon {
+  color: white; /* Culoarea iconiței când butonul este activ */
+}
+
+/* Stiluri pentru meniu */
+.custom-menu {
+  background-color: #B18FCF; /* Culoarea de fundal a meniului */
+  color: white; /* Culoarea textului meniului */
+  width: 100%; /* Lățimea meniului să fie aceeași cu a butonului */
+}
+
+
+
+.mat-mdc-menu-item.mat-menu-customize-item {
+  background-color: #B18FCF; /* Culoarea de fundal a meniului */
+  width: 200px;
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif; /* Aplică fontul Montserrat */
+  font-size: 1.1em; /* Mărește dimensiunea fontului */
+  text-align: center;
+  display: block;
+  animation: fadeIn 0.4s; /* Schimbă durata după preferințe */
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* styles.css */
+.cdk-overlay-pane.custom-overlay-class {
+  background: #B18FCF; /* Culoarea de fundal dorită */
+  color: white; /* Culoarea fontului */
+  /* Alte stiluri după necesități */
+}
+

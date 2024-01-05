@@ -38,7 +38,9 @@ import { UserManagementComponent } from './pages/admin/user-management/user-mana
 import { UniversityTopComponent } from './components/university-top/university-top.component';
 import { RouterOutlet } from '@angular/router';
 import {MatGridListModule} from "@angular/material/grid-list";
-
+import { MapDialogComponent } from './components/map-dialog/map-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatMenuModule} from "@angular/material/menu";
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,29 +59,32 @@ import {MatGridListModule} from "@angular/material/grid-list";
     UniversityListComponent,
     UniversityTopComponent,
     SidebarUserComponent,
-    UserManagementComponent
+    UserManagementComponent,
+    MapDialogComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatIconModule,
-    FormsModule,
-    HttpClientModule,
-    MatSnackBarModule,
-    MatCardModule,
-    MatChipsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatListModule,
-    MatTableModule,
-    ReactiveFormsModule,
-    RouterOutlet,
-    MatGridListModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatIconModule,
+        FormsModule,
+        HttpClientModule,
+        MatSnackBarModule,
+        MatCardModule,
+        MatChipsModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatListModule,
+        MatTableModule,
+        ReactiveFormsModule,
+        RouterOutlet,
+        MatGridListModule,
+        MatDialogModule,
+      MatMenuModule
+    ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
 })

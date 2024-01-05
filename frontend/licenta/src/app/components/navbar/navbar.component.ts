@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
 import { Router, Scroll } from '@angular/router';
 
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
+
 })
 export class NavbarComponent implements OnInit {
   isLoggedIn = false;
@@ -120,6 +122,23 @@ export class NavbarComponent implements OnInit {
     const navbar = document.getElementById('navbar');
     if (navbar != null) {
       navbar.classList.remove('fixed-top');
+    }
+  }
+
+  isSubMenuOpen = false;
+  profileDetailMenu = false;
+
+  toggleSubMenu() {
+    this.isSubMenuOpen = !this.isSubMenuOpen;
+    if (this.profileDetailMenu) {
+      this.profileDetailMenu = !this.profileDetailMenu;
+    }
+  }
+
+  openUserMenu() {
+    this.profileDetailMenu = !this.profileDetailMenu;
+    if (this.isSubMenuOpen) {
+      this.isSubMenuOpen = !this.isSubMenuOpen;
     }
   }
 }

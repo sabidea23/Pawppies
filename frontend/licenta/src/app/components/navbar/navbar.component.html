@@ -1,33 +1,57 @@
-<!-- <mat-toolbar class="example-spacer fixed-top" id="navbar"> -->
-<mat-toolbar class="example-spacer" id="navbar">
-  <a class="example-icon" mat-button (click)="toDashboard()" routerLink="/admin/profile"><span
-      class="title">Pawppies</span></a>
-
-  <div style="margin-left: auto; margin-right: 0;">
-    <a class="example-icon login" routerLink="/" fragment="" mat-button>HOME</a>
-    <a class="example-icon login" routerLink="/" fragment="about" mat-button>ABOUT</a>
-    <a class="example-icon login" routerLink="/" fragment="team" mat-button>TEAM</a>
-    <a class="example-icon login" routerLink="/" fragment="work" mat-button>WORK</a>
-    <a class="example-icon login" routerLink="/" fragment="contact" mat-button>CONTACT</a>
-
-    <a *ngIf="!isLoggedIn" [routerLink]="'/login'" aria-label="Example icon-button with a heart icon"
-      class="example-icon login favorite-icon" mat-button>
-      LOGIN
+<mat-toolbar class="top-nav">
+  <!-- Rândul 1: Conține logo, All about pet, și butoanele de autentificare -->
+  <div class="top-row">
+    <a mat-button routerLink="/" class="logo">
+      <img  class="logo" src="../../../assets/logo.png">
     </a>
+    <div class="menu-button">
+      <button (click)="toggleSubMenu()" mat-button>
+        All about pet
+        <mat-icon [ngClass]="{'rotate': isSubMenuOpen}">expand_more</mat-icon>
+      </button>
+    </div>
+    <div class="auth-buttons">
+      <div>
 
-    <a *ngIf="!isLoggedIn" [routerLink]="'/signup'" aria-label="Example icon-button with a heart icon"
-      class="example-icon favorite-icon register" mat-button>
-      REGISTER
-    </a>
+        <a *ngIf="!isLoggedIn" [routerLink]="'/signup'" aria-label="Register"
+           class="example-icon login" mat-button>
+          Sign Up
+        </a>
+        <!-- Butoanele pentru utilizatori neautentificați -->
+        <a *ngIf="!isLoggedIn" [routerLink]="'/login'" aria-label="Login"
+           class="example-icon register" mat-button>
+          Log In
+        </a>
 
-    <a (click)="logout()" *ngIf="isLoggedIn" aria-label="Example icon-button with a heart icon"
-      class="example-icon favorite-icon" mat-button>
-      LOGOUT
-    </a>
+        <!-- Butoanele pentru utilizatori autentificați -->
+        <div *ngIf="isLoggedIn && user" class="user-menu example-icon">
+          <button (click)="$event.stopPropagation();" mat-button [matMenuTriggerFor]="userMenu" [ngClass]="{'active': isSubMenuOpen}"
+          (click)="openUserMenu()">
+            <mat-icon>person</mat-icon> <!-- Pictograma cu utilizator -->
+            {{ user.firstName }} {{ user.lastName }} <!-- Prenume și nume -->
+          </button>
 
-    <button (click)="toProfileSettings()" *ngIf="isLoggedIn && user" class="example-icon favorite-icon" mat-icon-button>
-      <mat-icon>settings</mat-icon>
-    </button>
+          <mat-menu class="custom-menu" [hasBackdrop]="false" #userMenu="matMenu" (click)="$event.stopPropagation();">
+            <button mat-menu-item  class="mat-menu-customize-item" (click)="toProfileSettings()">Setări profil</button>
+            <button mat-menu-item  class="mat-menu-customize-item">Opțiunea 2</button>
+            <button mat-menu-item  class="mat-menu-customize-item" (click)="logout()">Logout</button>
+          </mat-menu>
+        </div>
+
+      </div>
+    </div>
   </div>
 
+  <!-- Rândul 2: Inițial ascuns, se afișează la click pe All about pet -->
+  <div *ngIf="isSubMenuOpen && !profileDetailMenu" class="sub-menu">
+    <a class="sub-menu-item" href="#">ADOPT OR GET INVOLVED</a>
+    <a class="sub-menu-item" href="#">DOGS & PUPPIES</a>
+    <a class="sub-menu-item" href="#">CATS & KITTENS</a>
+    <a class="sub-menu-item" href="#">OTHER TYPES OF PETS</a>
+    <a class="sub-menu-item" href="#">OTHER TYPES OF PETS</a>
+    <a class="sub-menu-item" href="#">CONTACT</a>
+
+  </div>
 </mat-toolbar>
+
+

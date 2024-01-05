@@ -3,7 +3,6 @@
   align-items: center;
 }
 
-
 .liked {
   background-color: 'primary';
 }
@@ -13,7 +12,8 @@ header {
   text-align: center;
 }
 
-.like_btn {}
+.like_btn {
+}
 
 .btn-like-container {
   display: flex;
@@ -73,18 +73,6 @@ header p {
   box-sizing: border-box;
 }
 
-.all {
-  animation: pulse 2s linear infinite alternate;
-  background-attachment: fixed;
-  width: 1100px;
-  min-height: 400px;
-  height: auto;
-  border-radius: 5px;
-  margin: 2% auto;
-  box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
-  padding: 2%;
-  background-image: linear-gradient(-225deg, lightgrey 60%, darkgrey 80%);
-}
 
 .con {
   width: 500px;
@@ -106,3 +94,125 @@ header p {
 .zoom-on-hover:hover {
   transform: scale(1.05);
 }
+
+.grid-background {
+  margin-top: 2%;
+  background-color: #54428E;
+  background-attachment: fixed;
+}
+
+.search-container {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.university-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.university-container {
+  flex: 0 1 calc(33% - 20px);
+}
+
+.university-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+.university-header {
+  cursor: pointer;
+}
+
+.university-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+}
+
+.search-container {
+  width: 40%;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+.search-field {
+  width: 100%;
+  position: relative; /* Poziționare relativă pentru poziționarea absolută a iconiței */
+}
+
+.search-field input {
+  padding: 10px 40px 10px 20px; /* Spațiere internă pentru text și iconiță */
+  border-radius: 50px; /* Borduri rotunjite pentru un look modern */
+  border: 2px solid #B18FCF; /* Border colorat pentru a se potrivi cu tema */
+  transition: all 0.3s ease; /* Tranziție pentru efectul de focus */
+}
+
+.search-field input:focus {
+  box-shadow: 0 0 8px 0 rgba(84, 66, 142, 0.5); /* Umbră atunci când este focusat */
+  outline: none; /* Înlătură conturul implicit */
+}
+
+.search-icon {
+  position: absolute; /* Poziționează iconița absolut în cadrul câmpului de căutare */
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%); /* Centrează iconița vertical */
+  cursor: pointer; /* Schimbă cursorul când mouse-ul este peste iconiță */
+}
+
+.center-quote {
+  padding: 20px; /* Adaugă un pic de spațiu în interior */
+  margin: 20px 0; /* Spațiu în jurul citatului */
+  font-style: italic; /* Font italic pentru un aspect de citat */
+  line-height: 1.5; /* Distanța între linii pentru lizibilitate */
+  position: relative; /* Pentru a poziționa pseudo-elementele */
+}
+
+
+.map-button {
+  margin-left: 2%;
+  color: #54428E; /* Schimbă culoarea textului */
+  transition: background-color 0.3s, color 0.3s; /* Tranziție pentru efectul de hover */
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-between; /* Așează butoanele în părți opuse ale containerului */
+  align-items: flex-end; /* Aliniază butoanele la partea de jos */
+  padding: 16px; /* Adaugă un pic de spațiu în interiorul containerului de acțiuni */
+}
+
+.edit-delete-container {
+  display: flex; /* Așează butoanele de edit și delete unul lângă altul */
+}
+
+
+.map-button:hover {
+  background-color: #B18FCF; /* Schimbă fundalul butonului la hover */
+  color: white; /* Schimbă culoarea textului la hover */
+}
+
+.university-card {
+  display: flex; /* Permite cardului să folosească flexbox */
+  flex-direction: column; /* Ordonează conținutul cardului vertical */
+  justify-content: space-between; /* Distribuie spațiul între header și acțiuni */
+  height: 100%; /* Asigură-te că cardul se întinde pe toată înălțimea disponibilă */
+}
+
+.card-action-container {
+  display: flex;
+  justify-content: space-between; /* Asigură distanțare între cele două grupuri de butoane */
+  align-items: flex-end; /* Aliniază butoanele la partea de jos a cardului */
+  padding: 16px; /* Adaugă spațiu în interiorul containerului de acțiuni */
+}
+
+.left-actions {
+  /* Stiluri pentru grupul de butoane din stânga (Show on Map) */
+}
+
+.right-actions {
+  display: flex; /* Așează butoanele de editare și ștergere unul lângă altul */
+}
+

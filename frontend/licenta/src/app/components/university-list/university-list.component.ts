@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../../services/login.service';
-import { UniversityService } from '../../services/university.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import {Component, OnInit} from '@angular/core';
+import {LoginService} from '../../services/login.service';
+import {UniversityService} from '../../services/university.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
 import FuzzySearch from 'fuzzy-search';
+import {MatDialog} from '@angular/material/dialog';
+import {MapDialogComponent} from '../map-dialog/map-dialog.component';
 
 @Component({
   selector: 'app-university-list',
@@ -17,12 +19,8 @@ export class UniversityListComponent implements OnInit {
   filteredUniversities: any = [];
   searchItem: string = '';
 
-  constructor(
-    private login: LoginService,
-    private router: Router,
-    private snack: MatSnackBar,
-    private universityService: UniversityService
-  ) { }
+  constructor(private login: LoginService, private router: Router, private snack: MatSnackBar, private universityService: UniversityService, private dialog: MatDialog,) {
+  }
 
   ngOnInit(): void {
     this.user = this.login.getUser();
@@ -40,24 +38,18 @@ export class UniversityListComponent implements OnInit {
 
   public goToReviews(university: any) {
     const user_role = this.login.getUserRole();
-    if (user_role == 'ADMIN')
-      this.router
-        .navigate([
-          '/admin/university-reviews',
-          { universityId: university.id },
-        ])
-        .then((_) => { });
-    else if (user_role == 'NORMAL')
-      this.router
-        .navigate([
-          '/user-dashboard/university-reviews',
-          { universityId: university.id },
-        ])
-        .then((_) => { });
+    if (user_role == 'ADMIN') this.router
+      .navigate(['/admin/university-reviews', {universityId: university.id},])
+      .then((_) => {
+      }); else if (user_role == 'NORMAL') this.router
+      .navigate(['/user-dashboard/university-reviews', {universityId: university.id},])
+      .then((_) => {
+      });
   }
 
   public goToAddUniversity() {
-    this.router.navigate(['/admin/universities/add']).then((_) => { });
+    this.router.navigate(['/admin/universities/add']).then((_) => {
+    });
   }
 
   public editUniversity(university: any) {
@@ -70,24 +62,16 @@ export class UniversityListComponent implements OnInit {
       <textarea id="swal-input4" class="swal2-input" style="min-height: 200px" placeholder="Description">${university.description}`,
       focusConfirm: false,
       preConfirm: () => {
-        const name = (
-          document.getElementById('swal-input1') as HTMLInputElement
-        ).value;
-        const longitude = (
-          document.getElementById('swal-input2') as HTMLInputElement
-        ).value;
-        const latitude = (
-          document.getElementById('swal-input3') as HTMLInputElement
-        ).value;
-        const description = (
-          document.getElementById('swal-input4') as HTMLInputElement
-        ).value;
+        const name = (document.getElementById('swal-input1') as HTMLInputElement).value;
+        const longitude = (document.getElementById('swal-input2') as HTMLInputElement).value;
+        const latitude = (document.getElementById('swal-input3') as HTMLInputElement).value;
+        const description = (document.getElementById('swal-input4') as HTMLInputElement).value;
 
         if (!name || !longitude || !latitude || !description) {
           Swal.showValidationMessage(`Please fill in all fields`);
         }
 
-        return { name, longitude, latitude, description };
+        return {name, longitude, latitude, description};
       },
     }).then((result) => {
       if (result.isConfirmed && result.value) {
@@ -117,8 +101,7 @@ export class UniversityListComponent implements OnInit {
               icon: 'success',
               background: 'rgb(230, 230, 230)',
             });
-          },
-          error: (error) => {
+          }, error: (error) => {
             this.snack.open(error.error.message, 'OK', {
               duration: 3000,
             });
@@ -142,9 +125,7 @@ export class UniversityListComponent implements OnInit {
       if (result.isConfirmed) {
         this.universityService.deleteUniversityById(university.id).subscribe({
           next: (_) => {
-            this.universities = this.universities.filter(
-              (u: any) => u.id !== university.id
-            );
+            this.universities = this.universities.filter((u: any) => u.id !== university.id);
             Swal.fire({
               title: 'Deleted!',
               text: 'Your university has been deleted.',
@@ -153,8 +134,7 @@ export class UniversityListComponent implements OnInit {
             }).then((_) => {
               window.location.reload();
             });
-          },
-          error: (error) => {
+          }, error: (error) => {
             this.snack.open(error.error.message, 'OK', {
               duration: 3000,
             });
@@ -170,4 +150,12 @@ export class UniversityListComponent implements OnInit {
 
     this.filteredUniversities = searcher.search(searchItem);
   }
+
+  public showOnMap(university: any) {
+    this.dialog.open(MapDialogComponent, {
+      width: '400px',
+      data: university
+    });
+  }
+
 }

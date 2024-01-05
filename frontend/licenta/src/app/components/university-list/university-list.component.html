@@ -1,46 +1,50 @@
-<mat-card *ngIf="user" class="all">
-  <mat-card-content>
-    <form class="container" style="width: 50%;">
-      <mat-form-field>
-        <span matPrefix> </span>
+<mat-card *ngIf="user">
+  <mat-card-content class="grid-background">
+    <form class="container search-container">
+      <mat-form-field class="search-field">
         <input (ngModelChange)="searchUniversity(searchItem)" [(ngModel)]="searchItem" matInput name="search"
-               placeholder="Search Center" style="text-align: center;" type="search"/>
-        <mat-icon matSuffix>search</mat-icon>
+               placeholder="Search Center" type="search"/>
+        <mat-icon class="search-icon" matSuffix>search</mat-icon>
       </mat-form-field>
     </form>
 
-    <div class="bootstrap-wrapper">
-      <div class="row">
 
-        <div *ngFor="let university of filteredUniversities" class="container">
-          <mat-card style="background-color: lightgrey;" w3-light-grey>
+    <div class="bootstrap-wrapper">
+      <div class="university-grid">
+
+        <div *ngFor="let university of filteredUniversities" class="university-container">
+          <mat-card class="university-card">
             <div>
-              <header (click)="goToReviews(university)" class="zoom-on-hover">
-                <h1>{{ university.name }}             </h1>
-                <h2> Latitude: {{ university.latitude }}, Longitude: {{university.longitude }}     </h2>
-                <p>{{
-                  university.description
-                  }}</p>
+              <header (click)="goToReviews(university)" class="university-header">
+                <h1>{{ university.name }}</h1>
+                <blockquote class="center-quote">{{ university.description }}</blockquote>
+
               </header>
             </div>
-            <br/>
-            <mat-card-actions *ngIf="getUserRole() === 'ADMIN'" align="end">
-              <button (click)="editUniversity(university)" mat-button>
-                EDIT
-              </button>
-              <button (click)="deleteUniversity(university)" mat-button style="margin-right: 20px">
-                DELETE
-              </button>
+            <mat-card-actions class="card-action-container">
+              <div class="left-actions">
+                <button (click)="showOnMap(university)" class="map-button" mat-button>
+                  <mat-icon>map</mat-icon>
+                  Show on Map
+                </button>
+              </div>
+              <div class="right-actions" *ngIf="getUserRole() === 'ADMIN'">
+                <button (click)="editUniversity(university)" mat-icon-button>
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button (click)="deleteUniversity(university)" mat-icon-button>
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
             </mat-card-actions>
-          </mat-card>
-          <br/>
-        </div>
-      </div>
 
+          </mat-card>
+        </div>
+
+      </div>
       <button (click)="goToAddUniversity()" *ngIf="user && getUserRole() === 'ADMIN'" class="add-button" mat-fab>
         <mat-icon>add</mat-icon>
       </button>
-
     </div>
   </mat-card-content>
 </mat-card>
