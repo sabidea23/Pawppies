@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>{{university.name}} Location</h2>
+<mat-dialog-content>
+  <p> {{university.latitude}}</p>
+  <p> {{university.longitude}}</p>
+
+  <iframe
+    width="300"
+    height="200"
+    frameborder="0" style="border:0"
+    [src]="getSafeUrl()"
+  allowfullscreen>
+  </iframe>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Close X</button>
+</mat-dialog-actions>
