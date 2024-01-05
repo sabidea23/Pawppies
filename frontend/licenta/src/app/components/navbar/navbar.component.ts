@@ -125,7 +125,7 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  isSubMenuOpen = false;
+  isSubMenuOpen = true;
   profileDetailMenu = false;
 
   toggleSubMenu() {

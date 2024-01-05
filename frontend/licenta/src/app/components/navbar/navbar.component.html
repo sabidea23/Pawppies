@@ -25,13 +25,13 @@
 
         <!-- Butoanele pentru utilizatori autentificați -->
         <div *ngIf="isLoggedIn && user" class="user-menu example-icon">
-          <button (click)="$event.stopPropagation();" mat-button [matMenuTriggerFor]="userMenu" [ngClass]="{'active': isSubMenuOpen}"
+          <button (click)="$event.stopPropagation();" mat-button [matMenuTriggerFor]="userMenu" [ngClass]="{'active': profileDetailMenu}"
           (click)="openUserMenu()">
             <mat-icon>person</mat-icon> <!-- Pictograma cu utilizator -->
             {{ user.firstName }} {{ user.lastName }} <!-- Prenume și nume -->
           </button>
 
-          <mat-menu class="custom-menu" [hasBackdrop]="false" #userMenu="matMenu" (click)="$event.stopPropagation();">
+          <mat-menu class="custom-menu"  [hasBackdrop]="false" #userMenu="matMenu" (click)="$event.stopPropagation();">
             <button mat-menu-item  class="mat-menu-customize-item" (click)="toProfileSettings()">Setări profil</button>
             <button mat-menu-item  class="mat-menu-customize-item">Opțiunea 2</button>
             <button mat-menu-item  class="mat-menu-customize-item" (click)="logout()">Logout</button>
@@ -44,12 +44,41 @@
 
   <!-- Rândul 2: Inițial ascuns, se afișează la click pe All about pet -->
   <div *ngIf="isSubMenuOpen && !profileDetailMenu" class="sub-menu">
-    <a class="sub-menu-item" href="#">ADOPT OR GET INVOLVED</a>
-    <a class="sub-menu-item" href="#">DOGS & PUPPIES</a>
-    <a class="sub-menu-item" href="#">CATS & KITTENS</a>
-    <a class="sub-menu-item" href="#">OTHER TYPES OF PETS</a>
-    <a class="sub-menu-item" href="#">OTHER TYPES OF PETS</a>
-    <a class="sub-menu-item" href="#">CONTACT</a>
+    <a class="sub-menu-item"  mat-button [matMenuTriggerFor]="adoptMenu" >ADOPT OR GET INVOLVED</a>
+    <mat-menu class="custom-menu submeniu" #adoptMenu="matMenu">
+      <button class="mat-menu-customize-item" mat-menu-item>Opțiunea 1</button>
+      <button class="mat-menu-customize-item" mat-menu-item>Opțiunea 2</button>
+    </mat-menu>
+
+    <a class="sub-menu-item" mat-button [matMenuTriggerFor]="dogs">DOGS & PUPPIES</a>
+    <mat-menu class="custom-menu submeniu" #dogs="matMenu">
+      <button class="mat-menu-customize-item" mat-menu-item>Opțiunea 1</button>
+      <button class="mat-menu-customize-item" mat-menu-item>Opțiunea 2</button>
+    </mat-menu>
+
+    <a class="sub-menu-item" mat-button [matMenuTriggerFor]="cat">CATS & KITTENS</a>
+    <mat-menu class="custom-menu submeniu" #cat="matMenu">
+      <button class="mat-menu-customize-item" mat-menu-item>Opțiunea 1</button>
+      <button class="mat-menu-customize-item" mat-menu-item>Opțiunea 2</button>
+    </mat-menu>
+
+    <a class="sub-menu-item" mat-button [matMenuTriggerFor]="others">OTHER TYPES OF PETS</a>
+    <mat-menu class="custom-menu submeniu" #others="matMenu">
+      <button class="mat-menu-customize-item" mat-menu-item>Opțiunea 1</button>
+      <button class="mat-menu-customize-item" mat-menu-item>Opțiunea 2</button>
+    </mat-menu>
+
+    <a class="sub-menu-item" mat-button [matMenuTriggerFor]="pets">YOUR PETS</a>
+    <mat-menu class="custom-menu submeniu" #pets="matMenu">
+      <button class="mat-menu-customize-item" mat-menu-item>Opțiunea 1</button>
+      <button class="mat-menu-customize-item" mat-menu-item>Opțiunea 2</button>
+    </mat-menu>
+
+    <a class="sub-menu-item" mat-button [matMenuTriggerFor]="contact">CONTACT</a>
+    <mat-menu class="custom-menu submeniu" #contact="matMenu">
+      <button class="mat-menu-customize-item" mat-menu-item>Opțiunea 1</button>
+      <button class="mat-menu-customize-item" mat-menu-item>Opțiunea 2</button>
+    </mat-menu>
 
   </div>
 </mat-toolbar>

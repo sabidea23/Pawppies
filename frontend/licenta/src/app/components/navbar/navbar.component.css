@@ -81,14 +81,13 @@
 /* Stiluri pentru sub-menu (al doilea rând) */
 .sub-menu {
   display: flex;
-  background-color: #54428E; /* Culoarea de fundal pe întregul rând */
+  background-color: #6504B5; /* Culoarea de fundal pe întregul rând */
   padding: 15px;
   justify-content: space-between;
   align-items: center; /* Asigură alinierea verticală a elementelor în interiorul sub-menu */
   width: 100%; /* Extinde sub-menu pe întreaga lățime a părintelui */
   font-family: 'Montserrat', sans-serif;
   height: 100%;
-  font-size: 0.8em; /* Dimensiunea fontului redusă */
   color: white; /* Setează culoarea textului la alb */
   animation: fadeIn 0.4s; /* Schimbă durata după preferințe */
 }
@@ -96,8 +95,8 @@
 .sub-menu-item {
   color: white !important;
   margin-right: 20px;
-  text-decoration: none;
-  font-weight: 200;
+  font-size: 0.85em; /* Dimensiunea fontului redusă */
+
 }
 
 .sub-menu-item:hover {
@@ -127,43 +126,21 @@
 
 /* Când butonul este activ */
 .user-menu button.active {
-  background-color: #52408C; /* Culoarea de fundal când este apăsat */
+  background-color: #6504B5; /* Culoarea de fundal când este apăsat */
   color: white; /* Culoarea textului când este apăsat */
 }
-
+                           r
 .user-menu button.active mat-icon {
   color: white; /* Culoarea iconiței când butonul este activ */
 }
 
-/* Stiluri pentru meniu */
-.custom-menu {
-  background-color: #B18FCF; /* Culoarea de fundal a meniului */
-  color: white; /* Culoarea textului meniului */
-  width: 100%; /* Lățimea meniului să fie aceeași cu a butonului */
-}
 
-
-
-.mat-mdc-menu-item.mat-menu-customize-item {
-  background-color: #B18FCF; /* Culoarea de fundal a meniului */
-  width: 200px;
-  font-weight: bold;
-  font-family: 'Montserrat', sans-serif; /* Aplică fontul Montserrat */
-  font-size: 1.1em; /* Mărește dimensiunea fontului */
-  text-align: center;
-  display: block;
-  animation: fadeIn 0.4s; /* Schimbă durata după preferințe */
+.mat-mdc-menu-content {
+  padding: 0 0 0 0 !important;
 }
 
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
-}
-
-/* styles.css */
-.cdk-overlay-pane.custom-overlay-class {
-  background: #B18FCF; /* Culoarea de fundal dorită */
-  color: white; /* Culoarea fontului */
-  /* Alte stiluri după necesități */
 }
 
