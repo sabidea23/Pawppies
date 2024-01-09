@@ -1,50 +1,60 @@
+<body>
 <mat-card *ngIf="user">
-  <mat-card-content class="grid-background">
-    <form class="container search-container">
-      <mat-form-field class="search-field">
+  <mat-card-content>
+    <form>
+      <mat-form-field>
         <input (ngModelChange)="searchUniversity(searchItem)" [(ngModel)]="searchItem" matInput name="search"
                placeholder="Search Center" type="search"/>
         <mat-icon class="search-icon" matSuffix>search</mat-icon>
       </mat-form-field>
     </form>
 
+    <!-- Tabelul de universități -->
+    <table mat-table [dataSource]="filteredUniversities" class="university-table">
 
-    <div class="bootstrap-wrapper">
-      <div class="university-grid">
+      <!-- Coloana pentru numele universității -->
+      <ng-container matColumnDef="university">
+        <th  *matHeaderCellDef>ORGANIZATION</th>
+        <td mat-cell *matCellDef="let university">{{ university.name }}</td>
+      </ng-container>
 
-        <div *ngFor="let university of filteredUniversities" class="university-container">
-          <mat-card class="university-card">
-            <div>
-              <header (click)="goToReviews(university)" class="university-header">
-                <h1>{{ university.name }}</h1>
-                <blockquote class="center-quote">{{ university.description }}</blockquote>
+      <!-- Coloana pentru lista de animale -->
+      <ng-container matColumnDef="petList">
+        <th  *matHeaderCellDef>PET LIST</th>
+        <td mat-cell *matCellDef="let university">
+          <button mat-button (click)="goToReviews(university)">
+            <mat-icon class="sticker-icon">pets</mat-icon>
+          </button>
+        </td>
+      </ng-container>
 
-              </header>
-            </div>
-            <mat-card-actions class="card-action-container">
-              <div class="left-actions">
-                <button (click)="showOnMap(university)" class="map-button" mat-button>
-                  <mat-icon>map</mat-icon>
-                  Show on Map
-                </button>
-              </div>
-              <div *ngIf="getUserRole() === 'ADMIN'" class="right-actions">
-                <button (click)="editUniversity(university)" mat-icon-button>
-                  <mat-icon>edit</mat-icon>
-                </button>
-                <button (click)="deleteUniversity(university)" mat-icon-button>
-                  <mat-icon>delete</mat-icon>
-                </button>
-              </div>
-            </mat-card-actions>
+      <!-- Coloana pentru oraș/stat -->
+      <ng-container matColumnDef="cityState">
+        <th  *matHeaderCellDef>CITY, STATE/PROV</th>
+        <td mat-cell *matCellDef="let university">{{ university.city }}</td>
+      </ng-container>
 
-          </mat-card>
-        </div>
+      <!-- Coloana pentru contact -->
+      <ng-container matColumnDef="contact">
+        <th  *matHeaderCellDef>CONTACT</th>
+        <td mat-cell *matCellDef="let university">{{ university.contact }}</td>
+      </ng-container>
 
-      </div>
-      <button (click)="goToAddUniversity()" *ngIf="user && getUserRole() === 'ADMIN'" class="add-button" mat-fab>
-        <mat-icon>add</mat-icon>
-      </button>
-    </div>
+      <!-- Coloana pentru acțiunea Show on Map -->
+      <ng-container matColumnDef="showOnMap">
+        <th  *matHeaderCellDef>MAP</th>
+        <td mat-cell *matCellDef="let university">
+          <button (click)="showOnMap(university)" mat-icon-button>
+            <mat-icon>map</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <!-- Restul codului... -->
   </mat-card-content>
 </mat-card>
+</body>

@@ -22,15 +22,15 @@
 
           <mat-form-field appearance="fill" class="full-width">
             <mat-label>
-              <mat-icon>description</mat-icon>
-              Center Description
+              <mat-icon>location_city</mat-icon> <!-- Pentru city/state -->
+              Center City,State/Prov
             </mat-label>
-            <textarea [(ngModel)]="formInput.description" matInput name="description"
-                      placeholder="Center Description"></textarea>
-            <button (click)="formInput.description=''" mat-icon-button matSuffix>
+            <input [(ngModel)]="formInput.city" matInput name="city" placeholder="Center City,State/Prov"/>
+            <button (click)="formInput.name=''" mat-icon-button matSuffix>
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
+
 
           <!-- Longitude -->
           <mat-form-field appearance="fill" class="full-width">
@@ -52,6 +52,17 @@
             </mat-label>
             <input [(ngModel)]="formInput.latitude" matInput name="latitude" placeholder="Latitude"/>
             <button (click)="formInput.latitude=''" mat-icon-button matSuffix>
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>
+              <mat-icon>perm_contact_calendar</mat-icon> <!-- Pentru contact -->
+              Contact
+            </mat-label>
+            <input [(ngModel)]="formInput.contact" matInput name="contact" placeholder="Contact"/>
+            <button (click)="formInput.name=''" mat-icon-button matSuffix>
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>

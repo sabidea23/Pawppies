@@ -35,7 +35,8 @@ public class UniversityController {
         }
 
         originalUniversity.setName(requestBodyUniversity.getName());
-        originalUniversity.setDescription(requestBodyUniversity.getDescription());
+        originalUniversity.setCity(requestBodyUniversity.getCity());
+        originalUniversity.setContact(requestBodyUniversity.getContact());
         originalUniversity.setLatitude(requestBodyUniversity.getLatitude());
         originalUniversity.setLongitude(requestBodyUniversity.getLongitude());
 

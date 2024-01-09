@@ -14,6 +14,9 @@ import {MapDialogComponent} from '../map-dialog/map-dialog.component';
   styleUrls: ['./university-list.component.css'],
 })
 export class UniversityListComponent implements OnInit {
+
+  displayedColumns: string[] = ['university', 'petList', 'cityState', 'contact', 'showOnMap'];
+
   user = this.login.getUser();
   universities: any = [];
   filteredUniversities: any = [];

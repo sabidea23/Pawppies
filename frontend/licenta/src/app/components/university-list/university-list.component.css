@@ -1,218 +1,45 @@
-.text-center {
-  justify-content: center;
-  align-items: center;
-}
-
-.liked {
-  background-color: 'primary';
-}
-
-header {
-  margin: 0 auto -3px;
-  text-align: center;
-}
-
-.like_btn {
-}
-
-.btn-like-container {
-  display: flex;
-  justify-content: flex-start;
+mat-card {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
 }
 
 
-.add-button {
-  background-color: black;
-  position: fixed;
-  bottom: 10px;
-  left: 57%;
+body {
+  background-color: #EFEEF1;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
 }
 
-.add-button:hover {
-  transform: scale(1.1);
-}
-
-.submits {
-  width: 48%;
-  display: inline-block;
-  float: left;
-  margin-left: 2%;
-}
-
-button:hover {
-  transform: translatey(3px);
-  box-shadow: none;
-}
-
-button:hover {
-  animation: ani9 0.4s ease-in-out infinite alternate;
-}
-
-header h1 {
-  font-size: 180%;
-  font-weight: bold;
-  font-family: 'Playfair Display', serif;
-  color: #3e403f;
-}
-
-header p {
-  letter-spacing: 0.05em;
-}
-
-.disliked {
-  background-color: 'primary';
-}
-
-
-/* Fonts Form Google Font ::- https://fonts.google.com/  -:: */
-@import url('https://fonts.googleapis.com/css?family=Abel|Abril+Fatface|Alegreya|Arima+Madurai|Dancing+Script|Dosis|Merriweather|Oleo+Script|Overlock|PT+Serif|Pacifico|Playball|Playfair+Display|Share|Unica+One|Vibur');
-
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-
-.con {
-  width: 500px;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-justify-content: space-around;
-  justify-content: space-around;
-  -webkit-flex-wrap: wrap;
-  flex-wrap: wrap;
-  margin: -20px auto 0;
-  background-color: rgb(75, 75, 75);
-}
-
-.zoom-on-hover {
-  cursor: pointer;
-  transform: scale(1.0);
-}
-
-.zoom-on-hover:hover {
-  transform: scale(1.05);
-}
-
-.grid-background {
-  margin-top: 2%;
-  background-color: #54428E;
-  background-attachment: fixed;
-}
-
-.search-container {
-  width: 50%;
-  margin: 0 auto;
-}
-
-.university-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-
-.university-container {
-  flex: 0 1 calc(33% - 20px);
-}
-
-.university-card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-}
-
-.university-header {
-  cursor: pointer;
-}
-
-.university-card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  transform: scale(1.05);
-}
-
-.search-container {
-  width: 40%;
-  margin: 0 auto;
-  padding: 10px 0;
-}
-
-.search-field {
+.university-table {
   width: 100%;
-  position: relative; /* Poziționare relativă pentru poziționarea absolută a iconiței */
+  font-family: 'Montserrat', sans-serif;
 }
 
-.search-field input {
-  padding: 10px 40px 10px 20px; /* Spațiere internă pentru text și iconiță */
-  border-radius: 50px; /* Borduri rotunjite pentru un look modern */
-  border: 2px solid #B18FCF; /* Border colorat pentru a se potrivi cu tema */
-  transition: all 0.3s ease; /* Tranziție pentru efectul de focus */
+.mat-cell, .mat-header-cell {
+  padding: 8px;
+  text-align: left;
 }
 
-.search-field input:focus {
-  box-shadow: 0 0 8px 0 rgba(84, 66, 142, 0.5); /* Umbră atunci când este focusat */
-  outline: none; /* Înlătură conturul implicit */
+.mat-row, .mat-header-row {
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .search-icon {
-  position: absolute; /* Poziționează iconița absolut în cadrul câmpului de căutare */
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%); /* Centrează iconița vertical */
-  cursor: pointer; /* Schimbă cursorul când mouse-ul este peste iconiță */
+  color: #410078;
 }
 
-.center-quote {
-  padding: 20px; /* Adaugă un pic de spațiu în interior */
-  margin: 20px 0; /* Spațiu în jurul citatului */
-  font-style: italic; /* Font italic pentru un aspect de citat */
-  line-height: 1.5; /* Distanța între linii pentru lizibilitate */
-  position: relative; /* Pentru a poziționa pseudo-elementele */
+th {
+  background-color: #EFEEF1;
+  text-align: center;
 }
 
 
-.map-button {
-  margin-left: 2%;
-  color: #54428E; /* Schimbă culoarea textului */
-  transition: background-color 0.3s, color 0.3s; /* Tranziție pentru efectul de hover */
+.mat-header-row, .mat-header-cell {
+  background-color: #EFEEF1; /* Culoarea pentru antetul tabelului */
+  color: #410078; /* Culoarea textului, dacă doriți să o schimbați */
+  /* Adăugați aici orice alte stiluri necesare pentru antetul tabelului */
 }
 
-.action-buttons {
-  display: flex;
-  justify-content: space-between; /* Așează butoanele în părți opuse ale containerului */
-  align-items: flex-end; /* Aliniază butoanele la partea de jos */
-  padding: 16px; /* Adaugă un pic de spațiu în interiorul containerului de acțiuni */
-}
-
-.edit-delete-container {
-  display: flex; /* Așează butoanele de edit și delete unul lângă altul */
-}
-
-
-.map-button:hover {
-  background-color: #B18FCF; /* Schimbă fundalul butonului la hover */
-  color: white; /* Schimbă culoarea textului la hover */
-}
-
-.university-card {
-  display: flex; /* Permite cardului să folosească flexbox */
-  flex-direction: column; /* Ordonează conținutul cardului vertical */
-  justify-content: space-between; /* Distribuie spațiul între header și acțiuni */
-  height: 100%; /* Asigură-te că cardul se întinde pe toată înălțimea disponibilă */
-}
-
-.card-action-container {
-  display: flex;
-  justify-content: space-between; /* Asigură distanțare între cele două grupuri de butoane */
-  align-items: flex-end; /* Aliniază butoanele la partea de jos a cardului */
-  padding: 16px; /* Adaugă spațiu în interiorul containerului de acțiuni */
-}
-
-.left-actions {
-  /* Stiluri pentru grupul de butoane din stânga (Show on Map) */
-}
-
-.right-actions {
-  display: flex; /* Așează butoanele de editare și ștergere unul lângă altul */
-}
 

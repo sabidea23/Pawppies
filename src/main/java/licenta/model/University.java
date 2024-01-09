@@ -35,8 +35,11 @@ public class University {
     }
 
     private Double latitude;
-    private String description;
-  
+
+    private String city;
+
+    private String contact;
+
     @ManyToOne(fetch = FetchType.EAGER)
     private User admin;
 
@@ -44,12 +47,29 @@ public class University {
     @JsonIgnore
     private Set<Review> reviews;
 
-    public University(String name, Double longitude, Double latitude, String description, User admin) {
+    public University(String name, Double longitude, Double latitude, String city, String contact, User admin) {
         this.name = name;
         this.longitude = longitude;
         this.latitude = latitude;
-        this.description = description;
+        this.city = city;
+        this.contact = contact;
         this.admin = admin;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 
     public String getName() {
@@ -58,14 +78,6 @@ public class University {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public User getAdmin() {

@@ -16,7 +16,8 @@ export class UniversityAddComponent implements OnInit {
 
   public university: any = {
     name: '',
-    description: '',
+    city: '',
+    contact: '',
     admin: undefined,
     longitude: 0.0,  // Adăugat câmpul longitude cu valoarea implicită 0.0
     latitude: 0.0,   // Adăugat câmpul latitude cu valoarea implicită 0.0
@@ -24,9 +25,10 @@ export class UniversityAddComponent implements OnInit {
 
   public formInput: any = {
     name: '',
-    description: '',
-    longitude: 0.0,  // Adăugat câmpul longitudeUni cu valoarea implicită 0.0
-    latitude: 0.0,   // Adăugat câmpul latitudeUni cu valoarea implicită 0.0
+    city: '',
+    contact: '',
+    longitude: '',  // Adăugat câmpul longitudeUni cu valoarea implicită 0.0
+    latitude: '',   // Adăugat câmpul latitudeUni cu valoarea implicită 0.0
   };
 
   constructor(
@@ -47,7 +49,7 @@ export class UniversityAddComponent implements OnInit {
 
   public isFormValid() {
     return this.formInput.name && this.formInput.longitude &&
-      this.formInput.latitude && this.formInput.description;
+      this.formInput.latitude && this.formInput.city && this.formInput.contact;
   }
 
   formSubmit() {
@@ -83,9 +85,11 @@ export class UniversityAddComponent implements OnInit {
 
   clearForm() {
     this.formInput.name = '';
-    this.formInput.description = '';
     this.formInput.longitude = '';
     this.formInput.latitude = '';
+    this.formInput.contact = '';
+    this.formInput.city = '';
+
   }
 
 }
