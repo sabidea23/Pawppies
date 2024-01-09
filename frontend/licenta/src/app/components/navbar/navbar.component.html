@@ -11,12 +11,16 @@
       </button>
     </div>
     <div class="auth-buttons">
-      <div>
+
+      <a (click)="isLoggedIn ? redirectToFavoriteAnimalsPage() : redirectToLoginPage()" class="heart-icon" mat-button>
+        <mat-icon>favorite</mat-icon>
+      </a>
 
         <a *ngIf="!isLoggedIn" [routerLink]="'/signup'" aria-label="Register"
            class="example-icon login" mat-button>
           Sign Up
         </a>
+
         <!-- Butoanele pentru utilizatori neautentificați -->
         <a *ngIf="!isLoggedIn" [routerLink]="'/login'" aria-label="Login"
            class="example-icon register" mat-button>
@@ -40,7 +44,6 @@
 
       </div>
     </div>
-  </div>
 
   <!-- Rândul 2: Inițial ascuns, se afișează la click pe All about pet -->
   <div *ngIf="isSubMenuOpen && !profileDetailMenu" class="sub-menu">
@@ -67,7 +70,6 @@
       <button class="mat-menu-customize-item" mat-menu-item>Opțiunea 1</button>
       <button class="mat-menu-customize-item" mat-menu-item>Opțiunea 2</button>
     </mat-menu>
-
 
     <a class="sub-menu-item" mat-button [matMenuTriggerFor]="contact">CONTACT</a>
     <mat-menu class="custom-menu submeniu" #contact="matMenu">

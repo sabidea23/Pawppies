@@ -28,7 +28,7 @@
                   Show on Map
                 </button>
               </div>
-              <div class="right-actions" *ngIf="getUserRole() === 'ADMIN'">
+              <div *ngIf="getUserRole() === 'ADMIN'" class="right-actions">
                 <button (click)="editUniversity(university)" mat-icon-button>
                   <mat-icon>edit</mat-icon>
                 </button>

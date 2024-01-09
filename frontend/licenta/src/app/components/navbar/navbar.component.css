@@ -14,7 +14,7 @@
 .example-icon {
   font-family: 'Montserrat', sans-serif; /* Aplică fontul Montserrat */
   font-size: 1em; /* Mărește dimensiunea fontului */
-  color: #54428E; /* Setează culoarea textului */
+  color: #6504B5; /* Setează culoarea textului */
   margin: 10px 20px 20px 10px;
   font-weight: bold;
 }
@@ -27,7 +27,7 @@
 .menu-button button {
   font-family: 'Montserrat', sans-serif; /* Aplică fontul Montserrat */
   font-size: 1em; /* Mărește dimensiunea fontului */
-  color: #54428E; /* Setează culoarea textului */
+  color: #6504B5; /* Setează culoarea textului */
   display: flex; /* Utilizează flexbox pentru alinierea textului și a săgeții */
   align-items: center; /* Centrează elementele pe verticală */
   justify-content: space-between; /* Plasează textul și săgeata la capetele opuse */
@@ -71,11 +71,11 @@
 
 .auth-buttons {
   margin-left: auto;
-  margin-right: 0;
-  color: #54428E;
+  color: #6504B5;
   font-size: 0.8em; /* Dimensiunea fontului redusă */
   font-family: 'Montserrat', sans-serif;
   margin-top: 5px;
+  display: flex;
 }
 
 /* Stiluri pentru sub-menu (al doilea rând) */
@@ -105,7 +105,7 @@
 }
 
 .menu-button mat-icon {
-  color: #54428E; /* Culoarea săgeții */
+  color: #6504B5; /* Culoarea săgeții */
 }
 
 .rotate {
@@ -144,3 +144,22 @@
   to { opacity: 1; }
 }
 
+mat mat-icon.heart-icon {
+  color: #6504B5; /* Culoarea inițială */
+}
+
+.heart-icon mat-icon {
+  margin-top: 17px;;
+  font-size: 22px; /* Ajustați această valoare după preferințe */
+  width: 30px;
+  color: #6504B5; /* Culoarea inițială a inimii */
+}
+
+.heart-icon:hover mat-icon {
+  color: #FF1053; /* Culoare la survolare */
+}
+
+/* Specificați culoarea inimii pe pagina de review-uri preferate */
+.on-favorite-reviews-page .heart-icon mat-icon {
+  color: #6504B5;
+}

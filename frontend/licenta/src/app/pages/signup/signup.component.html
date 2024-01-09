@@ -1,72 +1,98 @@
-<body class="gradient-bg">
-  <div class="bootstrap-wrapper gradient-bg">
-    <div class="container">
-      <div class="row" style="margin-top: 25px;">
-        <div class="col-md-6 offset-md-3">
+<body>
+<mat-card>
+  <mat-card-content style="font-family: 'Montserrat', sans-serif;">
+    <form (ngSubmit)="formSubmit()" [formGroup]="registerForm" class="login-form">
+      <h2>Register</h2>
+      <p>register here to create your account</p>
 
-          <form (ngSubmit)="formSubmit()" [formGroup]="registerForm" class="zoom-effect">
-            <div class="con">
-              <header class="head-form">
-                <h2>Register</h2>
-                <p>register here to create your account</p>
-              </header>
-              <br>
+      <!-- Username -->
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
+        <mat-label>
+          <mat-icon matPrefix>person</mat-icon>
+          Username
+        </mat-label>
+        <input [(ngModel)]="user.username" formControlName="username"
+               matInput placeholder="Username"/>
+        <button mat-icon-button matSuffix (click)="user.username=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
 
-              <div class="field-set">
-                <!-- Username -->
-                <mat-form-field appearance="fill" class="full-width">
-                  <input [(ngModel)]="user.username" class="form-input" formControlName="username"
-                    id="txt-input-username" matInput name="username" placeholder="Username" />
-                </mat-form-field>
+      <!-- Password -->
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
+        <mat-label>
+          <mat-icon matPrefix>lock</mat-icon>
+          Password
+        </mat-label>
+        <input [(ngModel)]="user.password" formControlName="password"
+               matInput type="password" placeholder="Password"/>
+        <button mat-icon-button matSuffix (click)="user.password=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
 
-                <!-- Password -->
-                <mat-form-field appearance="fill" class="full-width">
-                  <input [(ngModel)]="user.password" class="form-input" formControlName="password"
-                    id="txt-input-password" matInput name="password" placeholder="Password" type="password" />
-                  <mat-error *ngIf="registerForm.value.password"> {{errorPassword}}
-                  </mat-error>
-                </mat-form-field>
+      <!-- First name -->
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
+        <mat-label>
+          <mat-icon matPrefix>face</mat-icon>
+          First Name
+        </mat-label>
+        <input [(ngModel)]="user.firstName" formControlName="firstname"
+               matInput placeholder="First name"/>
+        <button mat-icon-button matSuffix (click)="user.firstName=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
 
-                <!-- First name -->
-                <mat-form-field appearance="fill" class="full-width">
-                  <input [(ngModel)]="user.firstName" class="form-input" formControlName="firstname"
-                    id="txt-input-firstname" matInput name="firstname" placeholder="First name" />
-                </mat-form-field>
+      <!-- Last name -->
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
+        <mat-label>
+          <mat-icon matPrefix>face</mat-icon>
+          Last Name
+        </mat-label>
+        <input [(ngModel)]="user.lastName" formControlName="lastname"
+               matInput placeholder="Last name"/>
+        <button mat-icon-button matSuffix (click)="user.lastName=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
 
-                <!-- Last name -->
-                <mat-form-field appearance="fill" class="full-width">
-                  <input [(ngModel)]="user.lastName" class="form-input" formControlName="lastname"
-                    id="txt-input-lastname" matInput name="lastname" placeholder="Last name" />
-                </mat-form-field>
+      <!-- Email -->
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
+        <mat-label>
+          <mat-icon matPrefix>email</mat-icon>
+          Email
+        </mat-label>
+        <input [(ngModel)]="user.email" formControlName="email"
+               matInput placeholder="Email"/>
+        <button mat-icon-button matSuffix (click)="user.email=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
 
-                <!-- Email -->
-                <mat-form-field appearance="fill" class="full-width">
-                  <input [(ngModel)]="user.email" class="form-input" formControlName="email" id="txt-input-email"
-                    matInput name="email" placeholder="Email" />
-                  <mat-error *ngIf="registerForm.value.email">{{emailError}}</mat-error>
-                </mat-form-field>
+      <!-- Phone -->
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
+        <mat-label>
+          <mat-icon matPrefix>phone</mat-icon>
+          Phone
+        </mat-label>
+        <input [(ngModel)]="user.phone" formControlName="phone"
+               matInput placeholder="Phone number"/>
+        <button mat-icon-button matSuffix (click)="user.phone=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
 
-                <!-- Phone -->
-                <mat-form-field appearance="fill" class="full-width">
-                  <input [(ngModel)]="user.phone" class="form-input" formControlName="phone" id="txt-input-phone"
-                    matInput name="phone" placeholder="Phone number" />
-                  <mat-error *ngIf="registerForm.value.phone">{{phoneError}}</mat-error>
+      <button class="login-button" mat-flat-button type="submit">
+        REGISTER
+      </button>
 
-                </mat-form-field>
+      <!-- Login Link -->
+      <p style="text-align: center; margin-top: 20px;">
+        Have an account? <a routerLink='/login' style="color: #6504B5;">Log in</a>
+      </p>
 
-                <div class="text-center">
-                  <button class="btn log-in" mat-raised-button type="submit" w3-light-grey>
-                    <mat-icon>person_add</mat-icon>
-                    Register </button>
-                  <button class="btn submits" mat-raised-button routerLink="/login" w3-light-grey>Login
-                    <mat-icon> person_pin</mat-icon>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+    </form>
+  </mat-card-content>
+</mat-card>
 </body>

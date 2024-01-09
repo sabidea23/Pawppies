@@ -157,4 +157,16 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/admin/universities/add']).then((_) => {
     });
   }
+
+  redirectToFavoriteAnimalsPage() {
+    const user_role = this.login.getUserRole();
+    if (user_role == 'ADMIN')
+      this.router.navigate(['/admin/my-reviews',{ userId: this.user.id }]).then((_) => { });
+    else if (user_role == 'NORMAL')
+      this.router.navigate(['/user-dashboard/my-reviews',{ userId: this.user.id } ]).then((_) => { });
+  }
+
+  redirectToLoginPage() {
+    this.router.navigate(['/login']).then((_) => { });
+  }
 }

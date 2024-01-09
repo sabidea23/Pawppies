@@ -1,63 +1,110 @@
-@import url('https://fonts.googleapis.com/css?family=Abel|Alegreya|Dosis');
-@import url('https://fonts.googleapis.com/css?family=Abel|Alegreya|Dosis');
+mat-card {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+}
+
+mat-form-field {
+  width: 100%;
+}
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Dosis', sans-serif;
-  background: url('back-ground-login.jpg');
-  background-size: cover;
-  height: 100vh;
+  background-color: #EFEEF1;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+}
+
+h2 {
+  display: block;
+  text-align: center;
+}
+
+button {
+  width: 100%;
+  margin-top: 20px;
 }
 
 .container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
+
   display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-  background-color: #f0ebe6;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
-  z-index: 2;
-  width: 450px;
-  height: 600px;
+  flex-direction: column;
 }
 
-header {
+.social-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+mat-icon {
+  margin-right: 8px;
+}
+
+
+p {
+  color: #3e403f;
+  font-size: 15px;
   text-align: center;
   margin-bottom: 20px;
 }
 
-header h2 {
-  color: #3e403f;
-  margin-bottom: 10px;
-  font-size: 30px;
-}
-
-header p {
-  color: #3e403f;
-  font-size: 15px;
-}
-
-.mat-form-field {
-  width: 100%;
-}
-
-button {
-  background-color: #a8d5ba;
-  margin-top: 20px;
-  padding: 12px 20px;
-  border-radius: 5px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  transition: box-shadow 0.3s, background-color 0.3s;
-}
-
 button:hover {
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
-  background-color: #98c9a3; /* Schimbă culoarea la hover */
+  transform: translatey(3px);
+  box-shadow: none;
+}
+
+.custom-mat-form-field {
+  position: relative;
+  width: 100%;
+  max-height: 150px;
+}
+
+.custom-mat-form-field input {
+  margin-left: 20px;
+}
+
+.custom-mat-form-field button {
+  right: 0;
+  top: 0;
+  margin: 12px; /* Ajustează acesta în funcție de nevoi */
+}
+
+.login-button {
+  background-color: #6504B5;
+  color: #FFFFFF;
+  margin-top: 20px;
+  border-radius: 20px;
+  width: 100%; /* Ocupă întreaga lățime a containerului */
+  box-shadow: none; /* Înlătură orice umbre dacă există */
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.custom-mat-form-field {
+  /* Ajustează înălțimea și padding-ul */
+  height: 80px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.mat-form-field-infix {
+  /* Reduce spațiul din interiorul câmpului de formular */
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.mat-form-field-label-wrapper {
+  /* Ajustează spațiul pentru etichetă */
+  top: -5px;
+}
+
+.mat-input-element {
+  /* Reducerea înălțimii elementului de input */
+  height: 40px;
+  margin: 0;
 }

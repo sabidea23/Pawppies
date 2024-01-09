@@ -10,6 +10,8 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class LoginComponent implements OnInit {
 
+  hide = true;
+
   loginData = {
     username: '',
     password: '',
@@ -59,4 +61,5 @@ export class LoginComponent implements OnInit {
       }
     });
   }
+
 }
