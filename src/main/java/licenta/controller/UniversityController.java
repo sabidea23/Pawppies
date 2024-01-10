@@ -4,11 +4,12 @@ import licenta.exeptions.UniversityNotFoundException;
 import licenta.model.University;
 import licenta.service.UniversityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLOutput;
-import java.util.List;
+import org.springframework.data.domain.Pageable;
 
 @RestController
 @RequestMapping("/university")
@@ -30,8 +31,7 @@ public class UniversityController {
     public University updateUniversity(@RequestBody University requestBodyUniversity) throws Exception {
         University originalUniversity = this.universityService.getUniversity(requestBodyUniversity.getId());
         if (originalUniversity == null) {
-            throw new UniversityNotFoundException(
-                    "University with id `" + requestBodyUniversity.getId() + "` not found");
+            throw new UniversityNotFoundException("University with id `" + requestBodyUniversity.getId() + "` not found");
         }
 
         originalUniversity.setName(requestBodyUniversity.getName());
@@ -45,8 +45,9 @@ public class UniversityController {
 
     @GetMapping("/")
     @ResponseStatus(code = HttpStatus.OK)
-    public List<University> getAllUniversities() {
-        return this.universityService.getUniversities();
+    public Page<University> getAllUniversities(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size) {
+        Pageable paging = PageRequest.of(page, size);
+        return this.universityService.getUniversities(paging);
     }
 
     @GetMapping("/{universityId}")

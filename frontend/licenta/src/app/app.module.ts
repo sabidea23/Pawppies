@@ -40,6 +40,7 @@ import { MapDialogComponent } from './components/map-dialog/map-dialog.component
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatMenuModule} from "@angular/material/menu";
 import { EditUniversityComponent } from './pages/admin/edit-university/edit-university.component';
+import {MatPaginatorModule} from "@angular/material/paginator";
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,7 +82,8 @@ import { EditUniversityComponent } from './pages/admin/edit-university/edit-univ
         RouterOutlet,
         MatGridListModule,
         MatDialogModule,
-      MatMenuModule
+        MatMenuModule,
+        MatPaginatorModule
     ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

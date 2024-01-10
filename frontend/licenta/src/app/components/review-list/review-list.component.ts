@@ -4,7 +4,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ReviewService } from '../../services/review.service';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GuidelinesService } from 'src/app/services/guidelines.service';
 import { UniversityService } from 'src/app/services/university.service';
 
 @Component({
@@ -26,7 +25,6 @@ export class ReviewListComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private snack: MatSnackBar,
-    private guidelinesService: GuidelinesService,
     private universityService: UniversityService
   ) {
   }
@@ -180,7 +178,7 @@ export class ReviewListComponent implements OnInit {
               text: 'The review has been edited',
               icon: 'success',
               background: 'rgb(230, 230, 230)',
-            });
+            }).then(() => {});
           },
           error: (error) => {
             this.snack.open(error.error.message, 'OK', {

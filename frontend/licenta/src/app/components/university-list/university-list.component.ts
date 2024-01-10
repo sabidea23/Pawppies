@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {LoginService} from '../../services/login.service';
 import {UniversityService} from '../../services/university.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -8,6 +8,8 @@ import FuzzySearch from 'fuzzy-search';
 import {MatDialog} from '@angular/material/dialog';
 import {MapDialogComponent} from '../map-dialog/map-dialog.component';
 import {EditUniversityComponent} from "../../pages/admin/edit-university/edit-university.component";
+import {MatPaginator, MatPaginatorModule, PageEvent} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
   selector: 'app-university-list',
@@ -15,6 +17,12 @@ import {EditUniversityComponent} from "../../pages/admin/edit-university/edit-un
   styleUrls: ['./university-list.component.css'],
 })
 export class UniversityListComponent implements OnInit {
+
+  dataSource = new MatTableDataSource<any>();
+
+  // ViewChild pentru paginator
+  @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
+
 
   displayedColumns: string[] = ['university', 'petList', 'cityState', 'contact', 'showOnMap'];
 
@@ -24,23 +32,43 @@ export class UniversityListComponent implements OnInit {
   universities: any = [];
   filteredUniversities: any = [];
   searchItem: string = '';
+  totalElements: number = 0;
 
   constructor(private login: LoginService, private router: Router, private snack: MatSnackBar, private universityService: UniversityService, private dialog: MatDialog,) {
   }
 
   ngOnInit(): void {
     this.user = this.login.getUser();
-    this.universityService.getAllUniversities().subscribe({
-      next: (data) => {
-        this.universities = data;
-        this.filteredUniversities = data;
-      },
-    });
+    this.getUniversities({ page: "0", size: "5" });
+    // @ts-ignore
+    this.dataSource.paginator = this.paginator;
+  }
+
+  // Metoda pentru schimbarea paginii
+  public handlePageEvent(event: PageEvent): void {
+
+    this.getUniversities({ page: event.pageIndex, size: event.pageSize });
+  }
+
+  private getUniversities(request : any) {
+    this.universityService.getAllUniversities(request)
+      .subscribe(data => {
+        console.log(data)
+          this.universities = data['content'];
+          this.dataSource.data = data['content'];
+          this.filteredUniversities = data['content'];
+          this.totalElements = data['totalElements'];
+        }
+        , error => {
+          console.log(error.error.message);
+        }
+      );
   }
 
   public getUserRole() {
     return this.login.getUserRole();
   }
+
 
   public goToReviews(university: any) {
     const user_role = this.login.getUserRole();

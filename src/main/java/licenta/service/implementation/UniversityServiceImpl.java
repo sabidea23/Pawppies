@@ -6,9 +6,10 @@ import licenta.model.University;
 import licenta.repo.UniversityRepository;
 import licenta.service.UniversityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 public class UniversityServiceImpl implements UniversityService {
@@ -48,13 +49,8 @@ public class UniversityServiceImpl implements UniversityService {
     }
 
     @Override
-    public University getUniversity(String name) {
-        return this.universityRepository.findByName(name);
-    }
-
-    @Override
-    public List<University> getUniversities() {
-        return this.universityRepository.findAll();
+    public Page<University> getUniversities(Pageable pageable) {
+        return this.universityRepository.findAll(pageable);
     }
 
     @Override

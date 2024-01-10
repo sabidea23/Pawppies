@@ -1,9 +1,9 @@
 package licenta.repo;
 
 import licenta.model.University;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
-public interface UniversityRepository extends JpaRepository<University, Long> {
+public interface UniversityRepository extends PagingAndSortingRepository<University, Long> {
     University findByName(String name);
 
     boolean existsByName(String name);

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import baseUrl from "./helper";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -8,27 +9,28 @@ import baseUrl from "./helper";
 export class UniversityService {
   constructor(private http: HttpClient) { }
 
-  // Add university
   public addUniversity(university: any) {
     return this.http.post(`${baseUrl}/university/`, university);
   }
 
-  // Update university
   public updateUniversity(university: any) {
     return this.http.put(`${baseUrl}/university/`, university);
   }
 
-  // Get all universities
-  public getAllUniversities() {
-    return this.http.get(`${baseUrl}/university/`);
+  public getAllUniversities(params: { page: number; size: number }): Observable<any> {
+    // Creează un nou HttpParams
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append('page', params.page.toString());
+    queryParams = queryParams.append('size', params.size.toString());
+
+    // Trimite request-ul GET cu parametrii de paginare
+    return this.http.get(`${baseUrl}/university/`, { params: queryParams });
   }
 
-  // Get university by id
   public getUniversityById(id: number) {
     return this.http.get(`${baseUrl}/university/${id}`);
   }
 
-  // Delete university by id
   public deleteUniversityById(id: number) {
     return this.http.delete(`${baseUrl}/university/${id}`);
   }

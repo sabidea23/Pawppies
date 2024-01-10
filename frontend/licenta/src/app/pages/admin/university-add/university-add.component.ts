@@ -19,16 +19,16 @@ export class UniversityAddComponent implements OnInit {
     city: '',
     contact: '',
     admin: undefined,
-    longitude: 0.0,  // Adăugat câmpul longitude cu valoarea implicită 0.0
-    latitude: 0.0,   // Adăugat câmpul latitude cu valoarea implicită 0.0
+    longitude: 0.0, 
+    latitude: 0.0,
   };
 
   public formInput: any = {
     name: '',
     city: '',
     contact: '',
-    longitude: '',  // Adăugat câmpul longitudeUni cu valoarea implicită 0.0
-    latitude: '',   // Adăugat câmpul latitudeUni cu valoarea implicită 0.0
+    longitude: '',
+    latitude: '',
   };
 
   constructor(
@@ -40,11 +40,11 @@ export class UniversityAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.login.getUser();
-    this.universityService.getAllUniversities().subscribe({
-      next: (data: any) => {
-        this.universities = data;
-      },
-    });
+    // this.universityService.getAllUniversities({}).subscribe({
+    //   next: (data: any) => {
+    //     this.universities = data;
+    //   },
+    // });
   }
 
   public isFormValid() {
@@ -89,7 +89,5 @@ export class UniversityAddComponent implements OnInit {
     this.formInput.latitude = '';
     this.formInput.contact = '';
     this.formInput.city = '';
-
   }
-
 }
