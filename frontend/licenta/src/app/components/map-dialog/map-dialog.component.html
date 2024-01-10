@@ -1,17 +1,21 @@
-<h2 mat-dialog-title>{{university.name}} Location</h2>
-<mat-dialog-content>
-  <p> {{university.latitude}}</p>
-  <p> {{university.longitude}}</p>
+<mat-card>
+  <mat-card-content style="font-family: 'Montserrat', sans-serif;">
+    <h2>{{university.name}} Location</h2>
 
-  <iframe
-    width="300"
-    height="200"
-    frameborder="0" style="border:0"
-    [src]="getSafeUrl()"
-  allowfullscreen>
-  </iframe>
+    <p> <b> City: </b> {{university.city}}</p>
+    <p> <b> Latitude: </b> {{university.latitude}}</p>
+    <p> <b> Longitude: </b>{{university.longitude}}</p>
 
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Close X</button>
-</mat-dialog-actions>
+      <iframe
+        [src]="getSafeUrl()"
+        class="map"
+        height="350"
+        style="border:0"
+        width="400">
+      </iframe>
+
+    <div class="button-container">
+      <button mat-button (click)="dialogRef.close()" class="close_button">CLOSE</button>
+    </div>
+  </mat-card-content>
+</mat-card>

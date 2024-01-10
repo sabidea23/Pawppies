@@ -39,6 +39,7 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import { MapDialogComponent } from './components/map-dialog/map-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatMenuModule} from "@angular/material/menu";
+import { EditUniversityComponent } from './pages/admin/edit-university/edit-university.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +57,8 @@ import {MatMenuModule} from "@angular/material/menu";
     UniversityListComponent,
     UniversityTopComponent,
     UserManagementComponent,
-    MapDialogComponent
+    MapDialogComponent,
+    EditUniversityComponent
   ],
     imports: [
         BrowserModule,

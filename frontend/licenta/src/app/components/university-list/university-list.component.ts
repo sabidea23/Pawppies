@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
 import FuzzySearch from 'fuzzy-search';
 import {MatDialog} from '@angular/material/dialog';
 import {MapDialogComponent} from '../map-dialog/map-dialog.component';
+import {EditUniversityComponent} from "../../pages/admin/edit-university/edit-university.component";
 
 @Component({
   selector: 'app-university-list',
@@ -16,6 +17,8 @@ import {MapDialogComponent} from '../map-dialog/map-dialog.component';
 export class UniversityListComponent implements OnInit {
 
   displayedColumns: string[] = ['university', 'petList', 'cityState', 'contact', 'showOnMap'];
+
+  displayedColumnsAdmin: string[] = ['university', 'petList', 'cityState', 'contact', 'showOnMap', 'edit', 'delete'];
 
   user = this.login.getUser();
   universities: any = [];
@@ -50,40 +53,23 @@ export class UniversityListComponent implements OnInit {
       });
   }
 
-  public goToAddUniversity() {
-    this.router.navigate(['/admin/universities/add']).then((_) => {
-    });
-  }
-
   public editUniversity(university: any) {
-    Swal.fire({
-      title: 'Edit Animal Center',
-      background: 'rgb(230, 230, 230)',
-      html: `<input id="swal-input1" class="swal2-input" placeholder="Name" value="${university.name}">
-      <input id="swal-input2" class="swal2-input" placeholder="Longitude" value="${university.longitude}">
-      <input id="swal-input3" class="swal2-input" placeholder="Latitude" value="${university.latitude}">
-      <textarea id="swal-input4" class="swal2-input" style="min-height: 200px" placeholder="Description">${university.description}`,
-      focusConfirm: false,
-      preConfirm: () => {
-        const name = (document.getElementById('swal-input1') as HTMLInputElement).value;
-        const longitude = (document.getElementById('swal-input2') as HTMLInputElement).value;
-        const latitude = (document.getElementById('swal-input3') as HTMLInputElement).value;
-        const description = (document.getElementById('swal-input4') as HTMLInputElement).value;
+    const dialogRef = this.dialog.open(EditUniversityComponent, {
+      width: '500px', data: university
+    });
 
-        if (!name || !longitude || !latitude || !description) {
-          Swal.showValidationMessage(`Please fill in all fields`);
+    dialogRef.afterClosed().subscribe(updatedData => {
+      let modify = false;
+      if (updatedData) {
+
+        if ((university.name != updatedData.name) || (university.city != updatedData.city) || (university.longitude != updatedData.longitude) || (university.latitude != updatedData.latitude) || (university.contact != updatedData.contact)) {
+          modify = true;
         }
-
-        return {name, longitude, latitude, description};
-      },
-    }).then((result) => {
-      if (result.isConfirmed && result.value) {
-        university.name = result.value.name;
-        university.longitude = result.value.longitude;
-        university.latitude = result.value.latitude;
-        university.description = result.value.description;
-
-        // Remove authorities from user object before sending to server, as the server cannot deserialize it (for now)
+        university.name = updatedData.name;
+        university.city = updatedData.city;
+        university.longitude = updatedData.longitude;
+        university.latitude = updatedData.latitude;
+        university.contact = updatedData.contact;
         const backedUpAuthorities = university.admin.authorities;
         university.admin.authorities = undefined;
 
@@ -98,12 +84,20 @@ export class UniversityListComponent implements OnInit {
               }
               return u;
             });
-            Swal.fire({
-              title: 'Edited!',
-              text: 'Your university has been edited.',
-              icon: 'success',
-              background: 'rgb(230, 230, 230)',
-            });
+
+            if (modify) {
+              Swal.fire({
+                title: 'Edited!',
+                text: 'Your animal center has been edited.',
+                icon: 'success',
+                background: '#fff',
+                customClass: {
+                  confirmButton: 'confirm-button-class',
+                },
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#6504B5',
+              });
+            }
           }, error: (error) => {
             this.snack.open(error.error.message, 'OK', {
               duration: 3000,
@@ -111,19 +105,27 @@ export class UniversityListComponent implements OnInit {
           },
         });
       }
+
     });
   }
 
 
   public deleteUniversity(university: any) {
     Swal.fire({
-      title: 'Are you sure?',
-      text: 'You will not be able to recover this university!',
+      title: 'Confirm Deletion',
+      text: 'Are you sure you want to delete this Animal Center? This action cannot be undone.',
       icon: 'warning',
-      background: 'rgb(230, 230, 230)',
+      background: '#fff',
+      customClass: {
+        confirmButton: 'confirm-button-class',
+        cancelButton: 'cancel-button-class'
+      },
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, keep it.',
+
+      confirmButtonText: 'DELETE',
+      cancelButtonText: 'CANCEL',
+      cancelButtonColor: '#6504B5',
+      confirmButtonColor: '#FF1053',
     }).then((result) => {
       if (result.isConfirmed) {
         this.universityService.deleteUniversityById(university.id).subscribe({
@@ -131,9 +133,14 @@ export class UniversityListComponent implements OnInit {
             this.universities = this.universities.filter((u: any) => u.id !== university.id);
             Swal.fire({
               title: 'Deleted!',
-              text: 'Your university has been deleted.',
+              text: 'Your animal center has been deleted.',
               icon: 'success',
-              background: 'rgb(230, 230, 230)',
+              background: '#fff',
+              customClass: {
+                confirmButton: 'confirm-button-class',
+              },
+              confirmButtonText: 'OK',
+              confirmButtonColor: '#6504B5',
             }).then((_) => {
               window.location.reload();
             });
@@ -156,8 +163,7 @@ export class UniversityListComponent implements OnInit {
 
   public showOnMap(university: any) {
     this.dialog.open(MapDialogComponent, {
-      width: '400px',
-      data: university
+      width: '600px', data: university
     });
   }
 

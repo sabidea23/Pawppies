@@ -1,4 +1,5 @@
 mat-card {
+  caret-color: transparent;
   max-width: 1000px;
   margin: auto;
   padding: 20px;
@@ -6,6 +7,7 @@ mat-card {
 
 
 body {
+  caret-color: transparent;
   background-color: #EFEEF1;
   padding-top: 20px;
   padding-bottom: 20px;
@@ -13,16 +15,19 @@ body {
 }
 
 .university-table {
+  caret-color: transparent;
   width: 100%;
   font-family: 'Montserrat', sans-serif;
 }
 
 .mat-cell, .mat-header-cell {
+  caret-color: transparent;
   padding: 8px;
   text-align: left;
 }
 
 .mat-row, .mat-header-row {
+  caret-color: transparent;
   border-bottom: 1px solid #e0e0e0;
 }
 
@@ -31,15 +36,35 @@ body {
 }
 
 th {
+  caret-color: transparent;
   background-color: #EFEEF1;
   text-align: center;
 }
 
 
 .mat-header-row, .mat-header-cell {
-  background-color: #EFEEF1; /* Culoarea pentru antetul tabelului */
-  color: #410078; /* Culoarea textului, dacă doriți să o schimbați */
-  /* Adăugați aici orice alte stiluri necesare pentru antetul tabelului */
+  caret-color: transparent;
+  background-color: #EFEEF1;
+  color: #410078;
+}
+
+.confirm-button-class {
+  color: #FFFFFF;
+  margin-top: 20px;
+  border-radius: 20px;
+  width: 100%;
+  box-shadow: none;
 }
 
 
+.cancel-button-class {
+  color: #FFFFFF;
+  margin-top: 20px;
+  border-radius: 20px;
+  width: 100%;
+  box-shadow: none;
+}
+
+* {
+  caret-color: transparent;
+}

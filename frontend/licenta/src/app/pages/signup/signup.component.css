@@ -2,9 +2,11 @@ mat-card {
   max-width: 400px;
   margin: auto;
   padding: 20px;
+  caret-color: transparent;
 }
 
 mat-form-field {
+  caret-color: transparent;
   width: 100%;
 }
 
@@ -12,25 +14,29 @@ body {
   background-color: #EFEEF1;
   padding-top: 20px;
   padding-bottom: 20px;
-
+  caret-color: transparent;
 }
 
 h2 {
+  caret-color: transparent;
   display: block;
   text-align: center;
 }
 
 button {
+  caret-color: transparent;
   width: 100%;
   margin-top: 20px;
 }
 
 .container {
+  caret-color: transparent;
   display: flex;
   flex-direction: column;
 }
 
 .social-buttons {
+  caret-color: transparent;
   display: flex;
   justify-content: space-around;
 }
@@ -39,8 +45,8 @@ mat-icon {
   margin-right: 8px;
 }
 
-
 p {
+  caret-color: transparent;
   color: #3e403f;
   font-size: 15px;
   text-align: center;
@@ -48,11 +54,13 @@ p {
 }
 
 button:hover {
+  caret-color: transparent;
   transform: translatey(3px);
   box-shadow: none;
 }
 
 .custom-mat-form-field {
+  caret-color: transparent;
   position: relative;
   width: 100%;
   max-height: 150px;
@@ -65,7 +73,7 @@ button:hover {
 .custom-mat-form-field button {
   right: 0;
   top: 0;
-  margin: 12px; /* Ajustează acesta în funcție de nevoi */
+  margin: 12px;
 }
 
 .login-button {
@@ -73,37 +81,38 @@ button:hover {
   color: #FFFFFF;
   margin-top: 20px;
   border-radius: 20px;
-  width: 100%; /* Ocupă întreaga lățime a containerului */
-  box-shadow: none; /* Înlătură orice umbre dacă există */
+  width: 100%;
+  box-shadow: none;
 }
 
 .login-form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  caret-color: transparent;
 }
 
 
 .custom-mat-form-field {
-  /* Ajustează înălțimea și padding-ul */
+  caret-color: transparent;
   height: 80px;
   padding-top: 0;
   padding-bottom: 0;
 }
 
 .mat-form-field-infix {
-  /* Reduce spațiul din interiorul câmpului de formular */
+  caret-color: transparent;
   padding-top: 0;
   padding-bottom: 0;
 }
 
 .mat-form-field-label-wrapper {
-  /* Ajustează spațiul pentru etichetă */
   top: -5px;
+  caret-color: transparent;
 }
 
 .mat-input-element {
-  /* Reducerea înălțimii elementului de input */
+  caret-color: transparent;
   height: 40px;
   margin: 0;
 }

@@ -1,0 +1,61 @@
+mat-card {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  caret-color: transparent;
+  align-content: center;
+}
+
+* {
+  caret-color: transparent;
+}
+
+h2 {
+  caret-color: transparent;
+  display: block;
+  text-align: center;
+}
+
+.container {
+  caret-color: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+p {
+  caret-color: transparent;
+  color: #3e403f;
+  font-size: 17px;
+  text-align: center;
+}
+
+.custom-mat-form-field input {
+  caret-color: transparent;
+  margin-left: 20px;
+}
+
+.custom-mat-form-field button {
+  caret-color: transparent;
+  right: 0;
+  top: 0;
+  margin: 12px;
+}
+
+
+.map {
+  margin-left: 70px;
+}
+
+/* Container pentru butoane */
+.button-container {
+  display: flex;
+  justify-content: center; /* Centrarea butoanelor orizontal */
+}
+
+.close_button {
+  margin-top: 10px;
+  background-color: #6504B5; /* culoarea roșie pentru butonul de update */
+  color: white;
+  border-radius: 4px;
+  max-width: 100px;
+}
