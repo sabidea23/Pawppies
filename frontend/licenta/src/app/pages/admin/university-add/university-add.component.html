@@ -1,99 +1,94 @@
-<mat-card *ngIf="user" class="all">
-  <mat-card-content>
+<body>
+<mat-card *ngIf="user">
+  <mat-card-content  style="font-family: 'Montserrat', sans-serif;">
 
-    <form (ngSubmit)="formSubmit()" class="container">
-      <div class="con">
+    <form (ngSubmit)="formSubmit()" class="login-form">
 
-        <header style="align-self: center">
-          <h1>Add Animal Center</h1>
-        </header>
-        <div class="field-set">
+        <h1>Add Animal Center</h1>
 
-
-<!--          name-->
-          <mat-form-field appearance="fill" class="full-width">
-            <mat-label>
-              <mat-icon>store</mat-icon>
-              Center Name
-            </mat-label>
-            <input [(ngModel)]="formInput.name" matInput name="name" placeholder="Center Name"/>
-            <button (click)="formInput.name=''" mat-icon-button matSuffix>
-              <mat-icon>close</mat-icon>
-            </button>
-          </mat-form-field>
-
-<!--          \\city-->
-          <mat-form-field appearance="fill" class="full-width">
-            <mat-label>
-              <mat-icon>location_city</mat-icon>
-              Center City
-            </mat-label>
-            <input [(ngModel)]="formInput.city" matInput name="city" placeholder="Center City,State/Prov"/>
-            <button (click)="formInput.name=''" mat-icon-button matSuffix>
-              <mat-icon>close</mat-icon>
-            </button>
-          </mat-form-field>
-
-          <!-- Country Dropdown -->
-          <mat-form-field appearance="fill" class="full-width">
-            <mat-label>
-              <mat-icon>public</mat-icon>
-              Country
-            </mat-label>
-            <mat-select [(ngModel)]="formInput.country" name="country" placeholder="Select Country">
-              <mat-option *ngFor="let country of countries" [value]="country.name">
-                {{ country.name }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-
-
-          <!-- Longitude -->
-          <mat-form-field appearance="fill" class="full-width">
-            <mat-label>
-              <mat-icon>explore</mat-icon>
-              Longitude
-            </mat-label>
-            <input [(ngModel)]="formInput.longitude" matInput name="longitude" placeholder="Longitude"/>
-            <button (click)="formInput.longitude=''" mat-icon-button matSuffix>
-              <mat-icon>close</mat-icon>
-            </button>
-          </mat-form-field>
-
-          <!-- Latitude -->
-          <mat-form-field appearance="fill" class="full-width">
-            <mat-label>
-              <mat-icon>explore</mat-icon>
-              Latitude
-            </mat-label>
-            <input [(ngModel)]="formInput.latitude" matInput name="latitude" placeholder="Latitude"/>
-            <button (click)="formInput.latitude=''" mat-icon-button matSuffix>
-              <mat-icon>close</mat-icon>
-            </button>
-          </mat-form-field>
-
-          <mat-form-field appearance="fill" class="full-width">
-            <mat-label>
-              <mat-icon>perm_contact_calendar</mat-icon> <!-- Pentru contact -->
-              Contact
-            </mat-label>
-            <input [(ngModel)]="formInput.contact" matInput name="contact" placeholder="Contact"/>
-            <button (click)="formInput.name=''" mat-icon-button matSuffix>
-              <mat-icon>close</mat-icon>
-            </button>
-          </mat-form-field>
-        </div>
-
-        <div class="text-center">
-          <button [disabled]="!isFormValid()" mat-raised-button type="submit">
-            Add
+        <!--          name-->
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon>store</mat-icon>
+            Center Name
+          </mat-label>
+          <input [(ngModel)]="formInput.name" matInput name="name" placeholder="Center Name"/>
+          <button (click)="formInput.name=''" mat-icon-button matSuffix>
+            <mat-icon>close</mat-icon>
           </button>
-          <button (click)="clearForm()" mat-raised-button type="button">
-            Clear
+        </mat-form-field>
+
+        <!--          \\city-->
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon>location_city</mat-icon>
+            Center City
+          </mat-label>
+          <input [(ngModel)]="formInput.city" matInput name="city" placeholder="Center City,State/Prov"/>
+          <button (click)="formInput.name=''" mat-icon-button matSuffix>
+            <mat-icon>close</mat-icon>
           </button>
-        </div>
+        </mat-form-field>
+
+        <!-- Country Dropdown -->
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon>public</mat-icon>
+            Country
+          </mat-label>
+          <mat-select [(ngModel)]="formInput.country" name="country" placeholder="Select Country">
+            <mat-option *ngFor="let country of countries" [value]="country.name">
+              {{ country.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Longitude -->
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon>explore</mat-icon>
+            Longitude
+          </mat-label>
+          <input [(ngModel)]="formInput.longitude" matInput name="longitude" placeholder="Longitude"/>
+          <button (click)="formInput.longitude=''" mat-icon-button matSuffix>
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <!-- Latitude -->
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon>explore</mat-icon>
+            Latitude
+          </mat-label>
+          <input [(ngModel)]="formInput.latitude" matInput name="latitude" placeholder="Latitude"/>
+          <button (click)="formInput.latitude=''" mat-icon-button matSuffix>
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon>perm_contact_calendar</mat-icon>
+            Contact
+          </mat-label>
+          <input [(ngModel)]="formInput.contact" matInput name="contact" placeholder="Contact"/>
+          <button (click)="formInput.name=''" mat-icon-button matSuffix>
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+
+      <div class="button-container">
+        <button class="add_btn"  mat-button type="submit">
+          ADD
+        </button>
+        <button class="cancel-button-class" (click)="clearForm()" mat-button type="button">
+          CLEAR
+        </button>
       </div>
     </form>
 
   </mat-card-content>
 </mat-card>
+
+</body>
