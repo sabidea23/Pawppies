@@ -10,6 +10,7 @@ import {MapDialogComponent} from '../map-dialog/map-dialog.component';
 import {EditUniversityComponent} from "../../pages/admin/edit-university/edit-university.component";
 import {MatPaginator, MatPaginatorModule, PageEvent} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import {countries} from "../../utils/country-data-store";
 
 @Component({
   selector: 'app-university-list',
@@ -20,9 +21,7 @@ export class UniversityListComponent implements OnInit {
 
   dataSource = new MatTableDataSource<any>();
 
-  // ViewChild pentru paginator
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
-
 
   displayedColumns: string[] = ['university', 'petList', 'cityState', 'contact', 'showOnMap'];
 
@@ -33,6 +32,7 @@ export class UniversityListComponent implements OnInit {
   filteredUniversities: any = [];
   searchItem: string = '';
   totalElements: number = 0;
+  public countries:any = countries;
 
   constructor(private login: LoginService, private router: Router, private snack: MatSnackBar, private universityService: UniversityService, private dialog: MatDialog,) {
   }
@@ -44,9 +44,7 @@ export class UniversityListComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  // Metoda pentru schimbarea paginii
   public handlePageEvent(event: PageEvent): void {
-
     this.getUniversities({ page: event.pageIndex, size: event.pageSize });
   }
 

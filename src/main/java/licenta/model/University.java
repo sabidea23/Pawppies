@@ -20,11 +20,37 @@ public class University {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @Column(unique = true)
     private String name;
-
     private Double longitude;
+    private Double latitude;
+    private String city;
+    private String country;
+    private String contact;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private User admin;
+    @OneToMany(mappedBy = "university", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Set<Review> reviews;
+
+    public University(String name, Double longitude, Double latitude, String city, String country,
+                      String contact, User admin) {
+        this.name = name;
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.city = city;
+        this.country = country;
+        this.contact = contact;
+        this.admin = admin;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
 
     public Double getLongitude() {
         return longitude;
@@ -32,28 +58,6 @@ public class University {
 
     public Double getLatitude() {
         return latitude;
-    }
-
-    private Double latitude;
-
-    private String city;
-
-    private String contact;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    private User admin;
-
-    @OneToMany(mappedBy = "university", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnore
-    private Set<Review> reviews;
-
-    public University(String name, Double longitude, Double latitude, String city, String contact, User admin) {
-        this.name = name;
-        this.longitude = longitude;
-        this.latitude = latitude;
-        this.city = city;
-        this.contact = contact;
-        this.admin = admin;
     }
 
     public String getCity() {

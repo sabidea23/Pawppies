@@ -41,6 +41,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatMenuModule} from "@angular/material/menu";
 import { EditUniversityComponent } from './pages/admin/edit-university/edit-university.component';
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatSelectModule} from "@angular/material/select";
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,7 +84,8 @@ import {MatPaginatorModule} from "@angular/material/paginator";
         MatGridListModule,
         MatDialogModule,
         MatMenuModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+        MatSelectModule
     ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

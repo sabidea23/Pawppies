@@ -21,6 +21,19 @@
         <input [(ngModel)]="editData.city" matInput name="city" placeholder="Enter Animal Center City" required/>
       </mat-form-field>
 
+      <!-- Country Dropdown -->
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
+        <mat-label>
+          <mat-icon>public</mat-icon>
+          Country
+        </mat-label>
+        <mat-select [(ngModel)]="editData.country" name="country" placeholder="Select Country">
+          <mat-option *ngFor="let country of countries" [value]="country.name">
+            {{ country.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
       <!-- Longitudine -->
       <mat-form-field appearance="fill" class="custom-mat-form-field">
         <mat-label>

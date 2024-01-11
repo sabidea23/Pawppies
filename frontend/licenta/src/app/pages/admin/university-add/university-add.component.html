@@ -9,6 +9,8 @@
         </header>
         <div class="field-set">
 
+
+<!--          name-->
           <mat-form-field appearance="fill" class="full-width">
             <mat-label>
               <mat-icon>store</mat-icon>
@@ -20,15 +22,29 @@
             </button>
           </mat-form-field>
 
+<!--          \\city-->
           <mat-form-field appearance="fill" class="full-width">
             <mat-label>
-              <mat-icon>location_city</mat-icon> <!-- Pentru city/state -->
-              Center City,State/Prov
+              <mat-icon>location_city</mat-icon>
+              Center City
             </mat-label>
             <input [(ngModel)]="formInput.city" matInput name="city" placeholder="Center City,State/Prov"/>
             <button (click)="formInput.name=''" mat-icon-button matSuffix>
               <mat-icon>close</mat-icon>
             </button>
+          </mat-form-field>
+
+          <!-- Country Dropdown -->
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>
+              <mat-icon>public</mat-icon>
+              Country
+            </mat-label>
+            <mat-select [(ngModel)]="formInput.country" name="country" placeholder="Select Country">
+              <mat-option *ngFor="let country of countries" [value]="country.name">
+                {{ country.name }}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
 
 

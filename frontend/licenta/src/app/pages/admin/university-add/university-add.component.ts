@@ -4,6 +4,7 @@ import { LoginService } from '../../../services/login.service';
 import { UniversityService } from '../../../services/university.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import Swal from 'sweetalert2';
+import {countries} from "../../../utils/country-data-store";
 
 @Component({
   selector: 'app-university-add',
@@ -13,19 +14,22 @@ import Swal from 'sweetalert2';
 export class UniversityAddComponent implements OnInit {
   user = this.login.getUser();
   universities: any = [];
+  public countries:any = countries;
 
   public university: any = {
     name: '',
     city: '',
+    country: '',
     contact: '',
     admin: undefined,
-    longitude: 0.0, 
+    longitude: 0.0,
     latitude: 0.0,
   };
 
   public formInput: any = {
     name: '',
     city: '',
+    country: '',
     contact: '',
     longitude: '',
     latitude: '',
@@ -47,9 +51,11 @@ export class UniversityAddComponent implements OnInit {
     // });
   }
 
+
+
   public isFormValid() {
     return this.formInput.name && this.formInput.longitude &&
-      this.formInput.latitude && this.formInput.city && this.formInput.contact;
+      this.formInput.latitude && this.formInput.city && this.formInput.contact && this.formInput.country;
   }
 
   formSubmit() {
@@ -89,5 +95,6 @@ export class UniversityAddComponent implements OnInit {
     this.formInput.latitude = '';
     this.formInput.contact = '';
     this.formInput.city = '';
+    this.formInput.country = '';
   }
 }

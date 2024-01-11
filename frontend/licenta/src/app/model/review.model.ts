@@ -1,4 +1,3 @@
-import {SafeUrl} from "@angular/platform-browser";
 import {FileModel} from "./file-handle.model";
 
 export interface Review {
