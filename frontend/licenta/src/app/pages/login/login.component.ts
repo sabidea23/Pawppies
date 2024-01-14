@@ -1,37 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
-import { LoginService } from 'src/app/services/login.service';
+import {Component, OnInit} from '@angular/core';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {Router} from '@angular/router';
+import {LoginService} from 'src/app/services/login.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-login', templateUrl: './login.component.html', styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
 
-  hide = true;
-
   loginData = {
-    username: '',
-    password: '',
+    username: '', password: '',
   };
 
-  constructor(private snack: MatSnackBar, private login: LoginService,
-              private router: Router) { }
+  constructor(private snack: MatSnackBar, private login: LoginService, private router: Router) {
+  }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
 
   formSubmit() {
     // Check if `username` is empty
     if (this.loginData.username.trim() == '' || this.loginData.username == null) {
-      this.snack.open("Username is required!", "", { duration: 3000 });
+      this.snack.open("Username is required!", "", {duration: 3000});
       return;
     }
 
     // Check if `password` is empty
     if (this.loginData.password.trim() == '' || this.loginData.password == null) {
-      this.snack.open("Password is required!", "", { duration: 3000 });
+      this.snack.open("Password is required!", "", {duration: 3000});
       return;
     }
 
@@ -46,18 +42,14 @@ export class LoginComponent implements OnInit {
             if (this.login.getUserRole() == 'ADMIN') {
               this.router.navigate(['admin']);
               this.login.loginStatusSubject.next(true);
-            }
-            else if (this.login.getUserRole() == 'NORMAL') {
+            } else if (this.login.getUserRole() == 'NORMAL') {
               this.router.navigate(['user-dashboard']);
               this.login.loginStatusSubject.next(true);
-            }
-            else
-              this.login.logout();
+            } else this.login.logout();
           }
         });
-      },
-      error: (error) => {
-        this.snack.open("Invalid credentials!", "", { duration: 3000 });
+      }, error: (error) => {
+        this.snack.open("Invalid credentials!", "", {duration: 3000});
       }
     });
   }

@@ -1,28 +1,36 @@
 <body>
-<mat-card *ngIf="user">
-  <mat-card-content>
-    <form>
-      <mat-form-field>
-        <input (ngModelChange)="searchUniversity(searchItem)" [(ngModel)]="searchItem" matInput name="search"
-               placeholder="Search Center" type="search"/>
-        <mat-icon class="search-icon" matSuffix>search</mat-icon>
-      </mat-form-field>
-    </form>
+<div class="main-container">
+  <div *ngIf="user" class="content-container">
+
+    <h2>Search For Animal Welfare Groups by </h2>
+
+    <div *ngIf="searchFilters.length > 0" class="filter-container">
+      <div *ngFor="let filter of searchFilters">
+        <p *ngIf="filter.value" class="filter-chip">
+          <button (click)="filter.value=''" class="btn bg-transparent close-btn">
+            <mat-icon>close</mat-icon>
+          </button>
+          <span class="filter-text"><b>{{ filter.type }}:</b> {{ filter.value }}</span>
+        </p>
+      </div>
+    </div>
+
 
     <!-- Tabelul de universități -->
-    <table mat-table [dataSource]="filteredUniversities" class="university-table">
+    <table *ngIf="(filteredUniversities.length != 0)" [dataSource]="filteredUniversities" class="university-table"
+           mat-table>
 
       <!-- Coloana pentru numele universității -->
       <ng-container matColumnDef="university">
-        <th  *matHeaderCellDef>ORGANIZATION</th>
-        <td mat-cell *matCellDef="let university">{{ university.name }}</td>
+        <th *matHeaderCellDef>ORGANIZATION</th>
+        <td *matCellDef="let university" mat-cell>{{ university.name }}</td>
       </ng-container>
 
       <!-- Coloana pentru lista de animale -->
       <ng-container matColumnDef="petList">
-        <th  *matHeaderCellDef>PET LIST</th>
-        <td mat-cell *matCellDef="let university">
-          <button mat-button (click)="goToReviews(university)">
+        <th *matHeaderCellDef>PET LIST</th>
+        <td *matCellDef="let university" mat-cell>
+          <button (click)="goToReviews(university)" mat-button>
             <mat-icon class="sticker-icon">pets</mat-icon>
           </button>
         </td>
@@ -30,20 +38,20 @@
 
       <!-- Coloana pentru oraș/stat -->
       <ng-container matColumnDef="cityState">
-        <th  *matHeaderCellDef>CITY/STATE</th>
-        <td mat-cell *matCellDef="let university">{{ university.city }},  {{university.country}}</td>
+        <th *matHeaderCellDef>CITY/STATE</th>
+        <td *matCellDef="let university" mat-cell>{{ university.city }},  {{university.country}}</td>
       </ng-container>
 
       <!-- Coloana pentru contact -->
       <ng-container matColumnDef="contact">
-        <th  *matHeaderCellDef>CONTACT</th>
-        <td mat-cell *matCellDef="let university">{{ university.contact }}</td>
+        <th *matHeaderCellDef>CONTACT</th>
+        <td *matCellDef="let university" mat-cell>{{ university.contact }}</td>
       </ng-container>
 
       <!-- Coloana pentru acțiunea Show on Map -->
       <ng-container matColumnDef="showOnMap">
-        <th  *matHeaderCellDef>MAP</th>
-        <td mat-cell *matCellDef="let university">
+        <th *matHeaderCellDef>MAP</th>
+        <td *matCellDef="let university" mat-cell>
           <button (click)="showOnMap(university)" mat-icon-button>
             <mat-icon>map</mat-icon>
           </button>
@@ -53,8 +61,8 @@
       <!-- Coloana pentru Editare -->
       <ng-container matColumnDef="edit">
         <th *matHeaderCellDef>EDIT</th>
-        <td mat-cell *matCellDef="let university">
-          <button mat-button (click)="editUniversity(university)">
+        <td *matCellDef="let university" mat-cell>
+          <button (click)="editUniversity(university)" mat-button>
             <mat-icon>edit</mat-icon>
           </button>
         </td>
@@ -63,21 +71,88 @@
       <!-- Coloana pentru Ștergere -->
       <ng-container matColumnDef="delete">
         <th *matHeaderCellDef>DELETE</th>
-        <td mat-cell *matCellDef="let university">
-          <button mat-button (click)="deleteUniversity(university)">
+        <td *matCellDef="let university" mat-cell>
+          <button (click)="deleteUniversity(university)" mat-button>
             <mat-icon>delete</mat-icon>
           </button>
         </td>
       </ng-container>
-      <tr mat-header-row *matHeaderRowDef="getUserRole() == 'ADMIN' ? displayedColumnsAdmin : displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: getUserRole() == 'ADMIN' ? displayedColumnsAdmin : displayedColumns;"></tr>
+      <tr *matHeaderRowDef="getUserRole() == 'ADMIN' ? displayedColumnsAdmin : displayedColumns" mat-header-row></tr>
+      <tr *matRowDef="let row; columns: getUserRole() == 'ADMIN' ? displayedColumnsAdmin : displayedColumns;"
+          mat-row></tr>
 
     </table>
-    <mat-paginator [length]="totalElements"
-                   [pageSize]="5"
+
+    <h2 *ngIf="filteredUniversities.length == 0"> No results found.</h2>
+    <mat-paginator (page)="handlePageEvent($event)"
+                   [length]="totalElements"
                    [pageSizeOptions]="[5, 10, 20]"
-                   (page)="handlePageEvent($event)">
+                   [pageSize]="5">
     </mat-paginator>
-  </mat-card-content>
-</mat-card>
+  </div>
+
+  <div class="side-container">
+    <form (ngSubmit)="performSearch()" class="search-form">
+      <h2>Find Pet-Adoption Centers by:</h2>
+
+      <!--      //city-->
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
+        <mat-label>
+          <mat-icon matPrefix>location_city</mat-icon>
+          City
+        </mat-label>
+        <input [(ngModel)]="searchData.city" matInput
+               name="email" placeholder="Enter your email"/>
+      </mat-form-field>
+
+      <!--        //country/-->
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
+        <mat-label>
+          <mat-icon>public</mat-icon>
+          Country
+        </mat-label>
+        <mat-select [(ngModel)]="searchData.country" name="country" placeholder="Select Country">
+          <mat-option *ngFor="let country of countries" [value]="country.name">
+            {{ country.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <!--        //name-->
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
+        <mat-label>
+          <mat-icon matPrefix>business</mat-icon>
+          Name
+        </mat-label>
+        <input [(ngModel)]="searchData.name" matInput
+               name="email" placeholder="Enter name"/>
+      </mat-form-field>
+
+
+      <!--        //max distance-->
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
+        <mat-label>
+          <mat-icon matPrefix>business</mat-icon>
+          Max Distance
+        </mat-label>
+        <input [(ngModel)]="searchData.distance" matInput
+               name="email" placeholder="Enter max distance"/>
+      </mat-form-field>
+
+      <button class="login-button" mat-flat-button type="submit">
+        SEARCH
+      </button>
+
+      <div class="line-with-text">
+        <div class="text">OR</div>
+      </div>
+
+      <button (click)="showAllCenters()" class="login-button reset" mat-flat-button>
+        SHOW ALL
+      </button>
+    </form>
+
+  </div>
+</div>
 </body>

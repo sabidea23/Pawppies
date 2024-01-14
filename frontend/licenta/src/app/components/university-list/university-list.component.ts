@@ -32,41 +32,54 @@ export class UniversityListComponent implements OnInit {
   filteredUniversities: any = [];
   searchItem: string = '';
   totalElements: number = 0;
-  public countries:any = countries;
+  public countries: any = countries;
+
+  searchData = {
+    city: '', country: '', name: '', distance: ''
+  }
+
+  searchFilters: any[] = [];
 
   constructor(private login: LoginService, private router: Router, private snack: MatSnackBar, private universityService: UniversityService, private dialog: MatDialog,) {
   }
 
   ngOnInit(): void {
     this.user = this.login.getUser();
-    this.getUniversities({ page: "0", size: "5" });
+    this.getUniversities({page: "0", size: "5"});
     // @ts-ignore
     this.dataSource.paginator = this.paginator;
   }
 
-  public handlePageEvent(event: PageEvent): void {
-    this.getUniversities({ page: event.pageIndex, size: event.pageSize });
+  performSearch() {
+    // Logica de căutare...
+
+    // Să presupunem că actualizăm filtrele de căutare
+    this.searchFilters = [{type: 'City', value: this.searchData.city}, {
+      type: 'Country',
+      value: this.searchData.country
+    }, {type: 'Name', value: this.searchData.name}, {type: 'Max Distance', value: this.searchData.distance},];
   }
 
-  private getUniversities(request : any) {
+  public handlePageEvent(event: PageEvent): void {
+    this.getUniversities({page: event.pageIndex, size: event.pageSize});
+  }
+
+  private getUniversities(request: any) {
     this.universityService.getAllUniversities(request)
       .subscribe(data => {
         console.log(data)
-          this.universities = data['content'];
-          this.dataSource.data = data['content'];
-          this.filteredUniversities = data['content'];
-          this.totalElements = data['totalElements'];
-        }
-        , error => {
-          console.log(error.error.message);
-        }
-      );
+        this.universities = data['content'];
+        this.dataSource.data = data['content'];
+        this.filteredUniversities = data['content'];
+        this.totalElements = data['totalElements'];
+      }, error => {
+        console.log(error.error.message);
+      });
   }
 
   public getUserRole() {
     return this.login.getUserRole();
   }
-
 
   public goToReviews(university: any) {
     const user_role = this.login.getUserRole();
@@ -143,11 +156,9 @@ export class UniversityListComponent implements OnInit {
       icon: 'warning',
       background: '#fff',
       customClass: {
-        confirmButton: 'confirm-button-class',
-        cancelButton: 'cancel-button-class'
+        confirmButton: 'confirm-button-class', cancelButton: 'cancel-button-class'
       },
       showCancelButton: true,
-
       confirmButtonText: 'DELETE',
       cancelButtonText: 'CANCEL',
       cancelButtonColor: '#6504B5',
@@ -193,4 +204,19 @@ export class UniversityListComponent implements OnInit {
     });
   }
 
+  showAllCenters(): void {
+    this.resetFilters();
+    this.performSearch();
+  }
+
+  resetFilters(): void {
+    // Reset your search filters here
+    this.searchData = {
+      city: '',
+      country: '',
+      name: '',
+      distance: ''
+    };
+    // Any other filter reset logic goes here
+  }
 }
