@@ -50,31 +50,8 @@ export class UniversityListComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  performSearch() {
-    // Logica de căutare...
-
-    // Să presupunem că actualizăm filtrele de căutare
-    this.searchFilters = [{type: 'City', value: this.searchData.city}, {
-      type: 'Country',
-      value: this.searchData.country
-    }, {type: 'Name', value: this.searchData.name}, {type: 'Max Distance', value: this.searchData.distance},];
-  }
-
   public handlePageEvent(event: PageEvent): void {
     this.getUniversities({page: event.pageIndex, size: event.pageSize});
-  }
-
-  private getUniversities(request: any) {
-    this.universityService.getAllUniversities(request)
-      .subscribe(data => {
-        console.log(data)
-        this.universities = data['content'];
-        this.dataSource.data = data['content'];
-        this.filteredUniversities = data['content'];
-        this.totalElements = data['totalElements'];
-      }, error => {
-        console.log(error.error.message);
-      });
   }
 
   public getUserRole() {
@@ -144,7 +121,6 @@ export class UniversityListComponent implements OnInit {
           },
         });
       }
-
     });
   }
 
@@ -191,17 +167,78 @@ export class UniversityListComponent implements OnInit {
     });
   }
 
-  public searchUniversity(searchItem: string) {
-    this.filteredUniversities = this.universities;
-    const searcher = new FuzzySearch(this.filteredUniversities, ['name']);
-
-    this.filteredUniversities = searcher.search(searchItem);
-  }
 
   public showOnMap(university: any) {
     this.dialog.open(MapDialogComponent, {
       width: '600px', data: university
     });
+  }
+
+  private getUniversities(request: any) {
+    this.universityService.getAllUniversities(request)
+      .subscribe(data => {
+        console.log(data)
+        this.universities = data['content'];
+        this.dataSource.data = data['content'];
+        this.filteredUniversities = data['content'];
+        this.totalElements = data['totalElements'];
+      }, error => {
+        console.log(error.error.message);
+      });
+  }
+
+  deleteFilter(filter: any) {
+    var filterType = filter.type;
+    filter.value = '';
+    switch (filterType) {
+      case 'City':
+        this.searchData.city = '';
+        break;
+      case 'Country':
+        this.searchData.country = '';
+        break;
+      case 'Name':
+        this.searchData.name = '';
+        break;
+      case 'Max Distance':
+        this.searchData.distance = '';
+        break;
+    }
+    this.performSearch();
+  }
+
+
+  performSearch() {
+    this.filteredUniversities = [...this.universities];
+
+    const trimmedCity = this.searchData.city.trim();
+    const trimmedName = this.searchData.name.trim();
+
+    if (trimmedCity) {
+      // @ts-ignore
+      this.filteredUniversities = this.filteredUniversities.filter(university => university.city.includes(trimmedCity));
+    }
+    if (trimmedName) {
+      // @ts-ignore
+      this.filteredUniversities = this.filteredUniversities.filter(university => university.name.includes(trimmedName));
+    }
+
+    if (this.searchData.city) {
+      // @ts-ignore
+      this.filteredUniversities = this.filteredUniversities.filter(university => university.city.includes(this.searchData.city));
+    }
+    if (this.searchData.country) {
+      // @ts-ignore
+      this.filteredUniversities = this.filteredUniversities.filter(university => university.country.includes(this.searchData.country));
+    }
+
+    this.searchFilters = [
+      {type: 'City', value: this.searchData.city},
+      {type: 'Country', value: this.searchData.country},
+      {type: 'Name', value: this.searchData.name},
+      {type: 'Max Distance', value: this.searchData.distance}];
+
+    this.dataSource.data = this.filteredUniversities;
   }
 
   showAllCenters(): void {
@@ -210,13 +247,11 @@ export class UniversityListComponent implements OnInit {
   }
 
   resetFilters(): void {
-    // Reset your search filters here
     this.searchData = {
       city: '',
       country: '',
       name: '',
       distance: ''
     };
-    // Any other filter reset logic goes here
   }
 }

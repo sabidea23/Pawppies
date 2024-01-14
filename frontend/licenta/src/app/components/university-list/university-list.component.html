@@ -7,13 +7,14 @@
     <div *ngIf="searchFilters.length > 0" class="filter-container">
       <div *ngFor="let filter of searchFilters">
         <p *ngIf="filter.value" class="filter-chip">
-          <button (click)="filter.value=''" class="btn bg-transparent close-btn">
+          <button (click)="deleteFilter(filter)" class="btn bg-transparent close-btn">
             <mat-icon>close</mat-icon>
           </button>
           <span class="filter-text"><b>{{ filter.type }}:</b> {{ filter.value }}</span>
         </p>
       </div>
     </div>
+
 
 
     <!-- Tabelul de universități -->
@@ -52,7 +53,7 @@
       <ng-container matColumnDef="showOnMap">
         <th *matHeaderCellDef>MAP</th>
         <td *matCellDef="let university" mat-cell>
-          <button (click)="showOnMap(university)" mat-button class="btn bg-transparent">
+          <button (click)="showOnMap(university)" class="btn bg-transparent" mat-button>
             <mat-icon>map</mat-icon>
           </button>
         </td>
@@ -62,7 +63,7 @@
       <ng-container matColumnDef="edit">
         <th *matHeaderCellDef>EDIT</th>
         <td *matCellDef="let university" mat-cell>
-          <button (click)="editUniversity(university)" mat-button class="btn bg-transparent">
+          <button (click)="editUniversity(university)" class="btn bg-transparent" mat-button>
             <mat-icon>edit</mat-icon>
           </button>
         </td>
@@ -72,7 +73,7 @@
       <ng-container matColumnDef="delete">
         <th *matHeaderCellDef>DELETE</th>
         <td *matCellDef="let university" mat-cell>
-          <button (click)="deleteUniversity(university)" mat-button class="btn bg-transparent">
+          <button (click)="deleteUniversity(university)" class="btn bg-transparent" mat-button>
             <mat-icon>delete</mat-icon>
           </button>
         </td>
