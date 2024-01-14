@@ -52,7 +52,7 @@
       <ng-container matColumnDef="showOnMap">
         <th *matHeaderCellDef>MAP</th>
         <td *matCellDef="let university" mat-cell>
-          <button (click)="showOnMap(university)" mat-icon-button>
+          <button (click)="showOnMap(university)" mat-button class="btn bg-transparent">
             <mat-icon>map</mat-icon>
           </button>
         </td>
@@ -62,7 +62,7 @@
       <ng-container matColumnDef="edit">
         <th *matHeaderCellDef>EDIT</th>
         <td *matCellDef="let university" mat-cell>
-          <button (click)="editUniversity(university)" mat-button>
+          <button (click)="editUniversity(university)" mat-button class="btn bg-transparent">
             <mat-icon>edit</mat-icon>
           </button>
         </td>
@@ -72,7 +72,7 @@
       <ng-container matColumnDef="delete">
         <th *matHeaderCellDef>DELETE</th>
         <td *matCellDef="let university" mat-cell>
-          <button (click)="deleteUniversity(university)" mat-button>
+          <button (click)="deleteUniversity(university)" mat-button class="btn bg-transparent">
             <mat-icon>delete</mat-icon>
           </button>
         </td>
