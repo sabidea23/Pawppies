@@ -23,7 +23,6 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    //@Column(name = "iduser")
     private Long id;
 
     private String username;
@@ -38,6 +37,8 @@ public class User implements UserDetails {
     private boolean enabled = true;
 
     private String profile;
+    private Double longitude;
+    private Double latitude;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
     @JsonIgnore
@@ -67,6 +68,22 @@ public class User implements UserDetails {
             set.add(new Authority(userRole.getRole().getRoleName()));
         });
         return set;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
     }
 
     @Override

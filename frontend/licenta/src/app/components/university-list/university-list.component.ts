@@ -254,4 +254,29 @@ export class UniversityListComponent implements OnInit {
       distance: ''
     };
   }
+
+   // @ts-ignore
+  haversineDistance(lat1, lon1, lat2, lon2) {
+    // @ts-ignore
+     function toRadians(degrees) {
+      return degrees * Math.PI / 180;
+    }
+
+    var R = 6371; // km
+    var dLat = toRadians(lat2 - lat1);
+    var dLon = toRadians(lon2 - lon1);
+    lat1 = toRadians(lat1);
+    lat2 = toRadians(lat2);
+
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = R * c;
+
+    return d;
+  }
+
+// Exemplu de utilizare
+//   var distanta = haversineDistance(latUser, longUser, latUniversitate, longUniversitate);
+
 }

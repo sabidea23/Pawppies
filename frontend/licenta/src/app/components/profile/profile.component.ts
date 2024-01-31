@@ -50,14 +50,13 @@ export class ProfileComponent implements OnInit {
   }
 
   formSubmit() {
-    // Check if `firstName` is empty
     if (this.userInput.firstName == '' || this.userInput.firstName == null) {
       this.snack.open('First name cannot be empty!', 'OK', {
         duration: 3000,
       });
       return;
     }
-    // Check if `lastName` is empty
+
     if (this.userInput.lastName == '' || this.userInput.lastName == null) {
       this.snack.open('Last name cannot be empty!', 'OK', {
         duration: 3000,
@@ -65,7 +64,6 @@ export class ProfileComponent implements OnInit {
       return;
     }
 
-    // Check if `email` is empty
     if (this.userInput.email == '' || this.userInput.email == null) {
       this.snack.open('Email cannot be empty!', 'OK', {
         duration: 3000,
@@ -73,7 +71,6 @@ export class ProfileComponent implements OnInit {
       return;
     }
 
-    // Validate the profile editing form
     if (!this.editForm.valid) {
       this.snack.open('Please complete the fields correctly!', 'OK', {
         duration: 3000,
@@ -81,14 +78,12 @@ export class ProfileComponent implements OnInit {
       return;
     }
 
-    // Infer the user object from the form
     for (const key in this.userInput) {
       if (this.userInput[key] !== this.user[key]) {
         this.user[key] = this.userInput[key];
       }
     }
 
-    // Remove authorities from user object before sending to server, as the server cannot deserialize it (for now)
     const backedUpAuthorities = this.user.authorities;
     this.user.authorities = undefined;
 
@@ -119,14 +114,6 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  resetForm() {
-    this.userInput.firstName = this.user.firstName;
-    this.userInput.lastName = this.user.lastName;
-    this.userInput.email = this.user.email;
-    this.userInput.phone = this.user.phone;
-    this.userInput.password = '';
-  }
-
   clearForm() {
     this.userInput.firstName = '';
     this.userInput.lastName = '';
@@ -134,5 +121,4 @@ export class ProfileComponent implements OnInit {
     this.userInput.phone = '';
     this.userInput.password = '';
   }
-
 }

@@ -29,17 +29,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user, Set<UserRole> userRoleSet) throws UserAlreadyExists {
-        // User with the same `username` already exists
         if (this.userRepository.existsByUsername(user.getUsername())) {
             throw new UserAlreadyExists("User with username `" + user.getUsername() + "` already exists");
         }
 
-        // User with the same `email` already exists
         if (this.userRepository.existsByEmail(user.getEmail())) {
             throw new UserAlreadyExists("User with email `" + user.getEmail() + "` already exists");
         }
 
-        // Create user
         for (UserRole role: userRoleSet) {
             this.roleRepository.save(role.getRole());
         }

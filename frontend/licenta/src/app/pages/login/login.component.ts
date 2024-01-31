@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Router} from '@angular/router';
 import {LoginService} from 'src/app/services/login.service';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-login', templateUrl: './login.component.html', styleUrls: ['./login.component.css']
@@ -16,25 +17,43 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getLocation();
+  }
+
+
+  // @ts-ignore
+  private user: { latitude: number; longitude: number};
+
+  getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+          if (position) {
+            console.log("Latitude: " + position.coords.latitude +
+              "Longitude: " + position.coords.longitude);
+            this.user.latitude = position.coords.latitude;
+            this.user.longitude = position.coords.longitude;
+          }
+        },
+        (error) => console.log(error));
+    } else {
+      alert("Geolocation is not supported by this browser.");
+    }
   }
 
   formSubmit() {
-    // Check if `username` is empty
     if (this.loginData.username.trim() == '' || this.loginData.username == null) {
       this.snack.open("Username is required!", "", {duration: 3000});
       return;
     }
 
-    // Check if `password` is empty
     if (this.loginData.password.trim() == '' || this.loginData.password == null) {
       this.snack.open("Password is required!", "", {duration: 3000});
       return;
     }
 
-    // Request to server to generate a JWT token
     this.login.generateToken(this.loginData).subscribe({
+
       next: (data: any) => {
-        // Login
         this.login.loginUser(data.token);
         this.login.getCurrentUser().subscribe({
           next: (user: any) => {
@@ -53,5 +72,4 @@ export class LoginComponent implements OnInit {
       }
     });
   }
-
 }

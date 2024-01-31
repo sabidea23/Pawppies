@@ -16,10 +16,6 @@ import Swal from 'sweetalert2';
 })
 export class SignupComponent {
 
-  errorPassword = "Must contain lower-case, upper-case, numbers, and at least 8 chars!"
-  emailError = "This field must have an email format!"
-  phoneError = "Phone should only contain digits!"
-
   registerForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
     firstname: new FormControl('', [Validators.required]),
@@ -41,14 +37,35 @@ export class SignupComponent {
     firstName: this.registerForm.value.firstname,
     lastName: this.registerForm.value.lastname,
     email: this.registerForm.value.email,
-    phone: this.registerForm.value.phone
+    phone: this.registerForm.value.phone,
+    latitude: 0.0,
+    longitude: 0.0
   };
 
   ngOnInit(): void {
+    this.getLocation();
   }
 
+
+
+  getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+          if (position) {
+            console.log("Latitude: " + position.coords.latitude +
+              "Longitude: " + position.coords.longitude);
+            this.user.latitude = position.coords.latitude;
+            this.user.longitude = position.coords.longitude;
+            console.log(this.user.latitude);
+            console.log(this.user.longitude);
+          }
+        },
+        (error) => console.log(error));
+    } else {
+      alert("Geolocation is not supported by this browser.");
+    }
+  }
   formSubmit() {
-    // Check if `username` is empty
     if (this.user.username == '' || this.user.username == null) {
       this.snack.open('Username cannot be empty!', 'OK', {
         duration: 3000,
@@ -56,7 +73,6 @@ export class SignupComponent {
       return;
     }
 
-    // Check if `email` is empty
     if (this.user.email == '' || this.user.email == null) {
       this.snack.open('Email cannot be empty!', 'OK', {
         duration: 3000,
@@ -64,7 +80,6 @@ export class SignupComponent {
       return;
     }
 
-    // Check if `password` is empty
     if (this.user.password == '' || this.user.password == null) {
       this.snack.open('Password cannot be empty!', 'OK', {
         duration: 3000,
@@ -72,7 +87,6 @@ export class SignupComponent {
       return;
     }
 
-    // Validate the register form
     if (!this.registerForm.valid) {
       this.snack.open('Please complete the fields correctly!', 'OK', {
         duration: 3000,
@@ -80,9 +94,8 @@ export class SignupComponent {
       return;
     }
 
-    // Register the user
     this.userService.addUser(this.user).subscribe({
-      next: (data) => {
+      next: () => {
         Swal.fire({
           title: 'Success!',
           text: 'User created successfully',
@@ -102,5 +115,4 @@ export class SignupComponent {
       },
     });
   }
-
 }

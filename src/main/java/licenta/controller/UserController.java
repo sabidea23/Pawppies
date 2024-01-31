@@ -30,7 +30,6 @@ public class UserController {
     public User createUser(@RequestBody User user) throws Exception {
         user.setProfile("default.png");
 
-        // Encode password with BCrypt
         user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
 
         Set<UserRole> userRoleSet = new HashSet<>();
@@ -58,6 +57,8 @@ public class UserController {
         originalUser.setLastName(requestBodyUser.getLastName());
         originalUser.setEmail(requestBodyUser.getEmail());
         originalUser.setPhone(requestBodyUser.getPhone());
+        originalUser.setLatitude(requestBodyUser.getLatitude());
+        originalUser.setLongitude(requestBodyUser.getLongitude());
 
         if (requestBodyUser.getPassword() != null && !requestBodyUser.getPassword().isEmpty()) {
             originalUser.setPassword(this.bCryptPasswordEncoder.encode(requestBodyUser.getPassword()));
