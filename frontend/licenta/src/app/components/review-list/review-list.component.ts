@@ -5,6 +5,7 @@ import { ReviewService } from '../../services/review.service';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UniversityService } from 'src/app/services/university.service';
+import {ImageProcessingService} from "../../services/image-processing.service";
 
 @Component({
   selector: 'app-review-list',
@@ -25,7 +26,8 @@ export class ReviewListComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private snack: MatSnackBar,
-    private universityService: UniversityService
+    private universityService: UniversityService,
+    private imageProcessingService: ImageProcessingService
   ) {
   }
 
@@ -36,6 +38,7 @@ export class ReviewListComponent implements OnInit {
         .subscribe({
           next: (data) => {
             this.allReviews = data;
+            this.getImagesForReviews();
           },
           error: (_) => { },
         });
@@ -43,6 +46,7 @@ export class ReviewListComponent implements OnInit {
       this.reviewService.getReviewsByUniversityId(this.universityId).subscribe({
         next: (data) => {
           this.allReviews = data;
+          this.getImagesForReviews();
         },
         error: (_) => { },
       });
@@ -50,15 +54,25 @@ export class ReviewListComponent implements OnInit {
       this.reviewService.getReviewsLikedByUser(this.user.id).subscribe({
         next: (data) => {
           this.allReviews = data;
+          this.getImagesForReviews();
         },
       });
     } else {
       this.reviewService.getAllReviews().subscribe({
         next: (data) => {
           this.allReviews = data;
+          this.getImagesForReviews();
         },
         error: (_) => { },
       });
+    }
+
+
+  }
+
+  getImagesForReviews() {
+    for (let i = 0; i < this.allReviews.length; i ++) {
+      this.allReviews[i] = this.imageProcessingService.createImage(this.allReviews[i]);
     }
   }
 
@@ -87,7 +101,6 @@ export class ReviewListComponent implements OnInit {
         this.likedReviews = data;
       },
     });
-
   }
 
   public enableSummOnlyOnUniver() {
@@ -223,5 +236,10 @@ export class ReviewListComponent implements OnInit {
         });
       }
     });
+  }
+
+
+  showReview(review:any) {
+    console.log(review)
   }
 }

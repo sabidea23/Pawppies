@@ -1,51 +1,106 @@
-<mat-card *ngIf="user" class="all" xmlns="http://www.w3.org/1999/html">
-  <mat-card-content>
+<body>
+<div class="main-container">
+  <div class="side-container">
+    <form  class="search-form">
+      <h2>Find Animals by:</h2>
 
-    <div class="bootstrap-wrapper">
-      <div class="row">
+      <!--      //city-->
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
+        <mat-label>
+          <mat-icon matPrefix>location_city</mat-icon>
+          City
+        </mat-label>
+        <!--        <input [(ngModel)]="searchData.city" matInput-->
+        <!--               name="email" placeholder="Enter your email"/>-->
+      </mat-form-field>
 
-        <div [ngClass]="enableSummOnlyOnUniver() ? 'col-md-9' : 'col-md-12'">
+      <!--        //country/-->
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
+        <!--        <mat-label>-->
+        <!--          <mat-icon>public</mat-icon>-->
+        <!--          Country-->
+        <!--        </mat-label>-->
+        <!--        <mat-select [(ngModel)]="searchData.country" name="country" placeholder="Select Country">-->
+        <!--          <mat-option *ngFor="let country of countries" [value]="country.name">-->
+        <!--            {{ country.name }}-->
+        <!--          </mat-option>-->
+        <!--        </mat-select>-->
+      </mat-form-field>
 
-          <header>
-            <div class="container text-center">
-              <h1 *ngIf="!university">My favourite animals</h1>
-              <h1 *ngIf="university">Animals from {{ university.name }}</h1>
-            </div>
-          </header>
 
-          <div *ngFor="let review of allReviews" class="container">
-            <mat-card style="background-color: lightgrey" w3-light-grey>
-              <mat-card-content style="white-space: pre-line;">
-                <p style="margin: 10px 10px 10px 10px">{{ review.name }}</p>
-              </mat-card-content>
-              <br />
-              <mat-card-actions class="btn-like-container">
-                <button (click)="likeReview(review)" [ngStyle]="{ color: isLiked(review) ? 'red' : 'black' }" mat-button>
-                  <mat-icon>{{ isLiked(review) ? 'favorite' : 'favorite_border' }}</mat-icon>
-                <span>{{ review.likes }}</span>
-                </button>
-              </mat-card-actions>
-              <br />
-              <mat-card-actions align="end" style="margin-top: -20px">
-                <button (click)="editReview(review)" *ngIf="getUserRole() == 'ADMIN'" mat-button
-                  style="margin-right: 20px">
-                  EDIT
-                </button>
-                <button style="margin-right: 20px" (click)="deleteReview(review)" *ngIf="getUserRole() === 'ADMIN'"
-                  mat-button>
-                  DELETE
-                </button>
-              </mat-card-actions>
-            </mat-card>
-            <br />
-          </div>
+      <!--        //name-->
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
+        <!--        <mat-label>-->
+        <!--          <mat-icon matPrefix>business</mat-icon>-->
+        <!--          Name-->
+        <!--        </mat-label>-->
+        <!--        <input [(ngModel)]="searchData.name" matInput-->
+        <!--               name="email" placeholder="Enter name"/>-->
+      </mat-form-field>
 
-          <button (click)="goToAddReview()" *ngIf="user && universityId && getUserRole() === 'ADMIN'"  class="add-button" mat-fab>
-            <mat-icon>add</mat-icon>
-          </button>
+
+      <!--        //max distance-->
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
+        <!--        <mat-label>-->
+        <!--          <mat-icon matPrefix>business</mat-icon>-->
+        <!--          Max Distance-->
+        <!--        </mat-label>-->
+        <!--        <input [(ngModel)]="searchData.distance" matInput-->
+        <!--               name="email" placeholder="Enter max distance"/>-->
+      </mat-form-field>
+
+      <button class="login-button" mat-flat-button type="submit">
+        SEARCH
+      </button>
+
+      <div class="line-with-text">
+        <div class="text">OR</div>
+      </div>
+
+      <!--&lt;!&ndash;      <button (click)="showAllCenters()" class="login-button reset" mat-flat-button>&ndash;&gt;-->
+      <!--        SHOW ALL-->
+      <!--      </button>-->
+    </form>
+
+  </div>
+
+  <div *ngIf="user" class="content-container">
+
+    <h2 *ngIf="!university">My favourite animals</h2>
+    <h2 *ngIf="university">Animals from {{ university.name }}</h2>
+
+    <!--    review list-->
+    <div class="review-grid">
+      <div *ngFor="let review of allReviews" class="review-card">
+
+        <button (click)="likeReview(review)" [ngClass]="{ 'liked': isLiked(review) }" class="like-button" >
+          <mat-icon>{{ isLiked(review) ? 'favorite' : 'favorite_border' }}</mat-icon>
+        </button>
+
+        <img [src]='review.reviewImages[0].url' class="review-image">
+        <div class="review-details">
+          <p class="review-name"> {{ review.name }} </p>
+          <p class="review-other-details"> {{ review.age }}, {{ review.breed }} </p>
         </div>
 
+        <button (click)="editReview(review)" *ngIf="getUserRole() == 'ADMIN'" mat-button
+                style="margin-right: 20px">
+          EDIT
+        </button>
+        <button (click)="deleteReview(review)" *ngIf="getUserRole() === 'ADMIN'" mat-button
+                style="margin-right: 20px">
+          DELETE
+        </button>
+        <br/>
       </div>
+
+      <button (click)="goToAddReview()" *ngIf="user && universityId && getUserRole() === 'ADMIN'" class="add-button"
+              mat-fab>
+        <mat-icon>add</mat-icon>
+      </button>
     </div>
-  </mat-card-content>
-</mat-card>
+
+  </div>
+
+</div>
+</body>
