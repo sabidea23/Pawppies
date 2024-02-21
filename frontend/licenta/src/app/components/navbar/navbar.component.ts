@@ -126,11 +126,8 @@ export class NavbarComponent implements OnInit {
       this.router.navigate(['/user-dashboard/universities']).then((_) => { });
   }
 
-  public removeFixedNavbar() {
-    const navbar = document.getElementById('navbar');
-    if (navbar != null) {
-      navbar.classList.remove('fixed-top');
-    }
+  public redirectToAboutPawppies() {
+    this.router.navigate(['/about-pets']).then((_) => { });
   }
 
   isSubMenuOpen = true;

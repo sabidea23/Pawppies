@@ -4,13 +4,13 @@ import {UniversityService} from '../../services/university.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import Swal from 'sweetalert2';
 import {Router} from '@angular/router';
-import FuzzySearch from 'fuzzy-search';
 import {MatDialog} from '@angular/material/dialog';
 import {MapDialogComponent} from '../map-dialog/map-dialog.component';
 import {EditUniversityComponent} from "../../pages/admin/edit-university/edit-university.component";
 import {MatPaginator, MatPaginatorModule, PageEvent} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {countries} from "../../utils/country-data-store";
+import {SearchService} from "../../services/search.service";
 
 @Component({
   selector: 'app-university-list',
@@ -40,14 +40,23 @@ export class UniversityListComponent implements OnInit {
 
   searchFilters: any[] = [];
 
-  constructor(private login: LoginService, private router: Router, private snack: MatSnackBar, private universityService: UniversityService, private dialog: MatDialog,) {
+  constructor(private login: LoginService, private router: Router, private snack: MatSnackBar, private universityService: UniversityService, private dialog: MatDialog, private searchService: SearchService) {
   }
 
   ngOnInit(): void {
+    this.searchService.searchFilters$.subscribe(filters => {
+      if (Object.keys(filters).length) {
+        this.searchData = filters;
+        this.performSearch();
+      }
+    });
     this.user = this.login.getUser();
     this.getUniversities({page: "0", size: "5"});
+    this.performSearch();
+
     // @ts-ignore
     this.dataSource.paginator = this.paginator;
+
   }
 
   public handlePageEvent(event: PageEvent): void {
@@ -60,7 +69,8 @@ export class UniversityListComponent implements OnInit {
 
   public goToReviews(university: any) {
     const user_role = this.login.getUserRole();
-    if (user_role == 'ADMIN') this.router
+    if (user_role == 'ADMIN')
+      this.router
       .navigate(['/admin/university-reviews', {universityId: university.id},])
       .then((_) => {
       }); else if (user_role == 'NORMAL') this.router
@@ -182,6 +192,7 @@ export class UniversityListComponent implements OnInit {
         this.dataSource.data = data['content'];
         this.filteredUniversities = data['content'];
         this.totalElements = data['totalElements'];
+        this.performSearch();
       }, error => {
         console.log(error.error.message);
       });

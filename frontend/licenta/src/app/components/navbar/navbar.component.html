@@ -49,7 +49,7 @@
   <div *ngIf="isSubMenuOpen && !profileDetailMenu" class="sub-menu">
     <a class="sub-menu-item"  mat-button [matMenuTriggerFor]="adoptMenu" >ADOPT OR GET INVOLVED</a>
     <mat-menu class="custom-menu submeniu" #adoptMenu="matMenu">
-      <button class="mat-menu-customize-item" mat-menu-item>About Pawppies</button>
+      <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToAboutPawppies()">About Pawppies</button>
       <button class="mat-menu-customize-item" mat-menu-item (click)="redirectAnimalCenter()">Animal Centers</button>
     </mat-menu>
 

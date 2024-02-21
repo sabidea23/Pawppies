@@ -14,6 +14,8 @@ import { UniversityListComponent } from './components/university-list/university
 import { ReviewAddComponent } from './pages/admin/review-add/review-add.component';
 import { UserManagementComponent } from './pages/admin/user-management/user-management.component';
 import { UniversityTopComponent } from './components/university-top/university-top.component';
+import {AboutPetsComponent} from "./pages/about-pets/about-pets.component";
+import {MissionComponent} from "./pages/mission/mission.component";
 
 const routes: Routes = [
   {
@@ -29,6 +31,16 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'about-pets',
+    component: AboutPetsComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'about-pets/mission',
+    component: MissionComponent,
     pathMatch: 'full',
   },
   {

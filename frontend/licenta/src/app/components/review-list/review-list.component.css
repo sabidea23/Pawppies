@@ -257,25 +257,41 @@ mat-form-field {
 }
 
 .review-card {
+  height: 300px;
   position: relative;
   border: 3px solid #ddd;
   border-radius: 8px; /* Rotunjirea colțurilor */
   overflow: hidden;
   transition: border-color 0.3s ease; /* Adaugă tranziție pentru efectul de hover */
 }
-
 .like-button {
-  /* Setează fundalul butonului la transparent */
-  border: none;
-  padding: 0;
-  background: none;
   position: absolute;
-  buttom: 18px; /* Ajustează dacă este necesar */
-  left: 80px; /* Ajustează dacă este necesar */
+  right: 3px;
+  border: none;
+  background-color: transparent; /* Fundalul butonului este transparent */
   cursor: pointer;
-  color: black; /* Culoarea inițială */
-  border: none;
-  border: none;
+  border-radius: 50%; /* Face butonul rotund */
+  width: 36px; /* Lățimea butonului */
+  height: 36px; /* Înălțimea butonului */
+  background-color: white;
+  margin: 10px;
+  transition: transform 0.2s; /* Adaugă o tranziție pentru transform */
+}
+
+/* Animație la hover */
+.like-button:hover {
+  transform: scale(1.1); /* Mărește butonul ușor când mouse-ul este deasupra */
+}
+
+/* Clasa adăugată când review-ul este apreciat */
+mat-icon {
+  margin-top: 5px;
+  color: #6504B5; /* Culoarea pentru când este apreciat */
+}
+
+/* Animație la click */
+.like-button:active {
+  transform: scale(0.9); /* Micșorează butonul când este apăsat */
 }
 
 button,
@@ -283,6 +299,7 @@ button:active,
 button:focus {
   outline: none;
 }
+
 
 
 input[type="button"] {
@@ -302,7 +319,7 @@ input[type="button"] {
 
 .review-image {
   width: 100%;
-  height: 45%;
+  height: 75%;
   display: block;
 }
 

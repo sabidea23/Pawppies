@@ -42,6 +42,8 @@ import {MatMenuModule} from "@angular/material/menu";
 import { EditUniversityComponent } from './pages/admin/edit-university/edit-university.component';
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSelectModule} from "@angular/material/select";
+import { AboutPetsComponent } from './pages/about-pets/about-pets.component';
+import { MissionComponent } from './pages/mission/mission.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +62,9 @@ import {MatSelectModule} from "@angular/material/select";
     UniversityTopComponent,
     UserManagementComponent,
     MapDialogComponent,
-    EditUniversityComponent
+    EditUniversityComponent,
+    AboutPetsComponent,
+    MissionComponent
   ],
     imports: [
         BrowserModule,
