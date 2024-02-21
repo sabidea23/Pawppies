@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from '../../../services/login.service';
-import { UniversityService } from '../../../services/university.service';
+import { LoginService } from '../../services/login.service';
+import { UniversityService } from '../../services/university.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import Swal from 'sweetalert2';
-import {countries} from "../../../utils/country-data-store";
+import {countries} from "../../utils/country-data-store";
 
 @Component({
   selector: 'app-university-add',

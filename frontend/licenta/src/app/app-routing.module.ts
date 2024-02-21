@@ -1,18 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SignupComponent } from './pages/signup/signup.component';
-import { LoginComponent } from './pages/login/login.component';
+import { SignupComponent } from './register/signup/signup.component';
+import { LoginComponent } from './register/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
-import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
-import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
 import { AdminGuard } from './services/admin.guard';
 import { NormalGuard } from './services/normal.guard';
-import { ProfileComponent } from './components/profile/profile.component';
-import { ReviewListComponent } from './components/review-list/review-list.component';
-import { UniversityAddComponent } from './pages/admin/university-add/university-add.component';
-import { UniversityListComponent } from './components/university-list/university-list.component';
-import { ReviewAddComponent } from './pages/admin/review-add/review-add.component';
-import { UserManagementComponent } from './pages/admin/user-management/user-management.component';
+import { ProfileComponent } from './user/profile/profile.component';
+import { ReviewListComponent } from './animal.process/review-list/review-list.component';
+import { UniversityAddComponent } from './animal.process/university-add/university-add.component';
+import { UniversityListComponent } from './animal.process/university-list/university-list.component';
+import { ReviewAddComponent } from './animal.process/review-add/review-add.component';
+import { UserManagementComponent } from './user/user-management/user-management.component';
 import {AboutPetsComponent} from "./pages/about-pets/about-pets.component";
 import {MissionComponent} from "./pages/mission/mission.component";
 
@@ -44,7 +42,6 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    component: DashboardComponent,
     canActivate: [AdminGuard],
     children: [
       {
@@ -79,7 +76,6 @@ const routes: Routes = [
   },
   {
     path: 'user-dashboard',
-    component: UserDashboardComponent,
     canActivate: [NormalGuard],
     children: [
       {

@@ -1,8 +1,8 @@
 import {Component, Inject} from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
-import {MapDialogComponent} from "../../../components/map-dialog/map-dialog.component";
-import {countries} from "../../../utils/country-data-store";
+import {MapDialogComponent} from "../../utils/map-dialog/map-dialog.component";
+import {countries} from "../../utils/country-data-store";
 
 @Component({
   selector: 'app-edit-university',

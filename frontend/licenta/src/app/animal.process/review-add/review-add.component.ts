@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {LoginService} from '../../../services/login.service';
-import {ReviewService} from '../../../services/review.service';
+import {LoginService} from '../../services/login.service';
+import {ReviewService} from '../../services/review.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {UniversityService} from 'src/app/services/university.service';
-import {FileModel} from "../../../model/file-handle.model";
+import {FileModel} from "../../model/file-handle.model";
 import {DomSanitizer} from "@angular/platform-browser";
-import {Review} from "../../../model/review.model";
+import {Review} from "../../model/review.model";
 import Swal from "sweetalert2";
 
 @Component({

@@ -58,13 +58,7 @@ export class LoginComponent implements OnInit {
         this.login.getCurrentUser().subscribe({
           next: (user: any) => {
             this.login.setUser(user);
-            if (this.login.getUserRole() == 'ADMIN') {
-              this.router.navigate(['admin']);
-              this.login.loginStatusSubject.next(true);
-            } else if (this.login.getUserRole() == 'NORMAL') {
-              this.router.navigate(['user-dashboard']);
-              this.login.loginStatusSubject.next(true);
-            } else this.login.logout();
+              this.router.navigate(['']);
           }
         });
       }, error: (error) => {

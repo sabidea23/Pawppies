@@ -1,0 +1,21 @@
+<mat-card>
+  <mat-card-content style="font-family: 'Montserrat', sans-serif;">
+    <h2>{{university.name}} Location</h2>
+
+    <p><b> City: </b> {{university.city}}</p>
+    <p><b> Latitude: </b> {{university.latitude}}</p>
+    <p><b> Longitude: </b>{{university.longitude}}</p>
+
+    <iframe
+      [src]="getSafeUrl()"
+      class="map"
+      height="350"
+      style="border:0"
+      width="400">
+    </iframe>
+
+    <div class="button-container">
+      <button (click)="dialogRef.close()" class="close_button" mat-button>CLOSE</button>
+    </div>
+  </mat-card-content>
+</mat-card>
