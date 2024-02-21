@@ -26,24 +26,25 @@ import {authInterceptorProviders} from './services/auth.interceptor';
 import {ProfileComponent} from './user/profile/profile.component';
 import {MatListModule} from '@angular/material/list';
 import {MatTableModule} from '@angular/material/table';
-import {UniversityAddComponent} from './animal.process/university-add/university-add.component';
-import {UniversityListComponent} from './animal.process/university-list/university-list.component';
-import {ReviewListComponent} from './animal.process/review-list/review-list.component';
-import {ReviewAddComponent} from './animal.process/review-add/review-add.component';
+import {UniversityAddComponent} from './animal.process/add-center/university-add.component';
+import {UniversityListComponent} from './animal.process/list-center/university-list.component';
+import {ReviewListComponent} from './animal.process/list-animal/review-list.component';
+import {ReviewAddComponent} from './animal.process/add-animal/review-add.component';
 import {UserManagementComponent} from './user/user-management/user-management.component';
 import {RouterOutlet} from '@angular/router';
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MapDialogComponent} from './utils/map-dialog/map-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatMenuModule} from "@angular/material/menu";
-import {EditUniversityComponent} from './animal.process/edit-university/edit-university.component';
+import {EditUniversityComponent} from './animal.process/edit-center/edit-university.component';
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSelectModule} from "@angular/material/select";
 import {AboutPetsComponent} from './pages/about-pets/about-pets.component';
 import {MissionComponent} from './pages/mission/mission.component';
+import { QuizComponent } from './user/quiz/quiz.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, FooterComponent, SignupComponent, LoginComponent, HomeComponent, ProfileComponent, ReviewAddComponent, ReviewListComponent, UniversityAddComponent, UniversityListComponent, UserManagementComponent, MapDialogComponent, EditUniversityComponent, AboutPetsComponent, MissionComponent],
+  declarations: [AppComponent, NavbarComponent, FooterComponent, SignupComponent, LoginComponent, HomeComponent, ProfileComponent, ReviewAddComponent, ReviewListComponent, UniversityAddComponent, UniversityListComponent, UserManagementComponent, MapDialogComponent, EditUniversityComponent, AboutPetsComponent, MissionComponent, QuizComponent],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatIconModule, FormsModule, HttpClientModule, MatSnackBarModule, MatCardModule, MatChipsModule, MatToolbarModule, MatIconModule, MatListModule, MatTableModule, ReactiveFormsModule, RouterOutlet, MatGridListModule, MatDialogModule, MatMenuModule, MatPaginatorModule, MatSelectModule],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

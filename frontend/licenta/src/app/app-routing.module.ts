@@ -6,13 +6,14 @@ import { HomeComponent } from './pages/home/home.component';
 import { AdminGuard } from './services/admin.guard';
 import { NormalGuard } from './services/normal.guard';
 import { ProfileComponent } from './user/profile/profile.component';
-import { ReviewListComponent } from './animal.process/review-list/review-list.component';
-import { UniversityAddComponent } from './animal.process/university-add/university-add.component';
-import { UniversityListComponent } from './animal.process/university-list/university-list.component';
-import { ReviewAddComponent } from './animal.process/review-add/review-add.component';
+import { ReviewListComponent } from './animal.process/list-animal/review-list.component';
+import { UniversityAddComponent } from './animal.process/add-center/university-add.component';
+import { UniversityListComponent } from './animal.process/list-center/university-list.component';
+import { ReviewAddComponent } from './animal.process/add-animal/review-add.component';
 import { UserManagementComponent } from './user/user-management/user-management.component';
 import {AboutPetsComponent} from "./pages/about-pets/about-pets.component";
 import {MissionComponent} from "./pages/mission/mission.component";
+import {QuizComponent} from "./user/quiz/quiz.component";
 
 const routes: Routes = [
   {
@@ -44,6 +45,10 @@ const routes: Routes = [
     path: 'admin',
     canActivate: [AdminGuard],
     children: [
+      {
+        path: 'quiz',
+        component: QuizComponent,
+      },
       {
         path: 'profile',
         component: ProfileComponent,
@@ -78,6 +83,10 @@ const routes: Routes = [
     path: 'user-dashboard',
     canActivate: [NormalGuard],
     children: [
+      {
+        path: 'quiz',
+        component: QuizComponent,
+      },
       {
         path: 'profile',
         component: ProfileComponent,

@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import {MapDialogComponent} from '../../utils/map-dialog/map-dialog.component';
-import {EditUniversityComponent} from "../edit-university/edit-university.component";
+import {EditUniversityComponent} from "../edit-center/edit-university.component";
 import {MatPaginator, MatPaginatorModule, PageEvent} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {countries} from "../../utils/country-data-store";
