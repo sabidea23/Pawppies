@@ -13,7 +13,6 @@ import { UniversityAddComponent } from './pages/admin/university-add/university-
 import { UniversityListComponent } from './components/university-list/university-list.component';
 import { ReviewAddComponent } from './pages/admin/review-add/review-add.component';
 import { UserManagementComponent } from './pages/admin/user-management/user-management.component';
-import { UniversityTopComponent } from './components/university-top/university-top.component';
 import {AboutPetsComponent} from "./pages/about-pets/about-pets.component";
 import {MissionComponent} from "./pages/mission/mission.component";
 
@@ -49,10 +48,6 @@ const routes: Routes = [
     canActivate: [AdminGuard],
     children: [
       {
-        path: '',
-        component: UniversityTopComponent,
-      },
-      {
         path: 'profile',
         component: ProfileComponent,
       },
@@ -87,10 +82,6 @@ const routes: Routes = [
     component: UserDashboardComponent,
     canActivate: [NormalGuard],
     children: [
-      {
-        path: '',
-        component: UniversityTopComponent,
-      },
       {
         path: 'profile',
         component: ProfileComponent,

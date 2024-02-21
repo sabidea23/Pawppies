@@ -33,7 +33,6 @@ import { UniversityListComponent } from './components/university-list/university
 import { ReviewListComponent } from './components/review-list/review-list.component';
 import { ReviewAddComponent } from './pages/admin/review-add/review-add.component';
 import { UserManagementComponent } from './pages/admin/user-management/user-management.component';
-import { UniversityTopComponent } from './components/university-top/university-top.component';
 import { RouterOutlet } from '@angular/router';
 import {MatGridListModule} from "@angular/material/grid-list";
 import { MapDialogComponent } from './components/map-dialog/map-dialog.component';
@@ -59,7 +58,6 @@ import { MissionComponent } from './pages/mission/mission.component';
     ReviewListComponent,
     UniversityAddComponent,
     UniversityListComponent,
-    UniversityTopComponent,
     UserManagementComponent,
     MapDialogComponent,
     EditUniversityComponent,
