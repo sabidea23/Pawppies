@@ -47,6 +47,12 @@ public class Review {
     private University university;
 
     @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "breed_detail_id")
+    @NotNull
+    private BreedDetails breedDetails;
+
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY)
     private Set<Appreciator> appreciators = new HashSet<>();
 
@@ -61,14 +67,7 @@ public class Review {
     @JoinTable(name = "review_images", joinColumns = {@JoinColumn(name = "review_id")}, inverseJoinColumns = {@JoinColumn(name = "image_id")})
     private Set<ImageModel> reviewImages;
 
-    public Review(String name, Integer age, String breed, User author, University university, int likes) {
-        this.name = name;
-        this.age = age;
-        this.breed = breed;
-        this.author = author;
-        this.university = university;
-        this.likes = 0;
-    }
+
 
     public Set<ImageModel> getReviewImages() {
         return reviewImages;
