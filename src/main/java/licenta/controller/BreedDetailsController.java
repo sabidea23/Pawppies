@@ -15,8 +15,11 @@ import java.util.List;
 @CrossOrigin("*")
 public class BreedDetailsController {
 
-    @Autowired
     BreedDetailsService breedDetailsService;
+
+    public BreedDetailsController(BreedDetailsService breedDetailsService) {
+        this.breedDetailsService = breedDetailsService;
+    }
 
     @GetMapping("/")
     @ResponseStatus(code = HttpStatus.OK)
@@ -51,6 +54,4 @@ public class BreedDetailsController {
 
         return this.breedDetailsService.getBreedDetailsByAnimalType(type);
     }
-
-
 }

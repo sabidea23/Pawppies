@@ -16,8 +16,11 @@ import org.springframework.data.domain.Pageable;
 @CrossOrigin("*")
 public class UniversityController {
 
-    @Autowired
-    private UniversityService universityService;
+    private final UniversityService universityService;
+
+    public UniversityController(UniversityService universityService) {
+        this.universityService = universityService;
+    }
 
     @PostMapping("/")
     @ResponseStatus(code = HttpStatus.CREATED)

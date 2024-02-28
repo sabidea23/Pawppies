@@ -3,7 +3,6 @@ package licenta.service.implementation;
 import licenta.model.BreedDetails;
 import licenta.repo.BreedDetailsRepository;
 import licenta.service.BreedDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,9 +10,11 @@ import java.util.List;
 @Service
 public class BreedDetailsServiceImpl implements BreedDetailsService {
 
-    @Autowired
     BreedDetailsRepository breedDetailsRepository;
 
+    public BreedDetailsServiceImpl(BreedDetailsRepository breedDetailsRepository) {
+        this.breedDetailsRepository = breedDetailsRepository;
+    }
 
     @Override
     public List<BreedDetails> getAllBreeds() {

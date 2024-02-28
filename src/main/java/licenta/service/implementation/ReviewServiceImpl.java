@@ -4,7 +4,6 @@ import licenta.exeptions.ReviewNotFoundException;
 import licenta.model.Review;
 import licenta.repo.ReviewRepository;
 import licenta.service.ReviewService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,8 +13,11 @@ import java.util.stream.Collectors;
 @Service
 public class ReviewServiceImpl implements ReviewService {
 
-    @Autowired
     private ReviewRepository reviewRepository;
+
+    public ReviewServiceImpl(ReviewRepository reviewRepository) {
+        this.reviewRepository = reviewRepository;
+    }
 
     @Override
     public Review createReview(Review review) {
