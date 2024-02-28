@@ -3,7 +3,6 @@ package licenta.controller;
 
 import licenta.model.BreedDetails;
 import licenta.service.BreedDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -27,10 +26,10 @@ public class BreedDetailsController {
         return this.breedDetailsService.getAllBreeds();
     }
 
-    @GetMapping("/{breedId}")
+    @GetMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)
-    public BreedDetails getBreedDetailsById(@PathVariable("breedId") Long breedId) {
-        return this.breedDetailsService.getBreedDetailsById(breedId);
+    public BreedDetails getBreedDetailsById(@PathVariable("id") Long id) {
+        return this.breedDetailsService.getBreedDetailsById(id);
     }
 
     @GetMapping("/{breedName}")
@@ -46,7 +45,6 @@ public class BreedDetailsController {
         BreedDetails.AnimalType type;
 
         try {
-            // Convertim string-ul la enum
             type = BreedDetails.AnimalType.valueOf(breedType.toUpperCase());
         } catch (IllegalArgumentException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid breed name");

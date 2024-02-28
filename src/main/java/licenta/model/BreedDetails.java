@@ -50,8 +50,6 @@ public class BreedDetails {
     @Column()
     private String weight;
 
-
-//    /coomon
     @NotNull
     @Column()
     private Integer playfulness;
@@ -63,7 +61,6 @@ public class BreedDetails {
     @NotNull
     @Column()
     private Integer friendlinessToOtherPets;
-
 
     @NotNull
     @Column()
@@ -113,9 +110,5 @@ public class BreedDetails {
     @Column()
     private String history;
 
-    @NotNull
-    @Column()
-    @ElementCollection
-    private Set<String> physicalAttributes;
-
+  
 }

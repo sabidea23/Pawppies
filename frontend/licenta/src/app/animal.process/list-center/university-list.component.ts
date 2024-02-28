@@ -30,7 +30,6 @@ export class UniversityListComponent implements OnInit {
   user = this.login.getUser();
   universities: any = [];
   filteredUniversities: any = [];
-  searchItem: string = '';
   totalElements: number = 0;
   public countries: any = countries;
 
