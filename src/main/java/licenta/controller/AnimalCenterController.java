@@ -1,9 +1,8 @@
 package licenta.controller;
 
-import licenta.exeptions.UniversityNotFoundException;
-import licenta.model.University;
-import licenta.service.UniversityService;
-import org.springframework.beans.factory.annotation.Autowired;
+import licenta.exeptions.AnimalCenterNotFound;
+import licenta.model.AnimalCenter;
+import licenta.service.AnimalCenterService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -14,27 +13,27 @@ import org.springframework.data.domain.Pageable;
 @RestController
 @RequestMapping("/university")
 @CrossOrigin("*")
-public class UniversityController {
+public class AnimalCenterController {
 
-    private final UniversityService universityService;
+    private final AnimalCenterService animalCenterService;
 
-    public UniversityController(UniversityService universityService) {
-        this.universityService = universityService;
+    public AnimalCenterController(AnimalCenterService animalCenterService) {
+        this.animalCenterService = animalCenterService;
     }
 
     @PostMapping("/")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public University createUniversity(@RequestBody University university) throws Exception {
+    public AnimalCenter createUniversity(@RequestBody AnimalCenter university) throws Exception {
         System.out.println(university.toString());
-        return this.universityService.createUniversity(university);
+        return this.animalCenterService.createUniversity(university);
     }
 
     @PutMapping("/")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public University updateUniversity(@RequestBody University requestBodyUniversity) throws Exception {
-        University originalUniversity = this.universityService.getUniversity(requestBodyUniversity.getId());
+    public AnimalCenter updateUniversity(@RequestBody AnimalCenter requestBodyUniversity) throws Exception {
+        AnimalCenter originalUniversity = this.animalCenterService.getUniversity(requestBodyUniversity.getId());
         if (originalUniversity == null) {
-            throw new UniversityNotFoundException("University with id `" + requestBodyUniversity.getId() + "` not found");
+            throw new AnimalCenterNotFound("University with id `" + requestBodyUniversity.getId() + "` not found");
         }
 
         originalUniversity.setName(requestBodyUniversity.getName());
@@ -44,25 +43,25 @@ public class UniversityController {
         originalUniversity.setLatitude(requestBodyUniversity.getLatitude());
         originalUniversity.setLongitude(requestBodyUniversity.getLongitude());
 
-        return this.universityService.updateUniversity(originalUniversity);
+        return this.animalCenterService.updateUniversity(originalUniversity);
     }
 
     @GetMapping("/")
     @ResponseStatus(code = HttpStatus.OK)
-    public Page<University> getAllUniversities(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size) {
+    public Page<AnimalCenter> getAllUniversities(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size) {
         Pageable paging = PageRequest.of(page, size);
-        return this.universityService.getUniversities(paging);
+        return this.animalCenterService.getUniversities(paging);
     }
 
     @GetMapping("/{universityId}")
     @ResponseStatus(code = HttpStatus.OK)
-    public University getUniversityById(@PathVariable("universityId") Long universityId) throws Exception {
-        return this.universityService.getUniversity(universityId);
+    public AnimalCenter getUniversityById(@PathVariable("universityId") Long universityId) throws Exception {
+        return this.animalCenterService.getUniversity(universityId);
     }
 
     @DeleteMapping("/{universityId}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void deleteUniversityById(@PathVariable("universityId") Long universityId) {
-        this.universityService.deleteUniversity(universityId);
+        this.animalCenterService.deleteUniversity(universityId);
     }
 }

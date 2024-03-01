@@ -13,12 +13,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "reviews")
+@Table(name = "animal")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Review {
+public class Animal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -44,7 +44,7 @@ public class Review {
     @NotNull
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    private University university;
+    private AnimalCenter university;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
@@ -112,12 +112,12 @@ public class Review {
     }
 
     @JsonIgnore
-    public University getUniversity() {
+    public AnimalCenter getUniversity() {
         return university;
     }
 
     @JsonProperty("university")
-    public void setUniversity(University university) {
+    public void setUniversity(AnimalCenter university) {
         this.university = university;
     }
 

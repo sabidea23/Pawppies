@@ -46,7 +46,7 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
-    private Set<Review> reviews = new HashSet<>();
+    private Set<Animal> animals = new HashSet<>();
 
     public User(String username, String password, String firstName, String lastName, String email, String phone,
                 boolean enabled, String profile, Set<UserRole> userRoles) {

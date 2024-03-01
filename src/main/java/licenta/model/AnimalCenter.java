@@ -10,12 +10,12 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "universities")
+@Table(name = "animal_center")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class University {
+public class AnimalCenter {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,10 +31,10 @@ public class University {
     private User admin;
     @OneToMany(mappedBy = "university", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
-    private Set<Review> reviews;
+    private Set<Animal> animals;
 
-    public University(String name, Double longitude, Double latitude, String city, String country,
-                      String contact, User admin) {
+    public AnimalCenter(String name, Double longitude, Double latitude, String city, String country,
+                        String contact, User admin) {
         this.name = name;
         this.longitude = longitude;
         this.latitude = latitude;
