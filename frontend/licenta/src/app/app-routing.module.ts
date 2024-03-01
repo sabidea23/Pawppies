@@ -14,6 +14,8 @@ import { UserManagementComponent } from './user/user-management/user-management.
 import {AboutPetsComponent} from "./pages/about-pets/about-pets.component";
 import {MissionComponent} from "./pages/mission/mission.component";
 import {QuizComponent} from "./user/quiz/quiz.component";
+import {BreedDetailsDogComponent} from "./pages/breed-details-dogs/breed-details-dog.component";
+import {BreedDetailsCatComponent} from "./pages/breed-details-cat/breed-details-cat.component";
 
 const routes: Routes = [
   {
@@ -34,6 +36,16 @@ const routes: Routes = [
   {
     path: 'about-pets',
     component: AboutPetsComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'breed-details-dog',
+    component: BreedDetailsDogComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'breed-details-cat',
+    component: BreedDetailsCatComponent,
     pathMatch: 'full',
   },
   {

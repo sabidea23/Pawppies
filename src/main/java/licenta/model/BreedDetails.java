@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Set;
+
 
 @Entity
 @Table(name = "breed_details")
@@ -34,6 +34,18 @@ public class BreedDetails {
     private String description;
 
     @NotNull
+    @Column()
+    private String personality;
+
+    @NotNull
+    @Column()
+    private String history;
+
+    @NotNull
+    @Column()
+    private String health;
+
+    @NotNull
     @Enumerated(EnumType.ORDINAL)
     @Column()
     private AnimalType animalType;
@@ -44,12 +56,21 @@ public class BreedDetails {
 
     @NotNull
     @Column()
-    private String height;
+    private String minHeight;
 
     @NotNull
     @Column()
-    private String weight;
+    private String maxHeight;
 
+    @NotNull
+    @Column()
+    private String minWeight;
+
+    @NotNull
+    @Column()
+    private String maxWeight;
+
+    //TABLE -----
     @NotNull
     @Column()
     private Integer playfulness;
@@ -65,10 +86,6 @@ public class BreedDetails {
     @NotNull
     @Column()
     private Integer friendlinessToChildren;
-
-    @NotNull
-    @Column()
-    private Integer independence;
 
     @NotNull
     @Column()
@@ -91,6 +108,9 @@ public class BreedDetails {
     @Column()
     private Integer affectionForOwners;
 
+    @NotNull
+    @Column()
+    private Integer independence;
     
     // DOAR PENTRU CAINI
     @NotNull
@@ -99,16 +119,13 @@ public class BreedDetails {
 
     @NotNull
     @Column()
+    private Integer exerciseRequirements;
+
+    @NotNull
+    @Column()
     private Integer easeOfTraining;
 
-    ///comon
     @NotNull
     @Column()
-    private String personality;
-
-    @NotNull
-    @Column()
-    private String history;
-
-  
+    private Integer heatSensitivity;
 }

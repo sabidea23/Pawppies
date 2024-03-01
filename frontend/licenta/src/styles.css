@@ -24,14 +24,15 @@
 }
 
 .mat-mdc-menu-item.mat-menu-customize-item {
+  text-align: left;
   overflow-x: hidden;
   overflow-scrolling: unset;
   font-weight: bold;
   font-family: 'Montserrat', sans-serif; /* Aplică fontul Montserrat */
   font-size: 1.2em; /* Mărește dimensiunea fontului */
   color: white;
-  text-align: center;
   display: block;
   animation: fadeIn 0.4s; /* Schimbă durata după preferințe */
+  margin-left: 20px;
 }
 

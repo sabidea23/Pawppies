@@ -88,27 +88,7 @@ export class NavbarComponent implements OnInit {
     window.location.reload();
   }
 
-  public toDashboard() {
-    // If the user is on the `login` or `signup` page, then redirect to the `home` page
-    const currentUrl = this.router.url;
-    if (currentUrl == '/login' || currentUrl == '/signup') {
-      this.router.navigate(['/']).then((_) => { });
-      return;
-    }
 
-    // If the user is not logged in, then redirect to the `login` page
-    if (!this.login.isLoggedIn()) {
-      this.router.navigate(['/login']).then((_) => { });
-      return;
-    }
-
-    // If the user is logged in, then redirect to the `dashboard` page
-    const user_role = this.login.getUserRole();
-    if (user_role == 'ADMIN')
-      this.router.navigate(['/admin']).then((_) => { });
-    else if (user_role == 'NORMAL')
-      this.router.navigate(['/user-dashboard']).then((_) => { });
-  }
 
   public toProfileSettings() {
     const user_role = this.login.getUserRole();
@@ -130,6 +110,13 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/about-pets']).then((_) => { });
   }
 
+  public redirectToDogBreeds() {
+    this.router.navigate(['/breed-details-dog']).then((_) => { });
+  }
+
+  public redirectToCatBreeds() {
+    this.router.navigate(['/breed-details-cat']).then((_) => { });
+  }
   isSubMenuOpen = true;
   profileDetailMenu = false;
 

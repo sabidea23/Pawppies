@@ -55,14 +55,24 @@
 
     <a class="sub-menu-item" mat-button [matMenuTriggerFor]="dogs">DOGS & PUPPIES</a>
     <mat-menu class="custom-menu submeniu" #dogs="matMenu">
-      <button class="mat-menu-customize-item" mat-menu-item>Opțiunea 1</button>
-      <button class="mat-menu-customize-item" mat-menu-item>Opțiunea 2</button>
+      <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToDogBreeds()">Dog breeds</button>
+      <button class="mat-menu-customize-item" mat-menu-item>Dog adoption</button>
+      <button class="mat-menu-customize-item" mat-menu-item>Dog your cat</button>
+      <button class="mat-menu-customize-item" mat-menu-item>Dog behavior</button>
+      <button class="mat-menu-customize-item" mat-menu-item>Dog health</button>
+      <button class="mat-menu-customize-item" mat-menu-item>Other dog information</button>
+
     </mat-menu>
 
     <a class="sub-menu-item" mat-button [matMenuTriggerFor]="cat">CATS & KITTENS</a>
     <mat-menu class="custom-menu submeniu" #cat="matMenu">
-      <button class="mat-menu-customize-item" mat-menu-item>Opțiunea 1</button>
-      <button class="mat-menu-customize-item" mat-menu-item>Opțiunea 2</button>
+      <button class="mat-menu-customize-item" mat-menu-item  (click)="redirectToCatBreeds()" >Cat breeds</button>
+      <button class="mat-menu-customize-item" mat-menu-item>Cat adoption</button>
+      <button class="mat-menu-customize-item" mat-menu-item>Feeding your cat</button>
+      <button class="mat-menu-customize-item" mat-menu-item>Cat behavior</button>
+      <button class="mat-menu-customize-item" mat-menu-item>Cat health</button>
+      <button class="mat-menu-customize-item" mat-menu-item>Other cat information</button>
+
     </mat-menu>
 
     <a class="sub-menu-item" mat-button [matMenuTriggerFor]="others">OTHER TYPES OF PETS</a>
@@ -71,11 +81,6 @@
       <button class="mat-menu-customize-item" mat-menu-item>Opțiunea 2</button>
     </mat-menu>
 
-    <a class="sub-menu-item" mat-button [matMenuTriggerFor]="contact">CONTACT</a>
-    <mat-menu class="custom-menu submeniu" #contact="matMenu">
-      <button class="mat-menu-customize-item" mat-menu-item>Opțiunea 1</button>
-      <button class="mat-menu-customize-item" mat-menu-item>Opțiunea 2</button>
-    </mat-menu>
 
     <a *ngIf="isLoggedIn && user && getUserRole() === 'ADMIN'"  class="sub-menu-item" mat-button [matMenuTriggerFor]="admin">
       ADMINISTRATION</a>

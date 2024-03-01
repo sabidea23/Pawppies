@@ -42,10 +42,11 @@ import {MatSelectModule} from "@angular/material/select";
 import {AboutPetsComponent} from './pages/about-pets/about-pets.component';
 import {MissionComponent} from './pages/mission/mission.component';
 import { QuizComponent } from './user/quiz/quiz.component';
-import { BreedDetailsComponent } from './pages/breed-details/breed-details.component';
+import { BreedDetailsDogComponent } from './pages/breed-details-dogs/breed-details-dog.component';
+import { BreedDetailsCatComponent } from './pages/breed-details-cat/breed-details-cat.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, FooterComponent, SignupComponent, LoginComponent, HomeComponent, ProfileComponent, ReviewAddComponent, ReviewListComponent, UniversityAddComponent, UniversityListComponent, UserManagementComponent, MapDialogComponent, EditUniversityComponent, AboutPetsComponent, MissionComponent, QuizComponent, BreedDetailsComponent],
+  declarations: [AppComponent, NavbarComponent, FooterComponent, SignupComponent, LoginComponent, HomeComponent, ProfileComponent, ReviewAddComponent, ReviewListComponent, UniversityAddComponent, UniversityListComponent, UserManagementComponent, MapDialogComponent, EditUniversityComponent, AboutPetsComponent, MissionComponent, QuizComponent, BreedDetailsDogComponent, BreedDetailsCatComponent],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatIconModule, FormsModule, HttpClientModule, MatSnackBarModule, MatCardModule, MatChipsModule, MatToolbarModule, MatIconModule, MatListModule, MatTableModule, ReactiveFormsModule, RouterOutlet, MatGridListModule, MatDialogModule, MatMenuModule, MatPaginatorModule, MatSelectModule],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
