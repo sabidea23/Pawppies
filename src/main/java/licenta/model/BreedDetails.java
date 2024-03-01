@@ -1,12 +1,12 @@
 package licenta.model;
 
-import com.sun.istack.NotNull;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import javax.persistence.*;
+import jakarta.persistence.*;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 
 @Entity
@@ -17,7 +17,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class BreedDetails {
     public enum AnimalType {
-        DOG, CAT;
+        DOG, CAT
     }
 
     @Id
@@ -25,107 +25,107 @@ public class BreedDetails {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @NotNull
+   @NonNull
     @Column(length = 3000)
     private String name;
 
-    @NotNull
+   @NonNull
     @Column()
     private String description;
 
-    @NotNull
+   @NonNull
     @Column()
     private String personality;
 
-    @NotNull
+   @NonNull
     @Column()
     private String history;
 
-    @NotNull
+   @NonNull
     @Column()
     private String health;
 
-    @NotNull
+   @NonNull
     @Enumerated(EnumType.ORDINAL)
     @Column()
     private AnimalType animalType;
 
-    @NotNull
+   @NonNull
     @Column()
     private String image;
 
-    @NotNull
+   @NonNull
     @Column()
     private String minHeight;
 
-    @NotNull
+   @NonNull
     @Column()
     private String maxHeight;
 
-    @NotNull
+   @NonNull
     @Column()
     private String minWeight;
 
-    @NotNull
+   @NonNull
     @Column()
     private String maxWeight;
 
     //TABLE -----
-    @NotNull
+   @NonNull
     @Column()
     private Integer playfulness;
 
-    @NotNull
+   @NonNull
     @Column()
     private Integer groomingRequirements;
 
-    @NotNull
+   @NonNull
     @Column()
     private Integer friendlinessToOtherPets;
 
-    @NotNull
+   @NonNull
     @Column()
     private Integer friendlinessToChildren;
 
-    @NotNull
+   @NonNull
     @Column()
     private Integer activityLevel;
 
-    @NotNull
+   @NonNull
     @Column()
     private Integer vocality;
 
-    @NotNull
+   @NonNull
     @Column()
     private Integer intelligence;
 
     //only cats
-    @NotNull
+   @NonNull
     @Column()
     private Integer needForAttention;
 
-    @NotNull
+   @NonNull
     @Column()
     private Integer affectionForOwners;
 
-    @NotNull
+   @NonNull
     @Column()
     private Integer independence;
     
     // DOAR PENTRU CAINI
-    @NotNull
+   @NonNull
     @Column()
     private Integer watchfulness;
 
-    @NotNull
+   @NonNull
     @Column()
     private Integer exerciseRequirements;
 
-    @NotNull
+   @NonNull
     @Column()
     private Integer easeOfTraining;
 
-    @NotNull
+   @NonNull
     @Column()
     private Integer heatSensitivity;
 }
