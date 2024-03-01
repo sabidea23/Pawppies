@@ -53,10 +53,6 @@ public class Animal {
     private BreedDetails breedDetails;
 
     @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY)
-    private Set<Appreciator> appreciators = new HashSet<>();
-
-    @JsonIgnore
     @ElementCollection
     private Set<Long> liked_by = new HashSet<>();
 
@@ -66,40 +62,6 @@ public class Animal {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "review_images", joinColumns = {@JoinColumn(name = "review_id")}, inverseJoinColumns = {@JoinColumn(name = "image_id")})
     private Set<ImageModel> reviewImages;
-
-
-
-    public Set<ImageModel> getReviewImages() {
-        return reviewImages;
-    }
-
-    public void setReviewImages(Set<ImageModel> reviewImages) {
-        this.reviewImages = reviewImages;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public String getBreed() {
-        return breed;
-    }
-
-    public void setBreed(String breed) {
-        this.breed = breed;
-    }
 
     @JsonIgnore
     public User getAuthor() {
@@ -135,13 +97,11 @@ public class Animal {
         return was_added;
     }
 
-    public boolean removeLike(Long userId) {
+    public void removeLike(Long userId) {
         boolean was_removed = liked_by.remove(userId);
         if (was_removed) {
             likes--;
         }
-
-        return was_removed;
     }
 
     public boolean isLikedBy(Long userId) {

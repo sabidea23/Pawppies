@@ -10,18 +10,4 @@ public class JwtResponse {
         super();
         this.token = token;
     }
-
-    public JwtResponse() {
-        super();
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-
 }
