@@ -7,13 +7,13 @@ import org.springframework.data.domain.Pageable;
 
 public interface AnimalCenterService {
 
-    AnimalCenter createUniversity(AnimalCenter university) throws Exception;
+    AnimalCenter createAnimalCenter(AnimalCenter center) throws Exception;
 
-    AnimalCenter updateUniversity(AnimalCenter university) throws Exception;
+    AnimalCenter updateAnimalCenter(AnimalCenter center) throws Exception;
 
-    AnimalCenter getUniversity(Long id) throws Exception;
+    AnimalCenter getAnimalCenter(Long id) throws Exception;
 
-    Page<AnimalCenter> getUniversities(Pageable pageable);
+    Page<AnimalCenter> getAnimalCenters(Pageable pageable);
 
-    void deleteUniversity(Long id);
+    void deleteAnimalCenter(Long id);
 }

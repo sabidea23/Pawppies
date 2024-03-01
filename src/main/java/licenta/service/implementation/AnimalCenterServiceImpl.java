@@ -20,41 +20,41 @@ public class AnimalCenterServiceImpl implements AnimalCenterService {
     }
 
     @Override
-    public AnimalCenter createUniversity(AnimalCenter university) throws AnimalCenterAlreadyExists {
-        if (this.animalCenterRepository.existsByName(university.getName())) {
-            throw new AnimalCenterAlreadyExists("University with name `" + university.getName() + "` already exists");
+    public AnimalCenter createAnimalCenter(AnimalCenter center) throws AnimalCenterAlreadyExists {
+        if (this.animalCenterRepository.existsByName(center.getName())) {
+            throw new AnimalCenterAlreadyExists("Animal Center with name `" + center.getName() + "` already exists");
         }
 
-        this.animalCenterRepository.save(university);
+        this.animalCenterRepository.save(center);
 
-        return university;
+        return center;
     }
 
     @Override
-    public AnimalCenter updateUniversity(AnimalCenter university) throws AnimalCenterNotFound {
-        if (!this.animalCenterRepository.existsById(university.getId())) {
-            throw new AnimalCenterNotFound("University with id `" + university.getId() + "` not found");
+    public AnimalCenter updateAnimalCenter(AnimalCenter center) throws AnimalCenterNotFound {
+        if (!this.animalCenterRepository.existsById(center.getId())) {
+            throw new AnimalCenterNotFound("Animal Center with id `" + center.getId() + "` not found");
         }
 
-        return this.animalCenterRepository.save(university);
+        return this.animalCenterRepository.save(center);
     }
 
     @Override
-    public AnimalCenter getUniversity(Long id) throws AnimalCenterNotFound {
+    public AnimalCenter getAnimalCenter(Long id) throws AnimalCenterNotFound {
         if (!this.animalCenterRepository.existsById(id)) {
-            throw new AnimalCenterNotFound("University with id `" + id + "` not found");
+            throw new AnimalCenterNotFound("Animal Center with id `" + id + "` not found");
         }
 
         return this.animalCenterRepository.findById(id).isPresent() ? this.animalCenterRepository.findById(id).get() : null;
     }
 
     @Override
-    public Page<AnimalCenter> getUniversities(Pageable pageable) {
+    public Page<AnimalCenter> getAnimalCenters(Pageable pageable) {
         return this.animalCenterRepository.findAll(pageable);
     }
 
     @Override
-    public void deleteUniversity(Long id) {
+    public void deleteAnimalCenter(Long id) {
         this.animalCenterRepository.deleteById(id);
     }
 }

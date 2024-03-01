@@ -23,45 +23,45 @@ public class AnimalCenterController {
 
     @PostMapping("/")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public AnimalCenter createUniversity(@RequestBody AnimalCenter university) throws Exception {
-        System.out.println(university.toString());
-        return this.animalCenterService.createUniversity(university);
+    public AnimalCenter createAnimalCenter(@RequestBody AnimalCenter animalCenter) throws Exception {
+        System.out.println(animalCenter.toString());
+        return this.animalCenterService.createAnimalCenter(animalCenter);
     }
 
     @PutMapping("/")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public AnimalCenter updateUniversity(@RequestBody AnimalCenter requestBodyUniversity) throws Exception {
-        AnimalCenter originalUniversity = this.animalCenterService.getUniversity(requestBodyUniversity.getId());
-        if (originalUniversity == null) {
-            throw new AnimalCenterNotFound("University with id `" + requestBodyUniversity.getId() + "` not found");
+    public AnimalCenter updateAnimalCenter(@RequestBody AnimalCenter animalCenter) throws Exception {
+        AnimalCenter originalAnimalCenter = this.animalCenterService.getAnimalCenter(animalCenter.getId());
+        if (originalAnimalCenter == null) {
+            throw new AnimalCenterNotFound("Animal Center with id `" + animalCenter.getId() + "` not found");
         }
 
-        originalUniversity.setName(requestBodyUniversity.getName());
-        originalUniversity.setCity(requestBodyUniversity.getCity());
-        originalUniversity.setCountry(requestBodyUniversity.getCountry());
-        originalUniversity.setContact(requestBodyUniversity.getContact());
-        originalUniversity.setLatitude(requestBodyUniversity.getLatitude());
-        originalUniversity.setLongitude(requestBodyUniversity.getLongitude());
+        originalAnimalCenter.setName(animalCenter.getName());
+        originalAnimalCenter.setCity(animalCenter.getCity());
+        originalAnimalCenter.setCountry(animalCenter.getCountry());
+        originalAnimalCenter.setContact(animalCenter.getContact());
+        originalAnimalCenter.setLatitude(animalCenter.getLatitude());
+        originalAnimalCenter.setLongitude(animalCenter.getLongitude());
 
-        return this.animalCenterService.updateUniversity(originalUniversity);
+        return this.animalCenterService.updateAnimalCenter(originalAnimalCenter);
     }
 
     @GetMapping("/")
     @ResponseStatus(code = HttpStatus.OK)
-    public Page<AnimalCenter> getAllUniversities(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size) {
+    public Page<AnimalCenter> getAnimalCenters(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size) {
         Pageable paging = PageRequest.of(page, size);
-        return this.animalCenterService.getUniversities(paging);
+        return this.animalCenterService.getAnimalCenters(paging);
     }
 
     @GetMapping("/{universityId}")
     @ResponseStatus(code = HttpStatus.OK)
-    public AnimalCenter getUniversityById(@PathVariable("universityId") Long universityId) throws Exception {
-        return this.animalCenterService.getUniversity(universityId);
+    public AnimalCenter getAnimalCenter(@PathVariable("universityId") Long id) throws Exception {
+        return this.animalCenterService.getAnimalCenter(id);
     }
 
     @DeleteMapping("/{universityId}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void deleteUniversityById(@PathVariable("universityId") Long universityId) {
-        this.animalCenterService.deleteUniversity(universityId);
+    public void deleteAnimalCenter(@PathVariable("universityId") Long id) {
+        this.animalCenterService.deleteAnimalCenter(id);
     }
 }
