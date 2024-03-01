@@ -196,9 +196,4 @@ export class ReviewListComponent implements OnInit {
       }
     });
   }
-
-
-  showReview(review: any) {
-    console.log(review)
-  }
 }

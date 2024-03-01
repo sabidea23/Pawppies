@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 @Service
 public class AnimalServiceImpl implements AnimalSerivce {
 
-    private AnimalRepository animalRepository;
+    private final AnimalRepository animalRepository;
 
     public AnimalServiceImpl(AnimalRepository animalRepository) {
         this.animalRepository = animalRepository;
@@ -45,11 +45,11 @@ public class AnimalServiceImpl implements AnimalSerivce {
 
     @Override
     public List<Animal> getReviewsByUniversityId(Long universityId) throws AnimalNotFoundExeption {
-        if (!this.animalRepository.existsByUniversityId(universityId)) {
+        if (!this.animalRepository.existsByAnimalCenterId(universityId)) {
             throw new AnimalNotFoundExeption("Reviews with university id `" + universityId + "` not found");
         }
 
-        return this.animalRepository.findAllByUniversityId(universityId);
+        return this.animalRepository.findAllByAnimalCenterId(universityId);
     }
 
     @Override
@@ -63,11 +63,11 @@ public class AnimalServiceImpl implements AnimalSerivce {
 
     @Override
     public List<Animal> getReviewsByUniversityIdAndAuthorId(Long universityId, Long authorId) throws AnimalNotFoundExeption {
-        if (!this.animalRepository.existsByUniversityIdAndAuthorId(universityId, authorId)) {
+        if (!this.animalRepository.existsByAnimalCenterIdAndAuthorId(universityId, authorId)) {
             throw new AnimalNotFoundExeption("Reviews with university id `" + universityId + "` and author id `" + authorId + "` not found");
         }
 
-        return this.animalRepository.findAllByUniversityIdAndAuthorId(universityId, authorId);
+        return this.animalRepository.findAllByAnimalCenterIdAndAuthorId(universityId, authorId);
     }
 
     @Override

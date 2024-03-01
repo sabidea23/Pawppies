@@ -29,63 +29,8 @@ public class AnimalCenter {
     private String contact;
     @ManyToOne(fetch = FetchType.EAGER)
     private User admin;
-    @OneToMany(mappedBy = "university", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "animalCenter", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<Animal> animals;
-
-    public AnimalCenter(String name, Double longitude, Double latitude, String city, String country,
-                        String contact, User admin) {
-        this.name = name;
-        this.longitude = longitude;
-        this.latitude = latitude;
-        this.city = city;
-        this.country = country;
-        this.contact = contact;
-        this.admin = admin;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public Double getLongitude() {
-        return longitude;
-    }
-
-    public Double getLatitude() {
-        return latitude;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getContact() {
-        return contact;
-    }
-
-    public void setContact(String contact) {
-        this.contact = contact;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public User getAdmin() {
-        return admin;
-    }
 }
 

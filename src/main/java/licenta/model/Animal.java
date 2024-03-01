@@ -44,7 +44,7 @@ public class Animal {
     @NotNull
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    private AnimalCenter university;
+    private AnimalCenter animalCenter;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
@@ -113,12 +113,12 @@ public class Animal {
 
     @JsonIgnore
     public AnimalCenter getUniversity() {
-        return university;
+        return animalCenter;
     }
 
     @JsonProperty("university")
     public void setUniversity(AnimalCenter university) {
-        this.university = university;
+        this.animalCenter = university;
     }
 
     @JsonProperty("likes")
@@ -129,7 +129,6 @@ public class Animal {
     public boolean addLike(Long userId) {
         boolean was_added = liked_by.add(userId);
         if (was_added) {
-            // Successfully liked
             likes++;
         }
 
