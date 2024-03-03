@@ -3,6 +3,8 @@ package licenta.service.implementation;
 import licenta.model.BreedDetails;
 import licenta.repo.BreedDetailsRepository;
 import licenta.service.BreedDetailsService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,8 +19,8 @@ public class BreedDetailsServiceImpl implements BreedDetailsService {
     }
 
     @Override
-    public List<BreedDetails> getAllBreeds() {
-        return breedDetailsRepository.findAll();
+    public Page<BreedDetails> getAllBreeds(Pageable pageable) {
+        return breedDetailsRepository.findAll(pageable);
     }
 
     @Override

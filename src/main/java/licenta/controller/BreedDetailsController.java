@@ -3,6 +3,9 @@ package licenta.controller;
 
 import licenta.model.BreedDetails;
 import licenta.service.BreedDetailsService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -22,8 +25,9 @@ public class BreedDetailsController {
 
     @GetMapping("/")
     @ResponseStatus(code = HttpStatus.OK)
-    public List<BreedDetails> getAllBreeds() {
-        return this.breedDetailsService.getAllBreeds();
+    public Page<BreedDetails> getAllBreeds(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size) {
+        Pageable paging = PageRequest.of(page, size);
+        return this.breedDetailsService.getAllBreeds(paging);
     }
 
     @GetMapping("/{id}")

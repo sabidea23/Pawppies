@@ -1,18 +1,6 @@
-<body>
 <div class="main-container">
-  <div class="side-container">
-    <form  class="search-form">
-      <h2>Find Animals by:</h2>
-
-    </form>
-
-  </div>
-
   <div *ngIf="user" class="content-container">
-
     <h2> DOG BREEDS</h2>
-
-    <!--    animal list-->
     <div class="animal-grid">
       <div *ngFor="let dog of dogBreeds" class="animal-card">
         <img [src]='dog.image' class="animal-image">
@@ -21,6 +9,10 @@
         </div>
       </div>
     </div>
+    <mat-paginator [length]="totalElements"
+                   [pageSize]="10"
+                   [pageSizeOptions]="[5, 10, 20]"
+                   (page)="handlePageEvent($event)">
+    </mat-paginator>
   </div>
 </div>
-</body>
