@@ -1,18 +1,31 @@
+<body>
 <div class="main-container">
+  <div class="side-container">
+    <form  class="search-form">
+      <h2>Filter Animals by:</h2>
+
+    </form>
+
+  </div>
+
   <div *ngIf="user" class="content-container">
-    <h2> DOG BREEDS</h2>
-    <div class="animal-grid">
-      <div *ngFor="let dog of dogBreeds" class="animal-card">
-        <img [src]='dog.image' class="animal-image">
-        <div class="animal-details">
-          <p class="animal-name"> {{ dog.name }} </p>
+
+    <div class="review-grid">
+      <div *ngFor="let dog of dogBreeds" class="review-card">
+
+
+        <img  [src]='dog.image' class="review-image">
+          <p class="review-name"> {{ dog.name }} </p>
         </div>
-      </div>
+
     </div>
     <mat-paginator [length]="totalElements"
-                   [pageSize]="10"
-                   [pageSizeOptions]="[5, 10, 20]"
+                   [pageSize]="15"
                    (page)="handlePageEvent($event)">
     </mat-paginator>
   </div>
+
+
 </div>
+</body>
+

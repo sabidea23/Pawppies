@@ -24,8 +24,7 @@ export class BreedDetailsDogComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.login.getUser();
-    // Inițializare cu valori implicite pentru paginare
-    this.getAllBreeds(0, 10); // Să presupunem că vrem 10 elemente pe pagină
+    this.getAllBreeds(0, 15);
   }
 
   getAllBreeds(page: number, size: number) {
