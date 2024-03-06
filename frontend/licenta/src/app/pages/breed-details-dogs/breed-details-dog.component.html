@@ -1,7 +1,39 @@
+<div class="search-dog">
+  <img src="../../../assets/dogs.png" alt="Dogs Background">
+  <div class="centered-box">
+    <h2 class="search-text">Find Your Perfect Dog or Puppy Breed</h2>
+    <input type="text" placeholder="Search breeds" />
+  </div>
+</div>
+
+
+<div class="special-dogs">
+  <h2 class="search-text special">Find Your Perfect Dog or Puppy Breed</h2>
+  <div class="dog-boxes">
+    <div class="dog-box">
+      <img src="../../../assets/cute.png" alt="Dog 1">
+      <p>CUTEST DOG BREEDS</p>
+    </div>
+    <div class="dog-box">
+      <img src="../../../assets/apartaments.png" alt="Dog 2">
+      <p>BEST DOG FOR APARTAMENTS</p>
+    </div>
+    <div class="dog-box">
+      <img src="../../../assets/kids.png" alt="Dog 3">
+      <p>BEST DOG BREEDS FOR KIDS</p>
+    </div>
+    <div class="dog-box">
+      <img src="../../../assets/pudel.png" alt="Dog 4">
+      <p>MOST POPULAR DOG BREEDS</p>
+    </div>
+  </div>
+</div>
+
+
 <body>
 <div class="main-container">
   <div class="side-container">
-    <form  class="search-form">
+    <form class="search-form">
       <h2>Filter Animals by:</h2>
 
     </form>
@@ -14,14 +46,14 @@
       <div *ngFor="let dog of dogBreeds" class="review-card">
 
 
-        <img  [src]='dog.image' class="review-image">
-          <p class="review-name"> {{ dog.name }} </p>
-        </div>
+        <img [src]='dog.image' class="review-image">
+        <p class="review-name"> {{ dog.name }} </p>
+      </div>
 
     </div>
-    <mat-paginator [length]="totalElements"
-                   [pageSize]="15"
-                   (page)="handlePageEvent($event)">
+    <mat-paginator (page)="handlePageEvent($event)"
+                   [length]="totalElements"
+                   [pageSize]="15">
     </mat-paginator>
   </div>
 

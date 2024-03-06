@@ -259,6 +259,13 @@ input[type="button"] {
   font-weight: bold;
 }
 
+.number-dogs {
+  font-family: 'Montserrat', sans-serif;
+  color: #4a4553;
+  margin-left: 25px;
+  font-weight: bold;
+}
+
 .search-dog {
   position: relative;
   text-align: center;
