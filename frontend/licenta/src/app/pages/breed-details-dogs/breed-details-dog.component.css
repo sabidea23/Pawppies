@@ -6,62 +6,6 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
-.university-table {
-  padding: 20px;
-  caret-color: transparent;
-  width: 100%;
-  font-family: 'Montserrat', sans-serif;
-}
-
-.mat-cell, .mat-header-cell {
-  caret-color: transparent;
-  padding: 8px;
-  text-align: left;
-}
-
-.mat-row, .mat-header-row {
-  caret-color: transparent;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.search-icon {
-  color: #410078;
-}
-
-th {
-  caret-color: transparent;
-  background-color: #EFEEF1;
-  text-align: center;
-}
-
-
-.mat-header-row, .mat-header-cell {
-  caret-color: transparent;
-  background-color: #EFEEF1;
-  color: #410078;
-}
-
-.confirm-button-class {
-  color: #FFFFFF;
-  margin-top: 20px;
-  border-radius: 20px;
-  width: 100%;
-  box-shadow: none;
-}
-
-
-.cancel-button-class {
-  color: #FFFFFF;
-  margin-top: 20px;
-  border-radius: 20px;
-  width: 100%;
-  box-shadow: none;
-}
-
-* {
-  caret-color: transparent;
-}
-
 .main-container {
   display: flex;
   flex-direction: row;
@@ -140,27 +84,6 @@ p {
   font-size: 15px;
   text-align: center;
   margin-bottom: 20px;
-}
-
-button:hover {
-  caret-color: transparent;
-  transform: translatey(3px);
-  box-shadow: none;
-}
-
-.login-button {
-  caret-color: transparent;
-  background-color: #6504B5;
-  color: #FFFFFF;
-  margin-top: 20px;
-  border-radius: 20px;
-  width: 100%; /* Ocupă întreaga lățime a containerului */
-  box-shadow: none; /* Înlătură orice umbre dacă există */
-}
-
-.login-button.reset {
-  background-color: #EFEEF1;
-  color: #6504B5;
 }
 
 /* Stiluri globale pentru toate mat-form-field-urile */
@@ -275,7 +198,6 @@ mat-form-field {
   border-radius: 50%; /* Face butonul rotund */
   width: 36px; /* Lățimea butonului */
   height: 36px; /* Înălțimea butonului */
-  background-color: white;
   margin: 10px;
   transition: transform 0.2s; /* Adaugă o tranziție pentru transform */
 }
@@ -335,5 +257,89 @@ input[type="button"] {
   font-family: 'Montserrat', sans-serif;
   color: #6504B5;
   font-weight: bold;
+}
+
+.search-dog {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.centered-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #EFEEF1;
+  padding: 20px;
+  border-radius: 5px;
+  border: 1px solid black;
+  width: 600px;
+  opacity: 90%;
+}
+
+
+
+input[type="text"] {
+  margin-top: 10px;
+  padding: 5px;
+}
+
+.search-text {
+  color: #4a4553;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.special-dogs {
+  padding-top: 20px;
+  text-align: center;
+  background-color: #EFEEF1; /* Culoarea specificată */
+}
+
+.dog-boxes {
+  display: flex;
+  justify-content: center; /* Acesta va distribui casetele uniform pe lățimea containerului */
+  gap: 20px;
+  padding-bottom: 20px;
+  /* Adaugă padding pentru a nu avea elementele lipite de marginile div-ului */
+
+}
+
+.dog-box {
+  border: 1px solid #94939b;
+  flex-basis: 13%; /* Acesta va controla lățimea box-ului, dar va permite să fie flexibil */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrează elementele pe orizontală */
+  background-color: white; /* Adaugă o culoare de fundal pentru box-uri */
+}
+
+.dog-box img {
+  height: 155px;
+  width: 100%; /* Ajustează imaginea să fie 70% din lățimea box-ului */
+}
+
+.dog-box p {
+  font-weight: bold;
+  color: #4a4553;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 10px;
+  text-align: center; /* Alinează textul în centru */
+  padding: 0 5px; /* Adaugă padding pentru a nu avea textul lipit de margini */
+}
+
+.dog-box:hover{
+  color: white;
+  background-color: #6504B5;
+  font-family: 'Montserrat', sans-serif;
+  display: block;
+}
+
+.dog-box:hover p{
+  font-weight: bold;
+  color: white;
 }
 
