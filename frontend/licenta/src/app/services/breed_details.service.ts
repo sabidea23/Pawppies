@@ -9,12 +9,8 @@ import {Observable} from "rxjs";
 export class Breed_detailsService {
   constructor(private http: HttpClient) { }
 
-  public getAllBreeds(params: { page: number; size: number }): Observable<any> {
-    let queryParams = new HttpParams();
-    queryParams = queryParams.append('page', params.page.toString());
-    queryParams = queryParams.append('size', params.size.toString());
-
-    return this.http.get(`${baseUrl}/breed-details/`,  { params: queryParams });
+  public getAllBreeds() {
+    return this.http.get(`${baseUrl}/breed-details/`);
   }
 
   public getBreedDetailsById(id: number) {

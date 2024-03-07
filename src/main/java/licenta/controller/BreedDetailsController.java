@@ -25,9 +25,8 @@ public class BreedDetailsController {
 
     @GetMapping("/")
     @ResponseStatus(code = HttpStatus.OK)
-    public Page<BreedDetails> getAllBreeds(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size) {
-        Pageable paging = PageRequest.of(page, size);
-        return this.breedDetailsService.getAllBreeds(paging);
+    public List<BreedDetails> getAllBreeds() {
+        return this.breedDetailsService.getAllBreeds();
     }
 
     @GetMapping("/{id}")

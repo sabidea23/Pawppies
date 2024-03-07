@@ -33,15 +33,63 @@
 <body>
 <div class="main-container">
   <div class="side-container">
-    <form class="search-form">
+    <div class="search-form">
       <h2>Filter Animals by:</h2>
+      <div class="filter-group">
+      <h3>SIZE</h3>
+      <label><input type="checkbox" name="size" value="Small" (change)="applyFilter('size', 'Small')"> Small</label>
+      <label><input type="checkbox" name="size" value="Medium" (change)="applyFilter('size', 'Medium')"> Medium</label>
+      <label><input type="checkbox" name="size" value="Large" (change)="applyFilter('size', 'Large')"> Large</label>
+      <label><input type="checkbox" name="size" value="Extra Large" (change)="applyFilter('size', 'Extra Large')"> Extra Large</label>
+    </div>
 
-    </form>
+      <div class="filter-group">
+        <h3>ENERGY LEVEL</h3>
+        <label><input type="checkbox" name="activityLevel" value="Low" (change)="applyFilter('activityLevel', 'Low')"> Low</label>
+        <label><input type="checkbox" name="activityLevel" value="Moderate" (change)="applyFilter('activityLevel', 'Moderate')"> Moderate</label>
+        <label><input type="checkbox" name="activityLevel" value="High" (change)="applyFilter('activityLevel', 'High')"> High</label>
+      </div>
+
+      <div class="filter-group">
+        <h3>EASE OF TRAINING</h3>
+        <label><input type="checkbox" name="easeOfTraining" value="Easy" (change)="applyFilter('easeOfTraining', 'Easy')"> Easy</label>
+        <label><input type="checkbox" name="easeOfTraining" value="Average" (change)="applyFilter('easeOfTraining', 'Average')"> Average</label>
+        <label><input type="checkbox" name="easeOfTraining" value="Difficult" (change)="applyFilter('easeOfTraining', 'Difficult')"> Difficult</label>
+      </div>
+
+      <div class="filter-group">
+        <h3>GROOMING REQUIREMENTS</h3>
+        <label><input type="checkbox" name="groomingRequirements" value="Low" (change)="applyFilter('groomingRequirements', 'Low')"> Low</label>
+        <label><input type="checkbox" name="groomingRequirements" value="Moderate" (change)="applyFilter('groomingRequirements', 'Moderate')"> Moderate</label>
+        <label><input type="checkbox" name="groomingRequirements" value="High" (change)="applyFilter('groomingRequirements', 'High')"> High</label>
+      </div>
+
+      <div class="filter-group">
+        <h3>VOCALITY</h3>
+        <label><input type="checkbox" name="vocality" value="Low" (change)="applyFilter('vocality', 'Low')"> Low</label>
+        <label><input type="checkbox" name="vocality" value="Moderate" (change)="applyFilter('vocality', 'Moderate')"> Moderate</label>
+        <label><input type="checkbox" name="vocality" value="High" (change)="applyFilter('vocality', 'High')"> High</label>
+      </div>
+
+      <div class="filter-group">
+        <h3>EXERCISE REQUIREMENTS</h3>
+        <label><input type="checkbox" name="exerciseRequirements" value="Moderate" (change)="applyFilter('exerciseRequirements', 'Moderate')"> Moderate</label>
+        <label><input type="checkbox" name="exerciseRequirements" value="Significant" (change)="applyFilter('exerciseRequirements', 'Significant')"> Significant</label>
+        <label><input type="checkbox" name="exerciseRequirements" value="Rigorous" (change)="applyFilter('exerciseRequirements', 'Rigorous')"> Rigorous</label>
+      </div>
+
+      <div class="filter-group">
+        <h3>affectionForOwners NEEDS</h3>
+        <label><input type="checkbox" name="affectionForOwners" value="Independent" (change)="applyFilter('affectionForOwners', 'Independent')"> Independent</label>
+        <label><input type="checkbox" name="affectionForOwners" value="Balanced" (change)="applyFilter('affectionForOwners', 'Balanced')"> Balanced</label>
+        <label><input type="checkbox" name="affectionForOwners" value="Cuddly" (change)="applyFilter('affectionForOwners', 'Cuddly')"> Cuddly</label>
+      </div>
+    </div>
 
   </div>
 
   <div *ngIf="user" class="content-container">
-
+    <h2 class="number-dogs"> {{totalElements}} Dog or Puppy Breeds</h2>
     <div class="review-grid">
       <div *ngFor="let dog of dogBreeds" class="review-card">
 
@@ -51,10 +99,7 @@
       </div>
 
     </div>
-    <mat-paginator (page)="handlePageEvent($event)"
-                   [length]="totalElements"
-                   [pageSize]="15">
-    </mat-paginator>
+
   </div>
 
 

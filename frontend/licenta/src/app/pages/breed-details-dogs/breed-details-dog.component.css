@@ -308,8 +308,6 @@ input[type="text"] {
   justify-content: center; /* Acesta va distribui casetele uniform pe lățimea containerului */
   gap: 20px;
   padding-bottom: 20px;
-  /* Adaugă padding pentru a nu avea elementele lipite de marginile div-ului */
-
 }
 
 .dog-box {
