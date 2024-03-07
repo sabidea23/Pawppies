@@ -79,13 +79,17 @@
       </div>
 
       <div class="filter-group">
-        <h3>affectionForOwners NEEDS</h3>
+        <h3>AFFECTION FOR OWNERS</h3>
         <label><input type="checkbox" name="affectionForOwners" value="Independent" (change)="applyFilter('affectionForOwners', 'Independent')"> Independent</label>
         <label><input type="checkbox" name="affectionForOwners" value="Balanced" (change)="applyFilter('affectionForOwners', 'Balanced')"> Balanced</label>
         <label><input type="checkbox" name="affectionForOwners" value="Cuddly" (change)="applyFilter('affectionForOwners', 'Cuddly')"> Cuddly</label>
       </div>
     </div>
-
+    <div class="filter-group">
+      <h3>FRIENDLINESS</h3>
+      <label><input type="checkbox" name="friendliness" value="Independent" (change)="applyFilter('friendliness', 'Toward Dogs')"> Toward Dogs</label>
+      <label><input type="checkbox" name="friendliness" value="Balanced" (change)="applyFilter('friendliness', 'Toward Children')"> Toward Children</label>
+    </div>
   </div>
 
   <div *ngIf="user" class="content-container">

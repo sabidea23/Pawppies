@@ -24,7 +24,8 @@ export class BreedDetailsDogComponent implements OnInit {
     vocality: [],
     affectionForOwners: [],
     groomingRequirements: [],
-    easeOfTraining: []
+    easeOfTraining: [],
+    friendliness: []
   };
 
   constructor(private login: LoginService, private router: Router, private snack: MatSnackBar, private breedDetailsService: Breed_detailsService) {
@@ -59,7 +60,7 @@ export class BreedDetailsDogComponent implements OnInit {
   filterBreeds(): void {
     // @ts-ignore
     this.dogBreeds = this.breeds.filter(breed => {
-      return this.isBreedValid(breed) && this.getVocalityLevel(breed) && this.isactivityLevelValid(breed) && this.getgroomingRequirementsLevel(breed) && this.getaffectionForOwnersLevel(breed) && this.geteaseOfTrainingLevel(breed) && this.exerciseRequirementsLevel(breed);})
+      return this.isBreedValid(breed) && this.getVocalityLevel(breed) && this.isactivityLevelValid(breed) && this.getgroomingRequirementsLevel(breed) && this.getaffectionForOwnersLevel(breed) && this.geteaseOfTrainingLevel(breed) && this.exerciseRequirementsLevel(breed) && this.getFriendliness(breed);})
       // @ts-ignore
       .filter(breed => breed.animalType === 'DOG')
     this.totalElements = this.dogBreeds.length;
@@ -112,9 +113,21 @@ export class BreedDetailsDogComponent implements OnInit {
     }
 
     return !(this.filters.easeOfTraining && this.filters.easeOfTraining.length > 0 && !this.filters.easeOfTraining.includes(easeOfTraining));
-
-
   }
+
+  getFriendliness(breed: any): boolean {
+    let friendlinessToOtherPets = breed.friendlinessToOtherPets && (breed.friendlinessToOtherPets === 4 || breed.friendlinessToOtherPets === 5) ? 'Toward Dogs' : '';
+    let friendlinessToChildren = breed.friendlinessToChildren && (breed.friendlinessToChildren === 4 || breed.friendlinessToChildren === 5) ? 'Toward Children' : '';
+
+    // Verifică dacă cel puțin una dintre categoriile de friendliness este selectată
+    if (this.filters.friendliness && this.filters.friendliness.length > 0) {
+      return this.filters.friendliness.includes(friendlinessToOtherPets) || this.filters.friendliness.includes(friendlinessToChildren);
+    }
+
+    return true;  // Dacă niciun filtru de friendliness nu este selectat, rasa este considerată validă
+  }
+
+
 
   getgroomingRequirementsLevel(breed: any): boolean {
     let groomingRequirements = '';
