@@ -1,7 +1,7 @@
 <div class="search-dog">
   <img src="../../../assets/dogs.png" alt="Dogs Background">
   <div class="centered-box">
-    <h2 class="search-text">Find Your Perfect Dog or Puppy Breed</h2>
+    <h2 class="search-text special">Find Your Perfect Dog or Puppy Breed</h2>
     <input type="text" placeholder="Search breeds" />
   </div>
 </div>
@@ -34,76 +34,78 @@
 <div class="main-container">
   <div class="side-container">
     <div class="search-form">
-      <h2>Filter Animals by:</h2>
+      <h2>Filter Breeds </h2>
       <div class="filter-group">
       <h3>SIZE</h3>
-      <label><input type="checkbox" name="size" value="Small" (change)="applyFilter('size', 'Small')"> Small</label>
-      <label><input type="checkbox" name="size" value="Medium" (change)="applyFilter('size', 'Medium')"> Medium</label>
-      <label><input type="checkbox" name="size" value="Large" (change)="applyFilter('size', 'Large')"> Large</label>
-      <label><input type="checkbox" name="size" value="Extra Large" (change)="applyFilter('size', 'Extra Large')"> Extra Large</label>
+        <button class="button-filter" role="checkbox" name="size" value="Small" (click)="applyFilter('size', 'Small')"> Small </button>
+        <button class="button-filter" role="checkbox" name="size" value="Medium" (click)="applyFilter('size', 'Medium')"> Medium</button>
+        <button class="button-filter"role="checkbox" name="size" value="Large" (click)="applyFilter('size', 'Large')"> Large </button>
+        <button class="button-filter" role="checkbox" name="size" value="Extra Large" (click)="applyFilter('size', 'Extra Large')"> Extra Large </button>
     </div>
 
       <div class="filter-group">
         <h3>ENERGY LEVEL</h3>
-        <label><input type="checkbox" name="activityLevel" value="Low" (change)="applyFilter('activityLevel', 'Low')"> Low</label>
-        <label><input type="checkbox" name="activityLevel" value="Moderate" (change)="applyFilter('activityLevel', 'Moderate')"> Moderate</label>
-        <label><input type="checkbox" name="activityLevel" value="High" (change)="applyFilter('activityLevel', 'High')"> High</label>
+        <button class="button-filter" role="checkbox" name="activityLevel" value="Low" (click)="applyFilter('activityLevel', 'Low')"> Low </button>
+        <button class="button-filter" role="checkbox" name="activityLevel" value="Moderate" (click)="applyFilter('activityLevel', 'Moderate')"> Moderate</button>
+        <button class="button-filter" role="checkbox" name="activityLevel" value="High" (click)="applyFilter('activityLevel', 'High')"> High </button>
       </div>
 
       <div class="filter-group">
         <h3>EASE OF TRAINING</h3>
-        <label><input type="checkbox" name="easeOfTraining" value="Easy" (change)="applyFilter('easeOfTraining', 'Easy')"> Easy</label>
-        <label><input type="checkbox" name="easeOfTraining" value="Average" (change)="applyFilter('easeOfTraining', 'Average')"> Average</label>
-        <label><input type="checkbox" name="easeOfTraining" value="Difficult" (change)="applyFilter('easeOfTraining', 'Difficult')"> Difficult</label>
+        <button class="button-filter" role="checkbox" name="easeOfTraining" value="Easy" (click)="applyFilter('easeOfTraining', 'Easy')"> Easy  </button>
+        <button class="button-filter" role="checkbox" name="easeOfTraining" value="Average" (click)="applyFilter('easeOfTraining', 'Average')"> Average   </button>
+        <button class="button-filter" role="checkbox" name="easeOfTraining" value="Difficult" (click)="applyFilter('easeOfTraining', 'Difficult')"> Difficult </button>
       </div>
 
       <div class="filter-group">
         <h3>GROOMING REQUIREMENTS</h3>
-        <label><input type="checkbox" name="groomingRequirements" value="Low" (change)="applyFilter('groomingRequirements', 'Low')"> Low</label>
-        <label><input type="checkbox" name="groomingRequirements" value="Moderate" (change)="applyFilter('groomingRequirements', 'Moderate')"> Moderate</label>
-        <label><input type="checkbox" name="groomingRequirements" value="High" (change)="applyFilter('groomingRequirements', 'High')"> High</label>
+        <button class="button-filter" role="checkbox" name="groomingRequirements" value="Low" (click)="applyFilter('groomingRequirements', 'Low')"> Low   </button>
+        <button class="button-filter" role="checkbox" name="groomingRequirements" value="Moderate" (click)="applyFilter('groomingRequirements', 'Moderate')"> Moderate   </button>
+        <button class="button-filter" role="checkbox" name="groomingRequirements" value="High" (click)="applyFilter('groomingRequirements', 'High')"> High                        </button>
       </div>
 
       <div class="filter-group">
         <h3>VOCALITY</h3>
-        <label><input type="checkbox" name="vocality" value="Low" (change)="applyFilter('vocality', 'Low')"> Low</label>
-        <label><input type="checkbox" name="vocality" value="Moderate" (change)="applyFilter('vocality', 'Moderate')"> Moderate</label>
-        <label><input type="checkbox" name="vocality" value="High" (change)="applyFilter('vocality', 'High')"> High</label>
+        <button class="button-filter" role="checkbox" name="vocality" value="Low" (click)="applyFilter('vocality', 'Low')"> Low                                               </button>
+          <button class="button-filter" role="checkbox" name="vocality" value="Moderate" (click)="applyFilter('vocality', 'Moderate')"> Moderate                     </button>
+          <button class="button-filter" role="checkbox" name="vocality" value="High" (click)="applyFilter('vocality', 'High')"> High                      </button>
       </div>
 
       <div class="filter-group">
         <h3>EXERCISE REQUIREMENTS</h3>
-        <label><input type="checkbox" name="exerciseRequirements" value="Moderate" (change)="applyFilter('exerciseRequirements', 'Moderate')"> Moderate</label>
-        <label><input type="checkbox" name="exerciseRequirements" value="Significant" (change)="applyFilter('exerciseRequirements', 'Significant')"> Significant</label>
-        <label><input type="checkbox" name="exerciseRequirements" value="Rigorous" (change)="applyFilter('exerciseRequirements', 'Rigorous')"> Rigorous</label>
+        <button class="button-filter" role="checkbox" name="exerciseRequirements" value="Moderate" (click)="applyFilter('exerciseRequirements', 'Moderate')"> Moderate  </button>
+        <button class="button-filter" role="checkbox" name="exerciseRequirements" value="Significant" (click)="applyFilter('exerciseRequirements', 'Significant')"> Significant   </button>
+          <button class="button-filter" role="checkbox" name="exerciseRequirements" value="Rigorous" (click)="applyFilter('exerciseRequirements', 'Rigorous')"> Rigorous  </button>
       </div>
 
       <div class="filter-group">
         <h3>AFFECTION FOR OWNERS</h3>
-        <label><input type="checkbox" name="affectionForOwners" value="Independent" (change)="applyFilter('affectionForOwners', 'Independent')"> Independent</label>
-        <label><input type="checkbox" name="affectionForOwners" value="Balanced" (change)="applyFilter('affectionForOwners', 'Balanced')"> Balanced</label>
-        <label><input type="checkbox" name="affectionForOwners" value="Cuddly" (change)="applyFilter('affectionForOwners', 'Cuddly')"> Cuddly</label>
+        <button class="button-filter" role="checkbox" name="affectionForOwners" value="Independent" (click)="applyFilter('affectionForOwners', 'Independent')"> Independent  </button>
+          <button class="button-filter" role="checkbox" name="affectionForOwners" value="Balanced" (click)="applyFilter('affectionForOwners', 'Balanced')"> Balanced   </button>
+          <button class="button-filter" role="checkbox" name="affectionForOwners" value="Cuddly" (click)="applyFilter('affectionForOwners', 'Cuddly')"> Cuddly      </button>
+      </div>
+      <div class="filter-group">
+        <h3>FRIENDLINESS</h3>
+        <button class="button-filter" role="checkbox" name="friendliness" value="Independent" (click)="applyFilter('friendliness', 'Toward Dogs')"> Toward Dogs  </button>
+        <button class="button-filter" role="checkbox" name="friendliness" value="Balanced" (click)="applyFilter('friendliness', 'Toward Children')"> Toward Children   </button>
       </div>
     </div>
-    <div class="filter-group">
-      <h3>FRIENDLINESS</h3>
-      <label><input type="checkbox" name="friendliness" value="Independent" (change)="applyFilter('friendliness', 'Toward Dogs')"> Toward Dogs</label>
-      <label><input type="checkbox" name="friendliness" value="Balanced" (change)="applyFilter('friendliness', 'Toward Children')"> Toward Children</label>
-    </div>
+
   </div>
 
   <div *ngIf="user" class="content-container">
     <h2 class="number-dogs"> {{totalElements}} Dog or Puppy Breeds</h2>
     <div class="review-grid">
-      <div *ngFor="let dog of dogBreeds" class="review-card">
-
-
+      <div *ngFor="let dog of paginatedDogBreeds" class="review-card">
         <img [src]='dog.image' class="review-image">
         <p class="review-name"> {{ dog.name }} </p>
       </div>
-
     </div>
-
+    <div class="pagination-controls">
+      <button (click)="prevPage()">Previous</button>
+      <span>Page {{currentPage}}</span>
+      <button (click)="nextPage()">Next</button>
+    </div>
   </div>
 
 

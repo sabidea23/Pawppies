@@ -28,8 +28,6 @@ body {
 
 .side-container {
   font-family: 'Montserrat', sans-serif;
-  background-color: white;
-
 }
 
 .search-form {
@@ -37,7 +35,6 @@ body {
   caret-color: transparent;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .mat-input-element {
@@ -263,7 +260,6 @@ input[type="button"] {
   font-family: 'Montserrat', sans-serif;
   color: #4a4553;
   margin-left: 25px;
-  font-weight: bold;
 }
 
 .search-dog {
@@ -348,3 +344,19 @@ input[type="text"] {
   color: white;
 }
 
+
+.button-filter {
+  border: 1px solid #6504B5;
+  background-color: white;
+  margin-top: 0px;
+  text-align: left;
+  border-radius: 4px; /* Adaugă borduri rotunjite pentru estetică */
+  padding: -2px;
+}
+
+h3 {
+  margin-bottom: 5px;
+  margin-top: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+}

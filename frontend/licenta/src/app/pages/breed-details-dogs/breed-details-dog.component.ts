@@ -48,6 +48,7 @@ export class BreedDetailsDogComponent implements OnInit {
   }
 
   applyFilter(category: string, value: string): void {
+    this.currentPage = 1;
     if (this.filters[category].includes(value)) {
       // @ts-ignore
       this.filters[category] = this.filters[category].filter(item => item !== value);
@@ -191,6 +192,25 @@ export class BreedDetailsDogComponent implements OnInit {
 
   poundsToKg(pounds: string): number {
     return parseFloat(pounds) * 0.45359237;
+  }
+
+  currentPage = 1;
+  itemsPerPage = 15;
+  get paginatedDogBreeds() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    return this.dogBreeds.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  nextPage() {
+    if (this.currentPage * this.itemsPerPage < this.totalElements) {
+      this.currentPage++;
+    }
+  }
+
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
   }
 
 }
