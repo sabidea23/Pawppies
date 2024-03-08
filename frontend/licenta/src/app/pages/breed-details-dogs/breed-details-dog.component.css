@@ -360,3 +360,15 @@ h3 {
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
 }
+
+
+.button-filter {
+  background-color: white;
+  color: black;
+  /* Adăugați orice alte stiluri necesare pentru buton */
+}
+
+.button-filter.pressed {
+  background-color: #6504B5;
+  color: white;
+}

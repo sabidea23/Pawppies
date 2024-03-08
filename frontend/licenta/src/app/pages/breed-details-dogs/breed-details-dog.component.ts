@@ -28,6 +28,12 @@ export class BreedDetailsDogComponent implements OnInit {
     friendliness: []
   };
 
+  pressedButton: { [key: string]: boolean } = {};
+
+  toggleButton(key: string) {
+    this.pressedButton[key] = !this.pressedButton[key];
+  }
+
   constructor(private login: LoginService, private router: Router, private snack: MatSnackBar, private breedDetailsService: Breed_detailsService) {
   }
 
