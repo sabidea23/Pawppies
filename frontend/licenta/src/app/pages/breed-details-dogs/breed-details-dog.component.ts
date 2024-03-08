@@ -30,6 +30,8 @@ export class BreedDetailsDogComponent implements OnInit {
 
   pressedButton: { [key: string]: boolean } = {};
 
+  totalPages = 0;
+
   toggleButton(key: string) {
     this.pressedButton[key] = !this.pressedButton[key];
   }
@@ -40,6 +42,7 @@ export class BreedDetailsDogComponent implements OnInit {
   ngOnInit(): void {
     this.user = this.login.getUser();
     this.getAllBreeds();
+    this.totalPages =  Math.ceil(this.totalElements / this.itemsPerPage);
   }
 
   getAllBreeds() {
@@ -71,6 +74,7 @@ export class BreedDetailsDogComponent implements OnInit {
       // @ts-ignore
       .filter(breed => breed.animalType === 'DOG')
     this.totalElements = this.dogBreeds.length;
+    this.totalPages =  Math.ceil(this.totalElements / this.itemsPerPage);
   }
 
   isBreedValid(breed: any): boolean {

@@ -37,16 +37,20 @@
       <h2>Filter Breeds </h2>
       <div class="filter-group">
         <h3>SIZE</h3>
-        <button (click)="applyFilter('size', 'Small') ; toggleButton('sizeSmall')" [ngClass]="{'pressed': pressedButton ['sizeSmall'] }" class="button-filter" name="size"
+        <button (click)="applyFilter('size', 'Small') ; toggleButton('sizeSmall')"
+                [ngClass]="{'pressed': pressedButton ['sizeSmall'] }" class="button-filter" name="size"
                 role="checkbox" value="Small"> Small
         </button>
-        <button (click)="applyFilter('size', 'Medium')  ; toggleButton('sizeMedium') " [ngClass]="{'pressed': pressedButton ['sizeMedium']}" class="button-filter" name="size"
+        <button (click)="applyFilter('size', 'Medium')  ; toggleButton('sizeMedium') "
+                [ngClass]="{'pressed': pressedButton ['sizeMedium']}" class="button-filter" name="size"
                 role="checkbox" value="Medium"> Medium
         </button>
-        <button (click)="applyFilter('size', 'Large') ; toggleButton('sizeLarga') " [ngClass]="{'pressed': pressedButton [ 'sizeLarga'] }" class="button-filter" name="size"
+        <button (click)="applyFilter('size', 'Large') ; toggleButton('sizeLarga') "
+                [ngClass]="{'pressed': pressedButton [ 'sizeLarga'] }" class="button-filter" name="size"
                 role="checkbox" value="Large"> Large
         </button>
-        <button (click)="applyFilter('size', 'Extra Large')  ; toggleButton('sizeExtraLarge')" [ngClass]="{'pressed': pressedButton ['sizeExtraLarge'] }" class="button-filter"
+        <button (click)="applyFilter('size', 'Extra Large')  ; toggleButton('sizeExtraLarge')"
+                [ngClass]="{'pressed': pressedButton ['sizeExtraLarge'] }" class="button-filter"
                 name="size" role="checkbox"
                 value="Extra Large"> Extra Large
         </button>
@@ -54,15 +58,18 @@
 
       <div class="filter-group">
         <h3>ENERGY LEVEL</h3>
-        <button (click)="applyFilter('activityLevel', 'Low')  ; toggleButton('activityLevelLow')" [ngClass]="{'pressed': pressedButton [ 'activityLevelLow']}" class="button-filter"
+        <button (click)="applyFilter('activityLevel', 'Low')  ; toggleButton('activityLevelLow')"
+                [ngClass]="{'pressed': pressedButton [ 'activityLevelLow']}" class="button-filter"
                 name="activityLevel" role="checkbox"
                 value="Low"> Low
         </button>
-        <button (click)="applyFilter('activityLevel', 'Moderate')  ; toggleButton('activityLevelModerate')" [ngClass]="{'pressed': pressedButton [ 'activityLevelModerate'] }" class="button-filter"
+        <button (click)="applyFilter('activityLevel', 'Moderate')  ; toggleButton('activityLevelModerate')"
+                [ngClass]="{'pressed': pressedButton [ 'activityLevelModerate'] }" class="button-filter"
                 name="activityLevel" role="checkbox"
                 value="Moderate"> Moderate
         </button>
-        <button (click)="applyFilter('activityLevel', 'High') ; toggleButton('activityLevelHidh')" [ngClass]="{'pressed': pressedButton [ 'activityLevelHidh'] }" class="button-filter"
+        <button (click)="applyFilter('activityLevel', 'High') ; toggleButton('activityLevelHidh')"
+                [ngClass]="{'pressed': pressedButton [ 'activityLevelHidh'] }" class="button-filter"
                 name="activityLevel" role="checkbox"
                 value="High"> High
         </button>
@@ -70,15 +77,18 @@
 
       <div class="filter-group">
         <h3>EASE OF TRAINING</h3>
-        <button (click)="applyFilter('easeOfTraining', 'Easy')  ; toggleButton('easeOfTrainingLow')" [ngClass]="{'pressed': pressedButton [ 'easeOfTrainingLow'] }" class="button-filter"
+        <button (click)="applyFilter('easeOfTraining', 'Easy')  ; toggleButton('easeOfTrainingLow')"
+                [ngClass]="{'pressed': pressedButton [ 'easeOfTrainingLow'] }" class="button-filter"
                 name="easeOfTraining" role="checkbox"
                 value="Easy"> Easy
         </button>
-        <button (click)="applyFilter('easeOfTraining', 'Average')  ; toggleButton('easeOfTrainingMedium')" [ngClass]="{'pressed': pressedButton [ 'easeOfTrainingMedium']}" class="button-filter"
+        <button (click)="applyFilter('easeOfTraining', 'Average')  ; toggleButton('easeOfTrainingMedium')"
+                [ngClass]="{'pressed': pressedButton [ 'easeOfTrainingMedium']}" class="button-filter"
                 name="easeOfTraining" role="checkbox"
                 value="Average"> Average
         </button>
-        <button (click)="applyFilter('easeOfTraining', 'Difficult')  ; toggleButton('easeOfTrainingHigh')" [ngClass]="{'pressed': pressedButton ['easeOfTrainingHigh']}" class="button-filter"
+        <button (click)="applyFilter('easeOfTraining', 'Difficult')  ; toggleButton('easeOfTrainingHigh')"
+                [ngClass]="{'pressed': pressedButton ['easeOfTrainingHigh']}" class="button-filter"
                 name="easeOfTraining" role="checkbox"
                 value="Difficult"> Difficult
         </button>
@@ -86,16 +96,19 @@
 
       <div class="filter-group">
         <h3>GROOMING REQUIREMENTS</h3>
-        <button (click)="applyFilter('groomingRequirements', 'Low')  ; toggleButton('groomingRequirementsLow')" [ngClass]="{'pressed': pressedButton [ 'groomingRequirementsLow'] }"
+        <button (click)="applyFilter('groomingRequirements', 'Low')  ; toggleButton('groomingRequirementsLow')"
+                [ngClass]="{'pressed': pressedButton [ 'groomingRequirementsLow'] }"
                 class="button-filter" name="groomingRequirements" role="checkbox"
                 value="Low"> Low
         </button>
-        <button (click)="applyFilter('groomingRequirements', 'Moderate')  ; toggleButton('groomingRequirementsM')" [ngClass]="{'pressed': pressedButton [ 'groomingRequirementsM'] }" class="button-filter"
+        <button (click)="applyFilter('groomingRequirements', 'Moderate')  ; toggleButton('groomingRequirementsM')"
+                [ngClass]="{'pressed': pressedButton [ 'groomingRequirementsM'] }" class="button-filter"
                 name="groomingRequirements" role="checkbox"
                 value="Moderate">
           Moderate
         </button>
-        <button (click)="applyFilter('groomingRequirements', 'High')  ; toggleButton('groomingRequirementsH')" [ngClass]="{'pressed': pressedButton [ 'groomingRequirementsH'] }" class="button-filter"
+        <button (click)="applyFilter('groomingRequirements', 'High')  ; toggleButton('groomingRequirementsH')"
+                [ngClass]="{'pressed': pressedButton [ 'groomingRequirementsH'] }" class="button-filter"
                 name="groomingRequirements" role="checkbox"
                 value="High"> High
         </button>
@@ -103,14 +116,17 @@
 
       <div class="filter-group">
         <h3>VOCALITY</h3>
-        <button (click)="applyFilter('vocality', 'Low')  ; toggleButton('vocalityL')" [ngClass]="{'pressed': pressedButton [ 'vocalityL'] }" class="button-filter"
+        <button (click)="applyFilter('vocality', 'Low')  ; toggleButton('vocalityL')"
+                [ngClass]="{'pressed': pressedButton [ 'vocalityL'] }" class="button-filter"
                 name="vocality" role="checkbox" value="Low"> Low
         </button>
-        <button (click)="applyFilter('vocality', 'Moderate')  ; toggleButton('vocalityM')" [ngClass]="{'pressed': pressedButton [ 'vocalityM'] }" class="button-filter"
+        <button (click)="applyFilter('vocality', 'Moderate')  ; toggleButton('vocalityM')"
+                [ngClass]="{'pressed': pressedButton [ 'vocalityM'] }" class="button-filter"
                 name="vocality" role="checkbox"
                 value="Moderate"> Moderate
         </button>
-        <button (click)="applyFilter('vocality', 'High')  ; toggleButton('vocalityH')" [ngClass]="{'pressed': pressedButton [ 'vocalityH'] }" class="button-filter"
+        <button (click)="applyFilter('vocality', 'High')  ; toggleButton('vocalityH')"
+                [ngClass]="{'pressed': pressedButton [ 'vocalityH'] }" class="button-filter"
                 name="vocality" role="checkbox" value="High">
           High
         </button>
@@ -118,15 +134,18 @@
 
       <div class="filter-group">
         <h3>EXERCISE REQUIREMENTS</h3>
-        <button (click)="applyFilter('exerciseRequirements', 'Moderate')  ; toggleButton('exerciseRequirementsL')" [ngClass]="{'pressed': pressedButton [ 'exerciseRequirementsL'] }" class="button-filter"
+        <button (click)="applyFilter('exerciseRequirements', 'Moderate')  ; toggleButton('exerciseRequirementsL')"
+                [ngClass]="{'pressed': pressedButton [ 'exerciseRequirementsL'] }" class="button-filter"
                 name="exerciseRequirements" role="checkbox"
                 value="Moderate"> Moderate
         </button>
-        <button (click)="applyFilter('exerciseRequirements', 'Significant')  ; toggleButton('exerciseRequirementsM')" [ngClass]="{'pressed': pressedButton [ 'exerciseRequirementsM'] }" class="button-filter"
+        <button (click)="applyFilter('exerciseRequirements', 'Significant')  ; toggleButton('exerciseRequirementsM')"
+                [ngClass]="{'pressed': pressedButton [ 'exerciseRequirementsM'] }" class="button-filter"
                 name="exerciseRequirements" role="checkbox"
                 value="Significant"> Significant
         </button>
-        <button (click)="applyFilter('exerciseRequirements', 'Rigorous')  ; toggleButton('exerciseRequirementsH')" [ngClass]="{'pressed': pressedButton [ 'exerciseRequirementsH'] }" class="button-filter"
+        <button (click)="applyFilter('exerciseRequirements', 'Rigorous')  ; toggleButton('exerciseRequirementsH')"
+                [ngClass]="{'pressed': pressedButton [ 'exerciseRequirementsH'] }" class="button-filter"
                 name="exerciseRequirements" role="checkbox"
                 value="Rigorous"> Rigorous
         </button>
@@ -134,26 +153,31 @@
 
       <div class="filter-group">
         <h3>AFFECTION FOR OWNERS</h3>
-        <button (click)="applyFilter('affectionForOwners', 'Independent')  ; toggleButton('affectionForOwnersL')" [ngClass]="{'pressed': pressedButton [ 'affectionForOwnersL'] }" class="button-filter"
+        <button (click)="applyFilter('affectionForOwners', 'Independent')  ; toggleButton('affectionForOwnersL')"
+                [ngClass]="{'pressed': pressedButton [ 'affectionForOwnersL'] }" class="button-filter"
                 name="affectionForOwners" role="checkbox"
                 value="Independent"> Independent
         </button>
-        <button (click)="applyFilter('affectionForOwners', 'Balanced')  ; toggleButton('affectionForOwnersM')" [ngClass]="{'pressed': pressedButton [ 'affectionForOwnersM'] }" class="button-filter"
+        <button (click)="applyFilter('affectionForOwners', 'Balanced')  ; toggleButton('affectionForOwnersM')"
+                [ngClass]="{'pressed': pressedButton [ 'affectionForOwnersM'] }" class="button-filter"
                 name="affectionForOwners" role="checkbox"
                 value="Balanced"> Balanced
         </button>
-        <button (click)="applyFilter('affectionForOwners', 'Cuddly')  ; toggleButton('affectionForOwnersH')" [ngClass]="{'pressed': pressedButton [ 'affectionForOwnersH'] }" class="button-filter"
+        <button (click)="applyFilter('affectionForOwners', 'Cuddly')  ; toggleButton('affectionForOwnersH')"
+                [ngClass]="{'pressed': pressedButton [ 'affectionForOwnersH'] }" class="button-filter"
                 name="affectionForOwners" role="checkbox"
                 value="Cuddly"> Cuddly
         </button>
       </div>
       <div class="filter-group">
         <h3>FRIENDLINESS</h3>
-        <button (click)="applyFilter('friendliness', 'Toward Dogs')  ; toggleButton('friendlinessL')" [ngClass]="{'pressed': pressedButton [ 'friendlinessL'] }" class="button-filter"
+        <button (click)="applyFilter('friendliness', 'Toward Dogs')  ; toggleButton('friendlinessL')"
+                [ngClass]="{'pressed': pressedButton [ 'friendlinessL'] }" class="button-filter"
                 name="friendliness" role="checkbox"
                 value="Independent"> Toward Dogs
         </button>
-        <button (click)="applyFilter('friendliness', 'Toward Children')  ; toggleButton('friendlinessH')" [ngClass]="{'pressed': pressedButton [ 'friendlinessH'] }" class="button-filter"
+        <button (click)="applyFilter('friendliness', 'Toward Children')  ; toggleButton('friendlinessH')"
+                [ngClass]="{'pressed': pressedButton [ 'friendlinessH'] }" class="button-filter"
                 name="friendliness" role="checkbox"
                 value="Balanced"> Toward Children
         </button>
@@ -170,14 +194,15 @@
         <p class="review-name"> {{ dog.name }} </p>
       </div>
     </div>
+
     <div class="pagination-controls">
-      <button (click)="prevPage()">Previous</button>
+      <button *ngIf="currentPage > 1" class="pagination-button prev" (click)="prevPage()">< PREVIOUS</button>
       <span>Page {{currentPage}}</span>
-      <button (click)="nextPage()">Next</button>
+      <button *ngIf="currentPage < totalPages" class="pagination-button next" (click)="nextPage()">NEXT > </button>
     </div>
+
+
   </div>
-
-
 </div>
 </body>
 
