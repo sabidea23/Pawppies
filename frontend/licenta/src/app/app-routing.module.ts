@@ -16,6 +16,7 @@ import {MissionComponent} from "./pages/mission/mission.component";
 import {QuizComponent} from "./user/quiz/quiz.component";
 import {BreedDetailsDogComponent} from "./pages/breed-details-dogs/breed-details-dog.component";
 import {BreedDetailsCatComponent} from "./pages/breed-details-cat/breed-details-cat.component";
+import {BreedDogComponent} from "./pages/breed-dog/breed-dog.component";
 
 const routes: Routes = [
   {
@@ -51,6 +52,11 @@ const routes: Routes = [
   {
     path: 'about-pets/mission',
     component: MissionComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'breed-dog',
+    component: BreedDogComponent,
     pathMatch: 'full',
   },
   {

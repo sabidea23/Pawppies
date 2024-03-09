@@ -189,16 +189,16 @@
   <div *ngIf="user" class="content-container">
     <h2 class="number-dogs"> {{totalElements}} Dog or Puppy Breeds</h2>
     <div class="review-grid">
-      <div *ngFor="let dog of paginatedDogBreeds" class="review-card">
+      <div *ngFor="let dog of paginatedDogBreeds" class="review-card" (click)="viewDogDetails(dog)">
         <img [src]='dog.image' class="review-image">
         <p class="review-name"> {{ dog.name }} </p>
       </div>
     </div>
 
     <div class="pagination-controls">
-      <button *ngIf="currentPage > 1" class="pagination-button prev" (click)="prevPage()">< PREVIOUS</button>
+      <button (click)="prevPage()" *ngIf="currentPage > 1" class="pagination-button prev">< PREVIOUS</button>
       <span>Page {{currentPage}}</span>
-      <button *ngIf="currentPage < totalPages" class="pagination-button next" (click)="nextPage()">NEXT > </button>
+      <button (click)="nextPage()" *ngIf="currentPage < totalPages" class="pagination-button next">NEXT ></button>
     </div>
 
 

@@ -1,9 +1,9 @@
 import {Component, ViewChild, OnInit} from '@angular/core';
-import {MatPaginator} from "@angular/material/paginator";
 import {LoginService} from "../../services/login.service";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Breed_detailsService} from "../../services/breed_details.service";
+import {DogDataService} from "../../services/dog-data.service";
 
 @Component({
   selector: 'app-breed-details',
@@ -36,14 +36,20 @@ export class BreedDetailsDogComponent implements OnInit {
     this.pressedButton[key] = !this.pressedButton[key];
   }
 
-  constructor(private login: LoginService, private router: Router, private snack: MatSnackBar, private breedDetailsService: Breed_detailsService) {
+  constructor(private login: LoginService, private router: Router, private snack: MatSnackBar, private breedDetailsService: Breed_detailsService, private dogDataService: DogDataService) {
   }
 
   ngOnInit(): void {
     this.user = this.login.getUser();
     this.getAllBreeds();
-    this.totalPages =  Math.ceil(this.totalElements / this.itemsPerPage);
+    this.totalPages = Math.ceil(this.totalElements / this.itemsPerPage);
   }
+
+  viewDogDetails(dog: any) {
+    this.dogDataService.changeDogData(dog);
+    this.router.navigate(['/breed-dog']);
+  }
+
 
   getAllBreeds() {
     this.breedDetailsService.getAllBreeds()
@@ -67,14 +73,19 @@ export class BreedDetailsDogComponent implements OnInit {
     this.filterBreeds();
   }
 
+  test() {
+    console.log(1)
+  }
+
   filterBreeds(): void {
     // @ts-ignore
     this.dogBreeds = this.breeds.filter(breed => {
-      return this.isBreedValid(breed) && this.getVocalityLevel(breed) && this.isactivityLevelValid(breed) && this.getgroomingRequirementsLevel(breed) && this.getaffectionForOwnersLevel(breed) && this.geteaseOfTrainingLevel(breed) && this.exerciseRequirementsLevel(breed) && this.getFriendliness(breed);})
+      return this.isBreedValid(breed) && this.getVocalityLevel(breed) && this.isactivityLevelValid(breed) && this.getgroomingRequirementsLevel(breed) && this.getaffectionForOwnersLevel(breed) && this.geteaseOfTrainingLevel(breed) && this.exerciseRequirementsLevel(breed) && this.getFriendliness(breed);
+    })
       // @ts-ignore
       .filter(breed => breed.animalType === 'DOG')
     this.totalElements = this.dogBreeds.length;
-    this.totalPages =  Math.ceil(this.totalElements / this.itemsPerPage);
+    this.totalPages = Math.ceil(this.totalElements / this.itemsPerPage);
   }
 
   isBreedValid(breed: any): boolean {
@@ -137,7 +148,6 @@ export class BreedDetailsDogComponent implements OnInit {
 
     return true;  // Dacă niciun filtru de friendliness nu este selectat, rasa este considerată validă
   }
-
 
 
   getgroomingRequirementsLevel(breed: any): boolean {
@@ -206,6 +216,7 @@ export class BreedDetailsDogComponent implements OnInit {
 
   currentPage = 1;
   itemsPerPage = 15;
+
   get paginatedDogBreeds() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     return this.dogBreeds.slice(startIndex, startIndex + this.itemsPerPage);
