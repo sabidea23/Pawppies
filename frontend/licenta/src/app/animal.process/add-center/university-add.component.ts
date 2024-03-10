@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
-import { UniversityService } from '../../services/university.service';
+import { AnimalCenterService } from '../../services/animal-center.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import Swal from 'sweetalert2';
 import {countries} from "../../utils/country-data-store";
@@ -39,7 +39,7 @@ export class UniversityAddComponent implements OnInit {
     private login: LoginService,
     private snack: MatSnackBar,
     private router: Router,
-    private universityService: UniversityService,
+    private universityService: AnimalCenterService,
   ) { }
 
   ngOnInit(): void {
@@ -68,7 +68,7 @@ export class UniversityAddComponent implements OnInit {
 
     this.university.admin = this.user;
 
-    this.universityService.addUniversity(this.university).subscribe({
+    this.universityService.createAnimalCenter(this.university).subscribe({
       next: (data) => {
         this.user.authorities = backedUpAuthorities;
 

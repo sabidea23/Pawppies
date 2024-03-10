@@ -3,7 +3,7 @@ import {LoginService} from "../../services/login.service";
 import {Router} from "@angular/router";
 import {SearchService} from "../../services/search.service";
 import {countries} from "../../utils/country-data-store";
-import {ReviewService} from "../../services/review.service";
+import {AnimalService} from "../../services/animal.service";
 import {ImageProcessingService} from "../../services/image-processing.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
@@ -28,7 +28,7 @@ export class MissionComponent {
 
   public countries: any = countries;
 
-  constructor(private snack: MatSnackBar, private imageProcessingService: ImageProcessingService, private reviewService: ReviewService, private login: LoginService, private router: Router, private searchService: SearchService) {
+  constructor(private snack: MatSnackBar, private imageProcessingService: ImageProcessingService, private reviewService: AnimalService, private login: LoginService, private router: Router, private searchService: SearchService) {
   }
 
   goToAnimalsPage() {
@@ -74,7 +74,7 @@ export class MissionComponent {
   }
 
   getFavouriteReviews() {
-    this.reviewService.getAllReviews().subscribe({
+    this.reviewService.getAnimals().subscribe({
       next: (data) => {
         this.allReviews = data;
         this.displayRandomAnimals();
@@ -103,7 +103,7 @@ export class MissionComponent {
     this.user = this.login.getUser();
     this.getFavouriteReviews();
 
-    this.reviewService.getReviewsLikedByUser(this.user.id).subscribe({
+    this.reviewService.getLikedAnimals(this.user.id).subscribe({
       next: (data) => {
         this.likedReviews = data;
       },
@@ -116,10 +116,10 @@ export class MissionComponent {
   }
 
   public likeReview(review: any) {
-    this.reviewService.likeReview(review.id, this.user.id).subscribe({
+    this.reviewService.getLikeStatus(review.id, this.user.id).subscribe({
       next: (updatedReview: any) => {
         // Update liked reviews
-        this.reviewService.getReviewsLikedByUser(this.user.id).subscribe({
+        this.reviewService.getLikedAnimals(this.user.id).subscribe({
           next: (data) => {
             this.likedReviews = data;
           },

@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {LoginService} from '../../services/login.service';
-import {ReviewService} from '../../services/review.service';
+import {AnimalService} from '../../services/animal.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {UniversityService} from 'src/app/services/university.service';
+import {AnimalCenterService} from 'src/app/services/animal-center.service';
 import {FileModel} from "../../model/file-handle.model";
 import {DomSanitizer} from "@angular/platform-browser";
 import {Review} from "../../model/review.model";
@@ -57,7 +57,7 @@ export class ReviewAddComponent implements OnInit {
 
   breed: any = undefined;
   constructor(private login: LoginService, private snack: MatSnackBar, private router: Router, private route: ActivatedRoute,
-              private reviewService: ReviewService, private universityService: UniversityService, private sanitazer: DomSanitizer,
+              private reviewService: AnimalService, private universityService: AnimalCenterService, private sanitazer: DomSanitizer,
               private dogBreedService: Breed_detailsService) {
   }
 
@@ -65,7 +65,7 @@ export class ReviewAddComponent implements OnInit {
     this.user = this.login.getUser();
     this.universityId = JSON.parse(this.route.snapshot.paramMap.get('universityId') || '{}');
     this.university = this.universityService
-      .getUniversityById(this.universityId)
+      .getAnimalCenter(this.universityId)
       .subscribe({
         next: (data) => {
           this.university = data;
@@ -116,7 +116,7 @@ export class ReviewAddComponent implements OnInit {
 
         const reviewFormData = this.prepareFormData(this.review);
 
-        this.reviewService.addReview(reviewFormData).subscribe({
+        this.reviewService.createAnimal(reviewFormData).subscribe({
           next: (data) => {
             this.user.authorities = backedUpUserAuthorities;
             this.university.admin.authorities = backedUpAdminAuthorities;

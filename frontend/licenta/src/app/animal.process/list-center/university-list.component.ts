@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {LoginService} from '../../services/login.service';
-import {UniversityService} from '../../services/university.service';
+import {AnimalCenterService} from '../../services/animal-center.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import Swal from 'sweetalert2';
 import {Router} from '@angular/router';
@@ -39,7 +39,7 @@ export class UniversityListComponent implements OnInit {
 
   searchFilters: any[] = [];
 
-  constructor(private login: LoginService, private router: Router, private snack: MatSnackBar, private universityService: UniversityService, private dialog: MatDialog, private searchService: SearchService) {
+  constructor(private login: LoginService, private router: Router, private snack: MatSnackBar, private universityService: AnimalCenterService, private dialog: MatDialog, private searchService: SearchService) {
   }
 
   ngOnInit(): void {
@@ -98,7 +98,7 @@ export class UniversityListComponent implements OnInit {
         const backedUpAuthorities = university.admin.authorities;
         university.admin.authorities = undefined;
 
-        this.universityService.updateUniversity(university).subscribe({
+        this.universityService.updateAnimalCenter(university).subscribe({
           next: (_) => {
             // Restore authorities, maybe it will be needed later
             university.admin.authorities = backedUpAuthorities;
@@ -150,7 +150,7 @@ export class UniversityListComponent implements OnInit {
       confirmButtonColor: '#FF1053',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.universityService.deleteUniversityById(university.id).subscribe({
+        this.universityService.deleteAnimalCenter(university.id).subscribe({
           next: (_) => {
             this.universities = this.universities.filter((u: any) => u.id !== university.id);
             Swal.fire({
@@ -184,7 +184,7 @@ export class UniversityListComponent implements OnInit {
   }
 
   private getUniversities(request: any) {
-    this.universityService.getAllUniversities(request)
+    this.universityService.getAnimalCenters(request)
       .subscribe(data => {
         console.log(data)
         this.universities = data['content'];

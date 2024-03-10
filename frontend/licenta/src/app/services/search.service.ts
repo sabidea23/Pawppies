@@ -11,8 +11,4 @@ export class SearchService {
   setSearchFilters(filters: any) {
     this.searchFiltersSubject.next(filters);
   }
-
-  getSearchFilters() {
-    return this.searchFiltersSubject.value;
-  }
 }
