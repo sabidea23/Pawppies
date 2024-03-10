@@ -1,5 +1,6 @@
 package licenta.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -17,12 +19,11 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class BreedDetails {
     public enum AnimalType {
-        DOG, CAT;
+        DOG, CAT
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
     private Long id;
 
     @NotNull
@@ -128,4 +129,8 @@ public class BreedDetails {
     @NotNull
     @Column()
     private Integer heatSensitivity;
+
+    @OneToMany(mappedBy = "breedDetails", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Set<Animal> animals;
 }

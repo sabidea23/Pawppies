@@ -1,62 +1,185 @@
-<mat-card *ngIf="user" class="all">
-  <mat-card-content>
-    <form (ngSubmit)="formSubmit()" class="container">
-      <div class="con">
+<body>
+<mat-card *ngIf="user">
+  <mat-card-content style="font-family: 'Montserrat', sans-serif;">
+    <form (ngSubmit)="formSubmit()" class="login-form">
 
-        <header style="align-self: center">
-          <h1>Add Animal</h1>
-        </header>
+      <h2>Add a New Friend to Our Family</h2>
 
-        <div class="field-set">
-          <mat-form-field appearance="fill" class="full-width">
-            <mat-label><mat-icon>pets</mat-icon> Animal Name</mat-label>
-            <input [(ngModel)]="inputName" matInput name="name" placeholder="Animal Name"/>
-            <button mat-icon-button matSuffix (click)="inputName=''">
-              <mat-icon>close</mat-icon>
-            </button>
-          </mat-form-field>
+      <h4> complete the details below to introduce a new animal</h4>
+      <!-- Animal Name -->
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
+        <mat-label>
+          <mat-icon>badge</mat-icon> <!-- Schimbat la un icon mai relevant pentru nume -->
+          Animal Name
+        </mat-label>
+        <input [(ngModel)]="petProfile.inputName" matInput name="name" placeholder="E.g., Max, Bella"/>
+        <button (click)="petProfile.inputName=''" mat-icon-button matSuffix>
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
 
-          <mat-form-field appearance="fill" class="full-width">
-            <mat-label><mat-icon>event</mat-icon> Animal Age</mat-label>
-            <input [(ngModel)]="inputAge" matInput name="age" placeholder="Animal Age"/>
-            <button mat-icon-button matSuffix (click)="inputAge=''">
-              <mat-icon>close</mat-icon>
-            </button>
-          </mat-form-field>
+      <!-- Animal Type with enhanced label and icon -->
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
+        <mat-label>
+          <mat-icon>category</mat-icon> <!-- Icon mai relevant pentru tipul animalului -->
+          Animal Type
+        </mat-label>
+        <mat-select [(ngModel)]="petProfile.inputType" name="type" (selectionChange)="checkOtherType($event.value)">
+          <mat-option value="Dog">Dog</mat-option>
+          <mat-option value="Cat">Cat</mat-option>
+          <mat-option value="Others">Others - Specify below</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-          <mat-form-field appearance="fill" class="full-width">
-            <mat-label><mat-icon>category</mat-icon> Animal Breed</mat-label>
-            <input [(ngModel)]="inputBreed" matInput name="breed" placeholder="Animal Breed"/>
-            <button mat-icon-button matSuffix (click)="inputBreed=''">
-              <mat-icon>close</mat-icon>
-            </button>
-          </mat-form-field>
+      <!-- Specific Type Input shown only for 'Others' -->
+      <mat-form-field *ngIf="isOtherSelected" appearance="fill" class="custom-mat-form-field">
+        <mat-label>Specify Other Type</mat-label>
+        <input matInput [(ngModel)]="petProfile.otherType" name="otherType" placeholder="E.g., Rabbit, Parrot"/>
+      </mat-form-field>
 
-          <div>
-            <div class="col-6">
-              <div>
-                <input #selectFile (change)="onFileSelected($event)" multiple type="file" value="select">
-              </div>
+      <!-- Breed Selection enhanced with relevant icon and clearer instructions -->
+      <mat-form-field *ngIf="petProfile.inputType !== 'Others'" appearance="fill" class="custom-mat-form-field">
+        <mat-label>
+          <mat-icon>merge_type</mat-icon> <!-- Icon mai adecvat pentru rasa -->
+          Animal Breed
+        </mat-label>
+        <mat-select [(ngModel)]="petProfile.inputBreed" name="breed">
+          <mat-option *ngFor="let breed of getBreedOptions(petProfile.inputType)" [value]="breed">{{ breed }}</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-              <div class="image-grid">
-                <div *ngFor="let file of this.review.reviewImages">
-                  <img [src]='file.url'>
-                </div>
-              </div>
+      <!-- Manual Breed Input for 'Others' -->
+      <mat-form-field *ngIf="petProfile.inputType === 'Others'" appearance="fill" class="custom-mat-form-field">
+        <mat-label>Specify Breed</mat-label>
+        <input matInput [(ngModel)]="petProfile.inputBreed" name="breed" placeholder="E.g., Mixed, Unknown"/>
+      </mat-form-field>
 
-            </div>
-          </div>
+      <!-- Animal Gender with a clearer label and icon -->
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
+        <mat-label>
+          <mat-icon>wc</mat-icon> <!-- Icon care sugerează genul -->
+          Animal Gender
+        </mat-label>
+        <mat-select [(ngModel)]="petProfile.inputGender" name="gender">
+          <mat-option value="Male">Male</mat-option>
+          <mat-option value="Female">Female</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-        </div>
-        <div class="text-center">
-          <button [disabled]="!isFormValid()" mat-raised-button type="submit">
-            Add
-          </button>
-          <button mat-raised-button type="button" (click)="clearForm()">
-            Clear
-          </button>
+      <!-- Animal Age with a relevant icon -->
+      <mat-form-field *ngIf="petProfile.inputType" appearance="fill" class="custom-mat-form-field">
+        <mat-label>
+          <mat-icon>cake</mat-icon> <!-- Icon sugerativ pentru vârstă -->
+          Animal Age
+        </mat-label>
+        <mat-select [(ngModel)]="petProfile.inputAge" name="age">
+          <mat-option *ngFor="let age of getAgeOptions(petProfile.inputType)" [value]="age">{{age}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field *ngIf="petProfile.inputType" appearance="fill" class="custom-mat-form-field">
+        <mat-label>
+          <mat-icon>aspect_ratio</mat-icon> <!-- Icon sugerativ pentru vârstă -->
+          Animal Size
+        </mat-label>
+        <mat-select [(ngModel)]="petProfile.inputSize" name="size">
+          <mat-option *ngFor="let size of getSizeOptions(petProfile.inputType)" [value]="size">{{size}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Animal Coat Length enhanced with description and icon -->
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
+        <mat-label>
+          <mat-icon>texture</mat-icon> <!-- Icon mai descriptiv pentru lungimea blănii -->
+          Animal Coat Length
+        </mat-label>
+        <mat-select [(ngModel)]="petProfile.inputCoatLength" name="coatlength">
+          <mat-option value="Hairless">Hairless</mat-option>
+          <mat-option value="Short">Short</mat-option>
+          <mat-option value="Medium">Medium</mat-option>
+          <mat-option value="Long">Long</mat-option> <!-- Am schimbat "Large" cu "Long" -->
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Enhanced field for Animal compatibility -->
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
+        <mat-label>
+          <mat-icon>pets</mat-icon> <!-- Icon adecvat pentru compatibilitate -->
+          Good With
+        </mat-label>
+        <mat-select [(ngModel)]="petProfile.inputGoodInHome" multiple name="goodInHome">
+          <mat-option value="Dogs">Other Dogs</mat-option>
+          <mat-option value="Cats">Other Cats</mat-option>
+          <mat-option value="Children">Children</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Field for Animal Care & Behavior with enhancements -->
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
+        <mat-label>
+          <mat-icon>healing</mat-icon> <!-- Icon sugestiv pentru îngrijire și comportament -->
+          Care & Behavior
+        </mat-label>
+        <mat-select [(ngModel)]="petProfile.inputCare" multiple name="care">
+          <mat-option value="trained">House trained</mat-option>
+          <mat-option value="Declawed">Declawed</mat-option>
+          <mat-option value="Special Needs">Special Needs</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Field for selecting Animal Color with better icon -->
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
+        <mat-label>
+          <mat-icon>palette</mat-icon> <!-- Icon mai potrivit pentru culoare -->
+          Color
+        </mat-label>
+        <mat-select [(ngModel)]="petProfile.inputColors" multiple name="colors">
+          <mat-option *ngFor="let color of colorOptions" [value]="color">{{ color }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Descriptive fields for additional information -->
+      <mat-form-field appearance="fill" class="custom-mat-form-field-text">
+        <mat-label>
+          <mat-icon>description</mat-icon> <!-- Icon descriptiv pentru descriere -->
+          Description
+        </mat-label>
+        <textarea [(ngModel)]="petProfile.inputDescription" class="textarea-input" matInput maxlength="2000"
+                  name="description" placeholder="Add a detailed description"></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="custom-mat-form-field-text">
+        <mat-label>
+          <mat-icon>local_hospital</mat-icon> <!-- Icon adecvat pentru sănătate -->
+          Health Information
+        </mat-label>
+        <textarea [(ngModel)]="petProfile.inputHealth" class="textarea-input" matInput maxlength="2000"
+                  name="health" placeholder="Provide any health-related information"></textarea>
+      </mat-form-field>
+
+      <!-- Image upload section with delete option -->
+      <div>
+        <input #selectFile (change)="onFileSelected($event)" class="input-images" multiple type="file">
+      </div>
+
+      <div class="image-grid">
+        <div class="image-container" *ngFor="let file of review.reviewImages; let i = index">
+          <img [src]="file.url">
+          <button class="delete-button" (click)="deleteImage(i)">-</button>
         </div>
       </div>
+
+      <!-- Form submission buttons -->
+      <div class="button-container">
+        <button [disabled]="!isFormValid()" class="add_btn" mat-raised-button type="submit">
+          ADD
+        </button>
+        <button (click)="clearForm()" class="cancel-button-class" mat-raised-button type="button">
+          CLEAR
+        </button>
+      </div>
     </form>
+
   </mat-card-content>
 </mat-card>
+</body>

@@ -6,6 +6,7 @@ import licenta.repo.AnimalRepository;
 import licenta.service.AnimalService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -21,6 +22,8 @@ public class AnimalServiceImpl implements AnimalService {
 
     @Override
     public Animal createAnimal(Animal animal) {
+        animal.setPostedDate(LocalDate.now());
+        animal.setIsAdopted(false);
         return this.animalRepository.save(animal);
     }
 

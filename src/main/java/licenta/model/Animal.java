@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,16 +26,56 @@ public class Animal {
     private Long id;
 
     @NotNull
-    @Column(length = 3000)
+    @Column(length = 100)
     private String name;
 
     @NotNull
     @Column()
-    private Integer age;
+    private String age;
+
+    @NotNull
+    @Column(length = 300)
+    private String gender;
+
+    @NotNull
+    @Column(length = 100)
+    private String size;
+
+    @NotNull
+    @Column(length = 100)
+    private String coatLength;
+
+    @NotNull
+    @Column(length = 2000)
+    private String type;
+    
+    @NotNull
+    @Column(length = 2000)
+    private String health;
+
+    @NotNull
+    @Column(length = 2000)
+    private String care;
+
+    @NotNull
+    @Column(length = 100)
+    private String color;
+
+    @NotNull
+    @Column(length = 2000)
+    private String description;
+
+    @NotNull
+    @Column(length = 100)
+    private String goodInHome;
 
     @NotNull
     @Column()
-    private String breed;
+    private LocalDate postedDate;
+
+    @NotNull
+    @Column()
+    private Boolean isAdopted;
 
     @NotNull
     @JsonIgnore
@@ -46,10 +87,10 @@ public class Animal {
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private AnimalCenter animalCenter;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "breed_detail_id")
+
     @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "breed_details_id")
     private BreedDetails breedDetails;
 
     @JsonIgnore
@@ -83,6 +124,11 @@ public class Animal {
         this.animalCenter = university;
     }
 
+    @JsonProperty("breedDetails")
+    public void setBreedDetails(BreedDetails breedDetails) {
+        this.breedDetails = breedDetails;
+    }
+    
     @JsonProperty("likes")
     public int getLikes() {
         return likes;
