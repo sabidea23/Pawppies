@@ -89,6 +89,7 @@ public class Animal {
 
 
     @NotNull
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "breed_details_id")
     private BreedDetails breedDetails;
@@ -117,6 +118,11 @@ public class Animal {
     @JsonIgnore
     public AnimalCenter getUniversity() {
         return animalCenter;
+    }
+
+    @JsonIgnore
+    public BreedDetails getBreedDetails() {
+        return breedDetails;
     }
 
     @JsonProperty("university")

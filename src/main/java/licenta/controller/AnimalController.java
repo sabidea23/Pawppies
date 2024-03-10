@@ -60,7 +60,6 @@ public class AnimalController {
         }
 
         originalAnimal.setAge(requestBodyAnimal.getAge());
-        originalAnimal.setBreed(requestBodyAnimal.getName());
         originalAnimal.setName(requestBodyAnimal.getName());
 
         return this.animalService.updateAnimal(originalAnimal);
