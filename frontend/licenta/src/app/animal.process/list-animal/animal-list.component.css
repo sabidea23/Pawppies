@@ -249,14 +249,14 @@ mat-form-field {
 
 
 
-.review-grid {
+.animal-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1rem;
   padding: 1rem;
 }
 
-.review-card {
+.animal-card {
   height: 300px;
   position: relative;
   border: 3px solid #ddd;
@@ -283,7 +283,7 @@ mat-form-field {
   transform: scale(1.1); /* Mărește butonul ușor când mouse-ul este deasupra */
 }
 
-/* Clasa adăugată când review-ul este apreciat */
+/* Clasa adăugată când animal-ul este apreciat */
 mat-icon {
   margin-top: 5px;
   color: #6504B5; /* Culoarea pentru când este apreciat */
@@ -307,27 +307,27 @@ input[type="button"] {
   outline:none;
 }
 
-/* Clasa adăugată când review-ul este apreciat */
+/* Clasa adăugată când animal-ul este apreciat */
 .liked {
   color: #6504B5; /* Culoarea pentru când este apreciat */
 }
 
 
-.review-card:hover {
+.animal-card:hover {
   border-color: #6504B5; /* Schimbă culoarea la hover */
 }
 
-.review-image {
+.animal-image {
   width: 100%;
   height: 75%;
   display: block;
 }
 
-.review-details {
+.animal-details {
   padding: 0.5rem;
 }
 
-.review-name {
+.animal-name {
   margin: 0;
   font-size: 1.3rem;
   font-family: 'Montserrat', sans-serif;

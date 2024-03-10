@@ -28,11 +28,11 @@ public class AnimalController {
 
     @PostMapping(value = {"/"}, consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Animal createAnimal(@RequestPart("review") Animal animal,
+    public Animal createAnimal(@RequestPart("animal") Animal animal,
                                @RequestPart("imageFile") MultipartFile[] file) {
         try {
             Set<ImageModel> imageModels = uploadImage(file);
-            animal.setReviewImages(imageModels);
+            animal.setAnimalImages(imageModels);
             return this.animalService.createAnimal(animal);
         } catch (Exception e) {
             return null;
@@ -103,16 +103,9 @@ public class AnimalController {
 
     @PutMapping("/{reviewId}/like/{userId}")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Animal likeRAnimal(@PathVariable("reviewId") Long animalId, @PathVariable("userId") Long userId)
+    public Animal likeAnimal(@PathVariable("reviewId") Long animalId, @PathVariable("userId") Long userId)
             throws Exception {
         return this.animalService.likeRAnimal(animalId, userId);
-    }
-
-    @PutMapping("/{reviewId}/dislike/{userId}")
-    @ResponseStatus(code = HttpStatus.CREATED)
-    public Animal dislikeAnimal(@PathVariable("reviewId") Long animalId, @PathVariable("userId") Long userId)
-            throws Exception {
-        return this.animalService.dislikeAnimal(animalId, userId);
     }
 
     @GetMapping("/{reviewId}/like-status/{userId}")

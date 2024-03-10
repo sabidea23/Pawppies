@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Review} from "../model/review.model";
+import {Animal} from "../model/animal.model";
 import {FileModel} from "../model/file-handle.model";
 import {DomSanitizer} from "@angular/platform-browser";
 
@@ -9,13 +9,13 @@ import {DomSanitizer} from "@angular/platform-browser";
 export class ImageProcessingService {
 
   constructor(private sanitizer: DomSanitizer) { }
-  public createImage (review: any) {
-    const reviewImages: any[] =  review.reviewImages;
+  public createImage (animal: any) {
+    const animalImages: any[] =  animal.animalImages;
 
-    const reviewimagesToFileHandle: FileModel[] = [];
+    const animalImagesToFileHandle: FileModel[] = [];
 
-    for (let i = 0; i < reviewImages.length; i++) {
-      const imageFileData = reviewImages[i];
+    for (let i = 0; i < animalImages.length; i++) {
+      const imageFileData = animalImages[i];
 
       const imageBlob = this.dataURIToBlob(imageFileData.picByte, imageFileData.type);
 
@@ -26,11 +26,11 @@ export class ImageProcessingService {
         url: this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(imageFile))
       };
 
-      reviewimagesToFileHandle.push(finalFileHandle);
+      animalImagesToFileHandle.push(finalFileHandle);
     }
 
-    review.reviewImages = reviewimagesToFileHandle;
-    return review;
+    animal.animalImages = animalImagesToFileHandle;
+    return animal;
   }
 
   public dataURIToBlob(pictureBytes : any, imageType: any) {

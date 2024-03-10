@@ -98,18 +98,6 @@ public class AnimalServiceImpl implements AnimalService {
         return animal;
     }
 
-    @Override
-    public Animal dislikeAnimal(Long animalId, Long userId) throws AnimalNotFoundExeption {
-        Animal animal = this.getAnimal(animalId);
-        if (animal == null) {
-            throw new AnimalNotFoundExeption("Animal with id `" + animalId + "` not found");
-        }
-
-        animal.removeLike(userId);
-
-        this.animalRepository.save(animal);
-        return animal;
-    }
 
     @Override
     public boolean getLikeStatus(Long animalId, Long userId) throws AnimalNotFoundExeption {

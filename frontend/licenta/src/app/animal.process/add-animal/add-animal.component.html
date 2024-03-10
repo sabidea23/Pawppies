@@ -163,7 +163,7 @@
       </div>
 
       <div class="image-grid">
-        <div class="image-container" *ngFor="let file of review.reviewImages; let i = index">
+        <div class="image-container" *ngFor="let file of animal.animalImages; let i = index">
           <img [src]="file.url">
           <button class="delete-button" (click)="deleteImage(i)">-</button>
         </div>

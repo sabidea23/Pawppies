@@ -1,6 +1,6 @@
 import {FileModel} from "./file-handle.model";
 
-export interface Review {
+export interface Animal {
   name: '',
   age: undefined,
   size: undefined,
@@ -12,8 +12,8 @@ export interface Review {
   care: undefined,
   goodInHome: undefined,
   coatLength: undefined,
-  university: undefined,
+  animalCenter: undefined,
   author: undefined,
   breedDetails: undefined,
-  reviewImages: FileModel[]
+  animalImages: FileModel[]
 }

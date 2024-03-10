@@ -86,7 +86,7 @@
       ADMINISTRATION</a>
     <mat-menu class="custom-menu submeniu" #admin="matMenu">
       <button class="mat-menu-customize-item" mat-menu-item routerLink="/admin/users">Change roles</button>
-      <button class="mat-menu-customize-item" mat-menu-item (click)="goToAddUniversity()">Add Animal Center</button>
+      <button class="mat-menu-customize-item" mat-menu-item (click)="goToAddAnimalCenter()">Add Animal Center</button>
     </mat-menu>
 
     <a *ngIf="isLoggedIn && user && getUserRole() === 'NORMAL'"  class="sub-menu-item" mat-button [matMenuTriggerFor]="userSubMenu">

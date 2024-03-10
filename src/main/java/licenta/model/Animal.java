@@ -102,8 +102,8 @@ public class Animal {
     private int likes;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "review_images", joinColumns = {@JoinColumn(name = "review_id")}, inverseJoinColumns = {@JoinColumn(name = "image_id")})
-    private Set<ImageModel> reviewImages;
+    @JoinTable(name = "animal_images", joinColumns = {@JoinColumn(name = "animal_id")}, inverseJoinColumns = {@JoinColumn(name = "image_id")})
+    private Set<ImageModel> animalImages;
 
     @JsonIgnore
     public User getAuthor() {
@@ -116,7 +116,7 @@ public class Animal {
     }
 
     @JsonIgnore
-    public AnimalCenter getUniversity() {
+    public AnimalCenter getAnimalCenter() {
         return animalCenter;
     }
 
@@ -125,9 +125,9 @@ public class Animal {
         return breedDetails;
     }
 
-    @JsonProperty("university")
-    public void setUniversity(AnimalCenter university) {
-        this.animalCenter = university;
+    @JsonProperty("animalCenter")
+    public void setAnimalCenter(AnimalCenter animalCenter) {
+        this.animalCenter = animalCenter;
     }
 
     @JsonProperty("breedDetails")

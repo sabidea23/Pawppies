@@ -1,35 +1,35 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {LoginService} from '../../services/login.service';
-import {UniversityService} from '../../services/university.service';
+import {AnimalCenterService} from '../../services/animal.center.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import Swal from 'sweetalert2';
 import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import {MapDialogComponent} from '../../utils/map-dialog/map-dialog.component';
-import {EditUniversityComponent} from "../edit-center/edit-university.component";
+import {EditAnimalCenterComponent} from "../edit-center/edit-animal-center.component";
 import {MatPaginator, MatPaginatorModule, PageEvent} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {countries} from "../../utils/country-data-store";
 import {SearchService} from "../../services/search.service";
 
 @Component({
-  selector: 'app-university-list',
-  templateUrl: './university-list.component.html',
-  styleUrls: ['./university-list.component.css'],
+  selector: 'app-animal-center-list',
+  templateUrl: './animal-center-list.component.html',
+  styleUrls: ['./animal-center-list.component.css'],
 })
-export class UniversityListComponent implements OnInit {
+export class AnimalCenterList implements OnInit {
 
   dataSource = new MatTableDataSource<any>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 
-  displayedColumns: string[] = ['university', 'petList', 'cityState', 'contact', 'showOnMap'];
+  displayedColumns: string[] = ['animalCenter', 'petList', 'cityState', 'contact', 'showOnMap'];
 
-  displayedColumnsAdmin: string[] = ['university', 'petList', 'cityState', 'contact', 'showOnMap', 'edit', 'delete'];
+  displayedColumnsAdmin: string[] = ['animalCenter', 'petList', 'cityState', 'contact', 'showOnMap', 'edit', 'delete'];
 
   user = this.login.getUser();
-  universities: any = [];
-  filteredUniversities: any = [];
+  animalCenters: any = [];
+  filteredAnimalCenters: any = [];
   totalElements: number = 0;
   public countries: any = countries;
 
@@ -39,7 +39,7 @@ export class UniversityListComponent implements OnInit {
 
   searchFilters: any[] = [];
 
-  constructor(private login: LoginService, private router: Router, private snack: MatSnackBar, private universityService: UniversityService, private dialog: MatDialog, private searchService: SearchService) {
+  constructor(private login: LoginService, private router: Router, private snack: MatSnackBar, private animalCenterService: AnimalCenterService, private dialog: MatDialog, private searchService: SearchService) {
   }
 
   ngOnInit(): void {
@@ -50,7 +50,7 @@ export class UniversityListComponent implements OnInit {
       }
     });
     this.user = this.login.getUser();
-    this.getUniversities({page: "0", size: "5"});
+    this.getAnimalCenters({page: "0", size: "5"});
     this.performSearch();
 
     // @ts-ignore
@@ -59,53 +59,53 @@ export class UniversityListComponent implements OnInit {
   }
 
   public handlePageEvent(event: PageEvent): void {
-    this.getUniversities({page: event.pageIndex, size: event.pageSize});
+    this.getAnimalCenters({page: event.pageIndex, size: event.pageSize});
   }
 
   public getUserRole() {
     return this.login.getUserRole();
   }
 
-  public goToReviews(university: any) {
+  public goToAnimalsPage(animalCenter: any) {
     const user_role = this.login.getUserRole();
     if (user_role == 'ADMIN')
       this.router
-      .navigate(['/admin/university-reviews', {universityId: university.id},])
+      .navigate(['/admin/university-reviews', {universityId: animalCenter.id},])
       .then((_) => {
       }); else if (user_role == 'NORMAL') this.router
-      .navigate(['/user-dashboard/university-reviews', {universityId: university.id},])
+      .navigate(['/user-dashboard/university-reviews', {universityId: animalCenter.id},])
       .then((_) => {
       });
   }
 
-  public editUniversity(university: any) {
-    const dialogRef = this.dialog.open(EditUniversityComponent, {
-      width: '500px', data: university
+  public editAnimalCenter(animalCenter: any) {
+    const dialogRef = this.dialog.open(EditAnimalCenterComponent, {
+      width: '500px', data: animalCenter
     });
 
     dialogRef.afterClosed().subscribe(updatedData => {
       let modify = false;
       if (updatedData) {
 
-        if ((university.name != updatedData.name) || (university.city != updatedData.city) || (university.longitude != updatedData.longitude) || (university.latitude != updatedData.latitude) || (university.contact != updatedData.contact)) {
+        if ((animalCenter.name != updatedData.name) || (animalCenter.city != updatedData.city) || (animalCenter.longitude != updatedData.longitude) || (animalCenter.latitude != updatedData.latitude) || (animalCenter.contact != updatedData.contact)) {
           modify = true;
         }
-        university.name = updatedData.name;
-        university.city = updatedData.city;
-        university.longitude = updatedData.longitude;
-        university.latitude = updatedData.latitude;
-        university.contact = updatedData.contact;
-        const backedUpAuthorities = university.admin.authorities;
-        university.admin.authorities = undefined;
+        animalCenter.name = updatedData.name;
+        animalCenter.city = updatedData.city;
+        animalCenter.longitude = updatedData.longitude;
+        animalCenter.latitude = updatedData.latitude;
+        animalCenter.contact = updatedData.contact;
+        const backedUpAuthorities = animalCenter.admin.authorities;
+        animalCenter.admin.authorities = undefined;
 
-        this.universityService.updateUniversity(university).subscribe({
+        this.animalCenterService.updateAnimalCenter(animalCenter).subscribe({
           next: (_) => {
             // Restore authorities, maybe it will be needed later
-            university.admin.authorities = backedUpAuthorities;
+            animalCenter.admin.authorities = backedUpAuthorities;
 
-            this.universities = this.universities.map((u: any) => {
-              if (u.id === university.id) {
-                u = university;
+            this.animalCenters = this.animalCenters.map((u: any) => {
+              if (u.id === animalCenter.id) {
+                u = animalCenter;
               }
               return u;
             });
@@ -134,7 +134,7 @@ export class UniversityListComponent implements OnInit {
   }
 
 
-  public deleteUniversity(university: any) {
+  public deleteAnimalCenter(animalCenter: any) {
     Swal.fire({
       title: 'Confirm Deletion',
       text: 'Are you sure you want to delete this Animal Center? This action cannot be undone.',
@@ -150,9 +150,9 @@ export class UniversityListComponent implements OnInit {
       confirmButtonColor: '#FF1053',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.universityService.deleteUniversityById(university.id).subscribe({
+        this.animalCenterService.deleteAnimalCenter(animalCenter.id).subscribe({
           next: (_) => {
-            this.universities = this.universities.filter((u: any) => u.id !== university.id);
+            this.animalCenters = this.animalCenters.filter((u: any) => u.id !== animalCenter.id);
             Swal.fire({
               title: 'Deleted!',
               text: 'Your animal center has been deleted.',
@@ -177,19 +177,19 @@ export class UniversityListComponent implements OnInit {
   }
 
 
-  public showOnMap(university: any) {
+  public showOnMap(animalCenter: any) {
     this.dialog.open(MapDialogComponent, {
-      width: '600px', data: university
+      width: '600px', data: animalCenter
     });
   }
 
-  private getUniversities(request: any) {
-    this.universityService.getAllUniversities(request)
+  private getAnimalCenters(request: any) {
+    this.animalCenterService.getAnimalCenters(request)
       .subscribe(data => {
         console.log(data)
-        this.universities = data['content'];
+        this.animalCenters = data['content'];
         this.dataSource.data = data['content'];
-        this.filteredUniversities = data['content'];
+        this.filteredAnimalCenters = data['content'];
         this.totalElements = data['totalElements'];
         this.performSearch();
       }, error => {
@@ -219,27 +219,27 @@ export class UniversityListComponent implements OnInit {
 
 
   performSearch() {
-    this.filteredUniversities = [...this.universities];
+    this.filteredAnimalCenters = [...this.animalCenters];
 
     const trimmedCity = this.searchData.city.trim();
     const trimmedName = this.searchData.name.trim();
 
     if (trimmedCity) {
       // @ts-ignore
-      this.filteredUniversities = this.filteredUniversities.filter(university => university.city.includes(trimmedCity));
+      this.filteredAnimalCenters = this.filteredAnimalCenters.filter(animalCenter => animalCenter.city.includes(trimmedCity));
     }
     if (trimmedName) {
       // @ts-ignore
-      this.filteredUniversities = this.filteredUniversities.filter(university => university.name.includes(trimmedName));
+      this.filteredAnimalCenters = this.filteredAnimalCenters.filter(animalCenter => animalCenter.name.includes(trimmedName));
     }
 
     if (this.searchData.city) {
       // @ts-ignore
-      this.filteredUniversities = this.filteredUniversities.filter(university => university.city.includes(this.searchData.city));
+      this.filteredAnimalCenters = this.filteredAnimalCenters.filter(animalCenter => animalCenter.city.includes(this.searchData.city));
     }
     if (this.searchData.country) {
       // @ts-ignore
-      this.filteredUniversities = this.filteredUniversities.filter(university => university.country.includes(this.searchData.country));
+      this.filteredAnimalCenters = this.filteredAnimalCenters.filter(animalCenter => animalCenter.country.includes(this.searchData.country));
     }
 
     this.searchFilters = [
@@ -248,7 +248,7 @@ export class UniversityListComponent implements OnInit {
       {type: 'Name', value: this.searchData.name},
       {type: 'Max Distance', value: this.searchData.distance}];
 
-    this.dataSource.data = this.filteredUniversities;
+    this.dataSource.data = this.filteredAnimalCenters;
   }
 
   showAllCenters(): void {
@@ -287,6 +287,6 @@ export class UniversityListComponent implements OnInit {
   }
 
 // Exemplu de utilizare
-//   var distanta = haversineDistance(latUser, longUser, latUniversitate, longUniversitate);
+//   var distanta = haversineDistance(latUser, longUser, latCenter, longCenter);
 
 }

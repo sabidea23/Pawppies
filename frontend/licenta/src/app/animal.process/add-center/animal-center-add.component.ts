@@ -1,29 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
-import { UniversityService } from '../../services/university.service';
+import { AnimalCenterService } from '../../services/animal.center.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import Swal from 'sweetalert2';
 import {countries} from "../../utils/country-data-store";
+import {AnimalCenterModel} from "../../model/animal-center.model";
 
 @Component({
-  selector: 'app-university-add',
-  templateUrl: './university-add.component.html',
-  styleUrls: ['./university-add.component.css'],
+  selector: 'app-animal-center-add',
+  templateUrl: './animal-center-add.component.html',
+  styleUrls: ['./animal-center-add.component.css'],
 })
-export class UniversityAddComponent implements OnInit {
+export class AnimalCenterAddComponent implements OnInit {
   user = this.login.getUser();
-  universities: any = [];
   public countries:any = countries;
 
-  public university: any = {
+  public animalCenter: AnimalCenterModel = {
     name: '',
     city: '',
     country: '',
     contact: '',
     admin: undefined,
     longitude: 0.0,
-    latitude: 0.0,
+    latitude: 0.0
   };
 
   public formInput: any = {
@@ -39,19 +39,12 @@ export class UniversityAddComponent implements OnInit {
     private login: LoginService,
     private snack: MatSnackBar,
     private router: Router,
-    private universityService: UniversityService,
+    private animalCenterService: AnimalCenterService,
   ) { }
 
   ngOnInit(): void {
     this.user = this.login.getUser();
-    // this.universityService.getAllUniversities({}).subscribe({
-    //   next: (data: any) => {
-    //     this.universities = data;
-    //   },
-    // });
   }
-
-
 
   public isFormValid() {
     return this.formInput.name && this.formInput.longitude &&
@@ -60,15 +53,16 @@ export class UniversityAddComponent implements OnInit {
 
   formSubmit() {
     for (const key in this.formInput) {
-      this.university[key] = this.formInput[key];
+      // @ts-ignore
+      this.animalCenter[key] = this.formInput[key];
     }
 
     const backedUpAuthorities = this.user.authorities;
     this.user.authorities = undefined;
 
-    this.university.admin = this.user;
+    this.animalCenter.admin = this.user;
 
-    this.universityService.addUniversity(this.university).subscribe({
+    this.animalCenterService.createAnimalCenter(this.animalCenter).subscribe({
       next: (data) => {
         this.user.authorities = backedUpAuthorities;
 

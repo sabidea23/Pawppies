@@ -1,0 +1,118 @@
+<body>
+<div class="main-container">
+
+  <div *ngIf="dog" class="content-container">
+
+    <div class="image-dog">
+      <h1>{{ dog.name }}</h1>
+      <h4> View Adoptable Pets for This Breed </h4>
+      <img [src]="dog.image" alt="{{ dog.name }}">
+
+      <p class="text-characteristics"> HEIGHT </p>
+      <p class="text-weight"> {{dog.minHeight}} - {{ dog.maxHeight}} pounds </p>
+
+      <p class="text-characteristics"> WEIGHT </p>
+      <p class="text-weight"> {{dog.minWeight}} - {{ dog.maxWeight}} ibs </p>
+    </div>
+
+    <div class="description">
+      <p class="text-description">{{ dog.description }}</p>
+      <div class="characteristics">
+        <div class="characteristics-left">
+          <div class="quality">
+            <p class="quality-text"> PLAYFULNESS </p>
+            <div class="progress-bar">
+              <div [style.width.%]="(dog.playfulness / 5) * 100" class="progress"></div>
+            </div>
+          </div>
+          <div class="quality">
+            <p class="quality-text"> GROOMING REQUIREMENTS </p>
+            <div class="progress-bar">
+              <div [style.width.%]="(dog.groomingRequirements / 5) * 100" class="progress"></div>
+            </div>
+
+          </div>
+          <div class="quality">
+            <p class="quality-text"> FRIENDLINESS TO CHILDREN </p>
+            <div class="progress-bar">
+              <div [style.width.%]="(dog.friendlinessToChildren / 5) * 100" class="progress"></div>
+            </div>
+          </div>
+          <div class="quality">
+            <p class="quality-text"> FRIENDLINESS TO OTHER PETS </p>
+            <div class="progress-bar">
+              <div [style.width.%]="(dog.friendlinessToOtherPets / 5) * 100" class="progress"></div>
+            </div>
+          </div>
+          <div class="quality">
+            <p class="quality-text"> VOCALITY </p>
+            <div class="progress-bar">
+              <div [style.width.%]="(dog.vocality / 5) * 100" class="progress"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="characteristics-right">
+          <div class="quality">
+            <p class="quality-text"> ACTIVITY LEVEL </p>
+            <div class="progress-bar">
+              <div [style.width.%]="(dog.activityLevel / 5) * 100" class="progress"></div>
+            </div>
+          </div>
+          <div class="quality">
+            <p class="quality-text"> AFFECTION FOR OWNERS </p>
+            <div class="progress-bar">
+              <div [style.width.%]="(dog.affectionForOwners / 5) * 100" class="progress"></div>
+            </div>
+          </div>
+          <div class="quality">
+            <p class="quality-text"> WATCHFULNESS </p>
+            <div class="progress-bar">
+              <div [style.width.%]="(dog.watchfulness / 5) * 100" class="progress"></div>
+            </div>
+          </div>
+          <div class="quality">
+            <p class="quality-text"> EASE OF TRAINING </p>
+            <div class="progress-bar">
+              <div [style.width.%]="(dog.easeOfTraining / 5) * 100" class="progress"></div>
+            </div>
+          </div>
+          <div class="quality">
+            <p class="quality-text"> EXERCISE REQUIREMENTS </p>
+            <div class="progress-bar">
+              <div [style.width.%]="(dog.exerciseRequirements / 5) * 100" class="progress"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+
+  <div *ngIf="dog" class="personality-container">
+    <div class="menu">
+      <button (click)="selectContent('personality')">Personality</button>
+      <button (click)="selectContent('health')">Health</button>
+      <button (click)="selectContent('history')">History</button>
+    </div>
+
+    <div class="content">
+      <div *ngIf="selectedContent === 'personality'">
+        <p class="menu-text"> Personality </p>
+        <p>{{ formatDogHealthCorrectSplit(dog.personality)}}</p>
+      </div>
+      <div *ngIf="selectedContent === 'health'">
+        <p class="menu-text"> Health</p>
+        <p>{{formatDogHealthCorrectSplit(dog.health)}} </p>
+      </div>
+      <div *ngIf="selectedContent === 'history'">
+        <p  class="menu-text"> History </p>
+        <p>{{dog.history}} </p>
+      </div>
+    </div>
+  </div>
+  </div>
+</body>

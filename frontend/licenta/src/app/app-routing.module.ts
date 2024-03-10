@@ -6,10 +6,10 @@ import { HomeComponent } from './pages/home/home.component';
 import { AdminGuard } from './services/admin.guard';
 import { NormalGuard } from './services/normal.guard';
 import { ProfileComponent } from './user/profile/profile.component';
-import { ReviewListComponent } from './animal.process/list-animal/review-list.component';
-import { UniversityAddComponent } from './animal.process/add-center/university-add.component';
-import { UniversityListComponent } from './animal.process/list-center/university-list.component';
-import { ReviewAddComponent } from './animal.process/add-animal/review-add.component';
+import { AnimalListComponent } from './animal.process/list-animal/animal-list.component';
+import { AnimalCenterAddComponent } from './animal.process/add-center/animal-center-add.component';
+import { AnimalCenterList } from './animal.process/list-center/animal-center-list.component';
+import { AddAnimalComponent } from './animal.process/add-animal/add-animal.component';
 import { UserManagementComponent } from './user/user-management/user-management.component';
 import {AboutPetsComponent} from "./pages/about-pets/about-pets.component";
 import {MissionComponent} from "./pages/mission/mission.component";
@@ -73,23 +73,23 @@ const routes: Routes = [
       },
       {
         path: 'universities',
-        component: UniversityListComponent,
+        component: AnimalCenterList,
       },
       {
         path: 'universities/add',
-        component: UniversityAddComponent,
+        component: AnimalCenterAddComponent,
       },
       {
         path: 'university-reviews',
-        component: ReviewListComponent,
+        component: AnimalListComponent,
       },
       {
         path: 'university-reviews/add',
-        component: ReviewAddComponent,
+        component: AddAnimalComponent,
       },
       {
         path: 'my-reviews',
-        component: ReviewListComponent,
+        component: AnimalListComponent,
       },
       {
         path: 'users',
@@ -111,19 +111,19 @@ const routes: Routes = [
       },
       {
         path: 'universities',
-        component: UniversityListComponent,
+        component: AnimalCenterList,
       },
       {
         path: 'university-reviews',
-        component: ReviewListComponent,
+        component: AnimalListComponent,
       },
       {
         path: 'university-reviews/add',
-        component: ReviewAddComponent,
+        component: AddAnimalComponent,
       },
       {
         path: 'my-reviews',
-        component: ReviewListComponent,
+        component: AnimalListComponent,
       },
     ],
   },

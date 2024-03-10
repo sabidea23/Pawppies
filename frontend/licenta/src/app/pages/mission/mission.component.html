@@ -117,32 +117,31 @@
 
     <h1 (click)="goToAnimalsPage()" class="see-animals"> Pets Available for Adoption > </h1>
 
-    <!--    review list-->
-    <div class="review-grid">
-      <div *ngFor="let review of showAnimals; let isLast = last" [class]="isLast ? 'review-card-last' : 'review-card'">
+    <div class="animal-grid">
+      <div *ngFor="let animal of showAnimals; let isLast = last" [class]="isLast ? 'animal-card-last' : 'animal-card'">
         <ng-container *ngIf="isLast ; else notLastTemplate">
           <div (click)="goToAnimalsPage()">
-            <div class="review-image">
+            <div class="animal-image">
               <mat-icon class="centered-icon">search</mat-icon>
 
               <p class="centered-text">300+ pets available on Pawppies </p>
             </div>
 
-            <div class="review-last">
+            <div class="animal-last">
               <p class="meet-animals-text">MEET THEM</p>
             </div>
           </div>
         </ng-container>
 
         <ng-template #notLastTemplate>
-          <button (click)="likeReview(review)" [ngClass]="{ 'liked': isLiked(review) }" class="like-button">
-            <mat-icon>{{ isLiked(review) ? 'favorite' : 'favorite_border' }}</mat-icon>
+          <button (click)="likeAnimal(animal)" [ngClass]="{ 'liked': isLiked(animal) }" class="like-button">
+            <mat-icon>{{ isLiked(animal) ? 'favorite' : 'favorite_border' }}</mat-icon>
           </button>
 
-          <img [src]='review.reviewImages[0].url' class="review-image">
-          <div class="review-details">
-            <p class="review-name"> {{ review.name }} </p>
-            <p class="review-other-details"> {{ review.age }}, {{ review.breed }} </p>
+          <img [src]='animal.animalImages[0].url' class="animal-image">
+          <div class="animal-details">
+            <p class="animal-name"> {{ animal.name }} </p>
+            <p class="animal-other-details"> {{ animal.age }}, {{ animal.breed }} </p>
           </div>
         </ng-template>
       </div>

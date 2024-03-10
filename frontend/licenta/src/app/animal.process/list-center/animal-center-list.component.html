@@ -16,21 +16,18 @@
     </div>
 
 
-    <!-- Tabelul de universități -->
-    <table *ngIf="(filteredUniversities.length != 0)" [dataSource]="filteredUniversities" class="university-table"
+    <table *ngIf="(filteredAnimalCenters.length != 0)" [dataSource]="filteredAnimalCenters" class="university-table"
            mat-table>
 
-      <!-- Coloana pentru numele universității -->
-      <ng-container matColumnDef="university">
+      <ng-container matColumnDef="animalCenter">
         <th *matHeaderCellDef>ORGANIZATION</th>
-        <td *matCellDef="let university" mat-cell>{{ university.name }}</td>
+        <td *matCellDef="let animalCenter" mat-cell>{{ animalCenter.name }}</td>
       </ng-container>
 
-      <!-- Coloana pentru lista de animale -->
       <ng-container matColumnDef="petList">
         <th *matHeaderCellDef>PET LIST</th>
-        <td *matCellDef="let university" mat-cell>
-          <button (click)="goToReviews(university)" mat-button>
+        <td *matCellDef="let animalCenter" mat-cell>
+          <button (click)="goToAnimalsPage(animalCenter)" mat-button>
             <mat-icon class="sticker-icon">pets</mat-icon>
           </button>
         </td>
@@ -39,20 +36,20 @@
       <!-- Coloana pentru oraș/stat -->
       <ng-container matColumnDef="cityState">
         <th *matHeaderCellDef>CITY/STATE</th>
-        <td *matCellDef="let university" mat-cell>{{ university.city }},  {{university.country}}</td>
+        <td *matCellDef="let animalCenter" mat-cell>{{ animalCenter.city }},  {{animalCenter.country}}</td>
       </ng-container>
 
       <!-- Coloana pentru contact -->
       <ng-container matColumnDef="contact">
         <th *matHeaderCellDef>CONTACT</th>
-        <td *matCellDef="let university" mat-cell>{{ university.contact }}</td>
+        <td *matCellDef="let animalCenter" mat-cell>{{ animalCenter.contact }}</td>
       </ng-container>
 
       <!-- Coloana pentru acțiunea Show on Map -->
       <ng-container matColumnDef="showOnMap">
         <th *matHeaderCellDef>MAP</th>
-        <td *matCellDef="let university" mat-cell>
-          <button (click)="showOnMap(university)" class="btn bg-transparent" mat-button>
+        <td *matCellDef="let animalCenter" mat-cell>
+          <button (click)="showOnMap(animalCenter)" class="btn bg-transparent" mat-button>
             <mat-icon>map</mat-icon>
           </button>
         </td>
@@ -61,8 +58,8 @@
       <!-- Coloana pentru Editare -->
       <ng-container matColumnDef="edit">
         <th *matHeaderCellDef>EDIT</th>
-        <td *matCellDef="let university" mat-cell>
-          <button (click)="editUniversity(university)" class="btn bg-transparent" mat-button>
+        <td *matCellDef="let animalCenter" mat-cell>
+          <button (click)="editAnimalCenter(animalCenter)" class="btn bg-transparent" mat-button>
             <mat-icon>edit</mat-icon>
           </button>
         </td>
@@ -71,8 +68,8 @@
       <!-- Coloana pentru Ștergere -->
       <ng-container matColumnDef="delete">
         <th *matHeaderCellDef>DELETE</th>
-        <td *matCellDef="let university" mat-cell>
-          <button (click)="deleteUniversity(university)" class="btn bg-transparent" mat-button>
+        <td *matCellDef="let animalCenter" mat-cell>
+          <button (click)="deleteAnimalCenter(animalCenter)" class="btn bg-transparent" mat-button>
             <mat-icon>delete</mat-icon>
           </button>
         </td>
@@ -83,7 +80,7 @@
 
     </table>
 
-    <h2 *ngIf="filteredUniversities.length == 0"> No results found.</h2>
+    <h2 *ngIf="filteredAnimalCenters.length == 0"> No results found.</h2>
     <mat-paginator (page)="handlePageEvent($event)"
                    [length]="totalElements"
                    [pageSizeOptions]="[5, 10, 20]"

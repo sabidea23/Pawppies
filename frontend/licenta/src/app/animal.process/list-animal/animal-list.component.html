@@ -1,0 +1,49 @@
+<body>
+<div class="main-container">
+  <div class="side-container">
+    <form  class="search-form">
+      <h2>Find Animals by:</h2>
+
+    </form>
+
+  </div>
+
+  <div *ngIf="user" class="content-container">
+
+    <h2 *ngIf="!animalCenter">My favourite animals</h2>
+    <h2 *ngIf="animalCenter">Animals from {{ animalCenter.name }}</h2>
+
+    <div class="animal-grid">
+      <div *ngFor="let animal of animals" class="animal-card">
+
+        <button (click)="likeAnimal(animal)" [ngClass]="{ 'liked': isLiked(animal) }" class="like-button" >
+          <mat-icon>{{ isLiked(animal) ? 'favorite' : 'favorite_border' }}</mat-icon>
+        </button>
+
+        <img [src]='animal.animalImages[0].url' class="animal-image">
+        <div class="animal-details">
+          <p class="animal-name"> {{ animal.name }} </p>
+          <p class="animal-other-details"> {{ animal.age }}, {{ animal.type }} </p>
+        </div>
+
+        <button (click)="editAnimal(animal)" *ngIf="getUserRole() == 'ADMIN'" mat-button
+                style="margin-right: 20px">
+          EDIT
+        </button>
+        <button (click)="deleteAnimal(animal)" *ngIf="getUserRole() === 'ADMIN'" mat-button
+                style="margin-right: 20px">
+          DELETE
+        </button>
+        <br/>
+      </div>
+
+      <button (click)="goToAddAnimal()" *ngIf="user && animalCenterId && getUserRole() === 'ADMIN'" class="add-button"
+              mat-fab>
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+
+  </div>
+
+</div>
+</body>

@@ -26,17 +26,17 @@ import {authInterceptorProviders} from './services/auth.interceptor';
 import {ProfileComponent} from './user/profile/profile.component';
 import {MatListModule} from '@angular/material/list';
 import {MatTableModule} from '@angular/material/table';
-import {UniversityAddComponent} from './animal.process/add-center/university-add.component';
-import {UniversityListComponent} from './animal.process/list-center/university-list.component';
-import {ReviewListComponent} from './animal.process/list-animal/review-list.component';
-import {ReviewAddComponent} from './animal.process/add-animal/review-add.component';
+import {AnimalCenterAddComponent} from './animal.process/add-center/animal-center-add.component';
+import {AnimalCenterList} from './animal.process/list-center/animal-center-list.component';
+import {AnimalListComponent} from './animal.process/list-animal/animal-list.component';
+import {AddAnimalComponent} from './animal.process/add-animal/add-animal.component';
 import {UserManagementComponent} from './user/user-management/user-management.component';
 import {RouterOutlet} from '@angular/router';
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MapDialogComponent} from './utils/map-dialog/map-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatMenuModule} from "@angular/material/menu";
-import {EditUniversityComponent} from './animal.process/edit-center/edit-university.component';
+import {EditAnimalCenterComponent} from './animal.process/edit-center/edit-animal-center.component';
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSelectModule} from "@angular/material/select";
 import {AboutPetsComponent} from './pages/about-pets/about-pets.component';
@@ -47,7 +47,7 @@ import { BreedDetailsCatComponent } from './pages/breed-details-cat/breed-detail
 import { BreedDogComponent } from './pages/breed-dog/breed-dog.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, FooterComponent, SignupComponent, LoginComponent, HomeComponent, ProfileComponent, ReviewAddComponent, ReviewListComponent, UniversityAddComponent, UniversityListComponent, UserManagementComponent, MapDialogComponent, EditUniversityComponent, AboutPetsComponent, MissionComponent, QuizComponent, BreedDetailsDogComponent, BreedDetailsCatComponent, BreedDogComponent],
+  declarations: [AppComponent, NavbarComponent, FooterComponent, SignupComponent, LoginComponent, HomeComponent, ProfileComponent, AddAnimalComponent, AnimalListComponent, AnimalCenterAddComponent, AnimalCenterList, UserManagementComponent, MapDialogComponent, EditAnimalCenterComponent, AboutPetsComponent, MissionComponent, QuizComponent, BreedDetailsDogComponent, BreedDetailsCatComponent, BreedDogComponent],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatIconModule, FormsModule, HttpClientModule, MatSnackBarModule, MatCardModule, MatChipsModule, MatToolbarModule, MatIconModule, MatListModule, MatTableModule, ReactiveFormsModule, RouterOutlet, MatGridListModule, MatDialogModule, MatMenuModule, MatPaginatorModule, MatSelectModule],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

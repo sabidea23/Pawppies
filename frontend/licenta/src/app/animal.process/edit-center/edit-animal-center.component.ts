@@ -5,26 +5,26 @@ import {MapDialogComponent} from "../../utils/map-dialog/map-dialog.component";
 import {countries} from "../../utils/country-data-store";
 
 @Component({
-  selector: 'app-edit-university',
-  templateUrl: './edit-university.component.html',
-  styleUrls: ['./edit-university.component.css']
+  selector: 'app-edit-animal-center',
+  templateUrl: './edit-animal-center.component.html',
+  styleUrls: ['./edit-animal-center.component.css']
 })
-export class EditUniversityComponent {
+export class EditAnimalCenterComponent {
 
   editData = {
-    name: this.university.name,
-    city: this.university.city,
-    country: this.university.country,
-    longitude: this.university.longitude,
-    latitude: this.university.latitude,
-    contact: this.university.contact
+    name: this.animalCenter.name,
+    city: this.animalCenter.city,
+    country: this.animalCenter.country,
+    longitude: this.animalCenter.longitude,
+    latitude: this.animalCenter.latitude,
+    contact: this.animalCenter.contact
   };
 
   public countries:any = countries;
 
   constructor(
     public dialogRef: MatDialogRef<MapDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public university: any, private sanitizer: DomSanitizer)
+    @Inject(MAT_DIALOG_DATA) public animalCenter: any, private sanitizer: DomSanitizer)
   {}
 
   save() {

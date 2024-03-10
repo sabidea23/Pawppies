@@ -137,7 +137,7 @@ export class NavbarComponent implements OnInit {
   public getUserRole() {
     return this.login.getUserRole();
   }
-  public goToAddUniversity() {
+  public goToAddAnimalCenter() {
     this.router.navigate(['/admin/universities/add']).then((_) => {
     });
   }

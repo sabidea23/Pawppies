@@ -7,11 +7,11 @@ import {DomSanitizer} from '@angular/platform-browser';
 })
 export class MapDialogComponent {
 
-  constructor(public dialogRef: MatDialogRef<MapDialogComponent>, @Inject(MAT_DIALOG_DATA) public university: any, private sanitizer: DomSanitizer) {
+  constructor(public dialogRef: MatDialogRef<MapDialogComponent>, @Inject(MAT_DIALOG_DATA) public animalCenter: any, private sanitizer: DomSanitizer) {
   }
 
   getSafeUrl() {
-    const url = `https://www.openstreetmap.org/export/embed.html?bbox=${this.university.longitude - 0.005},${this.university.latitude - 0.005},${this.university.longitude + 0.005},${this.university.latitude + 0.005}&layer=mapnik&marker=${this.university.latitude},${this.university.longitude}`;
+    const url = `https://www.openstreetmap.org/export/embed.html?bbox=${this.animalCenter.longitude - 0.005},${this.animalCenter.latitude - 0.005},${this.animalCenter.longitude + 0.005},${this.animalCenter.latitude + 0.005}&layer=mapnik&marker=${this.animalCenter.latitude},${this.animalCenter.longitude}`;
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 }

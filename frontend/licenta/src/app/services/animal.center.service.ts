@@ -6,18 +6,18 @@ import {Observable} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class UniversityService {
+export class AnimalCenterService {
   constructor(private http: HttpClient) { }
 
-  public addUniversity(university: any) {
-    return this.http.post(`${baseUrl}/university/`, university);
+  public createAnimalCenter(center: any) {
+    return this.http.post(`${baseUrl}/university/`, center);
   }
 
-  public updateUniversity(university: any) {
-    return this.http.put(`${baseUrl}/university/`, university);
+  public updateAnimalCenter(center: any) {
+    return this.http.put(`${baseUrl}/university/`, center);
   }
 
-  public getAllUniversities(params: { page: number; size: number }): Observable<any> {
+  public getAnimalCenters(params: { page: number; size: number }): Observable<any> {
     // Creează un nou HttpParams
     let queryParams = new HttpParams();
     queryParams = queryParams.append('page', params.page.toString());
@@ -27,11 +27,11 @@ export class UniversityService {
     return this.http.get(`${baseUrl}/university/`, { params: queryParams });
   }
 
-  public getUniversityById(id: number) {
+  public getAnimalCenter(id: number) {
     return this.http.get(`${baseUrl}/university/${id}`);
   }
 
-  public deleteUniversityById(id: number) {
+  public deleteAnimalCenter(id: number) {
     return this.http.delete(`${baseUrl}/university/${id}`);
   }
 }
