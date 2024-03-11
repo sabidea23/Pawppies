@@ -3,7 +3,7 @@ import {LoginService} from "../../services/login.service";
 import {Router} from "@angular/router";
 import {SearchService} from "../../services/search.service";
 import {countries} from "../../utils/country-data-store";
-import {AnimalService} from "../../services/animal.service.";
+import {ReviewService} from "../../services/review.service";
 import {ImageProcessingService} from "../../services/image-processing.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
@@ -13,8 +13,8 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class MissionComponent {
 
   user = this.login.getUser();
-  animals: any = [];
-  likedAnimals: any = [];
+  allReviews: any = [];
+  likedReviews: any = [];
 
   searchData = {
     city: '', country: '', name: '', distance: ''
@@ -28,7 +28,7 @@ export class MissionComponent {
 
   public countries: any = countries;
 
-  constructor(private snack: MatSnackBar, private imageProcessingService: ImageProcessingService, private animalService: AnimalService, private login: LoginService, private router: Router, private searchService: SearchService) {
+  constructor(private snack: MatSnackBar, private imageProcessingService: ImageProcessingService, private reviewService: ReviewService, private login: LoginService, private router: Router, private searchService: SearchService) {
   }
 
   goToAnimalsPage() {
@@ -67,64 +67,65 @@ export class MissionComponent {
   }
 
   //see animals
-  getImagesForAnimals() {
-    for (let i = 0; i < this.animals.length; i++) {
-      this.animals[i] = this.imageProcessingService.createImage(this.animals[i]);
+  getImagesForReviews() {
+    for (let i = 0; i < this.allReviews.length; i++) {
+      this.allReviews[i] = this.imageProcessingService.createImage(this.allReviews[i]);
     }
   }
 
-  getFavouriteAnimals() {
-    this.animalService.getAnimals().subscribe({
+  getFavouriteReviews() {
+    this.reviewService.getAllReviews().subscribe({
       next: (data) => {
-        this.animals = data;
+        this.allReviews = data;
         this.displayRandomAnimals();
-        this.getImagesForAnimals();
+        this.getImagesForReviews();
       }, error: (_) => {
       },
     });
   }
 
   displayRandomAnimals(): void {
-    if (this.animals.length <= 3) {
-      this.showAnimals = [...this.animals];
+    if (this.allReviews.length <= 3) {
+      this.showAnimals = [...this.allReviews];
     } else {
       let selectedIndices = new Set<number>();
       while (selectedIndices.size < 3) {
-        let randomIndex = Math.floor(Math.random() * this.animals.length);
+        let randomIndex = Math.floor(Math.random() * this.allReviews.length);
         selectedIndices.add(randomIndex);
       }
 
-      this.showAnimals = [...selectedIndices].map(index => this.animals[index]);
+      this.showAnimals = [...selectedIndices].map(index => this.allReviews[index]);
       this.showAnimals.push(this.linkSeeAnimals);
     }
   }
 
   ngOnInit(): void {
     this.user = this.login.getUser();
-    this.getFavouriteAnimals();
+    this.getFavouriteReviews();
 
-    this.animalService.getLikedAnimals(this.user.id).subscribe({
+    this.reviewService.getReviewsLikedByUser(this.user.id).subscribe({
       next: (data) => {
-        this.likedAnimals = data;
+        this.likedReviews = data;
       },
     });
-    this.numberAnimalsLeft = this.animals.length - this.showAnimals.length;
+    this.numberAnimalsLeft = this.allReviews.length - this.showAnimals.length;
   }
 
-  public isLiked(animal: any) {
-    return this.likedAnimals.some((r: any) => r.id === animal.id);
+  public isLiked(review: any) {
+    return this.likedReviews.some((r: any) => r.id === review.id);
   }
 
-  public likeAnimal(animal: any) {
-    this.animalService.getLikeStatus(animal.id, this.user.id).subscribe({
-      next: (updatedAnimal: any) => {
-        this.animalService.getLikedAnimals(this.user.id).subscribe({
+  public likeReview(review: any) {
+    this.reviewService.likeReview(review.id, this.user.id).subscribe({
+      next: (updatedReview: any) => {
+        // Update liked reviews
+        this.reviewService.getReviewsLikedByUser(this.user.id).subscribe({
           next: (data) => {
-            this.likedAnimals = data;
+            this.likedReviews = data;
           },
         });
 
-        animal.likes = updatedAnimal.likes;
+        review.likes = updatedReview.likes;
       }, error: (error) => {
         this.snack.open(error.error.message, 'OK', {
           duration: 3000,

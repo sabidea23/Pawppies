@@ -1,86 +1,86 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from '../../services/login.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {AnimalService} from '../../services/animal.service.';
+import {ReviewService} from '../../services/review.service';
 import Swal from 'sweetalert2';
 import {ActivatedRoute, Router} from '@angular/router';
-import {AnimalCenterService} from 'src/app/services/animal.center.service';
+import {UniversityService} from 'src/app/services/university.service';
 import {ImageProcessingService} from "../../services/image-processing.service";
 
 @Component({
-  selector: 'app-animal-list', templateUrl: './animal-list.component.html', styleUrls: ['./animal-list.component.css'],
+  selector: 'app-review-list', templateUrl: './review-list.component.html', styleUrls: ['./review-list.component.css'],
 })
-export class AnimalListComponent implements OnInit {
-  animalCenter: any = undefined;
+export class ReviewListComponent implements OnInit {
+  university: any = undefined;
   user = this.login.getUser();
-  animals: any = [];
-  animalCenterId: any;
+  allReviews: any = [];
+  universityId: any;
   userId: any;
-  likedAnimals: any = [];
+  likedReviews: any = [];
 
-  constructor(private login: LoginService, private animalService: AnimalService, private router: Router, private route: ActivatedRoute, private snack: MatSnackBar, private animalCenterService: AnimalCenterService, private imageProcessingService: ImageProcessingService) {
+  constructor(private login: LoginService, private reviewService: ReviewService, private router: Router, private route: ActivatedRoute, private snack: MatSnackBar, private universityService: UniversityService, private imageProcessingService: ImageProcessingService) {
   }
 
-  getFavouriteAnimals() {
-    if (this.animalCenterId && this.userId) {
-      this.animalService
-        .getAnimalsByCenterIdAndAuthorId(this.animalCenterId, this.userId)
+  getFavouriteReviews() {
+    if (this.universityId && this.userId) {
+      this.reviewService
+        .getReviewsByUniversityIdAndAuthorId(this.universityId, this.userId)
         .subscribe({
           next: (data) => {
-            this.animals = data;
-            this.getImagesForAnimals();
+            this.allReviews = data;
+            this.getImagesForReviews();
           }, error: (_) => {
           },
         });
-    } else if (this.animalCenterId) {
-      this.animalService.getAnimalsByCenterId(this.animalCenterId).subscribe({
+    } else if (this.universityId) {
+      this.reviewService.getReviewsByUniversityId(this.universityId).subscribe({
         next: (data) => {
-          this.animals = data;
-          this.getImagesForAnimals();
+          this.allReviews = data;
+          this.getImagesForReviews();
         }, error: (_) => {
         },
       });
     } else if (this.userId) {
-      this.animalService.getLikedAnimals(this.user.id).subscribe({
+      this.reviewService.getReviewsLikedByUser(this.user.id).subscribe({
         next: (data) => {
-          this.animals = data;
-          this.getImagesForAnimals();
+          this.allReviews = data;
+          this.getImagesForReviews();
         },
       });
     } else {
-      this.animalService.getAnimals().subscribe({
+      this.reviewService.getAllReviews().subscribe({
         next: (data) => {
-          this.animals = data;
-          this.getImagesForAnimals();
+          this.allReviews = data;
+          this.getImagesForReviews();
         }, error: (_) => {
         },
       });
     }
   }
 
-  getImagesForAnimals() {
-    for (let i = 0; i < this.animals.length; i++) {
-      this.animals[i] = this.imageProcessingService.createImage(this.animals[i]);
+  getImagesForReviews() {
+    for (let i = 0; i < this.allReviews.length; i++) {
+      this.allReviews[i] = this.imageProcessingService.createImage(this.allReviews[i]);
     }
   }
 
   ngOnInit(): void {
     this.user = this.login.getUser();
-    this.animalCenterId = JSON.parse(this.route.snapshot.paramMap.get('universityId') || 'null') || undefined;
+    this.universityId = JSON.parse(this.route.snapshot.paramMap.get('universityId') || 'null') || undefined;
 
     this.userId = JSON.parse(this.route.snapshot.paramMap.get('userId') || 'null') || undefined;
 
-    this.animalCenter = this.animalCenterId ? this.animalCenterService.getAnimalCenter(this.animalCenterId).subscribe({
+    this.university = this.universityId ? this.universityService.getUniversityById(this.universityId).subscribe({
       next: (data) => {
-        this.animalCenter = data;
+        this.university = data;
       },
     }) : undefined;
 
-    this.getFavouriteAnimals();
+    this.getFavouriteReviews();
 
-    this.animalService.getLikedAnimals(this.user.id).subscribe({
+    this.reviewService.getReviewsLikedByUser(this.user.id).subscribe({
       next: (data) => {
-        this.likedAnimals = data;
+        this.likedReviews = data;
       },
     });
   }
@@ -89,31 +89,32 @@ export class AnimalListComponent implements OnInit {
     return this.login.getUserRole();
   }
 
-  public goToAddAnimal() {
+  public goToAddReview() {
     const user_role = this.login.getUserRole();
     if (user_role == 'ADMIN') this.router
-      .navigate(['/admin/university-reviews/add', {universityId: this.animalCenterId},])
+      .navigate(['/admin/university-reviews/add', {universityId: this.universityId},])
       .then((_) => {
       }); else if (user_role == 'NORMAL') this.router
-      .navigate(['/user-dashboard/university-reviews/add', {universityId: this.animalCenterId},])
+      .navigate(['/user-dashboard/university-reviews/add', {universityId: this.universityId},])
       .then((_) => {
       });
   }
 
-  public isLiked(animal: any) {
-    return this.likedAnimals.some((r: any) => r.id === animal.id);
+  public isLiked(review: any) {
+    return this.likedReviews.some((r: any) => r.id === review.id);
   }
 
-  public likeAnimal(animal: any) {
-    this.animalService.getLikeStatus(animal.id, this.user.id).subscribe({
-      next: (updatedAnimal: any) => {
-        this.animalService.getLikedAnimals(this.user.id).subscribe({
+  public likeReview(review: any) {
+    this.reviewService.likeReview(review.id, this.user.id).subscribe({
+      next: (updatedReview: any) => {
+        // Update liked reviews
+        this.reviewService.getReviewsLikedByUser(this.user.id).subscribe({
           next: (data) => {
-            this.likedAnimals = data;
+            this.likedReviews = data;
           },
         });
 
-        animal.likes = updatedAnimal.likes;
+        review.likes = updatedReview.likes;
       }, error: (error) => {
         this.snack.open(error.error.message, 'OK', {
           duration: 3000,
@@ -123,7 +124,7 @@ export class AnimalListComponent implements OnInit {
   }
 
 
-  public editAnimal(animal: any) {
+  public editReview(review: any) {
     Swal.fire({
       width: '800px', title: 'Edit Animal Description', background: 'rgb(230, 230, 230)', html: `
       <textarea
@@ -131,7 +132,7 @@ export class AnimalListComponent implements OnInit {
         class="swal2-input"
         style="width: 90%; height: 275px; font-size: 16px;"
         placeholder="Text">
-        ${animal.text.trim()}
+        ${review.text.trim()}
       </textarea>
       `, focusConfirm: false, preConfirm: () => {
         const text = (document.getElementById('swal-input') as HTMLInputElement).value.trim();
@@ -139,18 +140,19 @@ export class AnimalListComponent implements OnInit {
       },
     }).then((result) => {
       if (result.isConfirmed && result.value) {
-        animal.text = result.value.text;
+        review.text = result.value.text;
 
-        this.animalService.updateAnimal(animal).subscribe({
+        this.reviewService.updateReview(review).subscribe({
           next: (_) => {
-            this.animals = this.animals.map((r: any) => {
-              if (r.id === animal.id) {
-                r = animal;
+            // Actualizează lista de review-uri
+            this.allReviews = this.allReviews.map((r: any) => {
+              if (r.id === review.id) {
+                r = review;
               }
               return r;
             });
             Swal.fire({
-              title: 'Edited!', text: 'The animal has been edited', icon: 'success', background: 'rgb(230, 230, 230)',
+              title: 'Edited!', text: 'The review has been edited', icon: 'success', background: 'rgb(230, 230, 230)',
             }).then(() => {
             });
           }, error: (error) => {
@@ -163,10 +165,10 @@ export class AnimalListComponent implements OnInit {
     });
   }
 
-  public deleteAnimal(animal: any) {
+  public deleteReview(review: any) {
     Swal.fire({
       title: 'Are you sure?',
-      text: 'You will not be able to recover this animal!',
+      text: 'You will not be able to recover this review!',
       icon: 'warning',
       background: 'rgb(230, 230, 230)',
       showCancelButton: true,
@@ -174,12 +176,12 @@ export class AnimalListComponent implements OnInit {
       cancelButtonText: 'No, keep it.',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.animalService.deleteAnimal(animal.id).subscribe({
+        this.reviewService.deleteReviewById(review.id).subscribe({
           next: (_) => {
-            this.animals = this.animals.filter((r: any) => r.id !== animal.id);
+            this.allReviews = this.allReviews.filter((r: any) => r.id !== review.id);
             Swal.fire({
               title: 'Deleted!',
-              text: 'The animal has been deleted.',
+              text: 'The review has been deleted.',
               icon: 'success',
               background: 'rgb(230, 230, 230)',
             }).then((_) => {
