@@ -1,24 +1,23 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {LoginService} from '../../services/login.service';
-import {ReviewService} from '../../services/review.service';
+import {AnimalService} from '../../services/animal.service.';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {UniversityService} from 'src/app/services/university.service';
+import {AnimalCenterService} from 'src/app/services/animal.center.service';
 import {FileModel} from "../../model/file-handle.model";
 import {DomSanitizer} from "@angular/platform-browser";
-import {Review} from "../../model/review.model";
+import {Animal} from "../../model/animal.model";
 import Swal from "sweetalert2";
 import {catBreeds, colorOptions, dogBreeds} from "../../utils/breeds-store";
 import {Breed_detailsService} from "../../services/breed_details.service";
 
 @Component({
-  selector: 'app-review-add', templateUrl: './review-add.component.html', styleUrls: ['./review-add.component.css'],
+  selector: 'app-animal-add', templateUrl: './add-animal.component.html', styleUrls: ['./add-animal.component.css'],
 })
-export class ReviewAddComponent implements OnInit {
+export class AddAnimalComponent implements OnInit {
   user = this.login.getUser();
-  universityId: any = undefined;
-  university: any = undefined;
-
+  animalCenterId: any = undefined;
+  animalCenter: any = undefined;
   colorOptions = colorOptions;
 
   petProfile: any = {
@@ -37,7 +36,7 @@ export class ReviewAddComponent implements OnInit {
   };
 
   // @ts-ignore
-  review: Review = {
+  animal: Animal = {
     name: '',
     health: undefined,
     description: undefined,
@@ -49,31 +48,32 @@ export class ReviewAddComponent implements OnInit {
     age: undefined,
     size: undefined,
     gender: undefined,
-    university: undefined,
+    animalCenter: undefined,
     author: undefined,
     breedDetails: undefined,
-    reviewImages: []
+    animalImages: []
   };
+
+  isOtherSelected: boolean = false;
 
   breed: any = undefined;
   constructor(private login: LoginService, private snack: MatSnackBar, private router: Router, private route: ActivatedRoute,
-              private reviewService: ReviewService, private universityService: UniversityService, private sanitazer: DomSanitizer,
+              private animalService: AnimalService, private animalCenterService: AnimalCenterService, private sanitazer: DomSanitizer,
               private dogBreedService: Breed_detailsService) {
   }
 
   ngOnInit(): void {
     this.user = this.login.getUser();
-    this.universityId = JSON.parse(this.route.snapshot.paramMap.get('universityId') || '{}');
-    this.university = this.universityService
-      .getUniversityById(this.universityId)
+    this.animalCenterId = JSON.parse(this.route.snapshot.paramMap.get('universityId') || '{}');
+    this.animalCenter = this.animalCenterService
+      .getAnimalCenter(this.animalCenterId)
       .subscribe({
         next: (data) => {
-          this.university = data;
+          this.animalCenter = data;
         },
       });
   }
 
-  isOtherSelected: boolean = false;
 
   checkOtherType(value: string): void {
     this.isOtherSelected = value === 'Others';
@@ -83,43 +83,43 @@ export class ReviewAddComponent implements OnInit {
   }
 
   deleteImage(index: number): void {
-    this.review.reviewImages.splice(index, 1);
+    this.animal.animalImages.splice(index, 1);
 
-    this.review.reviewImages = [...this.review.reviewImages];
+    this.animal.animalImages = [...this.animal.animalImages];
   }
 
   formSubmit() {
-    this.review.name = this.petProfile.inputName;
-    this.review.color =  this.petProfile.inputColors.join(', ');
-    this.review.size = this.petProfile.inputSize;
-    this.review.gender = this.petProfile.inputGender;
-    this.review.age = this.petProfile.inputAge;
-    this.review.care = this.petProfile.inputCare.join(', ');
-    this.review.health = this.petProfile.inputHealth;
-    this.review.description = this.petProfile.inputDescription;
-    this.review.coatLength = this.petProfile.inputCoatLength;
-    this.review.goodInHome = this.petProfile.inputGoodInHome.join(', ')
-    this.review.type = this.petProfile.inputType;
+    this.animal.name = this.petProfile.inputName;
+    this.animal.color =  this.petProfile.inputColors.join(', ');
+    this.animal.size = this.petProfile.inputSize;
+    this.animal.gender = this.petProfile.inputGender;
+    this.animal.age = this.petProfile.inputAge;
+    this.animal.care = this.petProfile.inputCare.join(', ');
+    this.animal.health = this.petProfile.inputHealth;
+    this.animal.description = this.petProfile.inputDescription;
+    this.animal.coatLength = this.petProfile.inputCoatLength;
+    this.animal.goodInHome = this.petProfile.inputGoodInHome.join(', ')
+    this.animal.type = this.petProfile.inputType;
 
     const backedUpUserAuthorities = this.user.authorities;
     this.user.authorities = undefined;
-    this.review.author = this.user;
-    this.review.university = this.university;
-    const backedUpAdminAuthorities = this.university.admin.authorities;
-    this.university.admin.authorities = undefined;
+    this.animal.author = this.user;
+    this.animal.animalCenter = this.animalCenter;
+    const backedUpAdminAuthorities = this.animalCenter.admin.authorities;
+    this.animalCenter.admin.authorities = undefined;
 
     this.dogBreedService.getAllBreeds().subscribe({
       next: (data) => {
         // @ts-ignore
         this.breed = data.find(b => b.name === this.petProfile.inputBreed);
-        this.review.breedDetails = this.breed;
+        this.animal.breedDetails = this.breed;
 
-        const reviewFormData = this.prepareFormData(this.review);
+        const animalFormData = this.prepareFormData(this.animal);
 
-        this.reviewService.addReview(reviewFormData).subscribe({
+        this.animalService.createAnimal(animalFormData).subscribe({
           next: (data) => {
             this.user.authorities = backedUpUserAuthorities;
-            this.university.admin.authorities = backedUpAdminAuthorities;
+            this.animalCenter.admin.authorities = backedUpAdminAuthorities;
             Swal.fire({
               title: 'Success!',
               text: 'Animal added successfully',
@@ -128,10 +128,10 @@ export class ReviewAddComponent implements OnInit {
             }).then((_) => {
               const user_role = this.login.getUserRole();
               if (user_role == 'ADMIN') this.router
-                .navigate(['/admin/university-reviews/', {universityId: this.universityId},])
+                .navigate(['/admin/university-reviews/', {universityId: this.animalCenterId},])
                 .then((_) => {
                 }); else if (user_role == 'NORMAL') this.router
-                .navigate(['/user-dashboard/universities/', {universityId: this.universityId},])
+                .navigate(['/user-dashboard/universities/', {universityId: this.animalCenterId},])
                 .then((_) => {
                 });
             });
@@ -149,9 +149,7 @@ export class ReviewAddComponent implements OnInit {
         console.error('Failed to load breeds', err);
       }
     });
-
   }
-
 
   getAgeOptions(animalType: string): string[] {
     if (animalType === 'Dog') {
@@ -181,14 +179,13 @@ export class ReviewAddComponent implements OnInit {
     }
   }
 
-
-  prepareFormData(review: any): FormData {
+  prepareFormData(animal: any): FormData {
     const formData = new FormData();
 
-    formData.append('review', new Blob([JSON.stringify(review)], {type: 'application/json'}));
+    formData.append('animal', new Blob([JSON.stringify(animal)], {type: 'application/json'}));
 
-    for (let i = 0; i < review.reviewImages.length; i++) {
-      formData.append('imageFile', review.reviewImages[i].file, review.reviewImages[i].file.name);
+    for (let i = 0; i < animal.animalImages.length; i++) {
+      formData.append('imageFile', animal.animalImages[i].file, animal.animalImages[i].file.name);
     }
 
     return formData;
@@ -202,7 +199,7 @@ export class ReviewAddComponent implements OnInit {
       const fileHandler: FileModel = {
         file: file, url: this.sanitazer.bypassSecurityTrustUrl(window.URL.createObjectURL(file))
       }
-      this.review.reviewImages.push(fileHandler);
+      this.animal.animalImages.push(fileHandler);
     }
   }
 
@@ -223,6 +220,6 @@ export class ReviewAddComponent implements OnInit {
     this.petProfile.inputHealth = '';
     this.petProfile.inputBreed = '';
     this.petProfile.inputGoodInHome = '';
-    this.review.reviewImages = [];
+    this.animal.animalImages = [];
   }
 }
