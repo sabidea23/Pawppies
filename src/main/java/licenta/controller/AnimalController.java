@@ -103,16 +103,9 @@ public class AnimalController {
 
     @PutMapping("/{reviewId}/like/{userId}")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Animal likeRAnimal(@PathVariable("reviewId") Long animalId, @PathVariable("userId") Long userId)
+    public Animal likeAnimal(@PathVariable("reviewId") Long animalId, @PathVariable("userId") Long userId)
             throws Exception {
         return this.animalService.likeRAnimal(animalId, userId);
-    }
-
-    @PutMapping("/{reviewId}/dislike/{userId}")
-    @ResponseStatus(code = HttpStatus.CREATED)
-    public Animal dislikeAnimal(@PathVariable("reviewId") Long animalId, @PathVariable("userId") Long userId)
-            throws Exception {
-        return this.animalService.dislikeAnimal(animalId, userId);
     }
 
     @GetMapping("/{reviewId}/like-status/{userId}")

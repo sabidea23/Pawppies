@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {LoginService} from '../../services/login.service';
-import {ReviewService} from '../../services/review.service';
+import {AnimalService} from '../../services/animal.service.';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {UniversityService} from 'src/app/services/university.service';
 import {FileModel} from "../../model/file-handle.model";
@@ -57,7 +57,7 @@ export class ReviewAddComponent implements OnInit {
 
   breed: any = undefined;
   constructor(private login: LoginService, private snack: MatSnackBar, private router: Router, private route: ActivatedRoute,
-              private reviewService: ReviewService, private universityService: UniversityService, private sanitazer: DomSanitizer,
+              private reviewService: AnimalService, private universityService: UniversityService, private sanitazer: DomSanitizer,
               private dogBreedService: Breed_detailsService) {
   }
 
@@ -116,7 +116,7 @@ export class ReviewAddComponent implements OnInit {
 
         const reviewFormData = this.prepareFormData(this.review);
 
-        this.reviewService.addReview(reviewFormData).subscribe({
+        this.reviewService.createAnimal(reviewFormData).subscribe({
           next: (data) => {
             this.user.authorities = backedUpUserAuthorities;
             this.university.admin.authorities = backedUpAdminAuthorities;

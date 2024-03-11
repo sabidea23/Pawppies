@@ -5,46 +5,46 @@ import baseUrl from "./helper";
 @Injectable({
   providedIn: 'root'
 })
-export class ReviewService {
+export class AnimalService {
   constructor(private http: HttpClient) { }
 
-  public addReview(review: FormData) {
-    return this.http.post(`${baseUrl}/review/`, review);
+  public createAnimal(animal: FormData) {
+    return this.http.post(`${baseUrl}/review/`, animal);
   }
 
-  public updateReview(review: any) {
-    return this.http.put(`${baseUrl}/review/`, review);
+  public updateAnimal(animal: any) {
+    return this.http.put(`${baseUrl}/review/`, animal);
   }
 
-  public getAllReviews() {
+  public getAnimals() {
     return this.http.get(`${baseUrl}/review/`);
   }
 
-  public getReviewById(id: number) {
+  public getAnimal(id: number) {
     return this.http.get(`${baseUrl}/review/${id}`);
   }
 
-  public getReviewsByUniversityId(universityId: number) {
+  public getAnimalsByCenterId(universityId: number) {
     return this.http.get(`${baseUrl}/review/university/${universityId}`);
   }
 
-  public getReviewsByAuthorId(authorId: number) {
+  public getAnimalsByAuthorId(authorId: number) {
     return this.http.get(`${baseUrl}/review/author/${authorId}`);
   }
 
-  public getReviewsByUniversityIdAndAuthorId(universityId: number, authorId: number) {
+  public getAnimalsByCenterIdAndAuthorId(universityId: number, authorId: number) {
     return this.http.get(`${baseUrl}/review/university/${universityId}/author/${authorId}`);
   }
 
-  public deleteReviewById(id: number) {
+  public deleteAnimal(id: number) {
     return this.http.delete(`${baseUrl}/review/${id}`);
   }
 
-  public likeReview(reviewId: number, userId: number) {
+  public getLikeStatus(reviewId: number, userId: number) {
     return this.http.put(`${baseUrl}/review/${reviewId}/like/${userId}`, null);
   }
 
-  public getReviewsLikedByUser(userId: number) {
+  public getLikedAnimals(userId: number) {
     return this.http.get(`${baseUrl}/review/liked-reviews/${userId}`);
   }
 }

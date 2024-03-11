@@ -23,8 +23,6 @@ public interface AnimalService {
 
     Animal likeRAnimal(Long animalId, Long userId) throws Exception;
 
-    Animal dislikeAnimal(Long animalId, Long userId) throws Exception;
-
     boolean getLikeStatus(Long animalId, Long userId) throws Exception;
 
     List<Animal> getLikedAnimals(Long userId) throws Exception;
