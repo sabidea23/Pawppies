@@ -64,6 +64,14 @@ public class AnimalServiceImpl implements AnimalService {
         return this.animalRepository.findAllByAuthorId(authorId);
     }
 
+    @Override
+    public List<Animal> getAnimalsByCenterIdAndAuthorId(Long animalCenterId, Long authorId) throws AnimalNotFoundExeption {
+        if (!this.animalRepository.existsByAnimalCenterIdAndAuthorId(animalCenterId, authorId)) {
+            throw new AnimalNotFoundExeption("Animals with center id `" + animalCenterId + "` and author id `" + authorId + "` not found");
+        }
+
+        return this.animalRepository.findAllByAnimalCenterIdAndAuthorId(animalCenterId, authorId);
+    }
 
     @Override
     public List<Animal> getAnimals() {
@@ -76,7 +84,7 @@ public class AnimalServiceImpl implements AnimalService {
     }
 
     @Override
-    public Animal likeAnimal(Long animalId, Long userId) throws AnimalNotFoundExeption {
+    public Animal likeRAnimal(Long animalId, Long userId) throws AnimalNotFoundExeption {
         Animal animal = this.getAnimal(animalId);
         if (animal == null) {
             throw new AnimalNotFoundExeption("Animal with id `" + animalId + "` not found");
@@ -85,6 +93,19 @@ public class AnimalServiceImpl implements AnimalService {
         if (!animal.addLike(userId)) {
             animal.removeLike(userId);
         }
+
+        this.animalRepository.save(animal);
+        return animal;
+    }
+
+    @Override
+    public Animal dislikeAnimal(Long animalId, Long userId) throws AnimalNotFoundExeption {
+        Animal animal = this.getAnimal(animalId);
+        if (animal == null) {
+            throw new AnimalNotFoundExeption("Animal with id `" + animalId + "` not found");
+        }
+
+        animal.removeLike(userId);
 
         this.animalRepository.save(animal);
         return animal;

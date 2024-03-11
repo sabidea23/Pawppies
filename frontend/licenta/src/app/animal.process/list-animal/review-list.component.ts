@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from '../../services/login.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {AnimalService} from '../../services/animal.service';
+import {ReviewService} from '../../services/review.service';
 import Swal from 'sweetalert2';
 import {ActivatedRoute, Router} from '@angular/router';
-import {AnimalCenterService} from 'src/app/services/animal-center.service';
+import {UniversityService} from 'src/app/services/university.service';
 import {ImageProcessingService} from "../../services/image-processing.service";
 
 @Component({
@@ -18,12 +18,22 @@ export class ReviewListComponent implements OnInit {
   userId: any;
   likedReviews: any = [];
 
-  constructor(private login: LoginService, private reviewService: AnimalService, private router: Router, private route: ActivatedRoute, private snack: MatSnackBar, private universityService: AnimalCenterService, private imageProcessingService: ImageProcessingService) {
+  constructor(private login: LoginService, private reviewService: ReviewService, private router: Router, private route: ActivatedRoute, private snack: MatSnackBar, private universityService: UniversityService, private imageProcessingService: ImageProcessingService) {
   }
 
   getFavouriteReviews() {
-  if (this.universityId) {
-      this.reviewService.getAnimalsByCenterId(this.universityId).subscribe({
+    if (this.universityId && this.userId) {
+      this.reviewService
+        .getReviewsByUniversityIdAndAuthorId(this.universityId, this.userId)
+        .subscribe({
+          next: (data) => {
+            this.allReviews = data;
+            this.getImagesForReviews();
+          }, error: (_) => {
+          },
+        });
+    } else if (this.universityId) {
+      this.reviewService.getReviewsByUniversityId(this.universityId).subscribe({
         next: (data) => {
           this.allReviews = data;
           this.getImagesForReviews();
@@ -31,14 +41,14 @@ export class ReviewListComponent implements OnInit {
         },
       });
     } else if (this.userId) {
-      this.reviewService.getLikedAnimals(this.user.id).subscribe({
+      this.reviewService.getReviewsLikedByUser(this.user.id).subscribe({
         next: (data) => {
           this.allReviews = data;
           this.getImagesForReviews();
         },
       });
     } else {
-      this.reviewService.getAnimals().subscribe({
+      this.reviewService.getAllReviews().subscribe({
         next: (data) => {
           this.allReviews = data;
           this.getImagesForReviews();
@@ -60,7 +70,7 @@ export class ReviewListComponent implements OnInit {
 
     this.userId = JSON.parse(this.route.snapshot.paramMap.get('userId') || 'null') || undefined;
 
-    this.university = this.universityId ? this.universityService.getAnimalCenter(this.universityId).subscribe({
+    this.university = this.universityId ? this.universityService.getUniversityById(this.universityId).subscribe({
       next: (data) => {
         this.university = data;
       },
@@ -68,7 +78,7 @@ export class ReviewListComponent implements OnInit {
 
     this.getFavouriteReviews();
 
-    this.reviewService.getLikedAnimals(this.user.id).subscribe({
+    this.reviewService.getReviewsLikedByUser(this.user.id).subscribe({
       next: (data) => {
         this.likedReviews = data;
       },
@@ -95,10 +105,10 @@ export class ReviewListComponent implements OnInit {
   }
 
   public likeReview(review: any) {
-    this.reviewService.getLikeStatus(review.id, this.user.id).subscribe({
+    this.reviewService.likeReview(review.id, this.user.id).subscribe({
       next: (updatedReview: any) => {
         // Update liked reviews
-        this.reviewService.getLikedAnimals(this.user.id).subscribe({
+        this.reviewService.getReviewsLikedByUser(this.user.id).subscribe({
           next: (data) => {
             this.likedReviews = data;
           },
@@ -132,7 +142,7 @@ export class ReviewListComponent implements OnInit {
       if (result.isConfirmed && result.value) {
         review.text = result.value.text;
 
-        this.reviewService.updateAnimal(review).subscribe({
+        this.reviewService.updateReview(review).subscribe({
           next: (_) => {
             // Actualizează lista de review-uri
             this.allReviews = this.allReviews.map((r: any) => {
@@ -166,7 +176,7 @@ export class ReviewListComponent implements OnInit {
       cancelButtonText: 'No, keep it.',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.reviewService.deleteAnimal(review.id).subscribe({
+        this.reviewService.deleteReviewById(review.id).subscribe({
           next: (_) => {
             this.allReviews = this.allReviews.filter((r: any) => r.id !== review.id);
             Swal.fire({

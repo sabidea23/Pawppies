@@ -15,11 +15,15 @@ public interface AnimalService {
 
     List<Animal> getAnimalsByAuthorId(Long id) throws Exception;
 
+    List<Animal> getAnimalsByCenterIdAndAuthorId(Long animalId, Long authorId) throws Exception;
+
     List<Animal> getAnimals();
 
     void deleteAnimal(Long id);
 
-    Animal likeAnimal(Long animalId, Long userId) throws Exception;
+    Animal likeRAnimal(Long animalId, Long userId) throws Exception;
+
+    Animal dislikeAnimal(Long animalId, Long userId) throws Exception;
 
     boolean getLikeStatus(Long animalId, Long userId) throws Exception;
 
