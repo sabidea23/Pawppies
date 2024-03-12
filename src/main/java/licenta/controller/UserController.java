@@ -5,7 +5,6 @@ import licenta.model.Role;
 import licenta.model.User;
 import licenta.model.UserRole;
 import licenta.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;

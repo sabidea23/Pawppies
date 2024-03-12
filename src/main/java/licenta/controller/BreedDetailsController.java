@@ -3,9 +3,6 @@ package licenta.controller;
 
 import licenta.model.BreedDetails;
 import licenta.service.BreedDetailsService;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;

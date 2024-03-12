@@ -2,7 +2,6 @@ package licenta.config;
 
 import licenta.service.implementation.UserDetailsServiceImpl;
 import io.jsonwebtoken.ExpiredJwtException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,11 +17,14 @@ import java.io.IOException;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-    @Autowired
-    private UserDetailsServiceImpl userDetailsService;
+    private final UserDetailsServiceImpl userDetailsService;
 
-    @Autowired
-    private JwtUtils jwtUtil;
+    private final JwtUtils jwtUtil;
+
+    public JwtAuthenticationFilter(UserDetailsServiceImpl userDetailsService, JwtUtils jwtUtil) {
+        this.userDetailsService = userDetailsService;
+        this.jwtUtil = jwtUtil;
+    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,

@@ -1,7 +1,6 @@
 package licenta.config;
 
 import licenta.service.implementation.UserDetailsServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -20,14 +19,18 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private JwtAuthenticationEntryPoint unauthorizedHandler;
+    private final JwtAuthenticationEntryPoint unauthorizedHandler;
 
-    @Autowired
-    private JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    @Autowired
-    private UserDetailsServiceImpl userDetailsServiceImpl;
+    private final UserDetailsServiceImpl userDetailsServiceImpl;
+
+    public MySecurityConfig(JwtAuthenticationEntryPoint unauthorizedHandler, JwtAuthenticationFilter jwtAuthenticationFilter, UserDetailsServiceImpl userDetailsServiceImpl) {
+        super();
+        this.unauthorizedHandler = unauthorizedHandler;
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+        this.userDetailsServiceImpl = userDetailsServiceImpl;
+    }
 
     @Override
     @Bean
@@ -47,20 +50,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .csrf()
-                .disable()
-                .cors()
-                .disable()
-                .authorizeRequests()
-                .antMatchers("/generate-token", "/user/", "/university/").permitAll()
-                .antMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-resources/**", "/swagger-ui.html", "/webjars/**").permitAll()
-                .antMatchers(HttpMethod.OPTIONS).permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
-                .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.csrf().disable().cors().disable().authorizeRequests().antMatchers("/generate-token", "/user/", "/university/").permitAll().antMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-resources/**", "/swagger-ui.html", "/webjars/**").permitAll().antMatchers(HttpMethod.OPTIONS).permitAll().anyRequest().authenticated().and().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
     }

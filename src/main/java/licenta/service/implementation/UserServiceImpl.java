@@ -8,7 +8,6 @@ import licenta.repo.RoleRepository;
 import licenta.repo.UserRepository;
 import licenta.repo.UserRoleRepository;
 import licenta.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -18,11 +17,11 @@ import java.util.Set;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    private RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
 
-    private UserRoleRepository userRoleRepository;
+    private final UserRoleRepository userRoleRepository;
 
     public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, UserRoleRepository userRoleRepository) {
         this.userRepository = userRepository;
