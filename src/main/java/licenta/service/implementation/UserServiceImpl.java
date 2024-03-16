@@ -2,16 +2,17 @@ package licenta.service.implementation;
 
 import licenta.exeptions.UserAlreadyExists;
 import licenta.exeptions.UserNotFoundException;
+import licenta.model.Role;
 import licenta.model.User;
-import licenta.model.UserRole;
 import licenta.repo.RoleRepository;
 import licenta.repo.UserRepository;
-import licenta.repo.UserRoleRepository;
 import licenta.service.UserService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -19,18 +20,20 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
     private final RoleRepository roleRepository;
 
-    private final UserRoleRepository userRoleRepository;
-
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, UserRoleRepository userRoleRepository) {
+    public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder,
+                           RoleRepository roleRepository) {
         this.userRepository = userRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.roleRepository = roleRepository;
-        this.userRoleRepository = userRoleRepository;
     }
 
     @Override
-    public User createUser(User user, Set<UserRole> userRoleSet) throws UserAlreadyExists {
+    public User createUser(User user) throws UserAlreadyExists {
+
         if (this.userRepository.existsByUsername(user.getUsername())) {
             throw new UserAlreadyExists("User with username `" + user.getUsername() + "` already exists");
         }
@@ -39,48 +42,46 @@ public class UserServiceImpl implements UserService {
             throw new UserAlreadyExists("User with email `" + user.getEmail() + "` already exists");
         }
 
-        for (UserRole role: userRoleSet) {
-            this.roleRepository.save(role.getRole());
-        }
+       // Securitate
+//        Principiul Celui Mai Mic Privilegiu: Utilizatorii ar trebui să aibă doar acele permisiuni strict necesare
+//        pentru activitățile lor.
+        user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
 
-        user.setUserRoles(userRoleSet);
+        //ADAUGARE ROL USER BY DEFAULT
+        Optional<Role> normalRole = roleRepository.findById("USER");
 
-        return this.userRepository.save(user);
-    }
-
-    @Override
-    public User updateUser(User user) throws UserNotFoundException {
-        if (!this.userRepository.existsById(user.getId())) {
-            throw new UserNotFoundException("User with id `" + user.getId() + "` not found");
-        }
+        Set<Role> roles = new HashSet<>();
+        normalRole.ifPresent(roles::add);
+        user.setRole(roles);
 
         return this.userRepository.save(user);
     }
 
     @Override
-    @Transactional
-    public User updateUserRole(User user, Set<UserRole> userRoleSet) throws UserNotFoundException {
-        if (!this.userRepository.existsById(user.getId())) {
-            throw new UserNotFoundException("User with id `" + user.getId() + "` not found");
+    public User updateUser(User requestBodyUser) throws UserNotFoundException {
+        User originalUser = getUserByUsername(requestBodyUser.getUsername());
+        if (originalUser == null) {
+            throw new UserNotFoundException("User with username `" + requestBodyUser.getUsername() + "` not found");
         }
 
-        Set<UserRole> existingUserRoles = user.getUserRoles();
-        this.userRoleRepository.deleteAll(existingUserRoles);
+        originalUser.setFirstName(requestBodyUser.getFirstName());
+        originalUser.setLastName(requestBodyUser.getLastName());
+        originalUser.setEmail(requestBodyUser.getEmail());
+        originalUser.setPhone(requestBodyUser.getPhone());
+        originalUser.setLatitude(requestBodyUser.getLatitude());
+        originalUser.setLongitude(requestBodyUser.getLongitude());
 
-        for (UserRole role: userRoleSet) {
-            this.roleRepository.save(role.getRole());
+        if (requestBodyUser.getPassword() != null && !requestBodyUser.getPassword().isEmpty()) {
+            originalUser.setPassword(this.bCryptPasswordEncoder.encode(requestBodyUser.getPassword()));
         }
 
-        user.setUserRoles(userRoleSet);
-
-        return this.userRepository.save(user);
+        return this.userRepository.save(originalUser);
     }
 
     @Override
     public User getUser(String username) {
         return this.userRepository.findByUsername(username);
     }
-
 
     @Override
     public User getUserByUsername(String username) {

@@ -6,11 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
-@Table(name = "roles")
+@Table(name = "role_app")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,7 +16,8 @@ import java.util.Set;
 public class Role {
 
     @Id
-    private Long roleId;
-
     private String roleName;
+
+    @Column
+    private String roleDescription;
 }
