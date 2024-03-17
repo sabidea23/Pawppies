@@ -9,42 +9,42 @@ export class AnimalService {
   constructor(private http: HttpClient) { }
 
   public createAnimal(animal: FormData) {
-    return this.http.post(`${baseUrl}/review/`, animal);
+    return this.http.post(`${baseUrl}/animal/`, animal);
   }
 
   public updateAnimal(animal: any) {
-    return this.http.put(`${baseUrl}/review/`, animal);
+    return this.http.put(`${baseUrl}/animal/`, animal);
   }
 
   public getAnimals() {
-    return this.http.get(`${baseUrl}/review/`);
+    return this.http.get(`${baseUrl}/animal/`);
   }
 
   public getAnimal(id: number) {
-    return this.http.get(`${baseUrl}/review/${id}`);
+    return this.http.get(`${baseUrl}/animal/${id}`);
   }
 
-  public getAnimalsByCenterId(universityId: number) {
-    return this.http.get(`${baseUrl}/review/university/${universityId}`);
+  public getAnimalsByCenterId(centerId: number) {
+    return this.http.get(`${baseUrl}/animal/center/${centerId}`);
   }
 
   public getAnimalsByAuthorId(authorId: number) {
-    return this.http.get(`${baseUrl}/review/author/${authorId}`);
+    return this.http.get(`${baseUrl}/animal/author/${authorId}`);
   }
 
-  public getAnimalsByCenterIdAndAuthorId(universityId: number, authorId: number) {
-    return this.http.get(`${baseUrl}/review/university/${universityId}/author/${authorId}`);
+  public getAnimalsByCenterIdAndAuthorId(centerId: number, authorId: number) {
+    return this.http.get(`${baseUrl}/animal/center/${centerId}/author/${authorId}`);
   }
 
   public deleteAnimal(id: number) {
-    return this.http.delete(`${baseUrl}/review/${id}`);
+    return this.http.delete(`${baseUrl}/animal/${id}`);
   }
 
-  public getLikeStatus(reviewId: number, userId: number) {
-    return this.http.put(`${baseUrl}/review/${reviewId}/like/${userId}`, null);
+  public getLikeStatus(animalId: number, userId: number) {
+    return this.http.put(`${baseUrl}/animal/${animalId}/like/${userId}`, null);
   }
 
   public getLikedAnimals(userId: number) {
-    return this.http.get(`${baseUrl}/review/liked-reviews/${userId}`);
+    return this.http.get(`${baseUrl}/animal/liked-animals/${userId}`);
   }
 }
