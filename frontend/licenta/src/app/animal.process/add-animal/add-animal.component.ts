@@ -64,7 +64,7 @@ export class AddAnimalComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.login.getUser();
-    this.animalCenterId = JSON.parse(this.route.snapshot.paramMap.get('universityId') || '{}');
+    this.animalCenterId = JSON.parse(this.route.snapshot.paramMap.get('centerId') || '{}');
     this.animalCenter = this.animalCenterService
       .getAnimalCenter(this.animalCenterId)
       .subscribe({

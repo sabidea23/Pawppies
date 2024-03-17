@@ -10,11 +10,11 @@ export class AnimalCenterService {
   constructor(private http: HttpClient) { }
 
   public createAnimalCenter(center: any) {
-    return this.http.post(`${baseUrl}/university/`, center);
+    return this.http.post(`${baseUrl}/center/`, center);
   }
 
   public updateAnimalCenter(center: any) {
-    return this.http.put(`${baseUrl}/university/`, center);
+    return this.http.put(`${baseUrl}/center/`, center);
   }
 
   public getAnimalCenters(params: { page: number; size: number }): Observable<any> {
@@ -24,14 +24,14 @@ export class AnimalCenterService {
     queryParams = queryParams.append('size', params.size.toString());
 
     // Trimite request-ul GET cu parametrii de paginare
-    return this.http.get(`${baseUrl}/university/`, { params: queryParams });
+    return this.http.get(`${baseUrl}/center/`, { params: queryParams });
   }
 
   public getAnimalCenter(id: number) {
-    return this.http.get(`${baseUrl}/university/${id}`);
+    return this.http.get(`${baseUrl}/center/${id}`);
   }
 
   public deleteAnimalCenter(id: number) {
-    return this.http.delete(`${baseUrl}/university/${id}`);
+    return this.http.delete(`${baseUrl}/center/${id}`);
   }
 }

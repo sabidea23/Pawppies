@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Pageable;
 
 @RestController
-@RequestMapping("/university")
+@RequestMapping("/center")
 @CrossOrigin("*")
 public class AnimalCenterController {
 
@@ -53,15 +53,15 @@ public class AnimalCenterController {
         return this.animalCenterService.getAnimalCenters(paging);
     }
 
-    @GetMapping("/{universityId}")
+    @GetMapping("/{centerId}")
     @ResponseStatus(code = HttpStatus.OK)
-    public AnimalCenter getAnimalCenter(@PathVariable("universityId") Long id) throws Exception {
+    public AnimalCenter getAnimalCenter(@PathVariable("centerId") Long id) throws Exception {
         return this.animalCenterService.getAnimalCenter(id);
     }
 
-    @DeleteMapping("/{universityId}")
+    @DeleteMapping("/{centerId}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void deleteAnimalCenter(@PathVariable("universityId") Long id) {
+    public void deleteAnimalCenter(@PathVariable("centerId") Long id) {
         this.animalCenterService.deleteAnimalCenter(id);
     }
 }
