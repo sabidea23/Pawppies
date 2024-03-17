@@ -159,7 +159,4 @@ mat mat-icon.heart-icon {
   color: #FF1053; /* Culoare la survolare */
 }
 
-/* Specificați culoarea inimii pe pagina de review-uri preferate */
-.on-favorite-reviews-page .heart-icon mat-icon {
-  color: #6504B5;
-}
+

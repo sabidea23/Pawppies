@@ -34,10 +34,10 @@ export class MissionComponent {
   goToAnimalsPage() {
     const user_role = this.login.getUserRole();
     if (user_role == 'ADMIN') this.router
-      .navigate(['/university-reviews'])
+      .navigate(['/animal'])
       .then((_) => {
       }); else if (user_role == 'NORMAL') this.router
-      .navigate(['/university-reviews'])
+      .navigate(['/animal'])
       .then((_) => {
       });
   }

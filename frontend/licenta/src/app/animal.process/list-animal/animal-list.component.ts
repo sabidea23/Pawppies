@@ -92,10 +92,10 @@ export class AnimalListComponent implements OnInit {
   public goToAddAnimal() {
     const user_role = this.login.getUserRole();
     if (user_role == 'ADMIN') this.router
-      .navigate(['/university-reviews/add', {centerId: this.animalCenterId},])
+      .navigate(['/animal/add', {centerId: this.animalCenterId},])
       .then((_) => {
       }); else if (user_role == 'NORMAL') this.router
-      .navigate(['/university-reviews/add', {centerId: this.animalCenterId},])
+      .navigate(['/animal/add', {centerId: this.animalCenterId},])
       .then((_) => {
       });
   }

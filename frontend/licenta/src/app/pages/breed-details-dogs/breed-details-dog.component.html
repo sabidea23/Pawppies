@@ -188,10 +188,10 @@
 
   <div  class="content-container">
     <h2 class="number-dogs"> {{totalElements}} Dog or Puppy Breeds</h2>
-    <div class="review-grid">
-      <div *ngFor="let dog of paginatedDogBreeds" class="review-card" (click)="viewDogDetails(dog)">
-        <img [src]='dog.image' class="review-image">
-        <p class="review-name"> {{ dog.name }} </p>
+    <div class="animal-grid">
+      <div *ngFor="let dog of paginatedDogBreeds" class="animal-card" (click)="viewDogDetails(dog)">
+        <img [src]='dog.image' class="animal-image">
+        <p class="animal-name"> {{ dog.name }} </p>
       </div>
     </div>
 

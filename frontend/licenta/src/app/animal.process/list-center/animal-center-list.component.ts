@@ -77,10 +77,10 @@ export class AnimalCenterList implements OnInit {
     const user_role = this.login.getUserRole();
     if (user_role == 'ADMIN')
       this.router
-      .navigate(['/university-reviews', {centerId: animalCenter.id},])
+      .navigate(['/animal', {centerId: animalCenter.id},])
       .then((_) => {
       }); else if (user_role == 'NORMAL') this.router
-      .navigate(['/university-reviews', {centerId: animalCenter.id},])
+      .navigate(['/animal', {centerId: animalCenter.id},])
       .then((_) => {
       });
   }

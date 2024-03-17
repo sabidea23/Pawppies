@@ -128,7 +128,7 @@ export class AddAnimalComponent implements OnInit {
             }).then((_) => {
               const user_role = this.login.getUserRole();
               if (user_role == 'ADMIN') this.router
-                .navigate(['/university-reviews/', {centerId: this.animalCenterId},])
+                .navigate(['/animal/', {centerId: this.animalCenterId},])
                 .then((_) => {
                 }); else if (user_role == 'NORMAL') this.router
                 .navigate(['/centers/', {centerId: this.animalCenterId},])

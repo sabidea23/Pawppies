@@ -142,10 +142,7 @@ export class NavbarComponent implements OnInit {
 
   redirectToFavoriteAnimalsPage() {
     const user_role = this.login.getUserRole();
-    if (user_role == 'ADMIN')
-      this.router.navigate(['/my-reviews',{ userId: this.user.id }]).then((_) => { });
-    else if (user_role == 'NORMAL')
-      this.router.navigate(['/my-reviews',{ userId: this.user.id } ]).then((_) => { });
+      this.router.navigate(['/my-fav-animals',{ userId: this.user.id }]).then((_) => { });
   }
 
   redirectToLoginPage() {

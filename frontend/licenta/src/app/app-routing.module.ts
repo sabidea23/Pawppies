@@ -40,26 +40,12 @@ const routes: Routes = [{
 }, {
   path: 'centers/add', component: AnimalCenterAddComponent,
 }, {
-  path: 'university-reviews', component: AnimalListComponent,
+  path: 'animal', component: AnimalListComponent,
 }, {
-  path: 'university-reviews/add', component: AddAnimalComponent,
+  path: 'animal/add', component: AddAnimalComponent,
 }, {
-  path: 'my-reviews', component: AnimalListComponent,
-},
-
-  {
-    path: 'quiz', component: QuizComponent,
-  }, {
-    path: 'profile', component: ProfileComponent,
-  }, {
-    path: 'centers', component: AnimalCenterList,
-  }, {
-    path: 'university-reviews', component: AnimalListComponent,
-  }, {
-    path: 'university-reviews/add', component: AddAnimalComponent,
-  }, {
-    path: 'my-reviews', component: AnimalListComponent,
-  }];
+  path: 'my-fav-animals', component: AnimalListComponent,
+}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {

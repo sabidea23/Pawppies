@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddAnimalComponent } from './add-animal.component';
 
-describe('ReviewAddComponent', () => {
+describe('AddAnimalComponent', () => {
   let component: AddAnimalComponent;
   let fixture: ComponentFixture<AddAnimalComponent>;
 

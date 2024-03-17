@@ -65,9 +65,9 @@ public class AnimalController {
         return this.animalService.updateAnimal(originalAnimal);
     }
 
-    @GetMapping("/{reviewId}")
+    @GetMapping("/{animalId}")
     @ResponseStatus(code = HttpStatus.OK)
-    public Animal getAnimal(@PathVariable("reviewId") Long id) throws Exception {
+    public Animal getAnimal(@PathVariable("animalId") Long id) throws Exception {
         return this.animalService.getAnimal(id);
     }
 
