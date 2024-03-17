@@ -17,6 +17,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/review")
+@CrossOrigin("*")
 public class AnimalController {
 
     private final AnimalService animalService;

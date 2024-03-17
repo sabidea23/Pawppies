@@ -9,7 +9,7 @@ import java.util.Set;
 
 public interface UserService {
 
-    User createUser(User user, Set<UserRole> userRoleSet) throws Exception;
+    User createUser(User user) throws Exception;
 
     User updateUser(User user) throws Exception;
 

@@ -30,21 +30,7 @@ public class UserController {
     @PostMapping("/")
     @ResponseStatus(code = HttpStatus.CREATED)
     public User createUser(@RequestBody User user) throws Exception {
-        user.setProfile("default.png");
-
-        user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
-
-        Set<UserRole> userRoleSet = new HashSet<>();
-        Role role = new Role();
-        role.setRoleId(45L);
-        role.setRoleName("NORMAL");
-
-        UserRole userRole = new UserRole();
-        userRole.setUser(user);
-        userRole.setRole(role);
-
-        userRoleSet.add(userRole);
-        return this.userService.createUser(user, userRoleSet);
+        return this.userService.createUser(user);
     }
 
     @PutMapping("/")
