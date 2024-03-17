@@ -56,6 +56,12 @@ export class LoginService {
 
   public getUserRole() {
     let user = this.getUser();
-    return user.authorities[0].authority;
+    // Verifică dacă user există și are proprietatea authorities definită
+    if (user && user.authorities && user.authorities.length > 0) {
+      return user.authorities[0].authority;
+    } else {
+      // Returnează un rol implicit sau null dacă userul nu este autentificat sau nu are roluri
+      return 'GUEST';
+    }
   }
 }

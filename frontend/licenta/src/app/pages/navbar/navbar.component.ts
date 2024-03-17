@@ -93,17 +93,15 @@ export class NavbarComponent implements OnInit {
   public toProfileSettings() {
     const user_role = this.login.getUserRole();
     if (user_role == 'ADMIN')
-      this.router.navigate(['/admin/profile']).then((_) => { });
+      this.router.navigate(['/profile']).then((_) => { });
     else if (user_role == 'NORMAL')
-      this.router.navigate(['/user-dashboard/profile']).then((_) => { });
+      this.router.navigate(['/profile']).then((_) => { });
   }
 
   public redirectAnimalCenter() {
-    const user_role = this.login.getUserRole();
-    if (user_role == 'ADMIN')
-      this.router.navigate(['/admin/universities']).then((_) => { });
-    else if (user_role == 'NORMAL')
-      this.router.navigate(['/user-dashboard/universities']).then((_) => { });
+
+      this.router.navigate(['/centers']).then((_) => { });
+
   }
 
   public redirectToAboutPawppies() {
@@ -138,16 +136,16 @@ export class NavbarComponent implements OnInit {
     return this.login.getUserRole();
   }
   public goToAddAnimalCenter() {
-    this.router.navigate(['/admin/universities/add']).then((_) => {
+    this.router.navigate(['/centers/add']).then((_) => {
     });
   }
 
   redirectToFavoriteAnimalsPage() {
     const user_role = this.login.getUserRole();
     if (user_role == 'ADMIN')
-      this.router.navigate(['/admin/my-reviews',{ userId: this.user.id }]).then((_) => { });
+      this.router.navigate(['/my-reviews',{ userId: this.user.id }]).then((_) => { });
     else if (user_role == 'NORMAL')
-      this.router.navigate(['/user-dashboard/my-reviews',{ userId: this.user.id } ]).then((_) => { });
+      this.router.navigate(['/my-reviews',{ userId: this.user.id } ]).then((_) => { });
   }
 
   redirectToLoginPage() {

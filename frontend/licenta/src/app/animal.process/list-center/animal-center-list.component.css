@@ -246,5 +246,29 @@ mat-form-field {
   font-size: 14px;
 }
 
+.add-animal-center-button {
+  display: block;
+  text-align: right;
+  max-width: 200px;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-animal-center-button {
+  margin-top: 0;
+  text-align: center;
+  margin-bottom: 16px;
+  border-radius: 20px;
+  width: 100%; /* Ocupă întreaga lățime a containerului */
+  box-shadow: none; /* Înlătură orice umbre dacă există */
+  font-size: 14px; /* Aproximativ echivalent cu h2, ajustează conform necesităților */
+  color: white; /* Text alb */
+  background-color: #6504B5; /* Culoare mov, ajustează codul hex conform preferințelor */
+  padding: 10px 20px; /* Padding pentru a mări dimensiunea butonului */
+}
 
 

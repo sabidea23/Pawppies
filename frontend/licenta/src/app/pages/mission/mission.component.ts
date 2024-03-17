@@ -34,10 +34,10 @@ export class MissionComponent {
   goToAnimalsPage() {
     const user_role = this.login.getUserRole();
     if (user_role == 'ADMIN') this.router
-      .navigate(['/admin/university-reviews'])
+      .navigate(['/university-reviews'])
       .then((_) => {
       }); else if (user_role == 'NORMAL') this.router
-      .navigate(['/user-dashboard/university-reviews'])
+      .navigate(['/university-reviews'])
       .then((_) => {
       });
   }
@@ -45,10 +45,10 @@ export class MissionComponent {
   goToQuizPage() {
     const user_role = this.login.getUserRole();
     if (user_role == 'ADMIN') this.router
-      .navigate(['/admin/quiz/'])
+      .navigate(['/quiz/'])
       .then((_) => {
       }); else if (user_role == 'NORMAL') this.router
-      .navigate(['/user-dashboard/quiz/'])
+      .navigate(['/quiz/'])
       .then((_) => {
       });
   }
@@ -58,10 +58,10 @@ export class MissionComponent {
     this.searchService.setSearchFilters(this.searchData);
     const user_role = this.login.getUserRole();
     if (user_role == 'ADMIN') this.router
-      .navigate(['/admin/universities/'])
+      .navigate(['/centers/'])
       .then((_) => {
       }); else if (user_role == 'NORMAL') this.router
-      .navigate(['/user-dashboard/universities/'])
+      .navigate(['/centers/'])
       .then((_) => {
       });
   }

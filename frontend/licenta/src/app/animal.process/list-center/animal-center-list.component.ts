@@ -58,22 +58,29 @@ export class AnimalCenterList implements OnInit {
 
   }
 
+  navigateToAddAnimalCenter() {
+    this.router.navigate(['centers/add']); // Înlocuiește '/add-animal-center' cu calea corectă
+  }
+
+
   public handlePageEvent(event: PageEvent): void {
     this.getAnimalCenters({page: event.pageIndex, size: event.pageSize});
   }
 
   public getUserRole() {
-    return this.login.getUserRole();
+
+    return this.login.getUserRole() || 'GUEST';
+
   }
 
   public goToAnimalsPage(animalCenter: any) {
     const user_role = this.login.getUserRole();
     if (user_role == 'ADMIN')
       this.router
-      .navigate(['/admin/university-reviews', {universityId: animalCenter.id},])
+      .navigate(['/university-reviews', {centerId: animalCenter.id},])
       .then((_) => {
       }); else if (user_role == 'NORMAL') this.router
-      .navigate(['/user-dashboard/university-reviews', {universityId: animalCenter.id},])
+      .navigate(['/university-reviews', {centerId: animalCenter.id},])
       .then((_) => {
       });
   }

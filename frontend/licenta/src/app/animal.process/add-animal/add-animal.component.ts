@@ -64,7 +64,7 @@ export class AddAnimalComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.login.getUser();
-    this.animalCenterId = JSON.parse(this.route.snapshot.paramMap.get('universityId') || '{}');
+    this.animalCenterId = JSON.parse(this.route.snapshot.paramMap.get('centerId') || '{}');
     this.animalCenter = this.animalCenterService
       .getAnimalCenter(this.animalCenterId)
       .subscribe({
@@ -128,10 +128,10 @@ export class AddAnimalComponent implements OnInit {
             }).then((_) => {
               const user_role = this.login.getUserRole();
               if (user_role == 'ADMIN') this.router
-                .navigate(['/admin/university-reviews/', {universityId: this.animalCenterId},])
+                .navigate(['/university-reviews/', {centerId: this.animalCenterId},])
                 .then((_) => {
                 }); else if (user_role == 'NORMAL') this.router
-                .navigate(['/user-dashboard/universities/', {universityId: this.animalCenterId},])
+                .navigate(['/centers/', {centerId: this.animalCenterId},])
                 .then((_) => {
                 });
             });

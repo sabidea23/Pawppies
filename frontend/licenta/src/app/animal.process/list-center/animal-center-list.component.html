@@ -1,8 +1,15 @@
 <body>
 <div class="main-container">
-  <div *ngIf="user" class="content-container">
+  <div  class="content-container">
 
-    <h2>Search For Animal Welfare Groups by </h2>
+    <div class="header-container">
+      <h2>Search For Animal Welfare Groups by </h2>
+      <!-- Buton pentru adăugare centru animal, vizibil doar pentru ADMIN -->
+      <button *ngIf="getUserRole() == 'ADMIN'" (click)="navigateToAddAnimalCenter()" class="add-animal-center-button" mat-raised-button>
+        ADD CENTER
+      </button>
+    </div>
+
 
     <div *ngIf="searchFilters.length > 0" class="filter-container">
       <div *ngFor="let filter of searchFilters">

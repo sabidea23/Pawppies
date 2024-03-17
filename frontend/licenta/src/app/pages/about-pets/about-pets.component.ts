@@ -32,10 +32,10 @@ export class AboutPetsComponent {
   goToQuizPage() {
     const user_role = this.login.getUserRole();
     if (user_role == 'ADMIN') this.router
-      .navigate(['/admin/quiz/'])
+      .navigate(['/quiz/'])
       .then((_) => {
       }); else if (user_role == 'NORMAL') this.router
-      .navigate(['/user-dashboard/quiz/'])
+      .navigate(['/quiz/'])
       .then((_) => {
       });
   }
@@ -45,10 +45,10 @@ export class AboutPetsComponent {
     this.searchService.setSearchFilters(this.searchData);
     const user_role = this.login.getUserRole();
     if (user_role == 'ADMIN') this.router
-      .navigate(['/admin/universities/'])
+      .navigate(['/centers/'])
       .then((_) => {
       }); else if (user_role == 'NORMAL') this.router
-      .navigate(['/user-dashboard/universities/'])
+      .navigate(['/centers/'])
       .then((_) => {
       });
   }

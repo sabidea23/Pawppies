@@ -101,9 +101,9 @@ export class ProfileComponent implements OnInit {
         }).then((_) => {
           const user_role = this.login.getUserRole();
           if (user_role == 'ADMIN')
-            this.router.navigate(['/admin/profile']).then((_) => { });
+            this.router.navigate(['/profile']).then((_) => { });
           else if (user_role == 'NORMAL')
-            this.router.navigate(['/user-dashboard/profile']).then((_) => { });
+            this.router.navigate(['/profile']).then((_) => { });
         });
       },
       error: (error) => {
