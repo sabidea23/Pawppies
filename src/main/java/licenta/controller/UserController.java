@@ -1,12 +1,17 @@
 package licenta.controller;
 
 import licenta.exeptions.UserNotFoundException;
+import licenta.model.Role;
 import licenta.model.User;
+import licenta.model.UserRole;
 import licenta.service.UserService;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/user")
@@ -15,22 +20,78 @@ public class UserController {
 
     private final UserService userService;
 
-    public UserController(UserService userService) {
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    public UserController(UserService userService, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userService = userService;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-    @PostMapping("/register")
+    @PostMapping("/")
     @ResponseStatus(code = HttpStatus.CREATED)
     public User createUser(@RequestBody User user) throws Exception {
-        return this.userService.createUser(user);
+        user.setProfile("default.png");
+
+        user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
+
+        Set<UserRole> userRoleSet = new HashSet<>();
+        Role role = new Role();
+        role.setRoleId(45L);
+        role.setRoleName("NORMAL");
+
+        UserRole userRole = new UserRole();
+        userRole.setUser(user);
+        userRole.setRole(role);
+
+        userRoleSet.add(userRole);
+        return this.userService.createUser(user, userRoleSet);
     }
 
     @PutMapping("/")
     @ResponseStatus(code = HttpStatus.CREATED)
     public User updateUser(@RequestBody User requestBodyUser) throws Exception {
-        return this.userService.updateUser(requestBodyUser);
+        User originalUser = getUserByUsername(requestBodyUser.getUsername());
+        if (originalUser == null) {
+            throw new UserNotFoundException("User with username `" + requestBodyUser.getUsername() + "` not found");
+        }
+
+        originalUser.setFirstName(requestBodyUser.getFirstName());
+        originalUser.setLastName(requestBodyUser.getLastName());
+        originalUser.setEmail(requestBodyUser.getEmail());
+        originalUser.setPhone(requestBodyUser.getPhone());
+        originalUser.setLatitude(requestBodyUser.getLatitude());
+        originalUser.setLongitude(requestBodyUser.getLongitude());
+
+        if (requestBodyUser.getPassword() != null && !requestBodyUser.getPassword().isEmpty()) {
+            originalUser.setPassword(this.bCryptPasswordEncoder.encode(requestBodyUser.getPassword()));
+        }
+
+        return this.userService.updateUser(originalUser);
     }
 
+    @PutMapping("/{username}/role/{roleName}")
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public User updateUserRole(@PathVariable("username") String username, @PathVariable("roleName") String roleName)
+            throws Exception {
+        User user = getUserByUsername(username);
+        if (user == null) {
+            throw new UserNotFoundException("User with username `" + username + "` not found");
+        }
+
+        Set<UserRole> userRoleSet = new HashSet<>();
+        Role role = new Role();
+
+        role.setRoleId((roleName.equals("ADMIN")) ? 0L : 45L);
+        role.setRoleName(roleName);
+
+        UserRole userRole = new UserRole();
+        userRole.setUser(user);
+        userRole.setRole(role);
+
+        userRoleSet.add(userRole);
+
+        return this.userService.updateUserRole(user, userRoleSet);
+    }
 
     @GetMapping("/")
     @ResponseStatus(code = HttpStatus.OK)

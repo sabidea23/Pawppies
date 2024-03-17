@@ -6,13 +6,12 @@ import licenta.service.AnimalCenterService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.data.domain.Pageable;
 
 @RestController
-@RequestMapping("/center")
+@RequestMapping("/university")
 @CrossOrigin("*")
 public class AnimalCenterController {
 
@@ -23,7 +22,6 @@ public class AnimalCenterController {
     }
 
     @PostMapping("/")
-    @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(code = HttpStatus.CREATED)
     public AnimalCenter createAnimalCenter(@RequestBody AnimalCenter animalCenter) throws Exception {
         System.out.println(animalCenter.toString());
@@ -31,7 +29,6 @@ public class AnimalCenterController {
     }
 
     @PutMapping("/")
-    @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(code = HttpStatus.CREATED)
     public AnimalCenter updateAnimalCenter(@RequestBody AnimalCenter animalCenter) throws Exception {
         AnimalCenter originalAnimalCenter = this.animalCenterService.getAnimalCenter(animalCenter.getId());
@@ -56,16 +53,15 @@ public class AnimalCenterController {
         return this.animalCenterService.getAnimalCenters(paging);
     }
 
-    @GetMapping("/{animalCenterId}")
+    @GetMapping("/{universityId}")
     @ResponseStatus(code = HttpStatus.OK)
-    public AnimalCenter getAnimalCenter(@PathVariable("animalCenterId") Long id) throws Exception {
+    public AnimalCenter getAnimalCenter(@PathVariable("universityId") Long id) throws Exception {
         return this.animalCenterService.getAnimalCenter(id);
     }
 
-    @DeleteMapping("/{animalCenterId}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/{universityId}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void deleteAnimalCenter(@PathVariable("animalCenterId") Long id) {
+    public void deleteAnimalCenter(@PathVariable("universityId") Long id) {
         this.animalCenterService.deleteAnimalCenter(id);
     }
 }

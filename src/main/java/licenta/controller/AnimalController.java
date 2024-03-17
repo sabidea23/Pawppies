@@ -6,7 +6,6 @@ import licenta.model.ImageModel;
 import licenta.service.AnimalService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,7 +16,7 @@ import java.util.Set;
 
 
 @RestController
-@RequestMapping("/animal")
+@RequestMapping("/review")
 public class AnimalController {
 
     private final AnimalService animalService;
@@ -27,7 +26,6 @@ public class AnimalController {
     }
 
     @PostMapping(value = {"/"}, consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(code = HttpStatus.CREATED)
     public Animal createAnimal(@RequestPart("animal") Animal animal,
                                @RequestPart("imageFile") MultipartFile[] file) {
@@ -53,7 +51,6 @@ public class AnimalController {
     }
 
     @PutMapping("/")
-    @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(code = HttpStatus.CREATED)
     public Animal updateAnimal(@RequestBody Animal requestBodyAnimal) throws Exception {
         Animal originalAnimal = this.animalService.getAnimal(requestBodyAnimal.getId());
@@ -67,15 +64,15 @@ public class AnimalController {
         return this.animalService.updateAnimal(originalAnimal);
     }
 
-    @GetMapping("/{animalId}")
+    @GetMapping("/{reviewId}")
     @ResponseStatus(code = HttpStatus.OK)
-    public Animal getAnimal(@PathVariable("animalId") Long id) throws Exception {
+    public Animal getAnimal(@PathVariable("reviewId") Long id) throws Exception {
         return this.animalService.getAnimal(id);
     }
 
-    @GetMapping("/center/{animalCenterId}")
+    @GetMapping("/university/{universityId}")
     @ResponseStatus(code = HttpStatus.OK)
-    public List<Animal> getAnimalsByCenterId(@PathVariable("animalCenterId") Long id) throws Exception {
+    public List<Animal> getAnimalsByCenterId(@PathVariable("universityId") Long id) throws Exception {
         return this.animalService.getAnimalsByCenterId(id);
     }
 
@@ -85,8 +82,8 @@ public class AnimalController {
         return this.animalService.getAnimalsByAuthorId(authorId);
     }
 
-    @GetMapping("/center/{animalCenterId}/author/{authorId}")
-    public List<Animal> getAnimalsByCenterIdAndAuthorId(@PathVariable("animalCenterId") Long animalCenterId,
+    @GetMapping("/university/{universityId}/author/{authorId}")
+    public List<Animal> getAnimalsByCenterIdAndAuthorId(@PathVariable("universityId") Long animalCenterId,
                                                             @PathVariable("authorId") Long authorId) throws Exception {
         return this.animalService.getAnimalsByCenterIdAndAuthorId(animalCenterId, authorId);
     }
@@ -97,28 +94,27 @@ public class AnimalController {
         return this.animalService.getAnimals();
     }
 
-    @DeleteMapping("/{animalId}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/{reviewId}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void deleteAnimal(@PathVariable("animalId") Long id) {
+    public void deleteAnimal(@PathVariable("reviewId") Long id) {
         this.animalService.deleteAnimal(id);
     }
 
-    @PutMapping("/{animalId}/like/{userId}")
+    @PutMapping("/{reviewId}/like/{userId}")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Animal likeAnimal(@PathVariable("animalId") Long animalId, @PathVariable("userId") Long userId)
+    public Animal likeAnimal(@PathVariable("reviewId") Long animalId, @PathVariable("userId") Long userId)
             throws Exception {
         return this.animalService.likeRAnimal(animalId, userId);
     }
 
-    @GetMapping("/{animalId}/like-status/{userId}")
+    @GetMapping("/{reviewId}/like-status/{userId}")
     @ResponseStatus(code = HttpStatus.OK)
-    public boolean getLikeStatus(@PathVariable("animalId") Long animalId, @PathVariable("userId") Long userId)
+    public boolean getLikeStatus(@PathVariable("reviewId") Long animalId, @PathVariable("userId") Long userId)
             throws Exception {
         return this.animalService.getLikeStatus(animalId, userId);
     }
 
-    @GetMapping("/liked-animals/{userId}")
+    @GetMapping("/liked-reviews/{userId}")
     @ResponseStatus(code = HttpStatus.OK)
     public List<Animal> getLikedAnimals(@PathVariable("userId") Long userId) throws Exception {
         return this.animalService.getLikedAnimals(userId);
