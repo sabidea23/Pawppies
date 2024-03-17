@@ -186,7 +186,7 @@
 
   </div>
 
-  <div *ngIf="user" class="content-container">
+  <div  class="content-container">
     <h2 class="number-dogs"> {{totalElements}} Dog or Puppy Breeds</h2>
     <div class="review-grid">
       <div *ngFor="let dog of paginatedDogBreeds" class="review-card" (click)="viewDogDetails(dog)">

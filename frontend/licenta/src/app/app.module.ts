@@ -30,7 +30,6 @@ import {AnimalCenterAddComponent} from './animal.process/add-center/animal-cente
 import {AnimalCenterList} from './animal.process/list-center/animal-center-list.component';
 import {AnimalListComponent} from './animal.process/list-animal/animal-list.component';
 import {AddAnimalComponent} from './animal.process/add-animal/add-animal.component';
-import {UserManagementComponent} from './user/user-management/user-management.component';
 import {RouterOutlet} from '@angular/router';
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MapDialogComponent} from './utils/map-dialog/map-dialog.component';
@@ -47,7 +46,7 @@ import { BreedDetailsCatComponent } from './pages/breed-details-cat/breed-detail
 import { BreedDogComponent } from './pages/breed-dog/breed-dog.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, FooterComponent, SignupComponent, LoginComponent, HomeComponent, ProfileComponent, AddAnimalComponent, AnimalListComponent, AnimalCenterAddComponent, AnimalCenterList, UserManagementComponent, MapDialogComponent, EditAnimalCenterComponent, AboutPetsComponent, MissionComponent, QuizComponent, BreedDetailsDogComponent, BreedDetailsCatComponent, BreedDogComponent],
+  declarations: [AppComponent, NavbarComponent, FooterComponent, SignupComponent, LoginComponent, HomeComponent, ProfileComponent, AddAnimalComponent, AnimalListComponent, AnimalCenterAddComponent, AnimalCenterList, MapDialogComponent, EditAnimalCenterComponent, AboutPetsComponent, MissionComponent, QuizComponent, BreedDetailsDogComponent, BreedDetailsCatComponent, BreedDogComponent],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatIconModule, FormsModule, HttpClientModule, MatSnackBarModule, MatCardModule, MatChipsModule, MatToolbarModule, MatIconModule, MatListModule, MatTableModule, ReactiveFormsModule, RouterOutlet, MatGridListModule, MatDialogModule, MatMenuModule, MatPaginatorModule, MatSelectModule],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

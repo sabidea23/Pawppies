@@ -10,7 +10,6 @@ import { AnimalListComponent } from './animal.process/list-animal/animal-list.co
 import { AnimalCenterAddComponent } from './animal.process/add-center/animal-center-add.component';
 import { AnimalCenterList } from './animal.process/list-center/animal-center-list.component';
 import { AddAnimalComponent } from './animal.process/add-animal/add-animal.component';
-import { UserManagementComponent } from './user/user-management/user-management.component';
 import {AboutPetsComponent} from "./pages/about-pets/about-pets.component";
 import {MissionComponent} from "./pages/mission/mission.component";
 import {QuizComponent} from "./user/quiz/quiz.component";
@@ -90,10 +89,6 @@ const routes: Routes = [
       {
         path: 'my-reviews',
         component: AnimalListComponent,
-      },
-      {
-        path: 'users',
-        component: UserManagementComponent,
       },
     ],
   },
