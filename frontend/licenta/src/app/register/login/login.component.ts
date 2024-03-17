@@ -52,16 +52,20 @@ export class LoginComponent implements OnInit {
     }
 
     this.login.generateToken(this.loginData).subscribe({
-
       next: (data: any) => {
         this.login.loginUser(data.token);
         this.login.getCurrentUser().subscribe({
           next: (user: any) => {
             this.login.setUser(user);
-              this.router.navigate(['']);
+            // Navighează către pagina de home și apoi reîncarcă
+            this.router.navigate(['']).then(() => {
+              window.location.reload();
+            });
+            // Asigură-te că redirecționarea se face aici, după ce utilizatorul este setat
           }
         });
-      }, error: (error) => {
+      },
+      error: (error) => {
         this.snack.open("Invalid credentials!", "", {duration: 3000});
       }
     });
