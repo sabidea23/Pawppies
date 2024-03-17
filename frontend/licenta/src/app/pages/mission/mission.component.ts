@@ -32,11 +32,7 @@ export class MissionComponent {
   }
 
   goToAnimalsPage() {
-    const user_role = this.login.getUserRole();
-    if (user_role == 'ADMIN') this.router
-      .navigate(['/animal'])
-      .then((_) => {
-      }); else if (user_role == 'NORMAL') this.router
+      this.router
       .navigate(['/animal'])
       .then((_) => {
       });

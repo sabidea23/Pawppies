@@ -134,7 +134,7 @@
         </ng-container>
 
         <ng-template #notLastTemplate>
-          <button (click)="likeAnimal(animal)" [ngClass]="{ 'liked': isLiked(animal) }" class="like-button">
+          <button *ngIf="user" (click)="likeAnimal(animal)" [ngClass]="{ 'liked': isLiked(animal) }" class="like-button">
             <mat-icon>{{ isLiked(animal) ? 'favorite' : 'favorite_border' }}</mat-icon>
           </button>
 
