@@ -74,15 +74,10 @@ export class AnimalCenterList implements OnInit {
   }
 
   public goToAnimalsPage(animalCenter: any) {
-    const user_role = this.login.getUserRole();
-    if (user_role == 'ADMIN')
       this.router
       .navigate(['/animal', {centerId: animalCenter.id},])
       .then((_) => {
-      }); else if (user_role == 'NORMAL') this.router
-      .navigate(['/animal', {centerId: animalCenter.id},])
-      .then((_) => {
-      });
+      }); ;
   }
 
   public editAnimalCenter(animalCenter: any) {

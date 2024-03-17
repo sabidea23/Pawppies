@@ -25,7 +25,8 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsServiceImpl userDetailsServiceImpl;
 
-    public MySecurityConfig(JwtAuthenticationEntryPoint unauthorizedHandler, JwtAuthenticationFilter jwtAuthenticationFilter, UserDetailsServiceImpl userDetailsServiceImpl) {
+    public MySecurityConfig(JwtAuthenticationEntryPoint unauthorizedHandler, JwtAuthenticationFilter jwtAuthenticationFilter,
+                            UserDetailsServiceImpl userDetailsServiceImpl) {
         super();
         this.unauthorizedHandler = unauthorizedHandler;
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
@@ -53,6 +54,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable().cors().disable().authorizeRequests()
                 .antMatchers("/generate-token", "/user/").permitAll()
                 .antMatchers("/breed-details/").permitAll()
+                .antMatchers(HttpMethod.GET, "/animal/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/center/**").permitAll()
                 .antMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-resources/**", "/swagger-ui.html", "/webjars/**")
                 .permitAll().antMatchers(HttpMethod.OPTIONS).permitAll().anyRequest()
