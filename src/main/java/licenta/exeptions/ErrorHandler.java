@@ -23,4 +23,11 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<?> exceptionHandler(Exception ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
+
+    @ExceptionHandler({ ForbiddenActionForRole.class})
+    @ResponseStatus(code = HttpStatus.FORBIDDEN)
+    @ResponseBody
+    public ResponseEntity<?> forbiddenAccess(Exception ex) {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ex.getMessage());
+    }
 }
