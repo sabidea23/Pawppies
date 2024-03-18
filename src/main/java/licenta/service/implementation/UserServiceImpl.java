@@ -67,10 +67,7 @@ public class UserServiceImpl implements UserService {
         return this.userRepository.save(user);
     }
 
-    @Override
-    public User updateUserRole(User user, Set<UserRole> userRoleSet) throws Exception {
-        return null;
-    }
+ 
 
     @Override
     public User getUser(String username) {

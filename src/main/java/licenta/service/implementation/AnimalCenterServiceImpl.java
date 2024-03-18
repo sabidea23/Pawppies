@@ -31,12 +31,21 @@ public class AnimalCenterServiceImpl implements AnimalCenterService {
     }
 
     @Override
-    public AnimalCenter updateAnimalCenter(AnimalCenter center) throws AnimalCenterNotFound {
-        if (!this.animalCenterRepository.existsById(center.getId())) {
-            throw new AnimalCenterNotFound("Animal Center with id `" + center.getId() + "` not found");
+    public AnimalCenter updateAnimalCenter(AnimalCenter animalCenter) throws AnimalCenterNotFound {
+
+        AnimalCenter originalAnimalCenter = this.getAnimalCenter(animalCenter.getId());
+        if (originalAnimalCenter == null) {
+            throw new AnimalCenterNotFound("Animal Center with id `" + animalCenter.getId() + "` not found");
         }
 
-        return this.animalCenterRepository.save(center);
+        originalAnimalCenter.setName(animalCenter.getName());
+        originalAnimalCenter.setCity(animalCenter.getCity());
+        originalAnimalCenter.setCountry(animalCenter.getCountry());
+        originalAnimalCenter.setContact(animalCenter.getContact());
+        originalAnimalCenter.setLatitude(animalCenter.getLatitude());
+        originalAnimalCenter.setLongitude(animalCenter.getLongitude());
+
+        return this.animalCenterRepository.save(animalCenter);
     }
 
     @Override

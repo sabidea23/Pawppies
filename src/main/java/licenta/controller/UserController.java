@@ -1,17 +1,13 @@
 package licenta.controller;
 
 import licenta.exeptions.UserNotFoundException;
-import licenta.model.Role;
 import licenta.model.User;
-import licenta.model.UserRole;
 import licenta.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/user")
@@ -55,29 +51,6 @@ public class UserController {
         return this.userService.updateUser(originalUser);
     }
 
-    @PutMapping("/{username}/role/{roleName}")
-    @ResponseStatus(code = HttpStatus.CREATED)
-    public User updateUserRole(@PathVariable("username") String username, @PathVariable("roleName") String roleName)
-            throws Exception {
-        User user = getUserByUsername(username);
-        if (user == null) {
-            throw new UserNotFoundException("User with username `" + username + "` not found");
-        }
-
-        Set<UserRole> userRoleSet = new HashSet<>();
-        Role role = new Role();
-
-        role.setRoleId((roleName.equals("ADMIN")) ? 0L : 45L);
-        role.setRoleName(roleName);
-
-        UserRole userRole = new UserRole();
-        userRole.setUser(user);
-        userRole.setRole(role);
-
-        userRoleSet.add(userRole);
-
-        return this.userService.updateUserRole(user, userRoleSet);
-    }
 
     @GetMapping("/")
     @ResponseStatus(code = HttpStatus.OK)

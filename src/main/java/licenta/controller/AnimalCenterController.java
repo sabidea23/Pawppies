@@ -1,11 +1,12 @@
 package licenta.controller;
 
-import licenta.exeptions.AnimalCenterNotFound;
+import licenta.exeptions.ForbiddenActionForRole;
 import licenta.model.AnimalCenter;
 import licenta.service.AnimalCenterService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.data.domain.Pageable;
@@ -21,31 +22,19 @@ public class AnimalCenterController {
         this.animalCenterService = animalCenterService;
     }
 
+//    Injectează Authentication în metoda ta din controller:
+//    Spring Security îți permite să injectezi un obiect Authentication care conține detaliile despre utilizatorul curent autentificat.
     @PostMapping("/")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public AnimalCenter createAnimalCenter(@RequestBody AnimalCenter animalCenter) throws Exception {
-        System.out.println(animalCenter.toString());
-        return this.animalCenterService.createAnimalCenter(animalCenter);
-    }
-
-    @PutMapping("/")
-    @ResponseStatus(code = HttpStatus.CREATED)
-    public AnimalCenter updateAnimalCenter(@RequestBody AnimalCenter animalCenter) throws Exception {
-        AnimalCenter originalAnimalCenter = this.animalCenterService.getAnimalCenter(animalCenter.getId());
-        if (originalAnimalCenter == null) {
-            throw new AnimalCenterNotFound("Animal Center with id `" + animalCenter.getId() + "` not found");
+    public AnimalCenter createAnimalCenter(@RequestBody AnimalCenter animalCenter, Authentication authentication) throws Exception {
+        // Verifică rolul utilizatorului
+        if (authentication != null && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+            System.out.println(animalCenter.toString());
+            return this.animalCenterService.createAnimalCenter(animalCenter);
         }
-
-        originalAnimalCenter.setName(animalCenter.getName());
-        originalAnimalCenter.setCity(animalCenter.getCity());
-        originalAnimalCenter.setCountry(animalCenter.getCountry());
-        originalAnimalCenter.setContact(animalCenter.getContact());
-        originalAnimalCenter.setLatitude(animalCenter.getLatitude());
-        originalAnimalCenter.setLongitude(animalCenter.getLongitude());
-
-        return this.animalCenterService.updateAnimalCenter(originalAnimalCenter);
+        else throw new ForbiddenActionForRole("You do not have the right permissions to do this action");
     }
-
+    
     @GetMapping("/")
     @ResponseStatus(code = HttpStatus.OK)
     public Page<AnimalCenter> getAnimalCenters(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size) {
@@ -59,9 +48,23 @@ public class AnimalCenterController {
         return this.animalCenterService.getAnimalCenter(id);
     }
 
+    @PutMapping("/")
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public AnimalCenter updateAnimalCenter(@RequestBody AnimalCenter animalCenter, Authentication authentication) throws Exception {
+        if (authentication != null && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+            return this.animalCenterService.updateAnimalCenter(animalCenter);
+        } else {
+            throw new ForbiddenActionForRole("You do not have the right permissions to do this action");
+        }
+    }
+
     @DeleteMapping("/{centerId}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void deleteAnimalCenter(@PathVariable("centerId") Long id) {
-        this.animalCenterService.deleteAnimalCenter(id);
+    public void deleteAnimalCenter(@PathVariable("centerId") Long id, Authentication authentication) {
+        if (authentication != null && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+            this.animalCenterService.deleteAnimalCenter(id);
+        } else {
+            throw new ForbiddenActionForRole("You do not have the right permissions to do this action");
+        }
     }
 }

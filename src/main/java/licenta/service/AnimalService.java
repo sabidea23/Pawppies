@@ -1,8 +1,12 @@
 package licenta.service;
 
 import licenta.model.Animal;
+import licenta.model.ImageModel;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 public interface AnimalService {
     Animal createAnimal(Animal animal);
@@ -26,4 +30,5 @@ public interface AnimalService {
     boolean getLikeStatus(Long animalId, Long userId) throws Exception;
 
     List<Animal> getLikedAnimals(Long userId) throws Exception;
+    Set<ImageModel> uploadImage(MultipartFile[] multipartFiles) throws IOException;
 }

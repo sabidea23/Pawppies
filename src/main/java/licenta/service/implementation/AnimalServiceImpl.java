@@ -2,13 +2,18 @@ package licenta.service.implementation;
 
 import licenta.exeptions.AnimalNotFoundExeption;
 import licenta.model.Animal;
+import licenta.model.ImageModel;
 import licenta.repo.AnimalRepository;
 import licenta.service.AnimalService;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -18,6 +23,18 @@ public class AnimalServiceImpl implements AnimalService {
 
     public AnimalServiceImpl(AnimalRepository animalRepository) {
         this.animalRepository = animalRepository;
+    }
+
+    public Set<ImageModel> uploadImage(MultipartFile[] multipartFiles) throws IOException {
+        Set<ImageModel> imageModels = new HashSet<>();
+        for (MultipartFile file:multipartFiles) {
+            ImageModel imageModel = new ImageModel(
+                    file.getOriginalFilename(),
+                    file.getContentType(),
+                    file.getBytes());
+            imageModels.add(imageModel);
+        }
+        return imageModels;
     }
 
     @Override
