@@ -10,7 +10,7 @@ public interface AnimalCenterService {
 
     AnimalCenter createAnimalCenter(AnimalCenterRequestDTO center) throws Exception;
 
-    AnimalCenter updateAnimalCenter(AnimalCenter center) throws Exception;
+    AnimalCenter updateAnimalCenter(AnimalCenterRequestDTO center) throws Exception;
 
     AnimalCenter getAnimalCenter(Long id) throws Exception;
 

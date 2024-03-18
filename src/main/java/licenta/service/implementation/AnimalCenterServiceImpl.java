@@ -46,11 +46,11 @@ public class AnimalCenterServiceImpl implements AnimalCenterService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
         animalCenter.setAdmin(admin);
 
-        return  animalCenterRepository.save(animalCenter);
+        return animalCenterRepository.save(animalCenter);
     }
 
     @Override
-    public AnimalCenter updateAnimalCenter(AnimalCenter animalCenter) throws AnimalCenterNotFound {
+    public AnimalCenter updateAnimalCenter(AnimalCenterRequestDTO animalCenter) throws AnimalCenterNotFound {
 
         AnimalCenter originalAnimalCenter = this.getAnimalCenter(animalCenter.getId());
         if (originalAnimalCenter == null) {
@@ -58,13 +58,14 @@ public class AnimalCenterServiceImpl implements AnimalCenterService {
         }
 
         originalAnimalCenter.setName(animalCenter.getName());
+        originalAnimalCenter.setMission(animalCenter.getMission());
         originalAnimalCenter.setCity(animalCenter.getCity());
         originalAnimalCenter.setCountry(animalCenter.getCountry());
         originalAnimalCenter.setContact(animalCenter.getContact());
         originalAnimalCenter.setLatitude(animalCenter.getLatitude());
         originalAnimalCenter.setLongitude(animalCenter.getLongitude());
 
-        return this.animalCenterRepository.save(animalCenter);
+        return this.animalCenterRepository.save(originalAnimalCenter);
     }
 
     @Override

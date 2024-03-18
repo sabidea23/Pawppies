@@ -51,7 +51,7 @@ public class AnimalCenterController {
 
     @PutMapping("/")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public AnimalCenter updateAnimalCenter(@RequestBody AnimalCenter animalCenter, Authentication authentication) throws Exception {
+    public AnimalCenter updateAnimalCenter(@RequestBody AnimalCenterRequestDTO animalCenter, Authentication authentication) throws Exception {
         if (authentication != null && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
             return this.animalCenterService.updateAnimalCenter(animalCenter);
         } else {

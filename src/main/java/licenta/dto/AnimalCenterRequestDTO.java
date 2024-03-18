@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class AnimalCenterRequestDTO {
+    private Long id;
     private String name;
     private Double longitude;
     private Double latitude;
