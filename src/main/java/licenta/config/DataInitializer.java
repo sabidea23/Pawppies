@@ -17,11 +17,19 @@ public class DataInitializer {
     @PostConstruct
     public void initData() {
         if (!roleRepository.existsById(0L)) {
-            roleRepository.save(new Role(0L, "NORMAL"));
+            Role role = Role.builder()
+                            .roleId(0L)
+                            .roleName("NORMAL")
+                            .build();
+            roleRepository.save(role);
         }
 
         if (!roleRepository.existsById(1L)) {
-            roleRepository.save(new Role(1L, "ADMIN"));
+            Role role = Role.builder()
+                    .roleId(1L)
+                    .roleName("ADMIN")
+                    .build();
+            roleRepository.save(role);
         }
     }
 }

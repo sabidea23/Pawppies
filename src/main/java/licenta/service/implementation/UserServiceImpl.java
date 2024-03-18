@@ -1,5 +1,6 @@
 package licenta.service.implementation;
 
+import licenta.dto.UserRequestDTO;
 import licenta.exeptions.UserAlreadyExists;
 import licenta.exeptions.UserNotFoundException;
 import licenta.model.Role;
@@ -7,15 +8,11 @@ import licenta.model.User;
 import licenta.model.UserRole;
 import licenta.repo.RoleRepository;
 import licenta.repo.UserRepository;
-import licenta.repo.UserRoleRepository;
 import licenta.service.UserService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -24,50 +21,79 @@ public class UserServiceImpl implements UserService {
 
     private final RoleRepository roleRepository;
 
-    private final UserRoleRepository userRoleRepository;
-
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, UserRoleRepository userRoleRepository,
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository,
                            BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
-        this.userRoleRepository = userRoleRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Override
-    public User createUser(User user) throws UserAlreadyExists {
-        if (this.userRepository.existsByUsername(user.getUsername())) {
-            throw new UserAlreadyExists("User with username `" + user.getUsername() + "` already exists");
+    public User createUser(UserRequestDTO userRequest) throws UserAlreadyExists {
+
+        if (this.userRepository.existsByUsername(userRequest.getUsername())) {
+            throw new UserAlreadyExists("User with username `" + userRequest.getUsername() + "` already exists");
         }
 
-        if (this.userRepository.existsByEmail(user.getEmail())) {
-            throw new UserAlreadyExists("User with email `" + user.getEmail() + "` already exists");
+        if (this.userRepository.existsByEmail(userRequest.getEmail())) {
+            throw new UserAlreadyExists("User with email `" + userRequest.getEmail() + "` already exists");
         }
 
-        user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
-        Set<UserRole> userRoleSet = new HashSet<>();
-        Role role = this.roleRepository.findById(0L).get();
-        UserRole userRole = new UserRole();
-        userRole.setUser(user);
-        userRole.setRole(role);
+        String encodedPassword = this.bCryptPasswordEncoder.encode(userRequest.getPassword());
 
-        userRoleSet.add(userRole);
-        user.setUserRoles(userRoleSet);
-        return this.userRepository.save(user);
+        // Crearea userului cu builder
+        User newUser = User.builder()
+                .username(userRequest.getUsername())
+                .password(encodedPassword)
+                .firstName(userRequest.getFirstName())
+                .lastName(userRequest.getLastName())
+                .email(userRequest.getEmail())
+                .phone(userRequest.getPhone())
+                .latitude(userRequest.getLatitude())
+                .longitude(userRequest.getLongitude())
+                .userRoles(new HashSet<>()) // Inițializează setul pentru a evita NullPointerException
+                .build();
+
+        // Salvarea userului pentru a-i genera un ID
+        User savedUser = this.userRepository.save(newUser);
+
+        // Găsirea rolului și crearea UserRole folosind builder-ul, dacă este disponibil
+        Role role = this.roleRepository.findById(0L).orElseThrow(() -> new RuntimeException("Role not found"));
+
+        UserRole userRole = UserRole.builder()
+                .user(savedUser)
+                .role(role)
+                .build();
+
+        // Adăugarea UserRole la user și salvarea modificărilor
+        savedUser.getUserRoles().add(userRole);
+        return this.userRepository.save(savedUser);
     }
 
     @Override
-    public User updateUser(User user) throws UserNotFoundException {
-        if (!this.userRepository.existsById(user.getId())) {
-            throw new UserNotFoundException("User with id `" + user.getId() + "` not found");
+    public User updateUser(UserRequestDTO userRequestDTO) throws UserNotFoundException {
+
+        User user = userRepository.findByUsername(userRequestDTO.getUsername());
+        if (user == null) {
+            throw new UserNotFoundException("User not found with username: " + userRequestDTO.getUsername());
+        }
+
+        user.setFirstName(userRequestDTO.getFirstName());
+        user.setLastName(userRequestDTO.getLastName());
+        user.setEmail(userRequestDTO.getEmail());
+        user.setPhone(userRequestDTO.getPhone());
+        user.setLatitude(userRequestDTO.getLatitude());
+        user.setLongitude(userRequestDTO.getLongitude());
+
+        if (userRequestDTO.getPassword() != null && !userRequestDTO.getPassword().isEmpty()) {
+            user.setPassword(this.bCryptPasswordEncoder.encode(userRequestDTO.getPassword()));
         }
 
         return this.userRepository.save(user);
     }
 
- 
 
     @Override
     public User getUser(String username) {
@@ -78,11 +104,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserByUsername(String username) {
         return userRepository.getUserByUsername(username);
-    }
-
-    @Override
-    public List<User> getUsers() {
-        return this.userRepository.findAll();
     }
 
     @Override

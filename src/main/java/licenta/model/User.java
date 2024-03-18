@@ -1,14 +1,12 @@
 package licenta.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,6 +15,7 @@ import java.util.Set;
 @Table(name = "user_app")
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class User implements UserDetails {
@@ -24,20 +23,36 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
+    @Column
+    @NotNull
     private String username;
+
+    @Column
+    @NotNull
     private String password;
 
+    @Column
+    @NotNull
     private String firstName;
+
+    @Column
+    @NotNull
     private String lastName;
+
+    @Column
+    @NotNull
     private String email;
 
+    @Column
+    @NotNull
     private String phone;
 
-    private boolean enabled = true;
-
-    private String profile;
+    @Column
+    @NotNull
     private Double longitude;
+
+    @Column
+    @NotNull
     private Double latitude;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
@@ -73,8 +88,9 @@ public class User implements UserDetails {
         return true;
     }
 
+    @Override
     public boolean isEnabled() {
-        return enabled;
+        return true;
     }
 
 }
