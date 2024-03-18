@@ -1,6 +1,7 @@
 package licenta.service;
 
 import licenta.dto.AnimalCenterRequestDTO;
+import licenta.dto.AnimalCenterResponseDTO;
 import licenta.model.AnimalCenter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,4 +18,6 @@ public interface AnimalCenterService {
     Page<AnimalCenter> getAnimalCenters(Pageable pageable);
 
     void deleteAnimalCenter(Long id);
+
+    AnimalCenterResponseDTO getAnimalCenterResponseDTO(AnimalCenter animalCenter);
 }

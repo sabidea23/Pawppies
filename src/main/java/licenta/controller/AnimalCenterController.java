@@ -1,6 +1,7 @@
 package licenta.controller;
 
 import licenta.dto.AnimalCenterRequestDTO;
+import licenta.dto.AnimalCenterResponseDTO;
 import licenta.exeptions.ForbiddenActionForRole;
 import licenta.model.AnimalCenter;
 import licenta.service.AnimalCenterService;
@@ -38,15 +39,18 @@ public class AnimalCenterController {
     
     @GetMapping("/")
     @ResponseStatus(code = HttpStatus.OK)
-    public Page<AnimalCenter> getAnimalCenters(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size) {
+    public Page<AnimalCenterResponseDTO> getAnimalCenters(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size) {
         Pageable paging = PageRequest.of(page, size);
-        return this.animalCenterService.getAnimalCenters(paging);
-    }
+        Page<AnimalCenter> centers = this.animalCenterService.getAnimalCenters(paging);
 
+        return centers.map(this.animalCenterService::getAnimalCenterResponseDTO);
+    }
+    
     @GetMapping("/{centerId}")
     @ResponseStatus(code = HttpStatus.OK)
-    public AnimalCenter getAnimalCenter(@PathVariable("centerId") Long id) throws Exception {
-        return this.animalCenterService.getAnimalCenter(id);
+    public AnimalCenterResponseDTO getAnimalCenter(@PathVariable("centerId") Long id) throws Exception {
+        AnimalCenter animalCenter = this.animalCenterService.getAnimalCenter(id);
+        return animalCenterService.getAnimalCenterResponseDTO(animalCenter);
     }
 
     @PutMapping("/")

@@ -1,25 +1,25 @@
-import licenta.model.User;
+package licenta.dto;
+
+import licenta.model.UserRole;
+import lombok.Builder;
 import lombok.Data;
 
+import java.util.Set;
+
+@Builder
 @Data
 public class UserResponseDTO {
     private Long id;
     private String username;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String phone;
     private Double latitude;
     private Double longitude;
+    private Set<UserRole> userRole;
 
-    public UserResponseDTO(User user) {
-        this.id = user.getId();
-        this.username = user.getUsername();
-        this.firstName = user.getFirstName();
-        this.lastName = user.getLastName();
-        this.email = user.getEmail();
-        this.phone = user.getPhone();
-        this.latitude = user.getLatitude();
-        this.longitude = user.getLongitude();
+    public UserResponseDTO(Long id, String username, Double latitude, Double longitude, Set<UserRole> userRole) {
+        this.id = id;
+        this.username = username;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.userRole = userRole;
     }
 }

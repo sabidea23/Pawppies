@@ -1,6 +1,7 @@
 package licenta.controller;
 
 import licenta.dto.UserRequestDTO;
+import licenta.dto.UserResponseDTO;
 import licenta.model.User;
 import licenta.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -32,8 +33,14 @@ public class UserController {
 
     @GetMapping("/{username}")
     @ResponseStatus(code = HttpStatus.OK)
-    public User getUserByUsername(@PathVariable("username") String username) {
-        return this.userService.getUserByUsername(username);
+    public UserResponseDTO getUserByUsername(@PathVariable("username") String username) {
+        User user = this.userService.getUserByUsername(username);
+        return  UserResponseDTO.builder()
+                .userRole(user.getUserRoles())
+                .username(user.getUsername())
+                .latitude(user.getLatitude())
+                .longitude(user.getLongitude())
+                .build();
     }
 
     @DeleteMapping("/{userId}")

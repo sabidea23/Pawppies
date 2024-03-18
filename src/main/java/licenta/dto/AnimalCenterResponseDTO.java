@@ -1,11 +1,16 @@
 package licenta.dto;
 
 import licenta.model.AnimalCenter;
+import licenta.model.User;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class AnimalCenterResponseDTO {
     private Long id;
     private String name;
@@ -15,15 +20,5 @@ public class AnimalCenterResponseDTO {
     private String country;
     private String contact;
     private String mission;
-
-    public AnimalCenterResponseDTO(AnimalCenter animalCenter) {
-        this.id = animalCenter.getId();
-        this.name = animalCenter.getName();
-        this.longitude = animalCenter.getLongitude();
-        this.latitude = animalCenter.getLatitude();
-        this.city = animalCenter.getCity();
-        this.country = animalCenter.getCountry();
-        this.contact = animalCenter.getContact();
-        this.mission = animalCenter.getMission();
-    }
+    private User admin;
 }

@@ -1,6 +1,7 @@
 package licenta.service.implementation;
 
 import licenta.dto.AnimalCenterRequestDTO;
+import licenta.dto.AnimalCenterResponseDTO;
 import licenta.exeptions.AnimalCenterAlreadyExists;
 import licenta.exeptions.AnimalCenterNotFound;
 import licenta.model.AnimalCenter;
@@ -85,5 +86,20 @@ public class AnimalCenterServiceImpl implements AnimalCenterService {
     @Override
     public void deleteAnimalCenter(Long id) {
         this.animalCenterRepository.deleteById(id);
+    }
+
+    public AnimalCenterResponseDTO getAnimalCenterResponseDTO(AnimalCenter animalCenter) {
+        return AnimalCenterResponseDTO.builder()
+                .id(animalCenter.getId())
+                .name(animalCenter.getName())
+                .longitude(animalCenter.getLongitude())
+                .latitude(animalCenter.getLatitude())
+                .admin(animalCenter.getAdmin())
+                .name(animalCenter.getName())
+                .city(animalCenter.getCity())
+                .contact(animalCenter.getContact())
+                .country(animalCenter.getCountry())
+                .mission(animalCenter.getMission())
+                .build();
     }
 }
