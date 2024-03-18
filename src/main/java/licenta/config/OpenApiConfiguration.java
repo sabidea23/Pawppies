@@ -15,8 +15,8 @@ public class OpenApiConfiguration {
     public OpenAPI customOpenAPI() {
         final String securitySchemeName = "bearerAuth";
         return new OpenAPI()
-                .info(new Info().title("My API")
-                        .description("Sample OpenAPI documentation")
+                .info(new Info().title("REST API for Pawppies")
+                        .description("OpenAPI documentation for Pawppies")
                         .version("v1"))
                 .addSecurityItem(new SecurityRequirement().addList(securitySchemeName))
                 .components(new Components()
