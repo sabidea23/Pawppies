@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class UserRequestDTO {
+    private Long id;
     private  String username;
     private  String password;
     private String firstName;
@@ -15,8 +16,9 @@ public class UserRequestDTO {
     private  Double latitude;
     private  Double longitude;
 
-    public UserRequestDTO(String username, String password, String firstName, String lastName, String email,
+    public UserRequestDTO(Long id, String username, String password, String firstName, String lastName, String email,
                           String phone, Double latitude, Double longitude) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.firstName = firstName;

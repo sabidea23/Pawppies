@@ -23,7 +23,7 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column
+    @Column(unique = true)
     @NotNull
     private String username;
 
@@ -39,7 +39,7 @@ public class User implements UserDetails {
     @NotNull
     private String lastName;
 
-    @Column
+    @Column(unique = true)
     @NotNull
     private String email;
 
@@ -92,5 +92,4 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
 }

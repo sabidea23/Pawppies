@@ -43,7 +43,6 @@ public class BreedDetailsController {
     public BreedDetails getBreedDetailsByAnimalType(@PathVariable("breedType") String breedType) {
 
         BreedDetails.AnimalType type;
-
         try {
             type = BreedDetails.AnimalType.valueOf(breedType.toUpperCase());
         } catch (IllegalArgumentException e) {

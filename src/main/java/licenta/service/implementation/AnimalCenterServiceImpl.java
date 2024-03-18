@@ -1,9 +1,12 @@
 package licenta.service.implementation;
 
+import licenta.dto.AnimalCenterRequestDTO;
 import licenta.exeptions.AnimalCenterAlreadyExists;
 import licenta.exeptions.AnimalCenterNotFound;
 import licenta.model.AnimalCenter;
+import licenta.model.User;
 import licenta.repo.AnimalCenterRepository;
+import licenta.repo.UserRepository;
 import licenta.service.AnimalCenterService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,19 +18,35 @@ public class AnimalCenterServiceImpl implements AnimalCenterService {
 
     private final AnimalCenterRepository animalCenterRepository;
 
-    public AnimalCenterServiceImpl(AnimalCenterRepository animalCenterRepository) {
+    private final UserRepository userRepository;
+
+    public AnimalCenterServiceImpl(AnimalCenterRepository animalCenterRepository, UserRepository userRepository) {
         this.animalCenterRepository = animalCenterRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
-    public AnimalCenter createAnimalCenter(AnimalCenter center) throws AnimalCenterAlreadyExists {
-        if (this.animalCenterRepository.existsByName(center.getName())) {
-            throw new AnimalCenterAlreadyExists("Animal Center with name `" + center.getName() + "` already exists");
+    public AnimalCenter createAnimalCenter(AnimalCenterRequestDTO requestDTO) throws AnimalCenterAlreadyExists {
+
+        if (this.animalCenterRepository.existsByName(requestDTO.getName())) {
+            throw new AnimalCenterAlreadyExists("Animal Center with name `" + requestDTO.getName() + "` already exists");
         }
 
-        this.animalCenterRepository.save(center);
+        AnimalCenter animalCenter = AnimalCenter.builder()
+                .name(requestDTO.getName())
+                .longitude(requestDTO.getLongitude())
+                .latitude(requestDTO.getLatitude())
+                .city(requestDTO.getCity())
+                .contact(requestDTO.getContact())
+                .country(requestDTO.getCountry())
+                .mission(requestDTO.getMission())
+                .build();
 
-        return center;
+        User admin = userRepository.findById(requestDTO.getAdmin().getId())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        animalCenter.setAdmin(admin);
+
+        return  animalCenterRepository.save(animalCenter);
     }
 
     @Override

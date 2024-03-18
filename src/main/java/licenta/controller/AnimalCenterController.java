@@ -1,5 +1,6 @@
 package licenta.controller;
 
+import licenta.dto.AnimalCenterRequestDTO;
 import licenta.exeptions.ForbiddenActionForRole;
 import licenta.model.AnimalCenter;
 import licenta.service.AnimalCenterService;
@@ -26,11 +27,11 @@ public class AnimalCenterController {
 //    Spring Security îți permite să injectezi un obiect Authentication care conține detaliile despre utilizatorul curent autentificat.
     @PostMapping("/")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public AnimalCenter createAnimalCenter(@RequestBody AnimalCenter animalCenter, Authentication authentication) throws Exception {
+    public AnimalCenter createAnimalCenter(@RequestBody AnimalCenterRequestDTO animalCenterRequest, Authentication authentication) throws Exception {
         // Verifică rolul utilizatorului
         if (authentication != null && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
-            System.out.println(animalCenter.toString());
-            return this.animalCenterService.createAnimalCenter(animalCenter);
+
+            return this.animalCenterService.createAnimalCenter(animalCenterRequest);
         }
         else throw new ForbiddenActionForRole("You do not have the right permissions to do this action");
     }

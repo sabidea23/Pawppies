@@ -1,5 +1,6 @@
 package licenta.service;
 
+import licenta.dto.AnimalCenterRequestDTO;
 import licenta.model.AnimalCenter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -7,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 
 public interface AnimalCenterService {
 
-    AnimalCenter createAnimalCenter(AnimalCenter center) throws Exception;
+    AnimalCenter createAnimalCenter(AnimalCenterRequestDTO center) throws Exception;
 
     AnimalCenter updateAnimalCenter(AnimalCenter center) throws Exception;
 
