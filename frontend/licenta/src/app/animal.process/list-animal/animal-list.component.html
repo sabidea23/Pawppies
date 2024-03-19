@@ -9,7 +9,7 @@
     <div class="header-container">
       <h2 *ngIf="!animalCenter">My favourite animals</h2>
       <h2 *ngIf="animalCenter">Animals from {{ animalCenter.name }}</h2>
-      <button (click)="goToAddAnimal()" *ngIf="user && animalCenterId && getUserRole() === 'ADMIN'"
+      <button (click)="goToAddAnimal()" *ngIf="user && animalCenterId && getUserRole() === 'SUPPLIER'"
               class="add-animal-center-button">
         ADD ANIMAL
       </button>
@@ -26,7 +26,7 @@
              class="animal-image">
 
         <div class="description">
-          <button (click)="editAnimal(animal)" *ngIf="getUserRole() == 'ADMIN'" mat-button>
+          <button (click)="editAnimal(animal)" *ngIf="getUserRole() == 'SUPPLIER'" mat-button>
             <mat-icon>edit</mat-icon>
           </button>
 

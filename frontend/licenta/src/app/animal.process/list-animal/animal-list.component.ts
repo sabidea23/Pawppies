@@ -20,7 +20,8 @@ export class AnimalListComponent implements OnInit {
   userId: any;
   likedAnimals: any = [];
 
-  constructor(private login: LoginService, private dialog: MatDialog, private animalService: AnimalService, private router: Router, private route: ActivatedRoute, private snack: MatSnackBar, private animalCenterService: AnimalCenterService, private imageProcessingService: ImageProcessingService) {
+  constructor(private login: LoginService, private dialog: MatDialog, private animalService: AnimalService, private router:
+    Router, private route: ActivatedRoute, private snack: MatSnackBar, private animalCenterService: AnimalCenterService, private imageProcessingService: ImageProcessingService) {
   }
 
   getFavouriteAnimals() {
@@ -96,14 +97,10 @@ export class AnimalListComponent implements OnInit {
   }
 
   public goToAddAnimal() {
-    const user_role = this.login.getUserRole();
-    if (user_role == 'ADMIN') this.router
-      .navigate(['/animal/add', {centerId: this.animalCenterId},])
-      .then((_) => {
-      }); else if (user_role == 'NORMAL') this.router
-      .navigate(['/animal/add', {centerId: this.animalCenterId},])
-      .then((_) => {
-      });
+     this.router
+    .navigate(['/animal/add', {centerId: this.animalCenterId},])
+    .then((_) => {
+    });
   }
 
   public isLiked(animal: any) {

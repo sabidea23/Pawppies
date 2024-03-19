@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import {MapDialogComponent} from '../../utils/map-dialog/map-dialog.component';
 import {EditAnimalCenterComponent} from "../edit-center/edit-animal-center.component";
-import {MatPaginator, MatPaginatorModule, PageEvent} from '@angular/material/paginator';
+import {MatPaginator, PageEvent} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {countries} from "../../utils/country-data-store";
 import {SearchService} from "../../services/search.service";
@@ -25,7 +25,19 @@ export class AnimalCenterList implements OnInit {
 
   displayedColumns: string[] = ['animalCenter', 'petList', 'cityState', 'contact', 'showOnMap'];
 
-  displayedColumnsAdmin: string[] = ['animalCenter', 'petList', 'cityState', 'contact', 'showOnMap', 'edit', 'delete'];
+  displayedColumnsAdmin: string[] = ['animalCenter', 'petList', 'cityState', 'contact', 'showOnMap', 'delete'];
+
+  displayedColumnsSupplier: string[] = ['animalCenter', 'petList', 'cityState', 'contact', 'showOnMap', 'edit'];
+
+
+  getHeader()  {
+    if (this.getUserRole() == "ADMIN")  {
+      return  this.displayedColumnsAdmin;
+    }  else if (this.getUserRole() == "SUPPLIER")  {
+      return  this.displayedColumnsSupplier;
+    }
+    return   this.displayedColumns;
+  }
 
   user = this.login.getUser();
   animalCenters: any = [];
@@ -39,7 +51,9 @@ export class AnimalCenterList implements OnInit {
 
   searchFilters: any[] = [];
 
-  constructor(private login: LoginService, private router: Router, private snack: MatSnackBar, private animalCenterService: AnimalCenterService, private dialog: MatDialog, private searchService: SearchService) {
+  constructor(private login: LoginService, private router: Router, private snack: MatSnackBar,
+              private animalCenterService: AnimalCenterService, private dialog: MatDialog,
+              private searchService: SearchService) {
   }
 
   ngOnInit(): void {
@@ -68,7 +82,6 @@ export class AnimalCenterList implements OnInit {
   }
 
   public getUserRole() {
-
     return this.login.getUserRole() || 'GUEST';
 
   }
@@ -89,7 +102,9 @@ export class AnimalCenterList implements OnInit {
       let modify = false;
       if (updatedData) {
 
-        if ((animalCenter.name != updatedData.name) || (animalCenter.city != updatedData.city) || (animalCenter.longitude != updatedData.longitude) || (animalCenter.latitude != updatedData.latitude) || (animalCenter.contact != updatedData.contact)) {
+        if ((animalCenter.name != updatedData.name) || (animalCenter.city != updatedData.city) ||
+          (animalCenter.longitude != updatedData.longitude) || (animalCenter.latitude != updatedData.latitude) ||
+          (animalCenter.contact != updatedData.contact)) {
           modify = true;
         }
         animalCenter.name = updatedData.name;

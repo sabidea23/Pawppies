@@ -30,7 +30,8 @@ public class AnimalController {
     public Animal createAnimal(@RequestPart("animal") Animal animal,
                                @RequestPart("imageFile") MultipartFile[] file,
                                Authentication authentication) {
-        if (authentication != null && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+        if (authentication != null && authentication.getAuthorities().stream()
+                .anyMatch(a -> a.getAuthority().equals("SUPPLIER"))) {
             try {
                 Set<ImageModel> imageModels = animalService.uploadImage(file);
                 animal.setAnimalImages(imageModels);
@@ -93,7 +94,8 @@ public class AnimalController {
                                @RequestPart("animal") Animal animalDetails,
                                @RequestPart(value = "imageFile", required = false) MultipartFile[] files,
                                Authentication authentication) throws Exception {
-        if (authentication != null && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+        if (authentication != null && authentication.getAuthorities().stream()
+                .anyMatch(a -> a.getAuthority().equals("SUPPLIER"))) {
             Animal originalAnimal = this.animalService.getAnimal(animalId);
             return this.animalService.updateAnimal(originalAnimal, animalDetails, files);
 

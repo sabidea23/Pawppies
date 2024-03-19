@@ -30,7 +30,8 @@ public class AnimalCenterController {
     @ResponseStatus(code = HttpStatus.CREATED)
     public AnimalCenter createAnimalCenter(@RequestBody AnimalCenterRequestDTO animalCenterRequest, Authentication authentication) throws Exception {
         // Verifică rolul utilizatorului
-        if (authentication != null && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+        if (authentication != null && authentication.getAuthorities().stream()
+                .anyMatch(a -> a.getAuthority().equals("SUPPLIER"))) {
 
             return this.animalCenterService.createAnimalCenter(animalCenterRequest);
         }
@@ -39,7 +40,8 @@ public class AnimalCenterController {
     
     @GetMapping("/")
     @ResponseStatus(code = HttpStatus.OK)
-    public Page<AnimalCenterResponseDTO> getAnimalCenters(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size) {
+    public Page<AnimalCenterResponseDTO> getAnimalCenters(@RequestParam(defaultValue = "0") int page,
+                                                          @RequestParam(defaultValue = "5") int size) {
         Pageable paging = PageRequest.of(page, size);
         Page<AnimalCenter> centers = this.animalCenterService.getAnimalCenters(paging);
 
@@ -56,7 +58,8 @@ public class AnimalCenterController {
     @PutMapping("/")
     @ResponseStatus(code = HttpStatus.CREATED)
     public AnimalCenter updateAnimalCenter(@RequestBody AnimalCenterRequestDTO animalCenter, Authentication authentication) throws Exception {
-        if (authentication != null && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+        if (authentication != null && authentication.getAuthorities().stream()
+                .anyMatch(a -> a.getAuthority().equals("SUPPLIER"))) {
             return this.animalCenterService.updateAnimalCenter(animalCenter);
         } else {
             throw new ForbiddenActionForRole("You do not have the right permissions to do this action");
@@ -66,7 +69,8 @@ public class AnimalCenterController {
     @DeleteMapping("/{centerId}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void deleteAnimalCenter(@PathVariable("centerId") Long id, Authentication authentication) {
-        if (authentication != null && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+        if (authentication != null && authentication.getAuthorities().stream()
+                .anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
             this.animalCenterService.deleteAnimalCenter(id);
         } else {
             throw new ForbiddenActionForRole("You do not have the right permissions to do this action");

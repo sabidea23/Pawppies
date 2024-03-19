@@ -5,7 +5,7 @@
     <div class="header-container">
       <h2>Search For Animal Welfare Groups by </h2>
       <!-- Buton pentru adăugare centru animal, vizibil doar pentru ADMIN -->
-      <button *ngIf="getUserRole() == 'ADMIN'" (click)="navigateToAddAnimalCenter()" class="add-animal-center-button" mat-raised-button>
+      <button *ngIf="getUserRole() == 'SUPPLIER'" (click)="navigateToAddAnimalCenter()" class="add-animal-center-button" mat-raised-button>
         ADD CENTER
       </button>
     </div>
@@ -81,10 +81,9 @@
           </button>
         </td>
       </ng-container>
-      <tr *matHeaderRowDef="getUserRole() == 'ADMIN' ? displayedColumnsAdmin : displayedColumns" mat-header-row></tr>
-      <tr *matRowDef="let row; columns: getUserRole() == 'ADMIN' ? displayedColumnsAdmin : displayedColumns;"
+      <tr *matHeaderRowDef="getHeader()" mat-header-row></tr>
+      <tr *matRowDef="let row; columns: getHeader()"
           mat-row></tr>
-
     </table>
 
     <h2 *ngIf="filteredAnimalCenters.length == 0"> No results found.</h2>
