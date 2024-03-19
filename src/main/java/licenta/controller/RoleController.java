@@ -1,6 +1,6 @@
 package licenta.controller;
 
-import licenta.model.Role;
+import licenta.entity.Role;
 import licenta.service.RoleService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

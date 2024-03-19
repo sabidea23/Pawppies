@@ -1,9 +1,8 @@
 package licenta.controller;
 
-import licenta.exeptions.AnimalNotFoundExeption;
 import licenta.exeptions.ForbiddenActionForRole;
-import licenta.model.Animal;
-import licenta.model.ImageModel;
+import licenta.entity.Animal;
+import licenta.entity.ImageModel;
 import licenta.service.AnimalService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,7 +13,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Set;
-
 
 @RestController
 @RequestMapping("/animal")
@@ -57,12 +55,6 @@ public class AnimalController {
         return this.animalService.getAnimalsByCenterId(id);
     }
 
-    @GetMapping("/author/{authorId}")
-    @ResponseStatus(code = HttpStatus.OK)
-    public List<Animal> getAnimalsByAuthorId(@PathVariable("authorId") Long authorId) throws Exception {
-        return this.animalService.getAnimalsByAuthorId(authorId);
-    }
-
     @GetMapping("/center/{centerId}/author/{authorId}")
     public List<Animal> getAnimalsByCenterIdAndAuthorId(@PathVariable("centerId") Long animalCenterId,
                                                             @PathVariable("authorId") Long authorId) throws Exception {
@@ -95,18 +87,19 @@ public class AnimalController {
         return this.animalService.getLikedAnimals(userId);
     }
 
-    @PutMapping("/")
-    @ResponseStatus(code = HttpStatus.CREATED)
-    public Animal updateAnimal(@RequestBody Animal requestBodyAnimal) throws Exception {
-        Animal originalAnimal = this.animalService.getAnimal(requestBodyAnimal.getId());
-        if (originalAnimal == null) {
-            throw new AnimalNotFoundExeption("Animal with id `" + requestBodyAnimal.getId() + "` not found");
+    @PutMapping(value = "/{animalId}", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    @ResponseStatus(code = HttpStatus.OK)
+    public Animal updateAnimal(@PathVariable("animalId") Long animalId,
+                               @RequestPart("animal") Animal animalDetails,
+                               @RequestPart(value = "imageFile", required = false) MultipartFile[] files,
+                               Authentication authentication) throws Exception {
+        if (authentication != null && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+            Animal originalAnimal = this.animalService.getAnimal(animalId);
+            return this.animalService.updateAnimal(originalAnimal, animalDetails, files);
+
+        } else {
+            throw new ForbiddenActionForRole("You do not have the right permissions to do this action");
         }
-
-        originalAnimal.setAge(requestBodyAnimal.getAge());
-        originalAnimal.setName(requestBodyAnimal.getName());
-
-        return this.animalService.updateAnimal(originalAnimal);
     }
 
     @DeleteMapping("/{animalId}")
@@ -114,5 +107,4 @@ public class AnimalController {
     public void deleteAnimal(@PathVariable("animalId") Long id) {
         this.animalService.deleteAnimal(id);
     }
-
 }

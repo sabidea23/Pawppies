@@ -1,7 +1,7 @@
 package licenta.service;
 
-import licenta.model.Animal;
-import licenta.model.ImageModel;
+import licenta.entity.Animal;
+import licenta.entity.ImageModel;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -11,13 +11,11 @@ import java.util.Set;
 public interface AnimalService {
     Animal createAnimal(Animal animal);
 
-    Animal updateAnimal(Animal animal) throws Exception;
+    Animal updateAnimal(Animal originalAnimal, Animal animalDetails, MultipartFile[] files) throws Exception;
 
     Animal getAnimal(Long id) throws Exception;
 
     List<Animal> getAnimalsByCenterId(Long id) throws Exception;
-
-    List<Animal> getAnimalsByAuthorId(Long id) throws Exception;
 
     List<Animal> getAnimalsByCenterIdAndAuthorId(Long animalId, Long authorId) throws Exception;
 

@@ -1,9 +1,9 @@
 package licenta.controller;
 
 import licenta.config.JwtUtils;
-import licenta.model.JwtRequest;
-import licenta.model.JwtResponse;
-import licenta.model.User;
+import licenta.entity.JwtRequest;
+import licenta.entity.JwtResponse;
+import licenta.entity.User;
 import licenta.service.implementation.UserDetailsServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

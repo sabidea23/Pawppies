@@ -1,7 +1,7 @@
 package licenta.controller;
 
 
-import licenta.model.BreedDetails;
+import licenta.entity.BreedDetails;
 import licenta.service.BreedDetailsService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

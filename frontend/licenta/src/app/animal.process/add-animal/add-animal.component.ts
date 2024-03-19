@@ -167,7 +167,6 @@ export class AddAnimalComponent implements OnInit {
       return ['Small (0-6 ibs)', 'Medium (7-11 ibs)', 'Large (12-17) ibs', 'Extra Large (18 ibs or more)'];
     }
     return ['Small=', 'Medium', 'Large', 'Extra Large'];
-
   }
 
   // @ts-ignore

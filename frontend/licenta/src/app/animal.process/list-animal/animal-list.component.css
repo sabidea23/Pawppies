@@ -238,17 +238,15 @@ mat-form-field {
   font-size: 14px;
 }
 
-
-
 .animal-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 20px;
   padding: 1rem;
 }
 
 .animal-card {
-  height: 300px;
+  height: 380px;
   position: relative;
   border: 3px solid #ddd;
   border-radius: 8px; /* Rotunjirea colțurilor */
@@ -291,8 +289,6 @@ button:focus {
   outline: none;
 }
 
-
-
 input[type="button"] {
   border: none;
   outline:none;
@@ -315,10 +311,12 @@ input[type="button"] {
 }
 
 .animal-details {
+  width: 150px;
   padding: 0.5rem;
 }
 
 .animal-name {
+  max-width: 200px;
   margin: 0;
   font-size: 1.3rem;
   font-family: 'Montserrat', sans-serif;
@@ -343,4 +341,12 @@ input[type="button"] {
   color: white; /* Text alb */
   background-color: #6504B5; /* Culoare mov, ajustează codul hex conform preferințelor */
   padding: 10px 20px; /* Padding pentru a mări dimensiunea butonului */
+}
+
+
+.description {
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+  align-items: center;
 }

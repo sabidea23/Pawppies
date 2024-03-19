@@ -1,7 +1,6 @@
 package licenta.dto;
 
-import licenta.model.AnimalCenter;
-import licenta.model.User;
+import licenta.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

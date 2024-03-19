@@ -1,8 +1,8 @@
 package licenta.service.implementation;
 
 import licenta.exeptions.AnimalNotFoundExeption;
-import licenta.model.Animal;
-import licenta.model.ImageModel;
+import licenta.entity.Animal;
+import licenta.entity.ImageModel;
 import licenta.repo.AnimalRepository;
 import licenta.service.AnimalService;
 import org.springframework.stereotype.Service;
@@ -45,12 +45,31 @@ public class AnimalServiceImpl implements AnimalService {
     }
 
     @Override
-    public Animal updateAnimal(Animal animal) throws AnimalNotFoundExeption {
-        if (!this.animalRepository.existsById(animal.getId())) {
-            throw new AnimalNotFoundExeption("Animal with id `" + animal.getId() + "` not found");
+    public Animal updateAnimal(Animal originalAnimal, Animal animalDetails, MultipartFile[] files) throws AnimalNotFoundExeption, IOException {
+        if (!this.animalRepository.existsById(originalAnimal.getId())) {
+            throw new AnimalNotFoundExeption("Animal with id `" + originalAnimal.getId() + "` not found");
         }
 
-        return this.animalRepository.save(animal);
+        updateAnimalDetails(originalAnimal, animalDetails);
+
+        if (files != null && files.length > 0) {
+            Set<ImageModel> newImages = uploadImage(files);
+            originalAnimal.getAnimalImages().addAll(newImages);
+        }
+        return this.animalRepository.save(originalAnimal);
+    }
+
+    private void updateAnimalDetails(Animal originalAnimal, Animal animalDetails) {
+        originalAnimal.setName(animalDetails.getName());
+        originalAnimal.setAge(animalDetails.getAge());
+        originalAnimal.setSize(animalDetails.getSize());
+        originalAnimal.setCoatLength(animalDetails.getCoatLength());
+        originalAnimal.setType(animalDetails.getType());
+        originalAnimal.setHealth(animalDetails.getHealth());
+        originalAnimal.setCare(animalDetails.getCare());
+        originalAnimal.setDescription(animalDetails.getDescription());
+        originalAnimal.setPostedDate(animalDetails.getPostedDate());
+        originalAnimal.setIsAdopted(animalDetails.getIsAdopted());
     }
 
     @Override
@@ -70,15 +89,6 @@ public class AnimalServiceImpl implements AnimalService {
         }
 
         return this.animalRepository.findAllByAnimalCenterId(animalCenterId);
-    }
-
-    @Override
-    public List<Animal> getAnimalsByAuthorId(Long authorId) throws AnimalNotFoundExeption {
-        if (!this.animalRepository.existsByAuthorId(authorId)) {
-            throw new AnimalNotFoundExeption("Animals with author id `" + authorId + "` not found");
-        }
-
-        return this.animalRepository.findAllByAuthorId(authorId);
     }
 
     @Override

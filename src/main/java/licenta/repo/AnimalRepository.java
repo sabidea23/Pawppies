@@ -1,6 +1,6 @@
 package licenta.repo;
 
-import licenta.model.Animal;
+import licenta.entity.Animal;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

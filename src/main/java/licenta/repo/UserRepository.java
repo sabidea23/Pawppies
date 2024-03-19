@@ -1,6 +1,6 @@
 package licenta.repo;
 
-import licenta.model.User;
+import licenta.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

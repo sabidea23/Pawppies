@@ -1,6 +1,6 @@
 package licenta.service.implementation;
 
-import licenta.model.BreedDetails;
+import licenta.entity.BreedDetails;
 import licenta.repo.BreedDetailsRepository;
 import licenta.service.BreedDetailsService;
 

@@ -2,7 +2,7 @@ package licenta.service;
 
 import licenta.dto.AnimalCenterRequestDTO;
 import licenta.dto.AnimalCenterResponseDTO;
-import licenta.model.AnimalCenter;
+import licenta.entity.AnimalCenter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

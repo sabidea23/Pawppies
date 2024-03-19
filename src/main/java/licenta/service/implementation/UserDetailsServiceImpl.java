@@ -1,8 +1,7 @@
 package licenta.service.implementation;
 
-import licenta.model.User;
+import licenta.entity.User;
 import licenta.repo.UserRepository;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package licenta.model;
+package licenta.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -84,7 +84,6 @@ public class Animal {
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private AnimalCenter animalCenter;
-
 
     @NotNull
     @JsonIgnore

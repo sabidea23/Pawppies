@@ -1,6 +1,6 @@
 package licenta.dto;
 
-import licenta.model.User;
+import licenta.entity.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

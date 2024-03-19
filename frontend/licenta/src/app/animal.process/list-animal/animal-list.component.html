@@ -27,20 +27,22 @@
         </button>
 
         <img [src]='animal.animalImages[0].url' class="animal-image">
-        <div class="animal-details">
-          <p class="animal-name"> {{ animal.name }} </p>
-          <p class="animal-other-details"> {{ animal.age }}, {{ animal.type }} </p>
+
+        <div class="description">
+          <button (click)="editAnimal(animal)" *ngIf="getUserRole() == 'ADMIN'" mat-button>
+            <mat-icon>edit</mat-icon>
+          </button>
+
+          <div class="animal-details">
+            <p class="animal-name"> {{ animal.name }} </p>
+            <p class="animal-other-details"> {{ animal.age }}, {{ animal.type }} </p>
+          </div>
+
+          <button (click)="deleteAnimal(animal)" *ngIf="getUserRole() === 'ADMIN'" mat-button>
+            <mat-icon>delete</mat-icon>
+          </button>
         </div>
 
-        <button (click)="editAnimal(animal)" *ngIf="getUserRole() == 'ADMIN'" mat-button
-                style="margin-right: 20px">
-          EDIT
-        </button>
-        <button (click)="deleteAnimal(animal)" *ngIf="getUserRole() === 'ADMIN'" mat-button
-                style="margin-right: 20px">
-          DELETE
-        </button>
-        <br/>
       </div>
 
 

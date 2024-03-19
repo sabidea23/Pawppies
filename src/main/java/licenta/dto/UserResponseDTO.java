@@ -1,6 +1,6 @@
 package licenta.dto;
 
-import licenta.model.UserRole;
+import licenta.entity.UserRole;
 import lombok.Builder;
 import lombok.Data;
 

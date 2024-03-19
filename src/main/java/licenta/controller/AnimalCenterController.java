@@ -3,7 +3,7 @@ package licenta.controller;
 import licenta.dto.AnimalCenterRequestDTO;
 import licenta.dto.AnimalCenterResponseDTO;
 import licenta.exeptions.ForbiddenActionForRole;
-import licenta.model.AnimalCenter;
+import licenta.entity.AnimalCenter;
 import licenta.service.AnimalCenterService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

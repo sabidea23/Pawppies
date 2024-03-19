@@ -6,6 +6,8 @@ import Swal from 'sweetalert2';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AnimalCenterService} from 'src/app/services/animal.center.service';
 import {ImageProcessingService} from "../../services/image-processing.service";
+import {EditAnimalComponent} from "../edit-animal/edit-animal.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-animal-list', templateUrl: './animal-list.component.html', styleUrls: ['./animal-list.component.css'],
@@ -18,7 +20,7 @@ export class AnimalListComponent implements OnInit {
   userId: any;
   likedAnimals: any = [];
 
-  constructor(private login: LoginService, private animalService: AnimalService, private router: Router, private route: ActivatedRoute, private snack: MatSnackBar, private animalCenterService: AnimalCenterService, private imageProcessingService: ImageProcessingService) {
+  constructor(private login: LoginService, private dialog: MatDialog, private animalService: AnimalService, private router: Router, private route: ActivatedRoute, private snack: MatSnackBar, private animalCenterService: AnimalCenterService, private imageProcessingService: ImageProcessingService) {
   }
 
   getFavouriteAnimals() {
@@ -37,6 +39,8 @@ export class AnimalListComponent implements OnInit {
         next: (data) => {
           this.animals = data;
           this.getImagesForAnimals();
+          console.log(this.animals)
+
         }, error: (_) => {
         },
       });
@@ -44,6 +48,8 @@ export class AnimalListComponent implements OnInit {
       this.animalService.getLikedAnimals(this.user.id).subscribe({
         next: (data) => {
           this.animals = data;
+          console.log(this.animals)
+
           this.getImagesForAnimals();
         },
       });
@@ -124,36 +130,54 @@ export class AnimalListComponent implements OnInit {
 
 
   public editAnimal(animal: any) {
-    Swal.fire({
-      width: '800px', title: 'Edit Animal Description', background: 'rgb(230, 230, 230)', html: `
-      <textarea
-        id="swal-input"
-        class="swal2-input"
-        style="width: 90%; height: 275px; font-size: 16px;"
-        placeholder="Text">
-        ${animal.text.trim()}
-      </textarea>
-      `, focusConfirm: false, preConfirm: () => {
-        const text = (document.getElementById('swal-input') as HTMLInputElement).value.trim();
-        return {text};
-      },
-    }).then((result) => {
-      if (result.isConfirmed && result.value) {
-        animal.text = result.value.text;
+    const dialogRef = this.dialog.open(EditAnimalComponent, {
+      width: '600px', maxHeight: '800px', data: animal
+    });
 
-        this.animalService.updateAnimal(animal).subscribe({
-          next: (_) => {
-            this.animals = this.animals.map((r: any) => {
-              if (r.id === animal.id) {
-                r = animal;
+    // @ts-ignore
+    dialogRef.afterClosed().subscribe(updatedData => {
+      let modify = false;
+      if (updatedData) {
+
+        if ((animal.name != updatedData.name) || (animal.age != updatedData.age) || (animal.size != updatedData.size) ||
+          (animal.coatLength != updatedData.coatLength) || (animal.health != animal.health) || (animal.care != animal.care)
+          || (animal.description != animal.description)) {
+          modify = true;
+        }
+        animal.name = updatedData.name;
+        animal.age = updatedData.age;
+        animal.size = updatedData.size;
+        animal.coatLength = updatedData.coatLength;
+        animal.health = updatedData.health;
+        animal.care = updatedData.care;
+        animal.description = updatedData.description;
+        animal.animalImages = updatedData.animalImages;
+
+        this.animalService.updateAnimal(animal.id, animal, animal.animalImages).subscribe({
+          next: (data: any) => {
+            this.getFavouriteAnimals();
+
+            animal = animal.map((u: any) => {
+              if (u.id === animal.id) {
+                u = animal;
               }
-              return r;
+              return u;
             });
-            Swal.fire({
-              title: 'Edited!', text: 'The animal has been edited', icon: 'success', background: 'rgb(230, 230, 230)',
-            }).then(() => {
-            });
-          }, error: (error) => {
+
+            if (modify) {
+              Swal.fire({
+                title: 'Edited!',
+                text: 'Your animal center has been edited.',
+                icon: 'success',
+                background: '#fff',
+                customClass: {
+                  confirmButton: 'confirm-button-class',
+                },
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#6504B5',
+              });
+            }
+          }, error: (error: any) => {
             this.snack.open(error.error.message, 'OK', {
               duration: 3000,
             });

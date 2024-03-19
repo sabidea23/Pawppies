@@ -1,8 +1,6 @@
 package licenta.service;
 
-import licenta.model.BreedDetails;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import licenta.entity.BreedDetails;
 
 import java.util.List;
 

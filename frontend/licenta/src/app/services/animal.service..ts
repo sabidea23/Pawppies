@@ -12,9 +12,25 @@ export class AnimalService {
     return this.http.post(`${baseUrl}/animal/`, animal);
   }
 
-  public updateAnimal(animal: any) {
-    return this.http.put(`${baseUrl}/animal/`, animal);
+  // Angular service method to update an animal with optional images
+  public updateAnimal(animalId: number, animal: any, imageFiles?: File[]): any {
+    const formData: FormData = new FormData();
+
+    // Adăugați detaliile animalului în FormData
+    formData.append('animal', new Blob([JSON.stringify(animal)], {
+      type: 'application/json'
+    }));
+
+    // Adăugați fișierele de imagine în FormData, dacă există
+    if (imageFiles && imageFiles.length) {
+      Array.from(imageFiles).forEach((file, index) => {
+        formData.append(`imageFile`, file, file.name);
+      });
+    }
+
+    return this.http.put(`${baseUrl}/animal/${animalId}`, formData);
   }
+
 
   public getAnimals() {
     return this.http.get(`${baseUrl}/animal/`);
@@ -26,10 +42,6 @@ export class AnimalService {
 
   public getAnimalsByCenterId(centerId: number) {
     return this.http.get(`${baseUrl}/animal/center/${centerId}`);
-  }
-
-  public getAnimalsByAuthorId(authorId: number) {
-    return this.http.get(`${baseUrl}/animal/author/${authorId}`);
   }
 
   public getAnimalsByCenterIdAndAuthorId(centerId: number, authorId: number) {

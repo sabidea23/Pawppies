@@ -1,7 +1,7 @@
 package licenta.service;
 
 import licenta.dto.UserRequestDTO;
-import licenta.model.User;
+import licenta.entity.User;
 
 
 public interface UserService {

@@ -2,7 +2,7 @@ package licenta.controller;
 
 import licenta.dto.UserRequestDTO;
 import licenta.dto.UserResponseDTO;
-import licenta.model.User;
+import licenta.entity.User;
 import licenta.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

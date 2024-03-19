@@ -1,4 +1,4 @@
-package licenta.model;
+package licenta.entity;
 
 import org.springframework.security.core.GrantedAuthority;
 

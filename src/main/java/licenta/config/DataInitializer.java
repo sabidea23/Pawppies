@@ -1,7 +1,7 @@
 package licenta.config;
 
 import javax.annotation.PostConstruct;
-import licenta.model.Role;
+import licenta.entity.Role;
 import licenta.repo.RoleRepository;
 import org.springframework.stereotype.Component;
 
