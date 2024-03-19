@@ -49,7 +49,8 @@
           <mat-icon matPrefix>local_hospital</mat-icon>
           Health
         </mat-label>
-        <textarea [(ngModel)]="editData.health" matInput name="health" placeholder="Enter Animal Health" required></textarea>
+        <textarea [(ngModel)]="editData.health" matInput name="health" placeholder="Enter Animal Health"
+                  required></textarea>
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="full-width-input">
@@ -65,12 +66,13 @@
           <mat-icon matPrefix>description</mat-icon>
           Description
         </mat-label>
-        <textarea [(ngModel)]="editData.description" matInput name="description" placeholder="Enter Animal Description" required></textarea>
+        <textarea [(ngModel)]="editData.description" matInput name="description" placeholder="Enter Animal Description"
+                  required></textarea>
       </mat-form-field>
 
       <div class="button-container">
-        <button mat-button class="button-class confirm-button-class">UPDATE</button>
-        <button mat-button class="button-class cancel-button-class">CANCEL</button>
+        <button class="button-class confirm-button-class" mat-button>UPDATE</button>
+        <button class="button-class cancel-button-class" mat-button>CANCEL</button>
       </div>
     </form>
   </mat-card-content>

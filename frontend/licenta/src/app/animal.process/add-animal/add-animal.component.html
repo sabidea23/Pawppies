@@ -164,7 +164,8 @@
 
       <div class="image-grid">
         <div class="image-container" *ngFor="let file of animal.animalImages; let i = index">
-          <img [src]="file.url">
+          <img [src]='file.url || "../../../assets/background-animal.png"'
+               [style.background]="'url(../../../assets/background-animal.png)'">
           <button class="delete-button" (click)="deleteImage(i)">-</button>
         </div>
       </div>

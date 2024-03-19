@@ -41,7 +41,7 @@ export class AddAnimalComponent implements OnInit {
     health: undefined,
     description: undefined,
     type: undefined,
-    color:undefined,
+    color: undefined,
     care: undefined,
     goodInHome: undefined,
     coatLength: undefined,
@@ -57,9 +57,8 @@ export class AddAnimalComponent implements OnInit {
   isOtherSelected: boolean = false;
 
   breed: any = undefined;
-  constructor(private login: LoginService, private snack: MatSnackBar, private router: Router, private route: ActivatedRoute,
-              private animalService: AnimalService, private animalCenterService: AnimalCenterService, private sanitazer: DomSanitizer,
-              private dogBreedService: Breed_detailsService) {
+
+  constructor(private login: LoginService, private snack: MatSnackBar, private router: Router, private route: ActivatedRoute, private animalService: AnimalService, private animalCenterService: AnimalCenterService, private sanitazer: DomSanitizer, private dogBreedService: Breed_detailsService) {
   }
 
   ngOnInit(): void {
@@ -90,7 +89,7 @@ export class AddAnimalComponent implements OnInit {
 
   formSubmit() {
     this.animal.name = this.petProfile.inputName;
-    this.animal.color =  this.petProfile.inputColors.join(', ');
+    this.animal.color = this.petProfile.inputColors.join(', ');
     this.animal.size = this.petProfile.inputSize;
     this.animal.gender = this.petProfile.inputGender;
     this.animal.age = this.petProfile.inputAge;
@@ -121,10 +120,7 @@ export class AddAnimalComponent implements OnInit {
             this.user.authorities = backedUpUserAuthorities;
             this.animalCenter.admin.authorities = backedUpAdminAuthorities;
             Swal.fire({
-              title: 'Success!',
-              text: 'Animal added successfully',
-              icon: 'success',
-              background: 'rgb(230, 230, 230)',
+              title: 'Success!', text: 'Animal added successfully', icon: 'success', background: 'rgb(230, 230, 230)',
             }).then((_) => {
               const user_role = this.login.getUserRole();
               if (user_role == 'ADMIN') this.router
@@ -136,15 +132,13 @@ export class AddAnimalComponent implements OnInit {
                 });
             });
 
-          },
-          error: (error) => {
+          }, error: (error) => {
             this.snack.open(error.error.message, 'OK', {
               duration: 3000,
             });
           },
         });
-      },
-      error: (err) => {
+      }, error: (err) => {
         // Gestionează eroarea dacă cererea către dogBreedService eșuează
         console.error('Failed to load breeds', err);
       }
@@ -156,8 +150,7 @@ export class AddAnimalComponent implements OnInit {
       return ['Puppy', 'Young', 'Adult', 'Senior']; // Sunt doar exemple, pune valorile dorite
     } else if (animalType === 'Cat') {
       return ['Kitten', 'Young', 'Adult', 'Senior']; // Sunt doar exemple, pune valorile dorite
-    }
-    else return ['Young', 'Adult', 'Senior'];
+    } else return ['Young', 'Adult', 'Senior'];
   }
 
   getSizeOptions(animalType: string): string[] {

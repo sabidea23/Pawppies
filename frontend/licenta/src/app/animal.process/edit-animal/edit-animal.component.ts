@@ -1,13 +1,10 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import {DomSanitizer} from "@angular/platform-browser";
+import {Component, Inject} from '@angular/core';
+import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {MapDialogComponent} from "../../utils/map-dialog/map-dialog.component";
 
 // @ts-ignore
 @Component({
-  selector: 'app-edit-animal',
-  templateUrl: './edit-animal.component.html',
-  styleUrls: ['./edit-animal.component.css']
+  selector: 'app-edit-animal', templateUrl: './edit-animal.component.html', styleUrls: ['./edit-animal.component.css']
 })
 export class EditAnimalComponent {
   editData = {
@@ -24,11 +21,10 @@ export class EditAnimalComponent {
 
   getAgeOptions(animalType: string): string[] {
     if (animalType === 'Dog') {
-      return ['Puppy', 'Young', 'Adult', 'Senior']; // Sunt doar exemple, pune valorile dorite
+      return ['Puppy', 'Young', 'Adult', 'Senior'];
     } else if (animalType === 'Cat') {
-      return ['Kitten', 'Young', 'Adult', 'Senior']; // Sunt doar exemple, pune valorile dorite
-    }
-    else return ['Young', 'Adult', 'Senior'];
+      return ['Kitten', 'Young', 'Adult', 'Senior'];
+    } else return ['Young', 'Adult', 'Senior'];
   }
 
   getSizeOptions(animalType: string): string[] {
@@ -40,10 +36,8 @@ export class EditAnimalComponent {
     return ['Small=', 'Medium', 'Large', 'Extra Large'];
   }
 
-  constructor(
-    public dialogRef: MatDialogRef<MapDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public animal: any, private sanitizer: DomSanitizer)
-  {}
+  constructor(public dialogRef: MatDialogRef<MapDialogComponent>, @Inject(MAT_DIALOG_DATA) public animal: any) {
+  }
 
   save() {
     this.dialogRef.close(this.editData);

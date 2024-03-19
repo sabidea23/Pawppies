@@ -190,7 +190,9 @@
     <h2 class="number-dogs"> {{totalElements}} Dog or Puppy Breeds</h2>
     <div class="animal-grid">
       <div *ngFor="let dog of paginatedDogBreeds" class="animal-card" (click)="viewDogDetails(dog)">
-        <img [src]='dog.image' class="animal-image">
+        <img [src]='dog.image || "../../../assets/background-animal.png"'
+             [style.background]="'url(../../../assets/background-animal.png)'"
+             class="animal-image">
         <p class="animal-name"> {{ dog.name }} </p>
       </div>
     </div>

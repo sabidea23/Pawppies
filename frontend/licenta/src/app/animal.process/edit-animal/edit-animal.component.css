@@ -61,7 +61,7 @@ button:hover {
   max-height: 150px;
 }
 
-.custom-mat-form-field input, mat-select, textarea{
+.custom-mat-form-field input, mat-select, textarea {
   caret-color: transparent;
   margin-left: 20px;
 }
