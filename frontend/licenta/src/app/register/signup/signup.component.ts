@@ -1,13 +1,10 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { UserService } from '../../services/user.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import {
-  FormControl,
-  FormGroup,
-  Validators
-} from '@angular/forms';
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+import {UserService} from '../../services/user.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-signup',
@@ -23,7 +20,9 @@ export class SignupComponent {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$')]),
     phone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+$')]),
+    role: new FormControl('NORMAL_USER', [Validators.required]), // Default to NORMAL_USER
   });
+
 
   constructor(
     private userService: UserService,
@@ -39,25 +38,21 @@ export class SignupComponent {
     email: this.registerForm.value.email,
     phone: this.registerForm.value.phone,
     latitude: 0.0,
-    longitude: 0.0
+    longitude: 0.0,
+    role: ''
   };
 
   ngOnInit(): void {
     this.getLocation();
   }
 
-
-
   getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
           if (position) {
-            console.log("Latitude: " + position.coords.latitude +
-              "Longitude: " + position.coords.longitude);
             this.user.latitude = position.coords.latitude;
             this.user.longitude = position.coords.longitude;
-            console.log(this.user.latitude);
-            console.log(this.user.longitude);
+        ;
           }
         },
         (error) => console.log(error));
@@ -65,6 +60,7 @@ export class SignupComponent {
       alert("Geolocation is not supported by this browser.");
     }
   }
+
   formSubmit() {
     if (this.user.username == '' || this.user.username == null) {
       this.snack.open('Username cannot be empty!', 'OK', {
@@ -93,6 +89,9 @@ export class SignupComponent {
       });
       return;
     }
+
+    this.user.role = this.registerForm.value.role === 'NORMAL USER' ?
+      'NORMAL': 'SUPPLIER';
 
     this.userService.addUser(this.user).subscribe({
       next: () => {

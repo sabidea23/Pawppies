@@ -43,7 +43,6 @@ public class UserServiceImpl implements UserService {
 
         String encodedPassword = this.bCryptPasswordEncoder.encode(userRequest.getPassword());
 
-        // Crearea userului cu builder
         User newUser = User.builder()
                 .username(userRequest.getUsername())
                 .password(encodedPassword)
@@ -56,18 +55,15 @@ public class UserServiceImpl implements UserService {
                 .userRoles(new HashSet<>()) // Inițializează setul pentru a evita NullPointerException
                 .build();
 
-        // Salvarea userului pentru a-i genera un ID
         User savedUser = this.userRepository.save(newUser);
 
-        // Găsirea rolului și crearea UserRole folosind builder-ul, dacă este disponibil
-        Role role = this.roleRepository.findById(0L).orElseThrow(() -> new RuntimeException("Role not found"));
+        Role role = this.roleRepository.findByRoleName(userRequest.getRole());
 
         UserRole userRole = UserRole.builder()
                 .user(savedUser)
                 .role(role)
                 .build();
 
-        // Adăugarea UserRole la user și salvarea modificărilor
         savedUser.getUserRoles().add(userRole);
         return this.userRepository.save(savedUser);
     }
