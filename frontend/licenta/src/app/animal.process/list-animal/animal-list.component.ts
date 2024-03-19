@@ -113,21 +113,35 @@ export class AnimalListComponent implements OnInit {
   public likeAnimal(animal: any) {
     this.animalService.getLikeStatus(animal.id, this.user.id).subscribe({
       next: (updatedAnimal: any) => {
-        this.animalService.getLikedAnimals(this.user.id).subscribe({
-          next: (data) => {
-            this.likedAnimals = data;
-          },
-        });
-
+        // Update like count directly from the response
         animal.likes = updatedAnimal.likes;
-      }, error: (error) => {
+
+        // Check if the animal is currently liked or not
+        // @ts-ignore
+        const isLiked = this.likedAnimals.some(a => a.id === animal.id);
+
+        if (isLiked) {
+          // If it was liked, remove it from the likedAnimals list
+          // @ts-ignore
+          this.likedAnimals = this.likedAnimals.filter(a => a.id !== animal.id);
+
+          // If on the 'my-fav-animals' page, remove the animal from the main list as well
+          if (this.router.url.includes('my-fav-animals')) {
+            // @ts-ignore
+            this.animals = this.animals.filter(a => a.id !== animal.id);
+          }
+        } else {
+          // If it was not liked, add it to the likedAnimals list
+          this.likedAnimals.push(animal);
+        }
+      },
+      error: (error) => {
         this.snack.open(error.error.message, 'OK', {
           duration: 3000,
         });
       },
     });
   }
-
 
   public editAnimal(animal: any) {
     const dialogRef = this.dialog.open(EditAnimalComponent, {
