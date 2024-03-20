@@ -1,17 +1,17 @@
 package licenta.service;
 
-import licenta.dto.BreedDetailsResponseDTO;
 import licenta.entity.BreedDetails;
 
 import java.util.List;
 
 public interface BreedDetailsService {
 
-    List<BreedDetailsResponseDTO> getAllBreeds();
+    List<BreedDetails> getAllBreeds();
 
-    BreedDetailsResponseDTO getBreedDetailsById(Long id);
+    BreedDetails getBreedDetailsById(Long id);
 
-    BreedDetailsResponseDTO getBreedDetailsByAnimalType(BreedDetails.AnimalType type);
+    BreedDetails getBreedDetailsByAnimalType(BreedDetails.AnimalType type);
 
-    BreedDetailsResponseDTO getBreedDetailsByName(String name);
+    BreedDetails getBreedDetailsByName(String name);
+
 }
