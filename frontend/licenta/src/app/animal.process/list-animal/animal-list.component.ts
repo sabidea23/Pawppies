@@ -129,6 +129,7 @@ export class AnimalListComponent implements OnInit {
   }
 
   public editAnimal(animal: any) {
+
     const dialogRef = this.dialog.open(EditAnimalComponent, {
       width: '600px', maxHeight: '800px', data: animal
     });
@@ -151,10 +152,12 @@ export class AnimalListComponent implements OnInit {
         animal.care = updatedData.care;
         animal.description = updatedData.description;
         animal.animalImages = updatedData.animalImages;
-
+        const backedUpAuthorities = animal.admin.authorities;
+        animal.admin.authorities = undefined;
         this.animalService.updateAnimal(animal.id, animal, animal.animalImages).subscribe({
           next: (data: any) => {
             this.getFavouriteAnimals();
+            animal.admin.authorities = backedUpAuthorities;
 
             animal = animal.map((u: any) => {
               if (u.id === animal.id) {

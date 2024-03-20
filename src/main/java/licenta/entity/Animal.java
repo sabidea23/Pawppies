@@ -77,17 +77,17 @@ public class Animal {
 
     @NotNull
     @JsonIgnore
-    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private User author;
 
     @NotNull
     @JsonIgnore
-    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private AnimalCenter animalCenter;
 
     @NotNull
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "breed_details_id")
     private BreedDetails breedDetails;
 
