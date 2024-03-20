@@ -1,6 +1,5 @@
 package licenta.controller;
 
-import com.sun.istack.NotNull;
 import licenta.dto.AnimalRequestDTO;
 import licenta.exeptions.ForbiddenActionForRole;
 import licenta.entity.Animal;
@@ -99,7 +98,6 @@ public class AnimalController {
                 .anyMatch(a -> a.getAuthority().equals("SUPPLIER"))) {
             Animal originalAnimal = this.animalService.getAnimal(animalId);
             return this.animalService.updateAnimal(originalAnimal, animalDetails, files);
-
         } else {
             throw new ForbiddenActionForRole("You do not have the right permissions to do this action");
         }

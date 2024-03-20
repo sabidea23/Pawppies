@@ -1,6 +1,6 @@
 package licenta.controller;
 
-
+import licenta.dto.BreedDetailsResponseDTO;
 import licenta.entity.BreedDetails;
 import licenta.service.BreedDetailsService;
 import org.springframework.http.HttpStatus;
@@ -14,7 +14,7 @@ import java.util.List;
 @CrossOrigin("*")
 public class BreedDetailsController {
 
-    BreedDetailsService breedDetailsService;
+    private final BreedDetailsService breedDetailsService;
 
     public BreedDetailsController(BreedDetailsService breedDetailsService) {
         this.breedDetailsService = breedDetailsService;
@@ -22,25 +22,25 @@ public class BreedDetailsController {
 
     @GetMapping("/")
     @ResponseStatus(code = HttpStatus.OK)
-    public List<BreedDetails> getAllBreeds() {
+    public List<BreedDetailsResponseDTO> getAllBreeds() {
         return this.breedDetailsService.getAllBreeds();
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)
-    public BreedDetails getBreedDetailsById(@PathVariable("id") Long id) {
+    public BreedDetailsResponseDTO getBreedDetailsById(@PathVariable("id") Long id) {
         return this.breedDetailsService.getBreedDetailsById(id);
     }
 
     @GetMapping("/{breedName}")
     @ResponseStatus(code = HttpStatus.OK)
-    public BreedDetails getBreedDetailsByName(@PathVariable("breedName") String breedName) {
+    public BreedDetailsResponseDTO getBreedDetailsByName(@PathVariable("breedName") String breedName) {
         return this.breedDetailsService.getBreedDetailsByName(breedName);
     }
 
     @GetMapping("/{breedType}")
     @ResponseStatus(code = HttpStatus.OK)
-    public BreedDetails getBreedDetailsByAnimalType(@PathVariable("breedType") String breedType) {
+    public BreedDetailsResponseDTO getBreedDetailsByAnimalType(@PathVariable("breedType") String breedType) {
 
         BreedDetails.AnimalType type;
         try {
