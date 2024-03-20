@@ -38,7 +38,6 @@ export class AnimalListComponent implements OnInit {
       this.animalService.getLikedAnimals(this.user.id).subscribe({
         next: (data) => {
           this.animals = data;
-          console.log(this.animals)
           this.getImagesForAnimals();
         },
       });
@@ -152,13 +151,15 @@ export class AnimalListComponent implements OnInit {
         animal.care = updatedData.care;
         animal.description = updatedData.description;
         animal.animalImages = updatedData.animalImages;
-        const backedUpAuthorities = animal.admin.authorities;
-        animal.admin.authorities = undefined;
+        const backedUpAuthorities = animal.author.authorities;
+        const  backUpAuthoritiesCenter = animal.animalCenter.admin.authorities;
+        animal.animalCenter.admin.authorities = undefined;
+        animal.author.authorities = undefined;
         this.animalService.updateAnimal(animal.id, animal, animal.animalImages).subscribe({
           next: (data: any) => {
             this.getFavouriteAnimals();
-            animal.admin.authorities = backedUpAuthorities;
-
+            animal.author.authorities = backedUpAuthorities;
+            animal.animalCenter.admin.authorities = backUpAuthoritiesCenter;
             animal = animal.map((u: any) => {
               if (u.id === animal.id) {
                 u = animal;
