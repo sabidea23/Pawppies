@@ -1,5 +1,7 @@
 package licenta.controller;
 
+import com.sun.istack.NotNull;
+import licenta.dto.AnimalRequestDTO;
 import licenta.exeptions.ForbiddenActionForRole;
 import licenta.entity.Animal;
 import licenta.entity.ImageModel;
@@ -27,15 +29,14 @@ public class AnimalController {
 
     @PostMapping(value = {"/"}, consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Animal createAnimal(@RequestPart("animal") Animal animal,
+    public Animal createAnimal(@RequestPart("animal")  AnimalRequestDTO animal,
                                @RequestPart("imageFile") MultipartFile[] file,
                                Authentication authentication) {
         if (authentication != null && authentication.getAuthorities().stream()
                 .anyMatch(a -> a.getAuthority().equals("SUPPLIER"))) {
             try {
                 Set<ImageModel> imageModels = animalService.uploadImage(file);
-                animal.setAnimalImages(imageModels);
-                return this.animalService.createAnimal(animal);
+                return this.animalService.createAnimal(animal, imageModels);
             } catch (Exception e) {
                 throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Animal could not be created", e);
             }

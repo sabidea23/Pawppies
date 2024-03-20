@@ -1,5 +1,6 @@
 package licenta.service.implementation;
 
+import licenta.dto.AnimalRequestDTO;
 import licenta.exeptions.AnimalNotFoundExeption;
 import licenta.entity.Animal;
 import licenta.entity.ImageModel;
@@ -38,9 +39,28 @@ public class AnimalServiceImpl implements AnimalService {
     }
 
     @Override
-    public Animal createAnimal(Animal animal) {
-        animal.setPostedDate(LocalDate.now());
-        animal.setIsAdopted(false);
+    public Animal createAnimal(AnimalRequestDTO animalRequestDTO, Set<ImageModel> imageModels) {
+
+        Animal animal = Animal.builder()
+                .name(animalRequestDTO.getName())
+                .age(animalRequestDTO.getAge())
+                .gender(animalRequestDTO.getGender())
+                .size(animalRequestDTO.getSize())
+                .coatLength(animalRequestDTO.getCoatLength())
+                .type(animalRequestDTO.getType())
+                .health(animalRequestDTO.getHealth())
+                .care(animalRequestDTO.getCare())
+                .color(animalRequestDTO.getColor())
+                .description(animalRequestDTO.getDescription())
+                .goodInHome(animalRequestDTO.getGoodInHome())
+                .postedDate(LocalDate.now())
+                .isAdopted(false)
+                .animalCenter(animalRequestDTO.getAnimalCenter())
+                .author(animalRequestDTO.getAuthor())
+                .breedDetails(animalRequestDTO.getBreedDetails())
+                .animalImages(imageModels)
+                .build();
+
         return this.animalRepository.save(animal);
     }
 
