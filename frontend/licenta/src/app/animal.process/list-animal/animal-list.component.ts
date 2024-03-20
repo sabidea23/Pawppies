@@ -25,23 +25,12 @@ export class AnimalListComponent implements OnInit {
   }
 
   getFavouriteAnimals() {
-    if (this.animalCenterId && this.userId) {
-      this.animalService
-        .getAnimalsByCenterIdAndAuthorId(this.animalCenterId, this.userId)
-        .subscribe({
-          next: (data) => {
-            this.animals = data;
-            this.getImagesForAnimals();
-          }, error: (_) => {
-          },
-        });
-    } else if (this.animalCenterId) {
+  if (this.animalCenterId) {
       this.animalService.getAnimalsByCenterId(this.animalCenterId).subscribe({
         next: (data) => {
           this.animals = data;
           this.getImagesForAnimals();
           console.log(this.animals)
-
         }, error: (_) => {
         },
       });
@@ -50,7 +39,6 @@ export class AnimalListComponent implements OnInit {
         next: (data) => {
           this.animals = data;
           console.log(this.animals)
-
           this.getImagesForAnimals();
         },
       });

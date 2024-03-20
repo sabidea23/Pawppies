@@ -123,11 +123,9 @@ export class AddAnimalComponent implements OnInit {
               title: 'Success!', text: 'Animal added successfully', icon: 'success', background: 'rgb(230, 230, 230)',
             }).then((_) => {
               const user_role = this.login.getUserRole();
-              if (user_role == 'ADMIN') this.router
+              if (user_role == 'SUPPLIER')
+                this.router
                 .navigate(['/animal/', {centerId: this.animalCenterId},])
-                .then((_) => {
-                }); else if (user_role == 'NORMAL') this.router
-                .navigate(['/centers/', {centerId: this.animalCenterId},])
                 .then((_) => {
                 });
             });

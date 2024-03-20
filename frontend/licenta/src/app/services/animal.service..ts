@@ -12,7 +12,6 @@ export class AnimalService {
     return this.http.post(`${baseUrl}/animal/`, animal);
   }
 
-  // Angular service method to update an animal with optional images
   public updateAnimal(animalId: number, animal: any, imageFiles?: File[]): any {
     const formData: FormData = new FormData();
 
@@ -31,7 +30,6 @@ export class AnimalService {
     return this.http.put(`${baseUrl}/animal/${animalId}`, formData);
   }
 
-
   public getAnimals() {
     return this.http.get(`${baseUrl}/animal/`);
   }
@@ -42,10 +40,6 @@ export class AnimalService {
 
   public getAnimalsByCenterId(centerId: number) {
     return this.http.get(`${baseUrl}/animal/center/${centerId}`);
-  }
-
-  public getAnimalsByCenterIdAndAuthorId(centerId: number, authorId: number) {
-    return this.http.get(`${baseUrl}/animal/center/${centerId}/author/${authorId}`);
   }
 
   public deleteAnimal(id: number) {

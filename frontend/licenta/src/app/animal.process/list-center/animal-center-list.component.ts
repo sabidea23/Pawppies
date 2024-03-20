@@ -29,14 +29,13 @@ export class AnimalCenterList implements OnInit {
 
   displayedColumnsSupplier: string[] = ['animalCenter', 'petList', 'cityState', 'contact', 'showOnMap', 'edit'];
 
-
-  getHeader()  {
-    if (this.getUserRole() == "ADMIN")  {
-      return  this.displayedColumnsAdmin;
-    }  else if (this.getUserRole() == "SUPPLIER")  {
-      return  this.displayedColumnsSupplier;
+  getHeader() {
+    if (this.getUserRole() == "ADMIN") {
+      return this.displayedColumnsAdmin;
+    } else if (this.getUserRole() == "SUPPLIER" ) {
+      return this.displayedColumnsSupplier;
     }
-    return   this.displayedColumns;
+    return this.displayedColumns;
   }
 
   user = this.login.getUser();
@@ -66,16 +65,13 @@ export class AnimalCenterList implements OnInit {
     this.user = this.login.getUser();
     this.getAnimalCenters({page: "0", size: "5"});
     this.performSearch();
-
     // @ts-ignore
     this.dataSource.paginator = this.paginator;
-
   }
 
   navigateToAddAnimalCenter() {
-    this.router.navigate(['centers/add']); // Înlocuiește '/add-animal-center' cu calea corectă
+    this.router.navigate(['centers/add']);
   }
-
 
   public handlePageEvent(event: PageEvent): void {
     this.getAnimalCenters({page: event.pageIndex, size: event.pageSize});
@@ -83,14 +79,13 @@ export class AnimalCenterList implements OnInit {
 
   public getUserRole() {
     return this.login.getUserRole() || 'GUEST';
-
   }
 
   public goToAnimalsPage(animalCenter: any) {
-      this.router
+    this.router
       .navigate(['/animal', {centerId: animalCenter.id},])
       .then((_) => {
-      }); ;
+      });
   }
 
   public editAnimalCenter(animalCenter: any) {
@@ -102,9 +97,7 @@ export class AnimalCenterList implements OnInit {
       let modify = false;
       if (updatedData) {
 
-        if ((animalCenter.name != updatedData.name) || (animalCenter.city != updatedData.city) ||
-          (animalCenter.longitude != updatedData.longitude) || (animalCenter.latitude != updatedData.latitude) ||
-          (animalCenter.contact != updatedData.contact)) {
+        if ((animalCenter.name != updatedData.name) || (animalCenter.city != updatedData.city) || (animalCenter.longitude != updatedData.longitude) || (animalCenter.latitude != updatedData.latitude) || (animalCenter.contact != updatedData.contact)) {
           modify = true;
         }
         animalCenter.name = updatedData.name;
@@ -149,7 +142,6 @@ export class AnimalCenterList implements OnInit {
       }
     });
   }
-
 
   public deleteAnimalCenter(animalCenter: any) {
     Swal.fire({
@@ -259,11 +251,10 @@ export class AnimalCenterList implements OnInit {
       this.filteredAnimalCenters = this.filteredAnimalCenters.filter(animalCenter => animalCenter.country.includes(this.searchData.country));
     }
 
-    this.searchFilters = [
-      {type: 'City', value: this.searchData.city},
-      {type: 'Country', value: this.searchData.country},
-      {type: 'Name', value: this.searchData.name},
-      {type: 'Max Distance', value: this.searchData.distance}];
+    this.searchFilters = [{type: 'City', value: this.searchData.city}, {
+      type: 'Country',
+      value: this.searchData.country
+    }, {type: 'Name', value: this.searchData.name}, {type: 'Max Distance', value: this.searchData.distance}];
 
     this.dataSource.data = this.filteredAnimalCenters;
   }
@@ -275,35 +266,28 @@ export class AnimalCenterList implements OnInit {
 
   resetFilters(): void {
     this.searchData = {
-      city: '',
-      country: '',
-      name: '',
-      distance: ''
+      city: '', country: '', name: '', distance: ''
     };
   }
 
-   // @ts-ignore
-  haversineDistance(lat1, lon1, lat2, lon2) {
-    // @ts-ignore
-     function toRadians(degrees) {
-      return degrees * Math.PI / 180;
-    }
-
-    var R = 6371; // km
-    var dLat = toRadians(lat2 - lat1);
-    var dLon = toRadians(lon2 - lon1);
-    lat1 = toRadians(lat1);
-    lat2 = toRadians(lat2);
-
-    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    var d = R * c;
-
-    return d;
-  }
+  // @ts-ignore
+  // haversineDistance(lat1, lon1, lat2, lon2) {
+  //   // @ts-ignore
+  //   function toRadians(degrees) {
+  //     return degrees * Math.PI / 180;
+  //   }
+  //
+  //   var R = 6371; // km
+  //   var dLat = toRadians(lat2 - lat1);
+  //   var dLon = toRadians(lon2 - lon1);
+  //   lat1 = toRadians(lat1);
+  //   lat2 = toRadians(lat2);
+  //
+  //   var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
+  //   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  //   return R * c;
+  // }
 
 // Exemplu de utilizare
 //   var distanta = haversineDistance(latUser, longUser, latCenter, longCenter);
-
 }

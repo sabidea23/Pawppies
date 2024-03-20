@@ -94,12 +94,12 @@ public class AnimalCenterServiceImpl implements AnimalCenterService {
                 .name(animalCenter.getName())
                 .longitude(animalCenter.getLongitude())
                 .latitude(animalCenter.getLatitude())
-                .admin(animalCenter.getAdmin())
                 .name(animalCenter.getName())
                 .city(animalCenter.getCity())
                 .contact(animalCenter.getContact())
                 .country(animalCenter.getCountry())
                 .mission(animalCenter.getMission())
+                .admin(animalCenter.getAdmin())
                 .build();
     }
 }

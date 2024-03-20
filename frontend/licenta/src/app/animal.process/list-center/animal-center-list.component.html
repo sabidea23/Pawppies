@@ -1,11 +1,12 @@
 <body>
 <div class="main-container">
-  <div  class="content-container">
+  <div class="content-container">
 
     <div class="header-container">
       <h2>Search For Animal Welfare Groups by </h2>
       <!-- Buton pentru adăugare centru animal, vizibil doar pentru ADMIN -->
-      <button *ngIf="getUserRole() == 'SUPPLIER'" (click)="navigateToAddAnimalCenter()" class="add-animal-center-button" mat-raised-button>
+      <button (click)="navigateToAddAnimalCenter()" *ngIf="getUserRole() == 'SUPPLIER'" class="add-animal-center-button"
+              mat-raised-button>
         ADD CENTER
       </button>
     </div>
@@ -65,9 +66,10 @@
       <!-- Coloana pentru Editare -->
       <ng-container matColumnDef="edit">
         <th *matHeaderCellDef>EDIT</th>
-        <td *matCellDef="let animalCenter" mat-cell>
-          <button (click)="editAnimalCenter(animalCenter)" class="btn bg-transparent" mat-button>
-            <mat-icon>edit</mat-icon>
+        <td *matCellDef="let animalCenter" mat-cell >
+          <button *ngIf="getUserRole() == 'SUPPLIER' && animalCenter.admin.id == user.id"
+                  (click)="editAnimalCenter(animalCenter)" class="btn bg-transparent" mat-button>
+            <mat-icon >edit</mat-icon>
           </button>
         </td>
       </ng-container>
