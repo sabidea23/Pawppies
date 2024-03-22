@@ -9,7 +9,7 @@
     <div class="header-container">
       <h2 *ngIf="!animalCenter">My favourite animals</h2>
       <h2 *ngIf="animalCenter">Animals from {{ animalCenter.name }}</h2>
-      <button (click)="goToAddAnimal()" *ngIf="user && animalCenterId && getUserRole() === 'SUPPLIER' && animals[0].author.id == user.id"
+      <button (click)="goToAddAnimal()" *ngIf=" animalCenterId && getUserRole() === 'SUPPLIER' && animalCenter.admin.id == user.id"
               class="add-animal-center-button">
         ADD ANIMAL
       </button>

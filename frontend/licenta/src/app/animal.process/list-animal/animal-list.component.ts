@@ -67,6 +67,7 @@ export class AnimalListComponent implements OnInit {
     this.animalCenter = this.animalCenterId ? this.animalCenterService.getAnimalCenter(this.animalCenterId).subscribe({
       next: (data) => {
         this.animalCenter = data;
+        console.log(this.animalCenter)
       },
     }) : undefined;
 
@@ -85,7 +86,7 @@ export class AnimalListComponent implements OnInit {
 
   public goToAddAnimal() {
      this.router
-    .navigate(['/animal/add', {centerId: this.animalCenterId},])
+    .navigate(['supplier/animal/add', {centerId: this.animalCenterId},])
     .then((_) => {
     });
   }

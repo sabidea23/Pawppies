@@ -70,7 +70,7 @@ export class AnimalCenterList implements OnInit {
   }
 
   navigateToAddAnimalCenter() {
-    this.router.navigate(['centers/add']);
+    this.router.navigate(['supplier/centers/add']);
   }
 
   public handlePageEvent(event: PageEvent): void {

@@ -92,9 +92,6 @@ export class NavbarComponent implements OnInit {
 
   public toProfileSettings() {
     const user_role = this.login.getUserRole();
-    if (user_role == 'ADMIN')
-      this.router.navigate(['/profile']).then((_) => { });
-    else if (user_role == 'NORMAL')
       this.router.navigate(['/profile']).then((_) => { });
   }
 
@@ -135,10 +132,6 @@ export class NavbarComponent implements OnInit {
   public getUserRole() {
     return this.login.getUserRole();
   }
-  public goToAddAnimalCenter() {
-    this.router.navigate(['/centers/add']).then((_) => {
-    });
-  }
 
   redirectToFavoriteAnimalsPage() {
     const user_role = this.login.getUserRole();
@@ -147,5 +140,10 @@ export class NavbarComponent implements OnInit {
 
   redirectToLoginPage() {
     this.router.navigate(['/login']).then((_) => { });
+  }
+
+  toUserManagement() {
+    this.router.navigate(['/admin/user-management']).then((_) => { });
+
   }
 }

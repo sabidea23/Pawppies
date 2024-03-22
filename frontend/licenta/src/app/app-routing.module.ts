@@ -15,6 +15,8 @@ import {BreedDetailsDogComponent} from "./pages/breed-details-dogs/breed-details
 import {BreedDetailsCatComponent} from "./pages/breed-details-cat/breed-details-cat.component";
 import {BreedDogComponent} from "./pages/breed-dog/breed-dog.component";
 import {UserManagementComponent} from "./user-management/user-management.component";
+import {AdminGuard} from "./services/admin.guard";
+import {SupplierGuard} from "./services/supplier.guard";
 
 const routes: Routes = [{
   path: '', component: HomeComponent, pathMatch: 'full',
@@ -39,16 +41,29 @@ const routes: Routes = [{
 }, {
   path: 'centers', component: AnimalCenterList,
 }, {
-  path: 'centers/add', component: AnimalCenterAddComponent,
-}, {
   path: 'animal', component: AnimalListComponent,
-}, {
-  path: 'animal/add', component: AddAnimalComponent,
 }, {
   path: 'my-fav-animals', component: AnimalListComponent,
 },
   {
+  path: 'admin',
+  canActivate: [AdminGuard],
+  children: [
+  {
     path: 'user-management', component: UserManagementComponent,
+  }]
+  },
+  {
+    path: 'supplier',
+    canActivate: [SupplierGuard],
+    children: [
+      {
+        path: 'animal/add', component: AddAnimalComponent,
+      },
+      {
+        path: 'centers/add', component: AnimalCenterAddComponent,
+      }
+    ]
   }
 ];
 

@@ -36,8 +36,8 @@
           </button>
 
           <mat-menu class="custom-menu"  [hasBackdrop]="false" #userMenu="matMenu" (click)="$event.stopPropagation();">
-            <button mat-menu-item  class="mat-menu-customize-item" (click)="toProfileSettings()">Setări profil</button>
-            <button mat-menu-item  class="mat-menu-customize-item">Opțiunea 2</button>
+            <button mat-menu-item  class="mat-menu-customize-item" (click)="toProfileSettings()">Profile</button>
+            <button *ngIf="getUserRole() == 'ADMIN'"  mat-menu-item  (click)="toUserManagement()" class="mat-menu-customize-item"> User management</button>
             <button mat-menu-item  class="mat-menu-customize-item" (click)="logout()">Logout</button>
           </mat-menu>
         </div>
