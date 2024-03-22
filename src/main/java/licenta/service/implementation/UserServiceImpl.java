@@ -8,11 +8,15 @@ import licenta.entity.User;
 import licenta.entity.UserRole;
 import licenta.repo.RoleRepository;
 import licenta.repo.UserRepository;
+import licenta.repo.UserRoleRepository;
 import licenta.service.UserService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -20,13 +24,15 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     private final RoleRepository roleRepository;
+    private final UserRoleRepository userRoleRepository;
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository,
-                           BCryptPasswordEncoder bCryptPasswordEncoder) {
+                           UserRoleRepository userRoleRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
+        this.userRoleRepository = userRoleRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
@@ -96,6 +102,10 @@ public class UserServiceImpl implements UserService {
         return this.userRepository.findByUsername(username);
     }
 
+    @Override
+    public List<User> getUsers() {
+        return userRepository.findAll();
+    }
 
     @Override
     public User getUserByUsername(String username) {
@@ -105,5 +115,24 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(Long userId) {
         this.userRepository.deleteById(userId);
+    }
+
+    @Override
+    @Transactional
+    public User updateUserRole(User user, Set<UserRole> userRoleSet) throws UserNotFoundException {
+        if (!this.userRepository.existsById(user.getId())) {
+            throw new UserNotFoundException("User with id `" + user.getId() + "` not found");
+        }
+
+        Set<UserRole> existingUserRoles = user.getUserRoles();
+        this.userRoleRepository.deleteAll(existingUserRoles);
+
+        for (UserRole role: userRoleSet) {
+            this.roleRepository.save(role.getRole());
+        }
+
+        user.setUserRoles(userRoleSet);
+
+        return this.userRepository.save(user);
     }
 }

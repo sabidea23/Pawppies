@@ -14,6 +14,7 @@ import {QuizComponent} from "./user/quiz/quiz.component";
 import {BreedDetailsDogComponent} from "./pages/breed-details-dogs/breed-details-dog.component";
 import {BreedDetailsCatComponent} from "./pages/breed-details-cat/breed-details-cat.component";
 import {BreedDogComponent} from "./pages/breed-dog/breed-dog.component";
+import {UserManagementComponent} from "./user-management/user-management.component";
 
 const routes: Routes = [{
   path: '', component: HomeComponent, pathMatch: 'full',
@@ -45,7 +46,11 @@ const routes: Routes = [{
   path: 'animal/add', component: AddAnimalComponent,
 }, {
   path: 'my-fav-animals', component: AnimalListComponent,
-}];
+},
+  {
+    path: 'user-management', component: UserManagementComponent,
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
