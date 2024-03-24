@@ -18,6 +18,7 @@
         <div *ngIf="user.id !== admin.id">
           <mat-card class="container text-center" style="background-color: lightgrey">
             <mat-card-title>{{ user.username }}</mat-card-title>
+            <button mat-button (click)="deleteUser(user.id)"> delete </button>
             <mat-chip-listbox>
               <mat-chip-option (click)="changeRole(user, role)" *ngFor="let role of roles"
                                [selected]="role === getUserRole(user) ? true : null" style="background-color: darkgrey;">{{ role

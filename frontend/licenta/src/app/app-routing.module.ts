@@ -14,7 +14,7 @@ import {QuizComponent} from "./user/quiz/quiz.component";
 import {BreedDetailsDogComponent} from "./pages/breed-details-dogs/breed-details-dog.component";
 import {BreedDetailsCatComponent} from "./pages/breed-details-cat/breed-details-cat.component";
 import {BreedDogComponent} from "./pages/breed-dog/breed-dog.component";
-import {UserManagementComponent} from "./user-management/user-management.component";
+import {UserManagementComponent} from "./user/user-management/user-management.component";
 import {AdminGuard} from "./services/admin.guard";
 import {SupplierGuard} from "./services/supplier.guard";
 import {CenterDetailsComponent} from "./animal.process/center-details/center-details.component";

@@ -23,6 +23,13 @@ export class UserManagementComponent implements OnInit {
     private userService: UserService
   ) { }
 
+  deleteUser(id:any) {
+    this.userService.deleteUser(id).subscribe({
+      next: (data: any) => {
+      }
+    });
+  }
+
   ngOnInit(): void {
     this.userService.getAllUsers().subscribe({
       next: (data: any) => {

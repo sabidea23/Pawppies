@@ -45,7 +45,7 @@ import { BreedDetailsDogComponent } from './pages/breed-details-dogs/breed-detai
 import { BreedDetailsCatComponent } from './pages/breed-details-cat/breed-details-cat.component';
 import { BreedDogComponent } from './pages/breed-dog/breed-dog.component';
 import { EditAnimalComponent } from './animal.process/edit-animal/edit-animal.component';
-import { UserManagementComponent } from './user-management/user-management.component';
+import { UserManagementComponent } from './user/user-management/user-management.component';
 import { CenterDetailsComponent } from './animal.process/center-details/center-details.component';
 import { AnimalDetailsComponent } from './animal.process/animal-details/animal-details.component';
 
