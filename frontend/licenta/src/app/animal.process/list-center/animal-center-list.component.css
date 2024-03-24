@@ -272,3 +272,13 @@ mat-form-field {
 }
 
 
+.clickable-text {
+  color: #6504B5; /* Sau orice culoare preferați */
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 550;
+}
+
+.clickable-text:hover {
+  text-decoration: none; /* Schimbă stilul la hover pentru a sublinia că este interactiv */
+}

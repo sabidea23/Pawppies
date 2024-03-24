@@ -22,6 +22,7 @@ export class AnimalCenterAddComponent implements OnInit {
     country: '',
     contact: '',
     admin: undefined,
+    mission: '',
     longitude: 0.0,
     latitude: 0.0
   };
@@ -31,6 +32,7 @@ export class AnimalCenterAddComponent implements OnInit {
     city: '',
     country: '',
     contact: '',
+    mission: '',
     longitude: '',
     latitude: '',
   };

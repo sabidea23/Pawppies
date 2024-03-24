@@ -29,8 +29,11 @@
 
       <ng-container matColumnDef="animalCenter">
         <th *matHeaderCellDef>ORGANIZATION</th>
-        <td *matCellDef="let animalCenter" mat-cell>{{ animalCenter.name }}</td>
+        <td *matCellDef="let animalCenter" mat-cell>
+          <span (click)="navigateToCenterDetails(animalCenter)" class="clickable-text">{{ animalCenter.name }}</span>
+        </td>
       </ng-container>
+
 
       <ng-container matColumnDef="petList">
         <th *matHeaderCellDef>PET LIST</th>

@@ -73,6 +73,11 @@ export class AnimalCenterList implements OnInit {
     this.router.navigate(['supplier/centers/add']);
   }
 
+  navigateToCenterDetails(animalCenter : any) {
+    this.router
+      .navigate(['/center-details', {centerId: animalCenter.id},]);
+  }
+
   public handlePageEvent(event: PageEvent): void {
     this.getAnimalCenters({page: event.pageIndex, size: event.pageSize});
   }

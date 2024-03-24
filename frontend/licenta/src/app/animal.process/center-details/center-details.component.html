@@ -1,0 +1,31 @@
+<div class="top-container">
+  <div class="left-container">
+    <div class="image-container">
+      <img src="../../../assets/logo-shelter.png" class="image-grid">
+    </div>
+    <div class="details-container">
+      <h1> {{animalCenter.name}}</h1>
+      <div class="location-container">
+        <mat-icon>location_on</mat-icon>
+        <h2> {{animalCenter.city}} , {{animalCenter.country}}</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="right-container">
+    <button mat-button class="btn-show-animals">
+      <h3 class="btn-learn"> VIEW OUR PETS </h3>
+    </button>
+
+    <div class="contact-container">
+      <mat-icon>contact_mail</mat-icon>
+      <h2> {{animalCenter.contact}}</h2>
+    </div>
+
+    <div class="phone-container">
+      <mat-icon>phone</mat-icon>
+      <h2> {{animalCenter.phone}}</h2>
+    </div>
+
+  </div>
+</div>

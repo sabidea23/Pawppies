@@ -67,7 +67,20 @@
           </button>
         </mat-form-field>
 
-        <mat-form-field appearance="fill" class="custom-mat-form-field">
+      <!-- Mission -->
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
+        <mat-label>
+          <mat-icon>assignment</mat-icon>
+          Mission
+        </mat-label>
+        <textarea [(ngModel)]="formInput.mission" matInput name="mission" placeholder="Center's Mission"></textarea>
+        <button (click)="formInput.mission=''" mat-icon-button matSuffix>
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
           <mat-label>
             <mat-icon>perm_contact_calendar</mat-icon>
             Contact

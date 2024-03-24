@@ -6,10 +6,9 @@
       <h2>Add a New Friend to Our Family</h2>
 
       <h4> complete the details below to introduce a new animal</h4>
-      <!-- Animal Name -->
       <mat-form-field appearance="fill" class="custom-mat-form-field">
         <mat-label>
-          <mat-icon>badge</mat-icon> <!-- Schimbat la un icon mai relevant pentru nume -->
+          <mat-icon>badge</mat-icon>
           Animal Name
         </mat-label>
         <input [(ngModel)]="petProfile.inputName" matInput name="name" placeholder="E.g., Max, Bella"/>
@@ -18,10 +17,9 @@
         </button>
       </mat-form-field>
 
-      <!-- Animal Type with enhanced label and icon -->
       <mat-form-field appearance="fill" class="custom-mat-form-field">
         <mat-label>
-          <mat-icon>category</mat-icon> <!-- Icon mai relevant pentru tipul animalului -->
+          <mat-icon>category</mat-icon>
           Animal Type
         </mat-label>
         <mat-select [(ngModel)]="petProfile.inputType" name="type" (selectionChange)="checkOtherType($event.value)">
@@ -31,16 +29,14 @@
         </mat-select>
       </mat-form-field>
 
-      <!-- Specific Type Input shown only for 'Others' -->
       <mat-form-field *ngIf="isOtherSelected" appearance="fill" class="custom-mat-form-field">
         <mat-label>Specify Other Type</mat-label>
         <input matInput [(ngModel)]="petProfile.otherType" name="otherType" placeholder="E.g., Rabbit, Parrot"/>
       </mat-form-field>
 
-      <!-- Breed Selection enhanced with relevant icon and clearer instructions -->
       <mat-form-field *ngIf="petProfile.inputType !== 'Others'" appearance="fill" class="custom-mat-form-field">
         <mat-label>
-          <mat-icon>merge_type</mat-icon> <!-- Icon mai adecvat pentru rasa -->
+          <mat-icon>merge_type</mat-icon>
           Animal Breed
         </mat-label>
         <mat-select [(ngModel)]="petProfile.inputBreed" name="breed">
@@ -48,16 +44,14 @@
         </mat-select>
       </mat-form-field>
 
-      <!-- Manual Breed Input for 'Others' -->
       <mat-form-field *ngIf="petProfile.inputType === 'Others'" appearance="fill" class="custom-mat-form-field">
         <mat-label>Specify Breed</mat-label>
         <input matInput [(ngModel)]="petProfile.inputBreed" name="breed" placeholder="E.g., Mixed, Unknown"/>
       </mat-form-field>
 
-      <!-- Animal Gender with a clearer label and icon -->
       <mat-form-field appearance="fill" class="custom-mat-form-field">
         <mat-label>
-          <mat-icon>wc</mat-icon> <!-- Icon care sugerează genul -->
+          <mat-icon>wc</mat-icon>
           Animal Gender
         </mat-label>
         <mat-select [(ngModel)]="petProfile.inputGender" name="gender">
@@ -66,10 +60,9 @@
         </mat-select>
       </mat-form-field>
 
-      <!-- Animal Age with a relevant icon -->
       <mat-form-field *ngIf="petProfile.inputType" appearance="fill" class="custom-mat-form-field">
         <mat-label>
-          <mat-icon>cake</mat-icon> <!-- Icon sugerativ pentru vârstă -->
+          <mat-icon>cake</mat-icon>
           Animal Age
         </mat-label>
         <mat-select [(ngModel)]="petProfile.inputAge" name="age">
@@ -79,7 +72,7 @@
 
       <mat-form-field *ngIf="petProfile.inputType" appearance="fill" class="custom-mat-form-field">
         <mat-label>
-          <mat-icon>aspect_ratio</mat-icon> <!-- Icon sugerativ pentru vârstă -->
+          <mat-icon>aspect_ratio</mat-icon>
           Animal Size
         </mat-label>
         <mat-select [(ngModel)]="petProfile.inputSize" name="size">
@@ -87,10 +80,9 @@
         </mat-select>
       </mat-form-field>
 
-      <!-- Animal Coat Length enhanced with description and icon -->
       <mat-form-field appearance="fill" class="custom-mat-form-field">
         <mat-label>
-          <mat-icon>texture</mat-icon> <!-- Icon mai descriptiv pentru lungimea blănii -->
+          <mat-icon>texture</mat-icon>
           Animal Coat Length
         </mat-label>
         <mat-select [(ngModel)]="petProfile.inputCoatLength" name="coatlength">
@@ -101,10 +93,9 @@
         </mat-select>
       </mat-form-field>
 
-      <!-- Enhanced field for Animal compatibility -->
       <mat-form-field appearance="fill" class="custom-mat-form-field">
         <mat-label>
-          <mat-icon>pets</mat-icon> <!-- Icon adecvat pentru compatibilitate -->
+          <mat-icon>pets</mat-icon>
           Good With
         </mat-label>
         <mat-select [(ngModel)]="petProfile.inputGoodInHome" multiple name="goodInHome">
@@ -114,10 +105,9 @@
         </mat-select>
       </mat-form-field>
 
-      <!-- Field for Animal Care & Behavior with enhancements -->
       <mat-form-field appearance="fill" class="custom-mat-form-field">
         <mat-label>
-          <mat-icon>healing</mat-icon> <!-- Icon sugestiv pentru îngrijire și comportament -->
+          <mat-icon>healing</mat-icon>
           Care & Behavior
         </mat-label>
         <mat-select [(ngModel)]="petProfile.inputCare" multiple name="care">
@@ -127,10 +117,9 @@
         </mat-select>
       </mat-form-field>
 
-      <!-- Field for selecting Animal Color with better icon -->
       <mat-form-field appearance="fill" class="custom-mat-form-field">
         <mat-label>
-          <mat-icon>palette</mat-icon> <!-- Icon mai potrivit pentru culoare -->
+          <mat-icon>palette</mat-icon>
           Color
         </mat-label>
         <mat-select [(ngModel)]="petProfile.inputColors" multiple name="colors">
@@ -138,27 +127,26 @@
         </mat-select>
       </mat-form-field>
 
-      <!-- Descriptive fields for additional information -->
-      <mat-form-field appearance="fill" class="custom-mat-form-field-text">
+      <mat-form-field appearance="fill">
         <mat-label>
-          <mat-icon>description</mat-icon> <!-- Icon descriptiv pentru descriere -->
+          <mat-icon>description</mat-icon>
           Description
         </mat-label>
-        <textarea [(ngModel)]="petProfile.inputDescription" class="textarea-input" matInput maxlength="2000"
+        <textarea [(ngModel)]="petProfile.inputDescription" class="textarea-input" matInput
                   name="description" placeholder="Add a detailed description"></textarea>
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="custom-mat-form-field-text">
         <mat-label>
-          <mat-icon>local_hospital</mat-icon> <!-- Icon adecvat pentru sănătate -->
+          <mat-icon>local_hospital</mat-icon>
           Health Information
         </mat-label>
         <textarea [(ngModel)]="petProfile.inputHealth" class="textarea-input" matInput maxlength="2000"
                   name="health" placeholder="Provide any health-related information"></textarea>
       </mat-form-field>
 
-      <!-- Image upload section with delete option -->
       <div>
+
         <input #selectFile (change)="onFileSelected($event)" class="input-images" multiple type="file">
       </div>
 
@@ -170,7 +158,6 @@
         </div>
       </div>
 
-      <!-- Form submission buttons -->
       <div class="button-container">
         <button [disabled]="!isFormValid()" class="add_btn" mat-raised-button type="submit">
           ADD

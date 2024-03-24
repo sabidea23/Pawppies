@@ -17,6 +17,7 @@ import {BreedDogComponent} from "./pages/breed-dog/breed-dog.component";
 import {UserManagementComponent} from "./user-management/user-management.component";
 import {AdminGuard} from "./services/admin.guard";
 import {SupplierGuard} from "./services/supplier.guard";
+import {CenterDetailsComponent} from "./animal.process/center-details/center-details.component";
 
 const routes: Routes = [{
   path: '', component: HomeComponent, pathMatch: 'full',
@@ -40,7 +41,11 @@ const routes: Routes = [{
   path: 'profile', component: ProfileComponent,
 }, {
   path: 'centers', component: AnimalCenterList,
-}, {
+},
+  {
+    path: 'center-details', component: CenterDetailsComponent,
+  },
+  {
   path: 'animal', component: AnimalListComponent,
 }, {
   path: 'my-fav-animals', component: AnimalListComponent,

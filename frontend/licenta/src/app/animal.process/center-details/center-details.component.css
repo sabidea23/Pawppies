@@ -1,0 +1,85 @@
+.image-grid {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1px solid #6504B5;
+}
+
+* {
+  caret-color: transparent;
+
+}
+.top-container {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+  gap: 400px
+}
+
+.left-container {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 30px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #94939b;
+  color: #6504B5;
+}
+
+
+.location-container {
+  display: flex;
+  gap: 15px;
+
+  flex-direction: row;
+}
+
+h2 {
+  font-size: 23px;
+}
+
+.btn-show-animals {
+  border-radius: 10px;
+  width: 80%;
+  border: 2px solid #6504B5; /* Mov */
+  background-color: white;
+  color: #6504B5; /* Mov */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-show-animals:hover {
+  background-color: #6504B5; /* Mov */
+  color: white;
+}
+
+.btn-learn {
+  font-size: 20px;
+  margin: 0; /* Elimină marginile implicite pentru h3, dacă sunt necesare */
+}
+
+
+.right-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 500px;
+}
+
+.contact-container {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.phone-container {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  margin-top: 20px;
+}
