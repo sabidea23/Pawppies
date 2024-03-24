@@ -1,117 +1,125 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
 
-.text-center {
-  justify-content: center;
-  align-items: center;
-}
-
-.text-center {
-  justify-content: center;
-  align-items: center;
-}
-
-
-.text-center {
-  justify-content: center;
-  align-items: center;
-}
-
-
-.liked {
-  background-color: 'primary';
-}
-
-header {
-  margin: 0 auto -3px;
-  text-align: center;
-}
-
-.like_btn {}
-
-.btn-like-container {
-  display: flex;
-  justify-content: flex-start;
-}
-
-
-.add-button {
-  background-color: black;
-  position: fixed;
-  bottom: 10px;
-  left: 60%;
-}
-
-.add-button:hover {
-  transform: scale(1.1);
-}
-
-.submits {
-  width: 48%;
-  display: inline-block;
-  float: left;
-  margin-left: 2%;
-}
-
-button:hover {
-  transform: translatey(3px);
-  box-shadow: none;
-}
-
-button:hover {
-  animation: ani9 0.4s ease-in-out infinite alternate;
-}
-
-header h1 {
-  font-size: 180%;
-  font-weight: bold;
-  font-family: 'Playfair Display', serif;
-  color: #3e403f;
-}
-
-header p {
-  letter-spacing: 0.05em;
-}
-
-.disliked {
-  background-color: 'primary';
-}
-
-
-/* Fonts Form Google Font ::- https://fonts.google.com/  -:: */
-@import url('https://fonts.googleapis.com/css?family=Abel|Abril+Fatface|Alegreya|Arima+Madurai|Dancing+Script|Dosis|Merriweather|Oleo+Script|Overlock|PT+Serif|Pacifico|Playball|Playfair+Display|Share|Unica+One|Vibur');
-
-* {
-  padding: 0;
+body {
+  background-color: #EFEEF1;
+  padding-bottom: 20px;
+  padding-top: 20px;
   margin: 0;
-  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
 }
 
-.all {
-  animation: pulse 2s linear infinite alternate;
-  background-attachment: fixed;
-  width: 1100px;
-  min-height: 400px;
-  height: auto;
-  border-radius: 5px;
-  margin: 2% auto;
-  box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
-  padding: 2%;
-  background-image: linear-gradient(-225deg, lightgrey 60%, darkgrey 80%);
+.main-container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+  caret-color: transparent;
+  justify-content: center;
+  background-color: white;
 }
 
-.con {
-  width: 500px;
-  display: -webkit-flex;
+.search-container {
   display: flex;
-  -webkit-justify-content: space-around;
-  justify-content: space-around;
-  -webkit-flex-wrap: wrap;
+  align-items: center;
+  background-color: white;
+  border: 3px solid #6504B5;
+  border-radius: 20px;
+  padding: 5px 10px;
+  width: 80%;
+  max-width: 500px;
+  margin: auto;
+}
+
+.search-icon {
+  color: #6504B5;
+  margin-right: 5px;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 5px;
+}
+
+.search-input::placeholder {
+  font-weight: 500;
+  color: #6504B5;
+}
+
+.clear-icon {
+  color: #6504B5;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.clear-icon:hover {
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  font-weight: 500;
+  font-size: 32px;
+}
+
+.main-container {
+  width: 90%;
+  margin: auto;
+}
+
+.search-container {
+  margin-bottom: 20px;
+}
+
+.user-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.user-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.user-details {
+  background-color: #f5f5f5;
+  border: 1px solid #6504B5;
+  padding: 15px;
+  border-radius: 8px;
+  flex-basis: 48%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-details p {
+  margin: 5px 0;
+}
+
+.mat-chip-listbox {
+  display: flex;
   flex-wrap: wrap;
-  margin: -20px auto 0;
+}
+
+.mat-chip-option {
+  margin: 5px;
+}
+
+.delete-button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border: none;
+  background-color: transparent;
+  color: #FF0000;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.user-details {
+  position: relative;
+  background-color: #f5f5f5;
+  padding: 15px;
+  border-radius: 8px;
+  flex-basis: 48%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

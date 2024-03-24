@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { LoginService } from 'src/app/services/login.service';
-import { UserService } from 'src/app/services/user.service';
+import {Component, OnInit} from '@angular/core';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {LoginService} from 'src/app/services/login.service';
+import {UserService} from 'src/app/services/user.service';
 import FuzzySearch from 'fuzzy-search';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-user-management',
@@ -17,28 +18,41 @@ export class UserManagementComponent implements OnInit {
 
   roles = ['NORMAL', 'SUPPLIER'];
 
-  constructor(
-    private login: LoginService,
-    private snack: MatSnackBar,
-    private userService: UserService
-  ) { }
+  constructor(private login: LoginService, private snack: MatSnackBar, private userService: UserService) {
+  }
 
-  deleteUser(id:any) {
-    this.userService.deleteUser(id).subscribe({
-      next: (data: any) => {
+  deleteUser(id: any) {
+    Swal.fire({
+      title: 'Confirm Deletion',
+      text: 'Are you sure you want to delete this user? All his activity will be deleted',
+      icon: 'warning',
+      background: '#fff',
+      customClass: {
+        confirmButton: 'confirm-button-class', cancelButton: 'cancel-button-class'
+      },
+      showCancelButton: true,
+      confirmButtonText: 'DELETE',
+      cancelButtonText: 'CANCEL',
+      cancelButtonColor: '#6504B5',
+      confirmButtonColor: '#FF1053',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.userService.deleteUser(id).subscribe({
+          next: (data: any) => {
+            this.getUsers();
+          }
+        });
       }
     });
   }
 
-  ngOnInit(): void {
+  getUsers() {
     this.userService.getAllUsers().subscribe({
       next: (data: any) => {
         if (data && data.length > 1) {
-          // Elimină primul element din listă dacă există cel puțin un element în listă
           this.users = data.slice(1);
           this.filteredUsers = data.slice(1);
         } else {
-          // Dacă lista conține un singur element sau este goală, păstrează-o așa cum este
           this.users = data;
           this.filteredUsers = data;
         }
@@ -46,25 +60,21 @@ export class UserManagementComponent implements OnInit {
     });
   }
 
+  ngOnInit(): void {
+    this.getUsers();
+  }
 
   public getUserRole(user: any) {
     return user.authorities[0].authority;
   }
 
   public changeRole(user: any, role: string) {
-    this.userService.updateUserRole(user.username, role).subscribe({
-      next: (_: any) => {
-        this.snack.open('Role updated successfully!', 'OK', {
-          duration: 3000,
-        });
-      },
-    });
+    this.userService.updateUserRole(user.username, role).subscribe({});
   }
 
   public searchUser(searchItem: string) {
     this.filteredUsers = this.users;
     const searcher = new FuzzySearch(this.filteredUsers, ['username']);
-
     this.filteredUsers = searcher.search(searchItem);
   }
 }
