@@ -3,7 +3,7 @@ import {LoginService} from "../../services/login.service";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Breed_detailsService} from "../../services/breed_details.service";
-import {DogDataService} from "../../services/dog-data.service";
+import {dogBreedsName} from "../../utils/breeds-store";
 
 @Component({
   selector: 'app-breed-details',
@@ -12,7 +12,9 @@ import {DogDataService} from "../../services/dog-data.service";
 })
 export class BreedDetailsDogComponent implements OnInit {
 
-
+  // @ts-ignore
+  selectedBreed: string;
+  animalBreedname: string[] = dogBreedsName;
   user = this.login.getUser();
   breeds: any = [];
   dogBreeds: any = [];
@@ -36,7 +38,7 @@ export class BreedDetailsDogComponent implements OnInit {
     this.pressedButton[key] = !this.pressedButton[key];
   }
 
-  constructor(private login: LoginService, private router: Router, private snack: MatSnackBar, private breedDetailsService: Breed_detailsService, private dogDataService: DogDataService) {
+  constructor(private login: LoginService, private router: Router, private snack: MatSnackBar, private breedDetailsService: Breed_detailsService) {
   }
 
   ngOnInit(): void {
@@ -46,16 +48,20 @@ export class BreedDetailsDogComponent implements OnInit {
   }
 
   viewDogDetails(dog: any) {
-    this.dogDataService.changeDogData(dog);
-    this.router.navigate(['/breed-dog']);
+    this.router.navigate(['/breed-dog',{ dogBreedId: dog.id }]).then((_) => { });
   }
 
+  goToSelectedBreedDogPage(dogBreed: any) {
+    // @ts-ignore
+    const filteredBreeds = this.breeds.filter(breed => breed.name == dogBreed);
+    console.log(filteredBreeds[0].id);
+    this.router.navigate(['/breed-dog',{ dogBreedId: filteredBreeds[0].id }]).then((_) => { });
+  }
 
   getAllBreeds() {
     this.breedDetailsService.getAllBreeds()
       .subscribe(data => {
         this.breeds = data;
-        console.log(this.breeds)
         this.filterBreeds(); // Aplică orice filtru existent
       }, error => {
         console.log(error.error.message);

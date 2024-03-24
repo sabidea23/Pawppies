@@ -8,7 +8,7 @@ import {FileModel} from "../../model/file-handle.model";
 import {DomSanitizer} from "@angular/platform-browser";
 import {Animal} from "../../model/animal.model";
 import Swal from "sweetalert2";
-import {catBreeds, colorOptions, dogBreeds} from "../../utils/breeds-store";
+import {catBreeds, colorOptions, dogBreedsName} from "../../utils/breeds-store";
 import {Breed_detailsService} from "../../services/breed_details.service";
 
 @Component({
@@ -163,7 +163,7 @@ export class AddAnimalComponent implements OnInit {
   // @ts-ignore
   getBreedOptions(animalType: string): string[] {
     if (animalType === 'Dog') {
-      return dogBreeds;
+      return dogBreedsName;
     } else if (animalType === 'Cat') {
       return catBreeds;
     }

@@ -1,5 +1,5 @@
 
-export var dogBreeds =
+export var dogBreedsName =
   ['Affenpinscher',
   'Afghan Hound',
   'Airedale Terrier',

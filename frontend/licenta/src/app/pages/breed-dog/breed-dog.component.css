@@ -141,3 +141,13 @@ img {
   font-weight: bold;
   font-family: 'Montserrat', sans-serif;
 }
+
+* {
+  caret-color: transparent;
+}
+
+.go-button {
+  margin-top: -10px;
+  background-color: #6504B5;
+  color:white;
+}

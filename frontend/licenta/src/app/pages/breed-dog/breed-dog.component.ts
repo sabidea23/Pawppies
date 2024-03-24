@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {DogDataService} from "../../services/dog-data.service";
+import {Breed_detailsService} from "../../services/breed_details.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-breed-dog', templateUrl: './breed-dog.component.html', styleUrls: ['./breed-dog.component.css']
@@ -8,18 +9,33 @@ import {DogDataService} from "../../services/dog-data.service";
 export class BreedDogComponent implements OnInit {
   dog: any;
 
-  constructor(private dogDataService: DogDataService) {
+  dogId:any;
+
+
+  // @ts-ignore
+  dogs: any;
+
+  constructor( private route: ActivatedRoute, private breedDetailsService: Breed_detailsService) {
+  }
+
+  searchDogByBreedId() {
+    this.breedDetailsService.getAllBreeds()
+      .subscribe(data => {
+        this.dogs = data;
+        // @ts-ignore
+        const dogsFiltered = this.dogs.filter(a => a.id === this.dogId);
+        this.dog = dogsFiltered[0];
+        console.log(this.dog)
+
+      }, error => {
+        console.log(error.error.message);
+      });
   }
 
   ngOnInit() {
-    this.dogDataService.currentDog.subscribe(dog => {
-      if (dog) {
-        this.dog = dog;
-      } else {
-        console.log('No dog data available');
-      }
-    });
-    this.dog.heath = this.formatDogHealthCorrectSplit(this.dog.heath);
+    this.dogId = JSON.parse(this.route.snapshot.paramMap.get('dogBreedId') || 'null') || undefined;
+    console.log(this.dogId)
+    this.searchDogByBreedId();
   }
 
   selectedContent: string = 'personality';
@@ -29,12 +45,9 @@ export class BreedDogComponent implements OnInit {
   }
 
    formatDogHealthCorrectSplit(text: string): string {
-     // Split text based on the specific keywords
      const keywords = ['Minor', 'Occasionally', 'Suggested', 'Lifespan'];
      const regex = new RegExp(`(?<=\\.|\\!|\\?)(?=\\s+(${keywords.join('|')}))`, 'g');
      const sentences = text.split(regex);
-     // Join the sentences back, separating them with a newline character
      return sentences.join('\n');
    }
-
 }

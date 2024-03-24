@@ -1,11 +1,15 @@
 <div class="search-dog">
   <img alt="Dogs Background" src="../../../assets/dogs.png">
+
   <div class="centered-box">
     <h2 class="search-text special">Find Your Perfect Dog or Puppy Breed</h2>
-    <input placeholder="Search breeds" type="text"/>
+    <select [(ngModel)]="selectedBreed" class="breed-selector">
+      <option value="" disabled selected>Select your breed</option>
+      <option *ngFor="let breed of animalBreedname" [value]="breed">{{ breed }}</option>
+    </select>
+    <button (click)="goToSelectedBreedDogPage(selectedBreed)" class="go-button" [disabled]="!selectedBreed">GO</button>
   </div>
 </div>
-
 
 <div class="special-dogs">
   <h2 class="search-text special">Find Your Perfect Dog or Puppy Breed</h2>
