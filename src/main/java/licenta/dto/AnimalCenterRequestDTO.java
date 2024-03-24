@@ -13,8 +13,9 @@ public class AnimalCenterRequestDTO {
     private Double longitude;
     private Double latitude;
     private String city;
-    private String country;
     private String contact;
+    private String country;
+    private String phone;
     private String mission;
     private User admin;
 }

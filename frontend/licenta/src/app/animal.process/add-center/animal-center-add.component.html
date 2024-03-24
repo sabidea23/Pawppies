@@ -67,29 +67,36 @@
           </button>
         </mat-form-field>
 
-      <!-- Mission -->
       <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon>perm_contact_calendar</mat-icon>
+            Email
+          </mat-label>
+          <input [(ngModel)]="formInput.contact" matInput name="contact" placeholder="Email"/>
+          <button (click)="formInput.name=''" mat-icon-button matSuffix>
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
+        <mat-label>
+          <mat-icon>phone</mat-icon>
+          Phone
+        </mat-label>
+        <input [(ngModel)]="formInput.phone" matInput name="phone" placeholder="phone"/>
+        <button (click)="formInput.phone=''" mat-icon-button matSuffix>
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <!-- Mission -->
+      <mat-form-field appearance="fill" class="textarea-input">
         <mat-label>
           <mat-icon>assignment</mat-icon>
           Mission
         </mat-label>
         <textarea [(ngModel)]="formInput.mission" matInput name="mission" placeholder="Center's Mission"></textarea>
-        <button (click)="formInput.mission=''" mat-icon-button matSuffix>
-          <mat-icon>close</mat-icon>
-        </button>
       </mat-form-field>
-
-
-      <mat-form-field appearance="fill" class="custom-mat-form-field">
-          <mat-label>
-            <mat-icon>perm_contact_calendar</mat-icon>
-            Contact
-          </mat-label>
-          <input [(ngModel)]="formInput.contact" matInput name="contact" placeholder="Contact"/>
-          <button (click)="formInput.name=''" mat-icon-button matSuffix>
-            <mat-icon>close</mat-icon>
-          </button>
-        </mat-form-field>
 
       <div class="button-container">
         <button class="add_btn"  mat-button type="submit">

@@ -24,7 +24,8 @@ export class AnimalCenterAddComponent implements OnInit {
     admin: undefined,
     mission: '',
     longitude: 0.0,
-    latitude: 0.0
+    latitude: 0.0,
+    phone: ''
   };
 
   public formInput: any = {
@@ -35,6 +36,7 @@ export class AnimalCenterAddComponent implements OnInit {
     mission: '',
     longitude: '',
     latitude: '',
+    phone: ''
   };
 
   constructor(
@@ -50,7 +52,8 @@ export class AnimalCenterAddComponent implements OnInit {
 
   public isFormValid() {
     return this.formInput.name && this.formInput.longitude &&
-      this.formInput.latitude && this.formInput.city && this.formInput.contact && this.formInput.country;
+      this.formInput.latitude && this.formInput.city && this.formInput.contact
+      && this.formInput.country && this.formInput.mission && this.formInput.phone;
   }
 
   formSubmit() {
@@ -92,5 +95,7 @@ export class AnimalCenterAddComponent implements OnInit {
     this.formInput.contact = '';
     this.formInput.city = '';
     this.formInput.country = '';
+    this.formInput.mission = '';
+    this.formInput.phone = '';
   }
 }

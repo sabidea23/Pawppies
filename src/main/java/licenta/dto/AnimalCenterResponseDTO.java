@@ -18,6 +18,7 @@ public class AnimalCenterResponseDTO {
     private String city;
     private String country;
     private String contact;
+    private String phone;
     private String mission;
     private User admin;
 }

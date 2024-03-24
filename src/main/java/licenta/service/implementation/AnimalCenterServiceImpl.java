@@ -40,6 +40,7 @@ public class AnimalCenterServiceImpl implements AnimalCenterService {
                 .city(requestDTO.getCity())
                 .contact(requestDTO.getContact())
                 .country(requestDTO.getCountry())
+                .phone(requestDTO.getPhone())
                 .mission(requestDTO.getMission())
                 .build();
 
@@ -63,6 +64,7 @@ public class AnimalCenterServiceImpl implements AnimalCenterService {
         originalAnimalCenter.setCity(animalCenter.getCity());
         originalAnimalCenter.setCountry(animalCenter.getCountry());
         originalAnimalCenter.setContact(animalCenter.getContact());
+        originalAnimalCenter.setPhone(animalCenter.getPhone());
         originalAnimalCenter.setLatitude(animalCenter.getLatitude());
         originalAnimalCenter.setLongitude(animalCenter.getLongitude());
 
@@ -99,6 +101,7 @@ public class AnimalCenterServiceImpl implements AnimalCenterService {
                 .contact(animalCenter.getContact())
                 .country(animalCenter.getCountry())
                 .mission(animalCenter.getMission())
+                .phone(animalCenter.getPhone())
                 .admin(animalCenter.getAdmin())
                 .build();
     }

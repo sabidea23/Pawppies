@@ -132,3 +132,13 @@ button:hover {
   justify-content: center; /* Centrarea butoanelor orizontal */
   gap: 10px; /* Distanța dintre butoane */
 }
+
+.textarea-input {
+  height:250px;
+  width: 100%; /* Asigură-te că textarea se extinde pe toată lățimea posibilă */
+}
+
+* {
+  caret-color: transparent;
+
+}

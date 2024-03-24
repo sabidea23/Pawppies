@@ -47,6 +47,10 @@ public class AnimalCenter {
     @Column()
     @NotNull
     private String contact;
+
+    @Column()
+    @NotNull
+    private String phone;
     
     @ManyToOne(fetch = FetchType.EAGER)
     private User admin;
