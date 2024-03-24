@@ -34,8 +34,32 @@ export class CenterDetailsComponent {
       });
   }
 
+  showDirections() {
+    if (this.user == null) {
+      this.router
+        .navigate(['/login', {centerId: this.animalCenterId},]);
+    }
+    const destinationLatitude = this.animalCenter.latitude;
+    const destinationLongitude = this.animalCenter.longitude;
+
+    const userLatitude = this.user.latitude;
+    const userLongitude = this.user.longitude;
+
+    const directionUrl = `https://www.google.com/maps/dir/?api=1&origin=${userLatitude},${userLongitude}&destination=${destinationLatitude},${destinationLongitude}&travelmode=driving`;
+
+    window.open(directionUrl, "_blank");
+  }
+
+
   getSafeUrl() {
     const url = `https://www.openstreetmap.org/export/embed.html?bbox=${this.animalCenter.longitude - 0.005},${this.animalCenter.latitude - 0.005},${this.animalCenter.longitude + 0.005},${this.animalCenter.latitude + 0.005}&layer=mapnik&marker=${this.animalCenter.latitude},${this.animalCenter.longitude}`;
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+
+  public goToAnimalsPage(animalCenter: any) {
+    this.router
+      .navigate(['/animal', {centerId: animalCenter.id},])
+      .then((_) => {
+      });
   }
 }

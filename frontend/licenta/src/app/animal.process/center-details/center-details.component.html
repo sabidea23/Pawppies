@@ -1,3 +1,6 @@
+<body>
+<div class="main-container">
+
 <div class="top-container">
   <div class="left-container">
     <div class="image-container">
@@ -13,7 +16,7 @@
   </div>
 
   <div class="right-container">
-    <button mat-button class="btn-show-animals">
+    <button (click)="goToAnimalsPage(animalCenter)" mat-button class="btn-show-animals">
       <h3 class="btn-learn"> VIEW OUR PETS </h3>
     </button>
 
@@ -31,6 +34,7 @@
 </div>
 
 <div class="map-container">
+  <button class="directions-button" (click)="showDirections()">SHOW DIRECTIONS</button>
   <iframe
     [src]="getSafeUrl()"
     class="map"
@@ -38,3 +42,11 @@
     style="border:0">
   </iframe>
 </div>
+
+  <h1> Our Mission </h1>
+  <div class="mission-container">
+    <p> {{animalCenter.mission}}</p>
+  </div>
+</div>
+</body>
+
