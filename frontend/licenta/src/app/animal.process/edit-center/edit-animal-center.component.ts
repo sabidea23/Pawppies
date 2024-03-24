@@ -17,14 +17,16 @@ export class EditAnimalCenterComponent {
     country: this.animalCenter.country,
     longitude: this.animalCenter.longitude,
     latitude: this.animalCenter.latitude,
-    contact: this.animalCenter.contact
+    contact: this.animalCenter.contact,
+    phone: this.animalCenter.phone,
+    mission: this.animalCenter.mission
   };
 
   public countries:any = countries;
 
   constructor(
     public dialogRef: MatDialogRef<MapDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public animalCenter: any, private sanitizer: DomSanitizer)
+    @Inject(MAT_DIALOG_DATA) public animalCenter: any)
   {}
 
   save() {

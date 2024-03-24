@@ -3,7 +3,6 @@
     <form (ngSubmit)="save()" class="login-form">
       <h2>Edit Animal Center</h2>
 
-      <!-- Nume -->
       <mat-form-field appearance="fill" class="custom-mat-form-field">
         <mat-label>
           <mat-icon matPrefix>business</mat-icon>
@@ -12,7 +11,6 @@
         <input [(ngModel)]="editData.name" matInput name="name" placeholder="Enter Animal Center Name" required/>
       </mat-form-field>
 
-      <!-- Oraș -->
       <mat-form-field appearance="fill" class="custom-mat-form-field">
         <mat-label>
           <mat-icon matPrefix>location_city</mat-icon>
@@ -21,7 +19,6 @@
         <input [(ngModel)]="editData.city" matInput name="city" placeholder="Enter Animal Center City" required/>
       </mat-form-field>
 
-      <!-- Country Dropdown -->
       <mat-form-field appearance="fill" class="custom-mat-form-field">
         <mat-label>
           <mat-icon>public</mat-icon>
@@ -34,7 +31,6 @@
         </mat-select>
       </mat-form-field>
 
-      <!-- Longitudine -->
       <mat-form-field appearance="fill" class="custom-mat-form-field">
         <mat-label>
           <mat-icon matPrefix>place</mat-icon>
@@ -43,7 +39,6 @@
         <input [(ngModel)]="editData.longitude" matInput name="longitude" placeholder="Enter Animal Center Longitude" required/>
       </mat-form-field>
 
-      <!-- Latitudine -->
       <mat-form-field appearance="fill" class="custom-mat-form-field">
         <mat-label>
           <mat-icon matPrefix>place</mat-icon>
@@ -52,14 +47,30 @@
         <input [(ngModel)]="editData.latitude" matInput name="latitude" placeholder="Enter Animal Center Latitude" required/>
       </mat-form-field>
 
-<!--      &#45;&#45; Contact-->
       <mat-form-field appearance="fill" class="custom-mat-form-field">
         <mat-label>
           <mat-icon matPrefix>contact_phone</mat-icon>
-          Contact
+          Email
         </mat-label>
         <input [(ngModel)]="editData.contact" matInput
-               name="contact" placeholder="Enter Animal Center Contact" required/>
+               name="contact" placeholder="Enter Animal Center Email" required/>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
+        <mat-label>
+          <mat-icon matPrefix>phone</mat-icon>
+          Phone
+        </mat-label>
+        <input [(ngModel)]="editData.phone" matInput
+               name="contact" placeholder="Enter Animal Center Phone" required/>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="textarea-input">
+        <mat-label>
+          <mat-icon>assignment</mat-icon>
+          Mission
+        </mat-label>
+        <textarea [(ngModel)]="editData.mission" matInput name="mission" placeholder="Center's Mission"></textarea>
       </mat-form-field>
 
       <div class="button-container">
