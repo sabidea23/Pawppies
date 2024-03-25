@@ -63,7 +63,7 @@ export class AnimalCenterList implements OnInit {
       }
     });
     this.user = this.login.getUser();
-    this.getAnimalCenters({page: "0", size: "5"});
+    this.getAnimalCenters({page: "0", size: "10"});
     this.performSearch();
     // @ts-ignore
     this.dataSource.paginator = this.paginator;
