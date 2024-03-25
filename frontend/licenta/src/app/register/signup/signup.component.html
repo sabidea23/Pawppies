@@ -31,8 +31,17 @@
         </button>
       </mat-form-field>
 
-
-
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
+        <mat-label>
+          <mat-icon matPrefix>lock</mat-icon>
+          Confirm Password
+        </mat-label>
+        <input [(ngModel)]="user.confirmPassword" formControlName="confirmPassword"
+               matInput type="password" placeholder="Confirm your Password"/>
+        <button mat-icon-button matSuffix (click)="user.confirmPassword=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
 
       <!-- First name -->
       <mat-form-field appearance="fill" class="custom-mat-form-field">
@@ -86,14 +95,13 @@
         </button>
       </mat-form-field>
 
-      <!-- Role Selection -->
-      <mat-form-field appearance="fill" class="custom-mat-form-field">
-        <mat-label>User Role for website</mat-label>
-        <mat-select formControlName="role">
-          <mat-option value="NORMAL USER">Normal User</mat-option>
-          <mat-option value="SUPPLIER">Supplier</mat-option>
-        </mat-select>
-      </mat-form-field>
+      <div class="custom-checkbox-field">
+        <label>Choose User Role for the website</label>
+        <mat-checkbox color="primary" [checked]="selectedRole === 'NORMAL USER'"
+                      (change)="onRoleChange($event, 'NORMAL USER')">Normal User</mat-checkbox>
+        <mat-checkbox color="primary" [checked]="selectedRole === 'SUPPLIER'"
+                      (change)="onRoleChange($event, 'SUPPLIER')">Supplier</mat-checkbox>
+      </div>
 
 
       <button class="login-button" mat-flat-button type="submit">

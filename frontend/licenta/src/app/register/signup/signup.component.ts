@@ -4,6 +4,7 @@ import {UserService} from '../../services/user.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
+import {MatCheckboxChange} from "@angular/material/checkbox";
 
 
 @Component({
@@ -21,6 +22,7 @@ export class SignupComponent {
     password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$')]),
     phone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+$')]),
     role: new FormControl('NORMAL_USER', [Validators.required]), // Default to NORMAL_USER
+    confirmPassword:  new FormControl('', [Validators.required])
   });
 
 
@@ -39,11 +41,22 @@ export class SignupComponent {
     phone: this.registerForm.value.phone,
     latitude: 0.0,
     longitude: 0.0,
-    role: ''
+    role: '',
+    confirmPassword: this.registerForm.value.confirmPassword
   };
+
+  selectedRole = 'NORMAL USER'; // Default role
 
   ngOnInit(): void {
     this.getLocation();
+  }
+
+  onRoleChange(event: MatCheckboxChange, role: string) {
+    if (event.checked) {
+      this.selectedRole = role;
+      // @ts-ignore
+      this.registerForm.get('role').setValue(role);
+    }
   }
 
   getLocation() {
@@ -69,8 +82,15 @@ export class SignupComponent {
       return;
     }
 
-    if (this.user.email == '' || this.user.email == null) {
-      this.snack.open('Email cannot be empty!', 'OK', {
+    if (this.user.username == '' || this.user.username == null) {
+      this.snack.open('Username cannot be empty!', 'OK', {
+        duration: 3000,
+      });
+      return;
+    }
+
+    if (this.user.password != this.user.confirmPassword) {
+      this.snack.open('Oops! The passwords you entered do not match. Please try again.', 'OK', {
         duration: 3000,
       });
       return;
@@ -90,8 +110,8 @@ export class SignupComponent {
       return;
     }
 
-    this.user.role = this.registerForm.value.role === 'NORMAL USER' ?
-      'NORMAL': 'SUPPLIER';
+    this.user.role = this.registerForm.value.role === 'SUPPLIER' ?
+      'SUPPLIER': 'NORMAL';
 
     this.userService.addUser(this.user).subscribe({
       next: () => {
