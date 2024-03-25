@@ -66,12 +66,10 @@
         <button (click)="goToQuizPage()" class="start-quiz-btn" mat-button>GET STARTED</button>
       </div>
 
-
       <div class="search-center">
         <form (ngSubmit)="performSearch()" class="search-form">
           <h2>Find Pet-Adoption Centers by:</h2>
 
-          <!--      //city-->
           <mat-form-field appearance="fill" class="custom-mat-form-field">
             <mat-label>
               <mat-icon matPrefix>location_city</mat-icon>
@@ -81,7 +79,6 @@
                    name="email" placeholder="Enter your email"/>
           </mat-form-field>
 
-          <!--        //country/-->
           <mat-form-field appearance="fill" class="custom-mat-form-field">
             <mat-label>
               <mat-icon>public</mat-icon>
@@ -94,8 +91,6 @@
             </mat-select>
           </mat-form-field>
 
-
-          <!--        //name-->
           <mat-form-field appearance="fill" class="custom-mat-form-field">
             <mat-label>
               <mat-icon matPrefix>business</mat-icon>

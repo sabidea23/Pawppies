@@ -46,13 +46,8 @@ export class MissionComponent {
   }
 
   performSearch() {
-    // Setează filtrele de căutare în serviciu
     this.searchService.setSearchFilters(this.searchData);
-    const user_role = this.login.getUserRole();
-    if (user_role == 'ADMIN') this.router
-      .navigate(['/centers/'])
-      .then((_) => {
-      }); else if (user_role == 'NORMAL') this.router
+    this.router
       .navigate(['/centers/'])
       .then((_) => {
       });
