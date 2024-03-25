@@ -16,6 +16,10 @@ body {
   padding-top: 20px;
   padding-bottom: 20px;
   caret-color: transparent;
+  background-image: url("../../../assets/animal_shelter.png") ;
+  background-repeat: no-repeat;
+  background-size: 100%;
+
 }
 
 h2 {
