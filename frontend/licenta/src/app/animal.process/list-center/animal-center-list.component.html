@@ -125,7 +125,6 @@
         </mat-select>
       </mat-form-field>
 
-
       <!--        //name-->
       <mat-form-field appearance="fill" class="custom-mat-form-field">
         <mat-label>
@@ -137,15 +136,20 @@
       </mat-form-field>
 
 
-      <!--        //max distance-->
-      <mat-form-field appearance="fill" class="custom-mat-form-field">
+      <mat-form-field *ngIf="user" appearance="fill" class="custom-mat-form-field">
         <mat-label>
           <mat-icon matPrefix>business</mat-icon>
           Max Distance
         </mat-label>
-        <input [(ngModel)]="searchData.distance" matInput
-               name="email" placeholder="Enter max distance"/>
+        <mat-select [(ngModel)]="searchData.distance" name="distance">
+          <mat-option value="5"><5 km</mat-option>
+          <mat-option value="10"><10 km</mat-option>
+          <mat-option value="50"><50 km</mat-option>
+          <mat-option value="100"><100 km</mat-option>
+          <mat-option value="more">More</mat-option>
+        </mat-select>
       </mat-form-field>
+
 
       <button class="login-button" mat-flat-button type="submit">
         SEARCH
