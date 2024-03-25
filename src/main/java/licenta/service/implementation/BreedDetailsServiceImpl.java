@@ -28,7 +28,7 @@ public class BreedDetailsServiceImpl implements BreedDetailsService {
     }
 
     @Override
-    public BreedDetails getBreedDetailsByAnimalType(BreedDetails.AnimalType type) {
+    public List<BreedDetails> getBreedDetailsByAnimalType(BreedDetails.AnimalType type) {
         return breedDetailsRepository.findBreedDetailsByAnimalType(type);
     }
 

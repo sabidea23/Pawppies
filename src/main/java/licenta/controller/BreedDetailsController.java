@@ -32,21 +32,21 @@ public class BreedDetailsController {
         return this.breedDetailsService.getBreedDetailsById(id);
     }
 
-    @GetMapping("/{breedName}")
+    @GetMapping("/name/{breedName}")
     @ResponseStatus(code = HttpStatus.OK)
     public BreedDetails getBreedDetailsByName(@PathVariable("breedName") String breedName) {
         return this.breedDetailsService.getBreedDetailsByName(breedName);
     }
 
-    @GetMapping("/{breedType}")
+    @GetMapping("/type/{breedType}")
     @ResponseStatus(code = HttpStatus.OK)
-    public BreedDetails getBreedDetailsByAnimalType(@PathVariable("breedType") String breedType) {
+    public List<BreedDetails> getBreedDetailsByAnimalType(@PathVariable("breedType") String breedType) {
 
         BreedDetails.AnimalType type;
         try {
             type = BreedDetails.AnimalType.valueOf(breedType.toUpperCase());
         } catch (IllegalArgumentException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid breed name");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid breed type");
         }
 
         return this.breedDetailsService.getBreedDetailsByAnimalType(type);

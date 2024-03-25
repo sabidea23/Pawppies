@@ -10,7 +10,7 @@ public interface BreedDetailsService {
 
     BreedDetails getBreedDetailsById(Long id);
 
-    BreedDetails getBreedDetailsByAnimalType(BreedDetails.AnimalType type);
+    List<BreedDetails> getBreedDetailsByAnimalType(BreedDetails.AnimalType type);
 
     BreedDetails getBreedDetailsByName(String name);
 

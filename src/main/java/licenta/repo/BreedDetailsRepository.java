@@ -3,10 +3,12 @@ package licenta.repo;
 import licenta.entity.BreedDetails;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 
 public interface BreedDetailsRepository extends JpaRepository<BreedDetails, Long> {
 
-    BreedDetails findBreedDetailsByAnimalType(BreedDetails.AnimalType animalType);
+    List<BreedDetails> findBreedDetailsByAnimalType(BreedDetails.AnimalType animalType);
 
     BreedDetails findBreedDetailsById(Long id);
 

@@ -53,7 +53,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().cors().disable().authorizeRequests()
                 .antMatchers("/generate-token", "/user/").permitAll()
-                .antMatchers("/breed-details/").permitAll()
+                .antMatchers("/breed-details/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/animal/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/center/**").permitAll()
                 .antMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-resources/**", "/swagger-ui.html", "/webjars/**")
