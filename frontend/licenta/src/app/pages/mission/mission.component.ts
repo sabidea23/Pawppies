@@ -39,11 +39,7 @@ export class MissionComponent {
   }
 
   goToQuizPage() {
-    const user_role = this.login.getUserRole();
-    if (user_role == 'ADMIN') this.router
-      .navigate(['/quiz/'])
-      .then((_) => {
-      }); else if (user_role == 'NORMAL') this.router
+     this.router
       .navigate(['/quiz/'])
       .then((_) => {
       });

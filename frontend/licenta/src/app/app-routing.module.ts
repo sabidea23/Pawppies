@@ -18,6 +18,10 @@ import {UserManagementComponent} from "./user/user-management/user-management.co
 import {AdminGuard} from "./services/admin.guard";
 import {SupplierGuard} from "./services/supplier.guard";
 import {CenterDetailsComponent} from "./animal.process/center-details/center-details.component";
+import {CutestDogsComponent} from "./pages/cutest-dogs/cutest-dogs.component";
+import {ApartamnetsDogsComponent} from "./pages/apartamnets-dogs/apartamnets-dogs.component";
+import {KidsDogsComponent} from "./pages/kids-dogs/kids-dogs.component";
+import {PopularDogsComponent} from "./pages/popular-dogs/popular-dogs.component";
 
 const routes: Routes = [{
   path: '', component: HomeComponent, pathMatch: 'full',
@@ -41,36 +45,31 @@ const routes: Routes = [{
   path: 'profile', component: ProfileComponent,
 }, {
   path: 'centers', component: AnimalCenterList,
-},
-  {
-    path: 'center-details', component: CenterDetailsComponent,
-  },
-  {
+}, {
+  path: 'center-details', component: CenterDetailsComponent,
+}, {
+  path: 'cutest-dogs', component: CutestDogsComponent,
+}, {
+  path: 'apartaments-dogs', component: ApartamnetsDogsComponent,
+}, {
+  path: 'kids-dogs', component: KidsDogsComponent,
+}, {
+  path: 'popular-dogs', component: PopularDogsComponent,
+}, {
   path: 'animal', component: AnimalListComponent,
 }, {
   path: 'my-fav-animals', component: AnimalListComponent,
-},
-  {
-  path: 'admin',
-  canActivate: [AdminGuard],
-  children: [
-  {
+}, {
+  path: 'admin', canActivate: [AdminGuard], children: [{
     path: 'user-management', component: UserManagementComponent,
   }]
-  },
-  {
-    path: 'supplier',
-    canActivate: [SupplierGuard],
-    children: [
-      {
-        path: 'animal/add', component: AddAnimalComponent,
-      },
-      {
-        path: 'centers/add', component: AnimalCenterAddComponent,
-      }
-    ]
-  }
-];
+}, {
+  path: 'supplier', canActivate: [SupplierGuard], children: [{
+    path: 'animal/add', component: AddAnimalComponent,
+  }, {
+    path: 'centers/add', component: AnimalCenterAddComponent,
+  }]
+}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {

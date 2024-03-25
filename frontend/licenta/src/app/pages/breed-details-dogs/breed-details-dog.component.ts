@@ -233,11 +233,24 @@ export class BreedDetailsDogComponent implements OnInit {
       this.currentPage++;
     }
   }
-
   prevPage() {
     if (this.currentPage > 1) {
       this.currentPage--;
     }
   }
+  goToCutestDog() {
+    this.router.navigate(['/cutest-dogs']);
+  }
 
+  goToApartamentsDog() {
+    this.router.navigate(['/apartaments-dogs']);
+  }
+
+  goToKidsDog() {
+    this.router.navigate(['/kids-dogs']);
+  }
+
+  goTPopularDog() {
+    this.router.navigate(['/popular-dogs']);
+  }
 }

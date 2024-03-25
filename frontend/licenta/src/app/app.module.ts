@@ -48,9 +48,13 @@ import { EditAnimalComponent } from './animal.process/edit-animal/edit-animal.co
 import { UserManagementComponent } from './user/user-management/user-management.component';
 import { CenterDetailsComponent } from './animal.process/center-details/center-details.component';
 import { AnimalDetailsComponent } from './animal.process/animal-details/animal-details.component';
+import { CutestDogsComponent } from './pages/cutest-dogs/cutest-dogs.component';
+import { ApartamnetsDogsComponent } from './pages/apartamnets-dogs/apartamnets-dogs.component';
+import { KidsDogsComponent } from './pages/kids-dogs/kids-dogs.component';
+import { PopularDogsComponent } from './pages/popular-dogs/popular-dogs.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, FooterComponent, SignupComponent, LoginComponent, HomeComponent, ProfileComponent, AddAnimalComponent, AnimalListComponent, AnimalCenterAddComponent, AnimalCenterList, MapDialogComponent, EditAnimalCenterComponent, AboutPetsComponent, MissionComponent, QuizComponent, BreedDetailsDogComponent, BreedDetailsCatComponent, BreedDogComponent, EditAnimalComponent, UserManagementComponent, CenterDetailsComponent, AnimalDetailsComponent],
+  declarations: [AppComponent, NavbarComponent, FooterComponent, SignupComponent, LoginComponent, HomeComponent, ProfileComponent, AddAnimalComponent, AnimalListComponent, AnimalCenterAddComponent, AnimalCenterList, MapDialogComponent, EditAnimalCenterComponent, AboutPetsComponent, MissionComponent, QuizComponent, BreedDetailsDogComponent, BreedDetailsCatComponent, BreedDogComponent, EditAnimalComponent, UserManagementComponent, CenterDetailsComponent, AnimalDetailsComponent, CutestDogsComponent, ApartamnetsDogsComponent, KidsDogsComponent, PopularDogsComponent],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatIconModule, FormsModule, HttpClientModule, MatSnackBarModule, MatCardModule, MatChipsModule, MatToolbarModule, MatIconModule, MatListModule, MatTableModule, ReactiveFormsModule, RouterOutlet, MatGridListModule, MatDialogModule, MatMenuModule, MatPaginatorModule, MatSelectModule],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
