@@ -258,8 +258,7 @@ export class AnimalCenterList implements OnInit {
       this.filteredAnimalCenters = this.filteredAnimalCenters.filter(animalCenter => animalCenter.country.includes(this.searchData.country));
     }
 
-    if (this.searchData.distance) {
-
+    if (this.searchData.distance && this.searchData.distance != 0) {
       // @ts-ignore
       this.filteredAnimalCenters = this.filteredAnimalCenters.filter(animalCenter => this.haversineDistance(this.user.latitude, this.user.longitude, animalCenter.latitude, animalCenter.longitude) <= this.searchData.distance );
     }
