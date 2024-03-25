@@ -19,12 +19,9 @@ export class BreedDogComponent implements OnInit {
   }
 
   searchDogByBreedId() {
-    this.breedDetailsService.getAllBreeds()
+    this.breedDetailsService.getBreedDetailsById(this.dogId)
       .subscribe(data => {
-        this.dogs = data;
-        // @ts-ignore
-        const dogsFiltered = this.dogs.filter(a => a.id === this.dogId);
-        this.dog = dogsFiltered[0];
+        this.dog = data
         console.log(this.dog)
 
       }, error => {

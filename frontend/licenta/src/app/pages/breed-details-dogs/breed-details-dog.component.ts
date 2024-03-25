@@ -48,18 +48,25 @@ export class BreedDetailsDogComponent implements OnInit {
   }
 
   viewDogDetails(dog: any) {
-    this.router.navigate(['/breed-dog',{ dogBreedId: dog.id }]).then((_) => { });
+    this.router.navigate(['/breed-dog', {dogBreedId: dog.id}]).then((_) => {
+    });
   }
 
   goToSelectedBreedDogPage(dogBreed: any) {
+    let animal: any;
     // @ts-ignore
-    const filteredBreeds = this.breeds.filter(breed => breed.name == dogBreed);
-    console.log(filteredBreeds[0].id);
-    this.router.navigate(['/breed-dog',{ dogBreedId: filteredBreeds[0].id }]).then((_) => { });
+    this.breedDetailsService.getBreedDetailsByName(dogBreed)
+      .subscribe(data => {
+        animal = data
+        this.router.navigate(['/breed-dog', {dogBreedId: animal.id}]).then((_) => {
+        });
+      }, error => {
+        console.log(error.error.message);
+      });
   }
 
   getAllBreeds() {
-    this.breedDetailsService.getAllBreeds()
+    this.breedDetailsService.getBreedDetailsByAnimalType("DOG")
       .subscribe(data => {
         this.breeds = data;
         this.filterBreeds(); // Aplică orice filtru existent
@@ -87,9 +94,7 @@ export class BreedDetailsDogComponent implements OnInit {
     // @ts-ignore
     this.dogBreeds = this.breeds.filter(breed => {
       return this.isBreedValid(breed) && this.getVocalityLevel(breed) && this.isactivityLevelValid(breed) && this.getgroomingRequirementsLevel(breed) && this.getaffectionForOwnersLevel(breed) && this.geteaseOfTrainingLevel(breed) && this.exerciseRequirementsLevel(breed) && this.getFriendliness(breed);
-    })
-      // @ts-ignore
-      .filter(breed => breed.animalType === 'DOG')
+    });
     this.totalElements = this.dogBreeds.length;
     this.totalPages = Math.ceil(this.totalElements / this.itemsPerPage);
   }
@@ -233,11 +238,13 @@ export class BreedDetailsDogComponent implements OnInit {
       this.currentPage++;
     }
   }
+
   prevPage() {
     if (this.currentPage > 1) {
       this.currentPage--;
     }
   }
+
   goToCutestDog() {
     this.router.navigate(['/cutest-dogs']);
   }

@@ -57,6 +57,7 @@ export class AnimalCenterList implements OnInit {
 
   ngOnInit(): void {
     this.searchService.searchFilters$.subscribe(filters => {
+      // @ts-ignore
       if (Object.keys(filters).length) {
         this.searchData = filters;
         this.performSearch();

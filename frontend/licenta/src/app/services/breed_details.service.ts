@@ -18,10 +18,10 @@ export class Breed_detailsService {
   }
 
   public getBreedDetailsByName(breedName: string) {
-    return this.http.get(`${baseUrl}/breed-details/${breedName}`);
+    return this.http.get(`${baseUrl}/breed-details/name/${breedName}`);
   }
 
   public getBreedDetailsByAnimalType(breedType: string) {
-    return this.http.get(`${baseUrl}/breed-details/${breedType}`);
+    return this.http.get(`${baseUrl}/breed-details/type/${breedType}`);
   }
 }
