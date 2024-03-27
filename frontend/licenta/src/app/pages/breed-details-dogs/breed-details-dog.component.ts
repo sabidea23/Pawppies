@@ -249,8 +249,8 @@ export class BreedDetailsDogComponent implements OnInit {
     this.router.navigate(['/cutest-dogs']);
   }
 
-  goToApartamentsDog() {
-    this.router.navigate(['/apartaments-dogs']);
+  goToApartmentsDog() {
+    this.router.navigate(['/apartments-dogs']);
   }
 
   goToKidsDog() {

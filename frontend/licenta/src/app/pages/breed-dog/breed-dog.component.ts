@@ -9,13 +9,9 @@ import {ActivatedRoute} from "@angular/router";
 export class BreedDogComponent implements OnInit {
   dog: any;
 
-  dogId:any;
+  dogId: any;
 
-
-  // @ts-ignore
-  dogs: any;
-
-  constructor( private route: ActivatedRoute, private breedDetailsService: Breed_detailsService) {
+  constructor(private route: ActivatedRoute, private breedDetailsService: Breed_detailsService) {
   }
 
   searchDogByBreedId() {
@@ -41,10 +37,10 @@ export class BreedDogComponent implements OnInit {
     this.selectedContent = option;
   }
 
-   formatDogHealthCorrectSplit(text: string): string {
-     const keywords = ['Minor', 'Occasionally', 'Suggested', 'Lifespan'];
-     const regex = new RegExp(`(?<=\\.|\\!|\\?)(?=\\s+(${keywords.join('|')}))`, 'g');
-     const sentences = text.split(regex);
-     return sentences.join('\n');
-   }
+  formatDogHealthCorrectSplit(text: string): string {
+    const keywords = ['Minor', 'Occasionally', 'Suggested', 'Lifespan'];
+    const regex = new RegExp(`(?<=\\.|\\!|\\?)(?=\\s+(${keywords.join('|')}))`, 'g');
+    const sentences = text.split(regex);
+    return sentences.join('\n');
+  }
 }
