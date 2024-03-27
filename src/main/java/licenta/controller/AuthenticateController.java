@@ -4,6 +4,7 @@ import licenta.config.JwtUtils;
 import licenta.entity.JwtRequest;
 import licenta.entity.JwtResponse;
 import licenta.entity.User;
+import licenta.exeptions.InvalidCredentials;
 import licenta.service.implementation.UserDetailsServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -33,12 +34,12 @@ public class AuthenticateController {
     }
 
     @PostMapping("/generate-token")
-    public ResponseEntity<?> generateToken(@RequestBody JwtRequest jwtRequest) throws Exception {
+    public ResponseEntity<?> generateToken(@RequestBody JwtRequest jwtRequest) throws InvalidCredentials {
         try {
             authenticate(jwtRequest.getUsername(), jwtRequest.getPassword());
-        } catch (UsernameNotFoundException e) {
+        } catch (InvalidCredentials e) {
             e.printStackTrace();
-            throw new Exception("User not found");
+            throw new InvalidCredentials("Invalid Credentials!");
         }
 
         UserDetails userDetails = this.userDetailsService.loadUserByUsername(jwtRequest.getUsername());
@@ -50,15 +51,13 @@ public class AuthenticateController {
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(username, password));
-        } catch (DisabledException e) {
-            throw new RuntimeException("User disabled " + e.getMessage());
         } catch (BadCredentialsException e) {
-            throw new RuntimeException("Invalid credentials " + e.getMessage());
+            throw new InvalidCredentials("Invalid credentials " + e.getMessage());
         }
     }
 
     @GetMapping("/current-user")
     public User getCurrentUser(Principal principal) {
-        return ((User) this.userDetailsService.loadUserByUsername(principal.getName()));
+        return this.userDetailsService.loadUserByUsername(principal.getName());
     }
 }

@@ -22,6 +22,7 @@ import {CutestDogsComponent} from "./pages/cutest-dogs/cutest-dogs.component";
 import {ApartamnetsDogsComponent} from "./pages/apartamnets-dogs/apartamnets-dogs.component";
 import {KidsDogsComponent} from "./pages/kids-dogs/kids-dogs.component";
 import {PopularDogsComponent} from "./pages/popular-dogs/popular-dogs.component";
+import {BreedCatComponent} from "./pages/breed-cat/breed-cat.component";
 
 const routes: Routes = [{
   path: '', component: HomeComponent, pathMatch: 'full',
@@ -50,12 +51,15 @@ const routes: Routes = [{
 }, {
   path: 'cutest-dogs', component: CutestDogsComponent,
 }, {
-  path: 'apartaments-dogs', component: ApartamnetsDogsComponent,
+  path: 'apartments-dogs', component: ApartamnetsDogsComponent,
 }, {
   path: 'kids-dogs', component: KidsDogsComponent,
 }, {
   path: 'popular-dogs', component: PopularDogsComponent,
 }, {
+  path: 'breed-cat', component: BreedCatComponent,
+},
+  {
   path: 'animal', component: AnimalListComponent,
 }, {
   path: 'my-fav-animals', component: AnimalListComponent,

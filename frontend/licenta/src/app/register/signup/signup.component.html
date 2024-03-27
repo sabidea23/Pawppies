@@ -13,9 +13,12 @@
         </mat-label>
         <input [(ngModel)]="user.username" formControlName="username"
                matInput placeholder="Username"/>
-        <button mat-icon-button matSuffix (click)="user.username=''">
+        <button (click)="user.username=''" mat-icon-button matSuffix>
           <mat-icon>close</mat-icon>
         </button>
+        <mat-error *ngIf="registerForm.get('username')?.hasError('required')">
+          Username is required.
+        </mat-error>
       </mat-form-field>
 
       <!-- Password -->
@@ -24,11 +27,19 @@
           <mat-icon matPrefix>lock</mat-icon>
           Password
         </mat-label>
-        <input [(ngModel)]="user.password" formControlName="password"
-               matInput type="password" placeholder="Password"/>
-        <button mat-icon-button matSuffix (click)="user.password=''">
+        <input [(ngModel)]="user.password" formControlName="password" matInput placeholder="Password" type="password"/>
+        <button (click)="user.password=''" mat-icon-button matSuffix>
           <mat-icon>close</mat-icon>
         </button>
+        <mat-error *ngIf="registerForm.get('password')?.hasError('required')">
+          Password is required.
+        </mat-error>
+        <mat-error *ngIf="registerForm.get('password')?.hasError('minlength')">
+          Password must be at least 8 characters long.
+        </mat-error>
+        <mat-error *ngIf="registerForm.get('password')?.hasError('pattern')">
+          Must contain upper, lower case letters, numbers.
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="custom-mat-form-field">
@@ -37,10 +48,13 @@
           Confirm Password
         </mat-label>
         <input [(ngModel)]="user.confirmPassword" formControlName="confirmPassword"
-               matInput type="password" placeholder="Confirm your Password"/>
-        <button mat-icon-button matSuffix (click)="user.confirmPassword=''">
+               matInput placeholder="Confirm your Password" type="password"/>
+        <button (click)="user.confirmPassword=''" mat-icon-button matSuffix>
           <mat-icon>close</mat-icon>
         </button>
+        <mat-error *ngIf="registerForm.get('confirmPassword')?.hasError('required')">
+          Confirming your password is required.
+        </mat-error>
       </mat-form-field>
 
       <!-- First name -->
@@ -51,9 +65,12 @@
         </mat-label>
         <input [(ngModel)]="user.firstName" formControlName="firstname"
                matInput placeholder="First name"/>
-        <button mat-icon-button matSuffix (click)="user.firstName=''">
+        <button (click)="user.firstName=''" mat-icon-button matSuffix>
           <mat-icon>close</mat-icon>
         </button>
+        <mat-error *ngIf="registerForm.get('firstName')?.hasError('required')">
+          Firstname is required.
+        </mat-error>
       </mat-form-field>
 
       <!-- Last name -->
@@ -64,9 +81,12 @@
         </mat-label>
         <input [(ngModel)]="user.lastName" formControlName="lastname"
                matInput placeholder="Last name"/>
-        <button mat-icon-button matSuffix (click)="user.lastName=''">
+        <button (click)="user.lastName=''" mat-icon-button matSuffix>
           <mat-icon>close</mat-icon>
         </button>
+        <mat-error *ngIf="registerForm.get('lastName')?.hasError('required')">
+          Lastname is required.
+        </mat-error>
       </mat-form-field>
 
       <!-- Email -->
@@ -77,9 +97,15 @@
         </mat-label>
         <input [(ngModel)]="user.email" formControlName="email"
                matInput placeholder="Email"/>
-        <button mat-icon-button matSuffix (click)="user.email=''">
+        <button (click)="user.email=''" mat-icon-button matSuffix>
           <mat-icon>close</mat-icon>
         </button>
+        <mat-error *ngIf="registerForm.get('email')?.hasError('required')">
+          Email is required.
+        </mat-error>
+        <mat-error *ngIf="registerForm.get('email')?.hasError('email')">
+          Email format is not valid.
+        </mat-error>
       </mat-form-field>
 
       <!-- Phone -->
@@ -90,17 +116,25 @@
         </mat-label>
         <input [(ngModel)]="user.phone" formControlName="phone"
                matInput placeholder="Phone number"/>
-        <button mat-icon-button matSuffix (click)="user.phone=''">
+        <button (click)="user.phone=''" mat-icon-button matSuffix>
           <mat-icon>close</mat-icon>
         </button>
+        <mat-error *ngIf="registerForm.get('phone')?.hasError('required')">
+          Phone number is required.
+        </mat-error>
+        <mat-error *ngIf="registerForm.get('phone')?.hasError('pattern')">
+          Phone number format is not valid.
+        </mat-error>
       </mat-form-field>
 
       <div class="custom-checkbox-field">
         <label>Choose User Role for the website</label>
-        <mat-checkbox color="primary" [checked]="selectedRole === 'NORMAL USER'"
-                      (change)="onRoleChange($event, 'NORMAL USER')">Normal User</mat-checkbox>
-        <mat-checkbox color="primary" [checked]="selectedRole === 'SUPPLIER'"
-                      (change)="onRoleChange($event, 'SUPPLIER')">Supplier</mat-checkbox>
+        <mat-checkbox (change)="onRoleChange($event, 'NORMAL USER')" [checked]="selectedRole === 'NORMAL USER'"
+                      color="primary">Normal User
+        </mat-checkbox>
+        <mat-checkbox (change)="onRoleChange($event, 'SUPPLIER')" [checked]="selectedRole === 'SUPPLIER'"
+                      color="primary">Supplier
+        </mat-checkbox>
       </div>
 
 

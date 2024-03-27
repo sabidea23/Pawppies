@@ -2,16 +2,19 @@ import {Component, OnInit} from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Router} from '@angular/router';
 import {LoginService} from 'src/app/services/login.service';
-import Swal from "sweetalert2";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-login', templateUrl: './login.component.html', styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
 
-  loginData = {
-    username: '', password: '',
-  };
+  loginData = new FormGroup({
+    username: new FormControl('', [Validators.required]),
+    password: new FormControl('', [
+      Validators.required,
+    ]),
+  });
 
   constructor(private snack: MatSnackBar, private login: LoginService, private router: Router) {
   }
@@ -41,17 +44,7 @@ export class LoginComponent implements OnInit {
   }
 
   formSubmit() {
-    if (this.loginData.username.trim() == '' || this.loginData.username == null) {
-      this.snack.open("Username is required!", "", {duration: 3000});
-      return;
-    }
-
-    if (this.loginData.password.trim() == '' || this.loginData.password == null) {
-      this.snack.open("Password is required!", "", {duration: 3000});
-      return;
-    }
-
-    this.login.generateToken(this.loginData).subscribe({
+    this.login.generateToken(this.loginData.value).subscribe({
       next: (data: any) => {
         this.login.loginUser(data.token);
         this.login.getCurrentUser().subscribe({
@@ -61,12 +54,13 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['']).then(() => {
               window.location.reload();
             });
-            // Asigură-te că redirecționarea se face aici, după ce utilizatorul este setat
           }
         });
       },
       error: (error) => {
-        this.snack.open("Invalid credentials!", "", {duration: 3000});
+        this.snack.open(error.error.message, 'OK', {
+          duration: 3000,
+        });
       }
     });
   }

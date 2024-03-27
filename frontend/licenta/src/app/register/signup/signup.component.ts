@@ -19,12 +19,15 @@ export class SignupComponent {
     firstname: new FormControl('', [Validators.required]),
     lastname: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$')]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(8),
+      Validators.pattern('^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$')
+    ]),
     phone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+$')]),
     role: new FormControl('NORMAL_USER', [Validators.required]), // Default to NORMAL_USER
     confirmPassword:  new FormControl('', [Validators.required])
   });
-
 
   constructor(
     private userService: UserService,
@@ -75,29 +78,8 @@ export class SignupComponent {
   }
 
   formSubmit() {
-    if (this.user.username == '' || this.user.username == null) {
-      this.snack.open('Username cannot be empty!', 'OK', {
-        duration: 3000,
-      });
-      return;
-    }
-
-    if (this.user.username == '' || this.user.username == null) {
-      this.snack.open('Username cannot be empty!', 'OK', {
-        duration: 3000,
-      });
-      return;
-    }
-
     if (this.user.password != this.user.confirmPassword) {
       this.snack.open('Oops! The passwords you entered do not match. Please try again.', 'OK', {
-        duration: 3000,
-      });
-      return;
-    }
-
-    if (this.user.password == '' || this.user.password == null) {
-      this.snack.open('Password cannot be empty!', 'OK', {
         duration: 3000,
       });
       return;

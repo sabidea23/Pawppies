@@ -1,46 +1,43 @@
 <body>
 <div class="main-container">
-    <form (ngSubmit)="formSubmit()" class="login-form">
+    <form (ngSubmit)="formSubmit()" [formGroup]="loginData" class="login-form">
       <h2>Log In</h2>
       <p>login using your username and password</p>
 
-      <!-- Email Input with label and icon -->
       <mat-form-field appearance="fill" class="custom-mat-form-field">
         <mat-label>
           <mat-icon matPrefix>person</mat-icon>
           Username
         </mat-label>
-        <input [(ngModel)]="loginData.username" matInput
-               name="email" placeholder="Enter your email" required/>
-        <button (click)="loginData.username=''" mat-icon-button matSuffix>
+        <input [(ngModel)]="loginData.value.username" matInput
+               formControlName="username" placeholder="Username" required/>
+        <button (click)="loginData.value.username=''" mat-icon-button matSuffix>
           <mat-icon>close</mat-icon>
         </button>
+        <mat-error *ngIf="loginData.get('username')?.hasError('required')">
+          Username is required.
+        </mat-error>
       </mat-form-field>
 
-      <!-- Password Input with label and icon -->
       <mat-form-field appearance="fill" class="custom-mat-form-field">
         <mat-label>
           <mat-icon matPrefix>lock</mat-icon>
           Password
         </mat-label>
-        <input [(ngModel)]="loginData.password" matInput
-               name="password" placeholder="Enter your password" required type="password"/>
-        <button (click)="loginData.password=''" mat-icon-button matSuffix>
+        <input [(ngModel)]="loginData.value.password" matInput
+               formControlName="password" placeholder="Password" required type="password"/>
+        <button (click)="loginData.value.password=''" mat-icon-button matSuffix>
           <mat-icon>close</mat-icon>
         </button>
+        <mat-error *ngIf="loginData.get('password')?.hasError('required')">
+          Password is required.
+        </mat-error>
       </mat-form-field>
 
-      <!-- Login Button -->
       <button class="login-button" mat-flat-button type="submit">
         LOG IN
       </button>
 
-      <!-- Forgot password Link -->
-      <p style="text-align: center; margin-top: 20px;">
-        <a href="#" style="color: #6504B5;">Forgot password?</a>
-      </p>
-
-      <!-- Sign up Link -->
       <p style="text-align: center; margin-top: 20px;">
         Need an account? <a routerLink='/signup' style="color: #6504B5;">Sign up</a>
       </p>
