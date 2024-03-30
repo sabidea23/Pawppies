@@ -266,7 +266,8 @@ export class AnimalListComponent implements OnInit {
   filterBreeds(): void {
     // @ts-ignore
     this.animalFiltered = this.animals.filter(animal => {
-      return this.getAnimalsByType(animal) && this.getAnimalAge(animal) && this.getAnimalSize(animal) && this.getAnimalGender(animal) && this.getCare(animal) && this.getCoatLength(animal) && this.filterByName(animal)
+      return this.getAnimalsByType(animal) && this.getAnimalAge(animal) && this.getAnimalSize(animal) && this.getAnimalGender(animal)
+        && this.getCare(animal) && this.getCoatLength(animal) && this.filterByName(animal) && this.filterAnimalsByBreed(animal)
     });
   }
 
@@ -362,10 +363,6 @@ export class AnimalListComponent implements OnInit {
 
   // @ts-ignore
   animalBreeds:  string[];
-  // @ts-ignore
-  dogBreeds: dogBreedsName;
-  // @ts-ignore
-  catBreeds:catBreeds
   showBreedOptions = false;
   selectedBreeds: string[] = [];
   breedSearchTerm: string = '';
@@ -373,14 +370,14 @@ export class AnimalListComponent implements OnInit {
   addBreed(breed: string): void {
     if (!this.selectedBreeds.includes(breed)) {
       this.selectedBreeds.push(breed);
-      this.filterAnimalsByBreed();
+      this.filterBreeds();
     }
     this.showBreedOptions = false;
   }
 
   removeBreed(breed: string): void {
     this.selectedBreeds = this.selectedBreeds.filter(b => b !== breed);
-    this.filterAnimalsByBreed();
+    this.filterBreeds();
   }
 
   hideBreedOptions(): void {
@@ -389,10 +386,7 @@ export class AnimalListComponent implements OnInit {
     }, 200);
   }
 
-  filterAnimalsByBreed(): void {
-    // @ts-ignore
-    this.animalFiltered = this.animals.filter(animal =>
-      this.selectedBreeds.length ? this.selectedBreeds.includes(animal.breedDetails.name) : true
-    );
+  filterAnimalsByBreed(animal: any): boolean {
+    return this.selectedBreeds.length ? this.selectedBreeds.some(name => animal.breedDetails.name.toLowerCase().includes(name.toLowerCase())) : true;
   }
 }
