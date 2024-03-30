@@ -1,9 +1,8 @@
 mat-card {
-  max-width: 800px;
+  max-width: 1000px;
   margin: auto;
-  padding: 20px;
   caret-color: transparent;
-  opacity: 0.9 ;
+  opacity: 0.9;
 }
 
 mat-form-field {
@@ -12,12 +11,11 @@ mat-form-field {
 }
 
 body {
-  background-image: url("../../../assets/background.png") ;
+  background-image: url("../../../assets/animal_shelter.png") ;
   background-repeat: no-repeat;
   background-size: 130%;
-  padding-top: 20px;
-  padding-bottom: 20px;
   caret-color: transparent;
+  padding: 20px;
 }
 
 h2 {
