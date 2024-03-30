@@ -187,8 +187,36 @@
       </button>
     </div>
 
-    <div class="animal-grid">
+    <div  *ngIf="!userId" class="animal-grid">
       <div *ngFor="let animal of animalFiltered" class="animal-card">
+        <button (click)="likeAnimal(animal)" *ngIf="user" [ngClass]="{ 'liked': isLiked(animal) }" class="like-button">
+          <mat-icon>{{ isLiked(animal) ? 'favorite' : 'favorite_border' }}</mat-icon>
+        </button>
+
+        <img [src]='animal.animalImages[0].url  || "../../../assets/background-animal.png"'
+             [style.background]="'url(../../../assets/background-animal.png)'"
+             class="animal-image">
+
+        <div class="description">
+          <button (click)="editAnimal(animal)" *ngIf="getUserRole() == 'SUPPLIER' && animal.author.id == user.id"
+                  mat-button>
+            <mat-icon>edit</mat-icon>
+          </button>
+
+          <div class="animal-details">
+            <p class="animal-name"> {{ animal.name }} </p>
+            <p class="animal-other-details"> {{ animal.age }}, {{ animal.type }} </p>
+          </div>
+
+          <button (click)="deleteAnimal(animal)" *ngIf="getUserRole() === 'ADMIN'" mat-button>
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div  *ngIf="userId"  class="animal-grid">
+      <div *ngFor="let animal of animals" class="animal-card">
         <button (click)="likeAnimal(animal)" *ngIf="user" [ngClass]="{ 'liked': isLiked(animal) }" class="like-button">
           <mat-icon>{{ isLiked(animal) ? 'favorite' : 'favorite_border' }}</mat-icon>
         </button>

@@ -88,7 +88,6 @@ export var dogBreedsName =
 
 export var catBreeds = ['Abyssinian',
   'American Curl',
-  'American Shorthair',
   'American Wirehair',
   'Balinese',
   'Bombay',

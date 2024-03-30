@@ -31,7 +31,6 @@ export class AnimalListComponent implements OnInit {
       this.animalService.getAnimalsByCenterId(this.animalCenterId).subscribe({
         next: (data) => {
           this.animals = data;
-          console.log(data)
           this.getImagesForAnimals();
           this.filterBreeds();
         }, error: (_) => {
@@ -41,6 +40,8 @@ export class AnimalListComponent implements OnInit {
       this.animalService.getLikedAnimals(this.user.id).subscribe({
         next: (data) => {
           this.animals = data;
+          console.log(data)
+
           this.getImagesForAnimals();
         },
       });
@@ -120,7 +121,6 @@ export class AnimalListComponent implements OnInit {
             this.animals = this.animals.filter(a => a.id !== animal.id);
           }
         } else {
-          // If it was not liked, add it to the likedAnimals list
           this.likedAnimals.push(animal);
         }
       },
@@ -266,6 +266,11 @@ export class AnimalListComponent implements OnInit {
   }
 
   filterBreeds(): void {
+    if (this.userId) {
+      this.animalFiltered = this.animals;
+      return;
+    }
+
     // @ts-ignore
     this.animalFiltered = this.animals.filter(animal => {
       return this.getAnimalsByType(animal) && this.getAnimalAge(animal) && this.getAnimalSize(animal) && this.getAnimalGender(animal)
@@ -427,7 +432,6 @@ export class AnimalListComponent implements OnInit {
       .subscribe({
         next: (data) => {
           this.centerNames = data;
-          console.log(data);
         },
       });
   }
