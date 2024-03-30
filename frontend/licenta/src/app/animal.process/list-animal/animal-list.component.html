@@ -95,7 +95,7 @@
       </div>
     </form>
 
-    <div class="search-form input">
+    <div class="search-form">
       <div class="filter-group">
         <h3>NAME</h3>
         <input class="button-filter" type="text" [(ngModel)]="searchTerm" placeholder="Search by name..." (keyup.enter)="addSearchTerm(searchTerm)">
@@ -103,6 +103,27 @@
           <div *ngFor="let name of searchTerms" class="chip">
             {{ name }}
             <span class="close" (click)="removeSearchTerm(name)">x</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <h3>COLOR</h3>
+        <input class="button-filter" type="text"
+               [(ngModel)]="colorSearchTerm"
+               (focus)="showColorOptions = true"
+               (blur)="hideColorOptions()"
+               placeholder="Select Color..."
+               readonly>
+        <div *ngIf="showColorOptions" class="options-container">
+          <div class="option" *ngFor="let color of colorOptions" (click)="addColor(color)">
+            {{ color }}
+          </div>
+        </div>
+        <div class="chip-container">
+          <div *ngFor="let color of selectedColors" class="chip">
+            {{ color }}
+            <span class="close" (click)="removeColor(color)">x</span>
           </div>
         </div>
       </div>
@@ -127,6 +148,8 @@
           </div>
         </div>
       </div>
+
+
     </div>
   </div>
 

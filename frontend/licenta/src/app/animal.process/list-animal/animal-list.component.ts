@@ -8,7 +8,7 @@ import {AnimalCenterService} from 'src/app/services/animal.center.service';
 import {ImageProcessingService} from "../../services/image-processing.service";
 import {EditAnimalComponent} from "../edit-animal/edit-animal.component";
 import {MatDialog} from "@angular/material/dialog";
-import {catBreeds, dogBreedsName} from "../../utils/breeds-store";
+import {catBreeds, dogBreedsName, colorOptions} from "../../utils/breeds-store";
 
 @Component({
   selector: 'app-animal-list', templateUrl: './animal-list.component.html', styleUrls: ['./animal-list.component.css'],
@@ -267,8 +267,8 @@ export class AnimalListComponent implements OnInit {
     // @ts-ignore
     this.animalFiltered = this.animals.filter(animal => {
       return this.getAnimalsByType(animal) && this.getAnimalAge(animal) && this.getAnimalSize(animal) && this.getAnimalGender(animal)
-        && this.getCare(animal) && this.getCoatLength(animal) && this.filterByName(animal) && this.filterAnimalsByBreed(animal)
-    });
+        && this.getCare(animal) && this.getCoatLength(animal) && this.filterByName(animal) && this.filterAnimalsByBreed(animal) &&
+        this.filterAnimalsByColor(animal) });
   }
 
 
@@ -388,5 +388,35 @@ export class AnimalListComponent implements OnInit {
 
   filterAnimalsByBreed(animal: any): boolean {
     return this.selectedBreeds.length ? this.selectedBreeds.some(name => animal.breedDetails.name.toLowerCase().includes(name.toLowerCase())) : true;
+  }
+
+  colorOptions: string[] = colorOptions;  // Lista de culori
+  showColorOptions: boolean = false;
+  selectedColors: string[] = [];
+  colorSearchTerm: string = '';
+
+  addColor(color: string): void {
+    if (!this.selectedColors.includes(color)) {
+      this.selectedColors.push(color);
+      this.filterBreeds();
+    }
+    this.showColorOptions = false;
+  }
+
+  removeColor(color: string): void {
+    this.selectedColors = this.selectedColors.filter(c => c !== color);
+    this.filterBreeds();
+  }
+
+  hideColorOptions(): void {
+    setTimeout(() => {
+      this.showColorOptions = false;
+    }, 200);
+  }
+
+  // @ts-ignore
+  filterAnimalsByColor(animal): boolean {
+    return this.selectedColors.length ? this.selectedColors.some(color =>
+      animal.color.toLowerCase().includes(color.toLowerCase())) : true;
   }
 }
