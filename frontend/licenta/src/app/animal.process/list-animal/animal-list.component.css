@@ -82,13 +82,15 @@ th {
 }
 
 .side-container {
+  padding-bottom: 20px;
   font-family: 'Montserrat', sans-serif;
   background-color: white;
   max-width: 300px;
 }
 
 .search-form {
-  padding: 16px 24px;
+  margin-top: 0;
+  padding: 0px 24px;
   caret-color: transparent;
   display: flex;
   flex-direction: column;
@@ -401,3 +403,16 @@ h3 {
   margin-left: 5px;
   cursor: pointer;
 }
+
+.options-container {
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  width: 10%;
+  max-height: 150px; /* Limitarea înălțimii containerului */
+  overflow-y: auto; /* Adaugă scroll vertical dacă este necesar */
+  z-index: 1000;
+}
+
+

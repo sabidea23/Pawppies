@@ -93,19 +93,37 @@
                 role="checkbox" value="Long"> Long
         </button>
       </div>
-
-
-      <!--      //mai e nevoie de un formular pentru rasa, culoare, nume,  centru - doar pentru getAllAnimals-->
     </form>
-    <div class="search-form">
+
+    <div class="search-form input">
       <div class="filter-group">
         <h3>NAME</h3>
-
         <input class="button-filter" type="text" [(ngModel)]="searchTerm" placeholder="Search by name..." (keyup.enter)="addSearchTerm(searchTerm)">
         <div class="chip-container">
           <div *ngFor="let name of searchTerms" class="chip">
             {{ name }}
             <span class="close" (click)="removeSearchTerm(name)">x</span>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="(pressedButton['typeDog'] || pressedButton['typeCat']) && !(pressedButton['typeDog'] && pressedButton['typeCat'])" class="filter-group" >
+        <h3>BREED</h3>
+        <input class="button-filter" type="text"
+               [(ngModel)]="breedSearchTerm"
+               (focus)="showBreedOptions = true"
+               (blur)="hideBreedOptions()"
+               placeholder="Select Breed..."
+               readonly>
+        <div *ngIf="showBreedOptions" class="options-container">
+          <div class="option" *ngFor="let breed of animalBreeds" (click)="addBreed(breed)">
+            {{ breed }}
+          </div>
+        </div>
+        <div class="chip-container">
+          <div *ngFor="let breed of selectedBreeds" class="chip">
+            {{ breed }}
+            <span class="close" (click)="removeBreed(breed)">x</span>
           </div>
         </div>
       </div>

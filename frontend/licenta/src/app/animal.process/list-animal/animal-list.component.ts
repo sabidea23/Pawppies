@@ -8,7 +8,7 @@ import {AnimalCenterService} from 'src/app/services/animal.center.service';
 import {ImageProcessingService} from "../../services/image-processing.service";
 import {EditAnimalComponent} from "../edit-animal/edit-animal.component";
 import {MatDialog} from "@angular/material/dialog";
-import {dogBreedsName} from "../../utils/breeds-store";
+import {catBreeds, dogBreedsName} from "../../utils/breeds-store";
 
 @Component({
   selector: 'app-animal-list', templateUrl: './animal-list.component.html', styleUrls: ['./animal-list.component.css'],
@@ -30,6 +30,7 @@ export class AnimalListComponent implements OnInit {
       this.animalService.getAnimalsByCenterId(this.animalCenterId).subscribe({
         next: (data) => {
           this.animals = data;
+          console.log(data)
           this.getImagesForAnimals();
           this.filterBreeds();
         }, error: (_) => {
@@ -244,6 +245,15 @@ export class AnimalListComponent implements OnInit {
 
   applyFilter(category: string, value: string): void {
   //  this.currentPage = 1;
+
+    if (category === 'type') {
+      if (value === 'Dog') {
+        this.animalBreeds = dogBreedsName;
+      } else if (value === 'Cat') {
+        this.animalBreeds = catBreeds;
+      }
+    }
+
     if (this.filters[category].includes(value)) {
       // @ts-ignore
       this.filters[category] = this.filters[category].filter(item => item !== value);
@@ -350,6 +360,39 @@ export class AnimalListComponent implements OnInit {
     return this.searchTerms.length ? this.searchTerms.some(name => animal.name.toLowerCase().includes(name.toLowerCase())) : true;
   }
 
-  animalBreeds:  string[] = dogBreedsName;
+  // @ts-ignore
+  animalBreeds:  string[];
+  // @ts-ignore
+  dogBreeds: dogBreedsName;
+  // @ts-ignore
+  catBreeds:catBreeds
+  showBreedOptions = false;
+  selectedBreeds: string[] = [];
+  breedSearchTerm: string = '';
 
+  addBreed(breed: string): void {
+    if (!this.selectedBreeds.includes(breed)) {
+      this.selectedBreeds.push(breed);
+      this.filterAnimalsByBreed();
+    }
+    this.showBreedOptions = false;
+  }
+
+  removeBreed(breed: string): void {
+    this.selectedBreeds = this.selectedBreeds.filter(b => b !== breed);
+    this.filterAnimalsByBreed();
+  }
+
+  hideBreedOptions(): void {
+    setTimeout(() => {
+      this.showBreedOptions = false;
+    }, 200);
+  }
+
+  filterAnimalsByBreed(): void {
+    // @ts-ignore
+    this.animalFiltered = this.animals.filter(animal =>
+      this.selectedBreeds.length ? this.selectedBreeds.includes(animal.breedDetails.name) : true
+    );
+  }
 }
