@@ -8,6 +8,7 @@ import {AnimalCenterService} from 'src/app/services/animal.center.service';
 import {ImageProcessingService} from "../../services/image-processing.service";
 import {EditAnimalComponent} from "../edit-animal/edit-animal.component";
 import {MatDialog} from "@angular/material/dialog";
+import {dogBreedsName} from "../../utils/breeds-store";
 
 @Component({
   selector: 'app-animal-list', templateUrl: './animal-list.component.html', styleUrls: ['./animal-list.component.css'],
@@ -255,7 +256,7 @@ export class AnimalListComponent implements OnInit {
   filterBreeds(): void {
     // @ts-ignore
     this.animalFiltered = this.animals.filter(animal => {
-      return this.getAnimalsByType(animal) && this.getAnimalAge(animal) && this.getAnimalSize(animal) && this.getAnimalGender(animal) && this.getCare(animal) && this.getCoatLength(animal)
+      return this.getAnimalsByType(animal) && this.getAnimalAge(animal) && this.getAnimalSize(animal) && this.getAnimalGender(animal) && this.getCare(animal) && this.getCoatLength(animal) && this.filterByName(animal)
     });
   }
 
@@ -271,7 +272,6 @@ export class AnimalListComponent implements OnInit {
     else if (animal.coatLength == 'Long')
       coatLength = 'Long'
     return !(this.filters.coatLength && this.filters.coatLength.length > 0 && !this.filters.coatLength.includes(coatLength));
-
   }
 
   getCare(animal: any):boolean {
@@ -330,5 +330,26 @@ export class AnimalListComponent implements OnInit {
     return !(this.filters.gender && this.filters.gender.length > 0 && !this.filters.gender.includes(gender));
   }
 
+  searchTerms: string[] = [];
+  searchTerm: string = '';
+
+  addSearchTerm(term: string): void {
+    if (term && !this.searchTerms.includes(term)) {
+      this.searchTerms.push(term);
+      this.filterBreeds();
+    }
+    this.searchTerm = '';
+  }
+
+  removeSearchTerm(term: string): void {
+    this.searchTerms = this.searchTerms.filter(t => t !== term);
+    this.filterBreeds();
+  }
+
+  filterByName(animal: any): boolean {
+    return this.searchTerms.length ? this.searchTerms.some(name => animal.name.toLowerCase().includes(name.toLowerCase())) : true;
+  }
+
+  animalBreeds:  string[] = dogBreedsName;
 
 }

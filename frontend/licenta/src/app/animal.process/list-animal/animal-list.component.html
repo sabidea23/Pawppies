@@ -94,8 +94,22 @@
         </button>
       </div>
 
+
       <!--      //mai e nevoie de un formular pentru rasa, culoare, nume,  centru - doar pentru getAllAnimals-->
     </form>
+    <div class="search-form">
+      <div class="filter-group">
+        <h3>NAME</h3>
+
+        <input class="button-filter" type="text" [(ngModel)]="searchTerm" placeholder="Search by name..." (keyup.enter)="addSearchTerm(searchTerm)">
+        <div class="chip-container">
+          <div *ngFor="let name of searchTerms" class="chip">
+            {{ name }}
+            <span class="close" (click)="removeSearchTerm(name)">x</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="content-container">

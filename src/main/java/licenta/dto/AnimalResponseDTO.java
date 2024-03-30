@@ -35,5 +35,4 @@ public class AnimalResponseDTO {
     private int likes;
     private Set<ImageModel> animalImages;
 
-    // Getters and setters for all the fields
 }

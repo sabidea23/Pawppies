@@ -1,4 +1,3 @@
-
 body {
   background-color: #EFEEF1;
   padding-bottom: 20px;
@@ -85,7 +84,7 @@ th {
 .side-container {
   font-family: 'Montserrat', sans-serif;
   background-color: white;
-
+  max-width: 300px;
 }
 
 .search-form {
@@ -176,7 +175,7 @@ mat-form-field {
   padding: 8px; /* Ajustează paddingul pentru a controla înălțimea câmpurilor */
 }
 
-/* Reduce dimensiunea câmpurilor de formular pentru a le face mai subțiri */
+
 .custom-mat-form-field {
   height: 80px; /* Ajustează înălțimea după cum dorești */
 }
@@ -248,39 +247,36 @@ mat-form-field {
   height: 300px;
   position: relative;
   border: 3px solid #ddd;
-  border-radius: 8px; /* Rotunjirea colțurilor */
+  border-radius: 8px;
   overflow: hidden;
-  transition: border-color 0.3s ease; /* Adaugă tranziție pentru efectul de hover */
+  transition: border-color 0.3s ease;
 }
 
 .like-button {
   position: absolute;
   right: 3px;
   border: none;
-  background-color: transparent; /* Fundalul butonului este transparent */
+  background-color: transparent;
   cursor: pointer;
   border-radius: 50%; /* Face butonul rotund */
   width: 36px; /* Lățimea butonului */
   height: 36px; /* Înălțimea butonului */
   background-color: white;
   margin: 10px;
-  transition: transform 0.2s; /* Adaugă o tranziție pentru transform */
+  transition: transform 0.2s;
 }
 
-/* Animație la hover */
 .like-button:hover {
-  transform: scale(1.1); /* Mărește butonul ușor când mouse-ul este deasupra */
+  transform: scale(1.1);
 }
 
-/* Clasa adăugată când animal-ul este apreciat */
 mat-icon {
   margin-top: 5px;
-  color: #6504B5; /* Culoarea pentru când este apreciat */
+  color: #6504B5;
 }
 
-/* Animație la click */
 .like-button:active {
-  transform: scale(0.9); /* Micșorează butonul când este apăsat */
+  transform: scale(0.9);
 }
 
 button,
@@ -294,14 +290,14 @@ input[type="button"] {
   outline: none;
 }
 
-/* Clasa adăugată când animal-ul este apreciat */
+
 .liked {
-  color: #6504B5; /* Culoarea pentru când este apreciat */
+  color: #6504B5;
 }
 
 
 .animal-card:hover {
-  border-color: #6504B5; /* Schimbă culoarea la hover */
+  border-color: #6504B5;
 }
 
 .animal-image {
@@ -336,11 +332,11 @@ input[type="button"] {
   margin-bottom: 16px;
   border-radius: 20px;
   width: 200px;
-  box-shadow: none; /* Înlătură orice umbre dacă există */
-  font-size: 14px; /* Aproximativ echivalent cu h2, ajustează conform necesităților */
-  color: white; /* Text alb */
-  background-color: #6504B5; /* Culoare mov, ajustează codul hex conform preferințelor */
-  padding: 10px 20px; /* Padding pentru a mări dimensiunea butonului */
+  box-shadow: none;
+  font-size: 14px;
+  color: white;
+  background-color: #6504B5;
+  padding: 10px 20px;
 }
 
 
@@ -359,9 +355,9 @@ input[type="button"] {
 .button-filter {
   border: 1px solid #6504B5;
   background-color: white;
-  margin-top: 0px;
+  margin-top: 0;
   text-align: left;
-  border-radius: 4px; /* Adaugă borduri rotunjite pentru estetică */
+  border-radius: 4px;
   padding: -2px;
 }
 
@@ -381,4 +377,27 @@ h3 {
   margin-top: 20px;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
+}
+
+.chip-container {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px; /* Asigură un spațiu mic între chips-uri */
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  background-color: #6504B5; /* Culoare mov pentru fundal */
+  color: white; /* Textul în culoare albă */
+  font-size: 14px; /* Dimensiunea textului din chip */
+  cursor: default;
+  border-radius: 10px;
+}
+
+.chip .close {
+  margin-left: 5px;
+  cursor: pointer;
 }
