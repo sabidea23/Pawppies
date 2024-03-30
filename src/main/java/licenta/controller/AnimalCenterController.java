@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/center")
 @CrossOrigin("*")
@@ -37,7 +39,13 @@ public class AnimalCenterController {
         }
         else throw new ForbiddenActionForRole("You do not have the right permissions to do this action");
     }
-    
+
+    @GetMapping("/names")
+    @ResponseStatus(code = HttpStatus.OK)
+    public List<String> getAllAnimalCenterNames() {
+        return animalCenterService.findAllCenterNames();
+    }
+
     @GetMapping("/")
     @ResponseStatus(code = HttpStatus.OK)
     public Page<AnimalCenterResponseDTO> getAnimalCenters(@RequestParam(defaultValue = "0") int page,

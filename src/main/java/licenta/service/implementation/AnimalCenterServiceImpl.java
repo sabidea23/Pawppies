@@ -13,6 +13,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class AnimalCenterServiceImpl implements AnimalCenterService {
@@ -104,5 +106,10 @@ public class AnimalCenterServiceImpl implements AnimalCenterService {
                 .phone(animalCenter.getPhone())
                 .admin(animalCenter.getAdmin())
                 .build();
+    }
+
+    @Override
+    public List<String> findAllCenterNames() {
+        return animalCenterRepository.findAllCenterNames();
     }
 }

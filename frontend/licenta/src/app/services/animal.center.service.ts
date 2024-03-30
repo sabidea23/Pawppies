@@ -31,6 +31,10 @@ export class AnimalCenterService {
     return this.http.get(`${baseUrl}/center/${id}`);
   }
 
+  public getAnimalCentersName() {
+    return this.http.get(`${baseUrl}/center/names`);
+  }
+
   public deleteAnimalCenter(id: number) {
     return this.http.delete(`${baseUrl}/center/${id}`);
   }

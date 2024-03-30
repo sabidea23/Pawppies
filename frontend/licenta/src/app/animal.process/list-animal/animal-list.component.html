@@ -1,6 +1,6 @@
 <body>
 <div class="main-container">
-  <div class="side-container">
+  <div *ngIf="!userId" class="side-container">
     <form class="search-form">
       <h2>Find Animals by:</h2>
       <div class="filter-group">
@@ -127,6 +127,28 @@
           </div>
         </div>
       </div>
+
+      <div *ngIf="!animalCenter && !userId" class="filter-group">
+        <h3>ANIMAL CENTER</h3>
+        <input class="button-filter" type="text"
+               [(ngModel)]="centerSearchTerm"
+               (focus)="showCenterOptions = true"
+               (blur)="hideCenterOptions()"
+               placeholder="Select Animal Center..."
+               readonly>
+        <div *ngIf="showCenterOptions" class="options-container">
+          <div class="option" *ngFor="let center of centerNames" (click)="addCenter(center)">
+            {{ center }}
+          </div>
+        </div>
+        <div class="chip-container">
+          <div *ngFor="let center of selectedCenters" class="chip">
+            {{ center }}
+            <span class="close" (click)="removeCenter(center)">x</span>
+          </div>
+        </div>
+      </div>
+
 
       <div *ngIf="(pressedButton['typeDog'] || pressedButton['typeCat']) && !(pressedButton['typeDog'] && pressedButton['typeCat'])" class="filter-group" >
         <h3>BREED</h3>

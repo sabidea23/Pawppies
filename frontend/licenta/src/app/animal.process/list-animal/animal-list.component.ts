@@ -22,7 +22,8 @@ export class AnimalListComponent implements OnInit {
   likedAnimals: any = [];
 
   constructor(private login: LoginService, private dialog: MatDialog, private animalService: AnimalService, private router:
-    Router, private route: ActivatedRoute, private snack: MatSnackBar, private animalCenterService: AnimalCenterService, private imageProcessingService: ImageProcessingService) {
+    Router, private route: ActivatedRoute, private snack: MatSnackBar, private animalCenterService: AnimalCenterService,
+              private imageProcessingService: ImageProcessingService) {
   }
 
   getFavouriteAnimals() {
@@ -80,6 +81,7 @@ export class AnimalListComponent implements OnInit {
         this.likedAnimals = data;
       },
     });
+    this.getAllCentersNames();
   }
 
   public getUserRole() {
@@ -268,9 +270,8 @@ export class AnimalListComponent implements OnInit {
     this.animalFiltered = this.animals.filter(animal => {
       return this.getAnimalsByType(animal) && this.getAnimalAge(animal) && this.getAnimalSize(animal) && this.getAnimalGender(animal)
         && this.getCare(animal) && this.getCoatLength(animal) && this.filterByName(animal) && this.filterAnimalsByBreed(animal) &&
-        this.filterAnimalsByColor(animal) });
+        this.filterAnimalsByColor(animal) && this.filterAnimalsByCenter(animal)});
   }
-
 
   getCoatLength(animal:any):boolean {
     let coatLength = '';
@@ -418,5 +419,45 @@ export class AnimalListComponent implements OnInit {
   filterAnimalsByColor(animal): boolean {
     return this.selectedColors.length ? this.selectedColors.some(color =>
       animal.color.toLowerCase().includes(color.toLowerCase())) : true;
+  }
+
+  getAllCentersNames() {
+    this.animalCenterService
+      .getAnimalCentersName()
+      .subscribe({
+        next: (data) => {
+          this.centerNames = data;
+          console.log(data);
+        },
+      });
+  }
+
+  centerNames: any = [];
+  showCenterOptions: boolean = false;
+  selectedCenters: string[] = [];
+  centerSearchTerm: string = '';
+
+  addCenter(center: string): void {
+    if (!this.selectedCenters.includes(center)) {
+      this.selectedCenters.push(center);
+      this.filterBreeds();
+    }
+    this.showCenterOptions = false;
+  }
+
+  removeCenter(center: string): void {
+    this.selectedCenters = this.selectedCenters.filter(c => c !== center);
+    this.filterBreeds();
+  }
+
+  hideCenterOptions(): void {
+    setTimeout(() => {
+      this.showCenterOptions = false;
+    }, 200);
+  }
+
+  filterAnimalsByCenter(animal :any): boolean {
+    return this.selectedCenters.length ? this.selectedCenters.some(center =>
+      animal.animalCenter.name.toLowerCase().includes(center.toLowerCase())) : true;
   }
 }
