@@ -255,4 +255,13 @@ export class BreedDetailsDogComponent implements OnInit {
   goTPopularDog() {
     this.router.navigate(['/popular-dogs']);
   }
+
+  selectedBreeds: any;
+
+
+  // @ts-ignore
+  redirectToAnimalPage(dog) {
+    // Presupunând că dog.breed conține rasa selectată
+    this.router.navigate(['/animal/'], { queryParams: { type: 'Dog', breed: dog.name } });
+  }
 }

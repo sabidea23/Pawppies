@@ -261,4 +261,10 @@ export class BreedDetailsCatComponent {
   goTPopularDog() {
     this.router.navigate(['/popular-dogs']);
   }
+
+  // @ts-ignore
+  redirectToAnimalPage(dog) {
+    // Presupunând că dog.breed conține rasa selectată
+    this.router.navigate(['/animal/'], { queryParams: { type: 'Cat', breed: dog.name } });
+  }
 }

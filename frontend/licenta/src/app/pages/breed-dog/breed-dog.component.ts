@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Breed_detailsService} from "../../services/breed_details.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-breed-dog', templateUrl: './breed-dog.component.html', styleUrls: ['./breed-dog.component.css']
@@ -11,7 +11,7 @@ export class BreedDogComponent implements OnInit {
 
   dogId: any;
 
-  constructor(private route: ActivatedRoute, private breedDetailsService: Breed_detailsService) {
+  constructor(private route: ActivatedRoute,  private router: Router,  private breedDetailsService: Breed_detailsService) {
   }
 
   searchDogByBreedId() {
@@ -42,5 +42,11 @@ export class BreedDogComponent implements OnInit {
     const regex = new RegExp(`(?<=\\.|\\!|\\?)(?=\\s+(${keywords.join('|')}))`, 'g');
     const sentences = text.split(regex);
     return sentences.join('\n');
+  }
+
+  // @ts-ignore
+  redirectToAnimalPage(dog) {
+    // Presupunând că dog.breed conține rasa selectată
+    this.router.navigate(['/animal/'], { queryParams: { type: 'Dog', breed: dog.name } });
   }
 }

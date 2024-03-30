@@ -192,11 +192,15 @@
   <div  class="content-container">
     <h2 class="number-dogs"> {{totalElements}} Cat or kitten Breeds</h2>
     <div class="animal-grid">
-      <div *ngFor="let dog of paginatedDogBreeds" class="animal-card" (click)="viewDogDetails(dog)">
+      <div *ngFor="let dog of paginatedDogBreeds" class="animal-card">
+           <a (click)="viewDogDetails(dog)">
         <img [src]='dog.image || "../../../assets/background-animal.png"'
              [style.background]="'url(../../../assets/background-animal.png)'"
              class="animal-image">
         <p class="animal-name"> {{ dog.name }} </p>
+           </a>
+        <hr>
+        <button mat-button class="animal-available" (click)="redirectToAnimalPage(dog)"> View Adoptable Pets for This Breed ></button>
       </div>
     </div>
 

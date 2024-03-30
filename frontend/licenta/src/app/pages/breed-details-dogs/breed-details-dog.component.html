@@ -192,13 +192,16 @@
   <div  class="content-container">
     <h2 class="number-dogs"> {{totalElements}} Dog or Puppy Breeds</h2>
     <div class="animal-grid">
-      <div *ngFor="let dog of paginatedDogBreeds" class="animal-card" (click)="viewDogDetails(dog)">
+      <div *ngFor="let dog of paginatedDogBreeds" class="animal-card">
+        <a (click)="viewDogDetails(dog)">
         <img [src]='dog.image || "../../../assets/background-animal.png"'
              [style.background]="'url(../../../assets/background-animal.png)'"
              class="animal-image">
         <p class="animal-name"> {{ dog.name }} </p>
+        </a>
         <hr>
-        <p class="animal-available"> View Adoptable Pets for This Breed ></p>
+
+        <button mat-button class="animal-available" (click)="redirectToAnimalPage(dog)"> View Adoptable Pets for This Breed ></button>
       </div>
     </div>
 
@@ -207,8 +210,6 @@
       <span>Page {{currentPage}}</span>
       <button (click)="nextPage()" *ngIf="currentPage < totalPages" class="pagination-button next">NEXT ></button>
     </div>
-
-
   </div>
 </div>
 </body>

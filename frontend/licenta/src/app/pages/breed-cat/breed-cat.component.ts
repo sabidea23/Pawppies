@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Breed_detailsService} from "../../services/breed_details.service";
 
 @Component({
@@ -10,7 +10,7 @@ export class BreedCatComponent {
 
   catId: any;
 
-  constructor(private route: ActivatedRoute, private breedDetailsService: Breed_detailsService) {
+  constructor(private route: ActivatedRoute,  private router: Router, private breedDetailsService: Breed_detailsService) {
   }
 
   searchDogByBreedId() {
@@ -40,5 +40,11 @@ export class BreedCatComponent {
     const regex = new RegExp(`(?<=\\.|\\!|\\?)(?=\\s+(${keywords.join('|')}))`, 'g');
     const sentences = text.split(regex);
     return sentences.join('\n');
+  }
+
+  // @ts-ignore
+  redirectToAnimalPage(dog) {
+    // Presupunând că dog.breed conține rasa selectată
+    this.router.navigate(['/animal/'], { queryParams: { type: 'Cat', breed: dog.name } });
   }
 }

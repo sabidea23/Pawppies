@@ -5,7 +5,7 @@
 
     <div class="image-dog">
       <h1>{{ cat.name }}</h1>
-      <h4> View Adoptable Pets for This Breed </h4>
+      <button mat-button (click)="redirectToAnimalPage(cat)" class="redcirect-animal">  View Adoptable Pets for This Breed ></button>
       <img [src]="cat.image" alt="{{ cat.name }}">
 
       <p class="text-characteristics"> HEIGHT </p>

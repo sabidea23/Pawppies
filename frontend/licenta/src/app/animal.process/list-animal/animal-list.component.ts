@@ -68,6 +68,21 @@ export class AnimalListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      const type = params['type'];
+      const breed = params['breed'];
+
+      if (type && breed) {
+        // Aplică filtrele
+          this.applyFilter('type', type);
+          if (type == 'Dog')
+            this.toggleButton('typeDog');
+          else
+            this.toggleButton('typeCat');
+        this.addBreed(breed);
+      }
+    });
+
     this.user = this.login.getUser();
     this.animalCenterId = JSON.parse(this.route.snapshot.paramMap.get('centerId') || 'null') || undefined;
 

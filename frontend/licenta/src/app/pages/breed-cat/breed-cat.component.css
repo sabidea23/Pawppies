@@ -71,9 +71,10 @@ h1 {
   margin-left: 20px;
 }
 
-H4 {
+.redcirect-animal {
   color: #6504B5;
   font-weight: bold;
+  margin-top: -10px;
 }
 
 img {
