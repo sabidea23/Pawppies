@@ -30,7 +30,7 @@ export class AnimalListComponent implements OnInit {
         next: (data) => {
           this.animals = data;
           this.getImagesForAnimals();
-          console.log(this.animals)
+          this.filterBreeds();
         }, error: (_) => {
         },
       });
@@ -46,6 +46,7 @@ export class AnimalListComponent implements OnInit {
         next: (data) => {
           this.animals = data;
           this.getImagesForAnimals();
+          this.filterBreeds();
         }, error: (_) => {
         },
       });
@@ -67,7 +68,6 @@ export class AnimalListComponent implements OnInit {
     this.animalCenter = this.animalCenterId ? this.animalCenterService.getAnimalCenter(this.animalCenterId).subscribe({
       next: (data) => {
         this.animalCenter = data;
-        console.log(this.animalCenter)
       },
     }) : undefined;
 
@@ -222,4 +222,113 @@ export class AnimalListComponent implements OnInit {
       }
     });
   }
+
+  //filtrare
+  filters: any = {
+    type: [],
+    age: [],
+    size: [],
+    gender: [],
+    care: [],
+    coatLength: []
+  };
+
+  animalFiltered: any = [];
+  pressedButton: { [key: string]: boolean } = {};
+
+
+  toggleButton(key: string) {
+    this.pressedButton[key] = !this.pressedButton[key];
+  }
+
+  applyFilter(category: string, value: string): void {
+  //  this.currentPage = 1;
+    if (this.filters[category].includes(value)) {
+      // @ts-ignore
+      this.filters[category] = this.filters[category].filter(item => item !== value);
+    } else {
+      this.filters[category].push(value);
+    }
+    this.filterBreeds();
+  }
+
+  filterBreeds(): void {
+    // @ts-ignore
+    this.animalFiltered = this.animals.filter(animal => {
+      return this.getAnimalsByType(animal) && this.getAnimalAge(animal) && this.getAnimalSize(animal) && this.getAnimalGender(animal) && this.getCare(animal) && this.getCoatLength(animal)
+    });
+  }
+
+
+  getCoatLength(animal:any):boolean {
+    let coatLength = '';
+    if (animal.coatLength == 'Hairless')
+      coatLength = 'Hairless'
+    else if (animal.coatLength == 'Short')
+      coatLength = 'Short'
+    else if (animal.coatLength == 'Medium')
+      coatLength = 'Medium'
+    else if (animal.coatLength == 'Long')
+      coatLength = 'Long'
+    return !(this.filters.coatLength && this.filters.coatLength.length > 0 && !this.filters.coatLength.includes(coatLength));
+
+  }
+
+  getCare(animal: any):boolean {
+    let care = '';
+    if (animal.care.includes('Special Needs'))
+      care = 'Special Needs'
+    else  if (animal.care.includes('House trained'))
+      care = 'House trained'
+    return !(this.filters.care && this.filters.care.length > 0 && !this.filters.care.includes(care));
+  }
+
+  getAnimalSize(animal:any): boolean {
+    let size = '';
+    if (animal.size.startsWith('Small'))
+      size = 'Small'
+    else if (animal.size.startsWith('Medium'))
+      size = 'Medium'
+    else if (animal.size.startsWith('Large'))
+      size = 'Large'
+    else
+      size = 'Extra Large'
+
+    return !(this.filters.size && this.filters.size.length > 0 && !this.filters.size.includes(size));
+  }
+
+  getAnimalsByType(animal: any): boolean {
+    let type ='';
+    if (animal.type == 'Dog'){
+      type = 'Dog';
+    } else  if (animal.type == 'Cat') {
+      type = 'Cat';
+    }
+      return !(this.filters.type && this.filters.type.length > 0 && !this.filters.type.includes(type));
+  }
+
+  getAnimalAge(animal: any):boolean {
+    let age = '';
+    if (animal.age == "Kitten" || animal.age == 'Puppy')
+      age = 'Puppy/Kitten';
+    else if (animal.age == "Young")
+      age = 'Young';
+    else if (animal.age == 'Senior')
+      age = 'Senior';
+    else
+      age = 'Adult' ;
+
+    return !(this.filters.age && this.filters.age.length > 0 && !this.filters.age.includes(age));
+  }
+
+  getAnimalGender(animal:any):boolean {
+    let gender = '';
+    if (animal.gender == 'Male')
+      gender = 'Male'
+    else
+      gender = 'Female'
+    return !(this.filters.gender && this.filters.gender.length > 0 && !this.filters.gender.includes(gender));
+  }
+
+
 }

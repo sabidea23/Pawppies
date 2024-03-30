@@ -3,20 +3,115 @@
   <div class="side-container">
     <form class="search-form">
       <h2>Find Animals by:</h2>
+      <div class="filter-group">
+        <h3>TYPE</h3>
+        <button (click)="applyFilter('type', 'Dog') ; toggleButton('typeDog')"
+                [ngClass]="{'pressed': pressedButton ['typeDog'] }" class="button-filter" name="type"
+                role="checkbox" value="Dog"> Dog
+        </button>
+        <button (click)="applyFilter('type', 'Cat')  ; toggleButton('typeCat') "
+                [ngClass]="{'pressed': pressedButton ['typeCat']}" class="button-filter" name="type"
+                role="checkbox" value="Cat"> Cat
+        </button>
+      </div>
+      <div class="filter-group">
+        <h3>AGE</h3>
+        <button (click)="applyFilter('age', 'Puppy/Kitten') ; toggleButton('typePuppy/Kitten')"
+                [ngClass]="{'pressed': pressedButton ['typePuppy/Kitten'] }" class="button-filter" name="age"
+                role="checkbox" value="Puppy/Kitten"> Puppy/Kitten
+        </button>
+        <button (click)="applyFilter('age', 'Young')  ; toggleButton('typeYoung') "
+                [ngClass]="{'pressed': pressedButton ['typeYoung']}" class="button-filter" name="age"
+                role="checkbox" value="Young"> Young
+        </button>
+        <button (click)="applyFilter('age', 'Adult') ; toggleButton('typeAdult')"
+                [ngClass]="{'pressed': pressedButton ['typeAdult'] }" class="button-filter" name="age"
+                role="checkbox" value="Adult"> Adult
+        </button>
+        <button (click)="applyFilter('age', 'Senior')  ; toggleButton('typeSenior') "
+                [ngClass]="{'pressed': pressedButton ['typeSenior']}" class="button-filter" name="age"
+                role="checkbox" value="Senior"> Senior
+        </button>
+      </div>
+      <div class="filter-group">
+        <h3>SIZE</h3>
+        <button (click)="applyFilter('size', 'Small') ; toggleButton('typeSmall')"
+                [ngClass]="{'pressed': pressedButton ['typeSmall'] }" class="button-filter" name="size"
+                role="checkbox" value="Small"> Small
+        </button>
+        <button (click)="applyFilter('size', 'Medium')  ; toggleButton('typeMedium') "
+                [ngClass]="{'pressed': pressedButton ['typeMedium']}" class="button-filter" name="size"
+                role="checkbox" value="Medium"> Medium
+        </button>
+        <button (click)="applyFilter('size', 'Large') ; toggleButton('typLarge')"
+                [ngClass]="{'pressed': pressedButton ['typLarge'] }" class="button-filter" name="size"
+                role="checkbox" value="Large"> Large
+        </button>
+        <button (click)="applyFilter('size', 'Extra Large') ; toggleButton('typeExtra')"
+                [ngClass]="{'pressed': pressedButton ['typeExtra'] }" class="button-filter" name="size"
+                role="checkbox" value="Extra Large"> Extra Large
+        </button>
+      </div>
+      <div class="filter-group">
+        <h3>GENDER</h3>
+        <button (click)="applyFilter('gender', 'Male') ; toggleButton('typeMale')"
+                [ngClass]="{'pressed': pressedButton ['typeMale'] }" class="button-filter" name="gender"
+                role="checkbox" value="Male"> Male
+        </button>
+        <button (click)="applyFilter('gender', 'Female')  ; toggleButton('typeFemale') "
+                [ngClass]="{'pressed': pressedButton ['typeFemale']}" class="button-filter" name="gender"
+                role="checkbox" value="Female"> Female
+        </button>
+      </div>
+      <div class="filter-group">
+        <h3>CARE & BEHAVIOR</h3>
+        <button (click)="applyFilter('care', 'House trained') ; toggleButton('typeTrained')"
+                [ngClass]="{'pressed': pressedButton ['typeTrained'] }" class="button-filter" name="care"
+                role="checkbox" value="House trained"> House trained
+        </button>
+        <button (click)="applyFilter('care', 'Special Needs')  ; toggleButton('typeSpecial') "
+                [ngClass]="{'pressed': pressedButton ['typeSpecial']}" class="button-filter" name="care"
+                role="checkbox" value="Special Needs"> Special Needs
+        </button>
+      </div>
+      <div class="filter-group">
+        <h3>COAT LENGTH</h3>
+        <button (click)="applyFilter('coatLength', 'Hairless') ; toggleButton('typeHairless')"
+                [ngClass]="{'pressed': pressedButton ['typeHairless'] }" class="button-filter" name="coatLength"
+                role="checkbox" value="Hairless"> Hairless
+        </button>
+        <button (click)="applyFilter('coatLength', 'Short')  ; toggleButton('typeShort') "
+                [ngClass]="{'pressed': pressedButton ['typeShort']}" class="button-filter" name="coatLength"
+                role="checkbox" value="Short"> Short
+        </button>
+        <button (click)="applyFilter('coatLength', 'Medium') ; toggleButton('typeMediumCoat')"
+                [ngClass]="{'pressed': pressedButton ['typeMediumCoat'] }" class="button-filter" name="coatLength"
+                role="checkbox" value="Medium"> Medium
+        </button>
+        <button (click)="applyFilter('coatLength', 'Long')  ; toggleButton('typeLong') "
+                [ngClass]="{'pressed': pressedButton ['typeLong']}" class="button-filter" name="coatLength"
+                role="checkbox" value="Long"> Long
+        </button>
+      </div>
+
+      <!--      //mai e nevoie de un formular pentru rasa, culoare, nume,  centru - doar pentru getAllAnimals-->
     </form>
   </div>
+
   <div class="content-container">
     <div class="header-container">
-      <h2 *ngIf="!animalCenter">My favourite animals</h2>
-      <h2 *ngIf="animalCenter">Animals from {{ animalCenter.name }}</h2>
-      <button (click)="goToAddAnimal()" *ngIf=" animalCenterId && getUserRole() === 'SUPPLIER' && animalCenter.admin.id == user.id"
+      <h2 *ngIf="!animalCenter && !userId">Animals available for adoption ({{animals.length}})</h2>
+      <h2 *ngIf="userId"> My Favorites ({{animals.length}})</h2>
+      <h2 *ngIf="animalCenter">Animals from {{ animalCenter.name }} ({{animals.length}})</h2>
+      <button (click)="goToAddAnimal()"
+              *ngIf=" animalCenterId && getUserRole() === 'SUPPLIER' && animalCenter.admin.id == user.id"
               class="add-animal-center-button">
         ADD ANIMAL
       </button>
     </div>
 
     <div class="animal-grid">
-      <div *ngFor="let animal of animals" class="animal-card">
+      <div *ngFor="let animal of animalFiltered" class="animal-card">
         <button (click)="likeAnimal(animal)" *ngIf="user" [ngClass]="{ 'liked': isLiked(animal) }" class="like-button">
           <mat-icon>{{ isLiked(animal) ? 'favorite' : 'favorite_border' }}</mat-icon>
         </button>
@@ -26,7 +121,8 @@
              class="animal-image">
 
         <div class="description">
-          <button (click)="editAnimal(animal)" *ngIf="getUserRole() == 'SUPPLIER' && animal.author.id == user.id" mat-button>
+          <button (click)="editAnimal(animal)" *ngIf="getUserRole() == 'SUPPLIER' && animal.author.id == user.id"
+                  mat-button>
             <mat-icon>edit</mat-icon>
           </button>
 

@@ -138,7 +138,6 @@ p {
 }
 
 
-
 .login-button {
   caret-color: transparent;
   background-color: #6504B5;
@@ -240,19 +239,20 @@ mat-form-field {
 
 .animal-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 20px;
   padding: 1rem;
 }
 
 .animal-card {
-  height: 380px;
+  height: 300px;
   position: relative;
   border: 3px solid #ddd;
   border-radius: 8px; /* Rotunjirea colțurilor */
   overflow: hidden;
   transition: border-color 0.3s ease; /* Adaugă tranziție pentru efectul de hover */
 }
+
 .like-button {
   position: absolute;
   right: 3px;
@@ -291,7 +291,7 @@ button:focus {
 
 input[type="button"] {
   border: none;
-  outline:none;
+  outline: none;
 }
 
 /* Clasa adăugată când animal-ul este apreciat */
@@ -347,6 +347,38 @@ input[type="button"] {
 .description {
   display: flex;
   flex-direction: row;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.button-filter {
+  border: 1px solid #6504B5;
+  background-color: white;
+  margin-top: 0px;
+  text-align: left;
+  border-radius: 4px; /* Adaugă borduri rotunjite pentru estetică */
+  padding: -2px;
+}
+
+.button-filter {
+  width: 250px;
+  background-color: white;
+  color: black;
+}
+
+.button-filter.pressed {
+  background-color: #6504B5;
+  color: white;
+}
+
+h3 {
+  margin-bottom: 5px;
+  margin-top: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
 }

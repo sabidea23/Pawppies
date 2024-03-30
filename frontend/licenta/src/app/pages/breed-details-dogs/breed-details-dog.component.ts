@@ -86,10 +86,6 @@ export class BreedDetailsDogComponent implements OnInit {
     this.filterBreeds();
   }
 
-  test() {
-    console.log(1)
-  }
-
   filterBreeds(): void {
     // @ts-ignore
     this.dogBreeds = this.breeds.filter(breed => {
@@ -131,7 +127,6 @@ export class BreedDetailsDogComponent implements OnInit {
     } else {
       return 'Extra Large';
     }
-
   }
 
   geteaseOfTrainingLevel(breed: any): boolean {
