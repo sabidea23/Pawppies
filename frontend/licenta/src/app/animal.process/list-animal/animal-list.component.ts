@@ -20,6 +20,8 @@ export class AnimalListComponent implements OnInit {
   animalCenterId: any;
   userId: any;
   likedAnimals: any = [];
+  totalElements:any;
+  totalPages = 0;
 
   constructor(private login: LoginService, private dialog: MatDialog, private animalService: AnimalService, private router:
     Router, private route: ActivatedRoute, private snack: MatSnackBar, private animalCenterService: AnimalCenterService,
@@ -31,6 +33,7 @@ export class AnimalListComponent implements OnInit {
       this.animalService.getAnimalsByCenterId(this.animalCenterId).subscribe({
         next: (data) => {
           this.animals = data;
+          this.totalElements = this.animals.length;
           this.getImagesForAnimals();
           this.filterBreeds();
         }, error: (_) => {
@@ -40,8 +43,8 @@ export class AnimalListComponent implements OnInit {
       this.animalService.getLikedAnimals(this.user.id).subscribe({
         next: (data) => {
           this.animals = data;
+          this.totalElements = this.animals.length;
           console.log(data)
-
           this.getImagesForAnimals();
         },
       });
@@ -49,6 +52,7 @@ export class AnimalListComponent implements OnInit {
       this.animalService.getAnimals().subscribe({
         next: (data) => {
           this.animals = data;
+          this.totalElements = this.animals.length;
           this.getImagesForAnimals();
           this.filterBreeds();
         }, error: (_) => {
@@ -83,6 +87,9 @@ export class AnimalListComponent implements OnInit {
       },
     });
     this.getAllCentersNames();
+
+    this.totalPages = Math.ceil(this.totalElements / this.itemsPerPage);
+
   }
 
   public getUserRole() {
@@ -246,7 +253,7 @@ export class AnimalListComponent implements OnInit {
   }
 
   applyFilter(category: string, value: string): void {
-  //  this.currentPage = 1;
+    this.currentPage = 1;
 
     if (category === 'type') {
       if (value === 'Dog') {
@@ -266,16 +273,14 @@ export class AnimalListComponent implements OnInit {
   }
 
   filterBreeds(): void {
-    if (this.userId) {
-      this.animalFiltered = this.animals;
-      return;
-    }
-
     // @ts-ignore
     this.animalFiltered = this.animals.filter(animal => {
       return this.getAnimalsByType(animal) && this.getAnimalAge(animal) && this.getAnimalSize(animal) && this.getAnimalGender(animal)
         && this.getCare(animal) && this.getCoatLength(animal) && this.filterByName(animal) && this.filterAnimalsByBreed(animal) &&
         this.filterAnimalsByColor(animal) && this.filterAnimalsByCenter(animal)});
+
+    this.totalElements = this.animalFiltered.length;
+    this.totalPages = Math.ceil(this.totalElements / this.itemsPerPage);
   }
 
   getCoatLength(animal:any):boolean {
@@ -463,5 +468,26 @@ export class AnimalListComponent implements OnInit {
   filterAnimalsByCenter(animal :any): boolean {
     return this.selectedCenters.length ? this.selectedCenters.some(center =>
       animal.animalCenter.name.toLowerCase().includes(center.toLowerCase())) : true;
+  }
+
+
+  currentPage = 1;
+  itemsPerPage = 15;
+
+  nextPage() {
+    if (this.currentPage * this.itemsPerPage < this.totalElements) {
+      this.currentPage++;
+    }
+  }
+
+  get paginatedDogBreeds() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    return this.animalFiltered.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
   }
 }

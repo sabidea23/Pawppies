@@ -171,7 +171,6 @@
         </div>
       </div>
 
-
     </div>
   </div>
 
@@ -179,7 +178,7 @@
     <div class="header-container">
       <h2 *ngIf="!animalCenter && !userId">Animals available for adoption ({{animals.length}})</h2>
       <h2 *ngIf="userId"> My Favorites ({{animals.length}})</h2>
-      <h2 *ngIf="animalCenter">Animals from {{ animalCenter.name }} ({{animals.length}})</h2>
+      <h2 *ngIf="animalCenter">Animals from {{ animalCenter.name }} ({{animalFiltered.length}})</h2>
       <button (click)="goToAddAnimal()"
               *ngIf=" animalCenterId && getUserRole() === 'SUPPLIER' && animalCenter.admin.id == user.id"
               class="add-animal-center-button">
@@ -188,7 +187,7 @@
     </div>
 
     <div  *ngIf="!userId" class="animal-grid">
-      <div *ngFor="let animal of animalFiltered" class="animal-card">
+      <div *ngFor="let animal of paginatedDogBreeds" class="animal-card">
         <button (click)="likeAnimal(animal)" *ngIf="user" [ngClass]="{ 'liked': isLiked(animal) }" class="like-button">
           <mat-icon>{{ isLiked(animal) ? 'favorite' : 'favorite_border' }}</mat-icon>
         </button>
@@ -241,6 +240,12 @@
           </button>
         </div>
       </div>
+    </div>
+
+    <div class="pagination-controls">
+      <button (click)="prevPage()" *ngIf="currentPage > 1" class="pagination-button prev">< PREVIOUS</button>
+      <span>Page {{currentPage}}</span>
+      <button (click)="nextPage()" *ngIf="currentPage < totalPages" class="pagination-button next">NEXT ></button>
     </div>
   </div>
 </div>

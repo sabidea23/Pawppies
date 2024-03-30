@@ -416,3 +416,37 @@ h3 {
 }
 
 
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination-button {
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  width: 150px;
+  border-radius: 20px; /* Oferă butoanelor formă rotundă */
+  background-color: #6504B5;
+  font-weight: bold;
+}
+
+.pagination-button:hover {
+  background-color: #410078; /* Schimbă culoarea la hover */
+}
+
+.pagination-button.prev {
+  margin-right: 20px;
+}
+
+.pagination-button.next {
+  margin-left: 20px;
+}
