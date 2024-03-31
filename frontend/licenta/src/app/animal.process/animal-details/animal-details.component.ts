@@ -39,6 +39,21 @@ export class AnimalDetailsComponent {
     }
   }
 
+  getPreviousImageIndex() {
+    // Imaginea de dinainte de cea curentă. Se întoarce la sfârșitul listei dacă suntem la prima imagine.
+    return (this.currentImageIndex - 1 + this.animal.animalImages.length) % this.animal.animalImages.length;
+  }
+
+  getNextImageIndex() {
+    // Imaginea de după cea curentă. Se întoarce la începutul listei dacă suntem la ultima imagine.
+    return (this.currentImageIndex + 1) % this.animal.animalImages.length;
+  }
+
+  imageExists() {
+    // Verifică dacă există imagini în array-ul animalImages
+    return this.animal.animalImages && this.animal.animalImages.length >= 3;
+  }
+
   moveToPreviousImage() {
     if (this.currentImageIndex > 0) {
       this.currentImageIndex--;

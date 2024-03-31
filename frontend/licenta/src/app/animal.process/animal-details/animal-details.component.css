@@ -1,7 +1,7 @@
 
-.image-container img {
-  width: 350px; /* sau lățimea dorită */
-  height: 350px; /* sau înălțimea dorită */
+.central-picture {
+  width: 360px; /* sau lățimea dorită */
+  height: 380px; /* sau înălțimea dorită */
 }
 
 .image-container {
@@ -22,4 +22,10 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+
+.lateral-picture {
+  width: 300px;
+  height: 350px; /* sau înălțimea dorită */
+  filter: brightness(0.4);
 }
