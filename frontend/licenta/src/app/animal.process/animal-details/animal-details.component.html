@@ -147,6 +147,28 @@
     </div>
   </div>
 
+  <div class="tips-and-food">
+    <div class="tips">
+      <img *ngIf="animal.type == 'Dog'" class="adopting-image" src="../../../assets/adopting-a-dog.png">
+      <img *ngIf="animal.type == 'Cat'" class="adopting-image" src="../../../assets/adopting-a-cat.png">
+
+      <h3 class="tips-title">Tips for the first 30 days of {{animal.type}} adoption</h3>
+      <p> Help your {{animal.type}} make the transition to a new home</p>
+      <hr>
+      <button (click)="redirectToAnimalCenter()" class="tips-button" mat-button>
+        <h3 class="learn-more">Learn More</h3></button>
+    </div>
+    <div class="tips">
+      <img class="adopting-image" src="../../../assets/purina-find-food.png">
+
+      <h3 class="tips-title">Purina Pet food finder of {{animal.type}} adoption</h3>
+      <p> This handy tool finds the best food for your pet</p>
+      <hr>
+      <button (click)="redirectToPurina()" class="tips-button" mat-button>
+        <h3 class="learn-more">Learn More</h3></button>
+    </div>
+  </div>
+
   <div class="see-animals">
 
     <h1 (click)="goToAnimalsPage()" class="see-animals"> Pets Available for Adoption > </h1>
@@ -185,10 +207,12 @@
 
   <div class="see-animals">
 
-    <h1 (click)="goToAnimalsFromAnimalCenterPage()" class="see-animals"> More {{animal.type}}s from {{animal.animalCenter.name}} > </h1>
+    <h1 (click)="goToAnimalsFromAnimalCenterPage()" class="see-animals"> More {{animal.type}}s
+      from {{animal.animalCenter.name}} > </h1>
 
     <div class="animal-grid">
-      <div *ngFor="let animal of animalCenterAnimals; let isLast = last" [class]="isLast ? 'animal-card-last' : 'animal-card'">
+      <div *ngFor="let animal of animalCenterAnimals; let isLast = last"
+           [class]="isLast ? 'animal-card-last' : 'animal-card'">
         <ng-container *ngIf="isLast ; else notLastTemplate">
           <div (click)="goToAnimalsFromAnimalCenterPage()">
             <div class="animal-image">

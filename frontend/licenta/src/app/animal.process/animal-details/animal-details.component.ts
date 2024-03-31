@@ -125,6 +125,10 @@ export class AnimalDetailsComponent {
       .navigate(['/center-details', {centerId: this.animal.animalCenter.id},]);
   }
 
+  redirectToPurina() {
+    window.location.href = 'https://www.purina.com/pet-food-finder-direct?utm_campaign=nbm-petfoodfinder2022&utm_medium=display&utm_source=petfinder&utm_content=cr-pff_petfinder_listing_dog_pt-na&utm_term=';
+  }
+
   goToAnimalsPage() {
     this.router
       .navigate(['/animal'])

@@ -70,6 +70,13 @@ body {
   color: #410078;
 }
 
+.tips-and-food {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+}
 .content-container {
   font-family: 'Montserrat', sans-serif;
   flex: 0 0 78%;
@@ -230,6 +237,33 @@ h3 {
 }
 
 
+.tips {
+  background-color: white;
+  width: 500px;
+  height: 470px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tips:hover {
+  border: 3px solid #6504B5;
+}
+
+.adopting-image {
+  width: 495px;
+  height: 300px;
+}
+
+
+.tips-title {
+  color: #3e403f;
+  margin-top: 15px;
+  font-weight: 500;
+  font-size: 23px;
+}
 
 
 .animal-grid {
