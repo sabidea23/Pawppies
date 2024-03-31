@@ -137,6 +137,7 @@ export class AnimalDetailsComponent {
   showAnimals: any = [];
   animals: any = [];
   likedAnimals: any = [];
+
   displayRandomAnimals(): void {
     if (this.animals.length <= 3) {
       this.showAnimals = [...this.animals];
@@ -181,14 +182,43 @@ export class AnimalDetailsComponent {
       this.animals[i] = this.imageProcessingService.createImage(this.animals[i]);
     }
   }
+
   getFavouriteAnimals() {
     this.animalService.getAnimals().subscribe({
       next: (data) => {
         this.animals = data;
         this.displayRandomAnimals();
+        this.displayAnimalsFromAnimalCenter();
         this.getimagesShowAnimals();
       }, error: (_) => {
       },
     });
+  }
+
+  animalCenterAnimals:any[] = [];
+
+  displayAnimalsFromAnimalCenter(): void {
+    // @ts-ignore
+    // @ts-ignore
+    const filterAnimals = this.animals.filter(animal => animal.animalCenter.id == this.animal.animalCenter.id).filter(animal2 => animal2.type == this.animal.type)
+    if (this.animals.length <= 5) {
+      this.animalCenterAnimals = [...filterAnimals];
+    } else {
+      let selectedIndices = new Set<number>();
+      while (selectedIndices.size < 5) {
+        let randomIndex = Math.floor(Math.random() * filterAnimals.length);
+        selectedIndices.add(randomIndex);
+      }
+
+      this.animalCenterAnimals = [...selectedIndices].map(index => filterAnimals[index]);
+      this.animalCenterAnimals.push(this.linkSeeAnimals);
+    }
+  }
+
+  public goToAnimalsFromAnimalCenterPage() {
+    this.router
+      .navigate(['/animal', {centerId: this.animal.animalCenter.id},])
+      .then((_) => {
+      });
   }
 }

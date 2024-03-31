@@ -142,13 +142,11 @@
           </div>
 
           <button (click)="redirectToAnimalCenter()" class="more-about-center" mat-button>MORE ABOUT US</button>
-
         </div>
       </div>
     </div>
-
-
   </div>
+
   <div class="see-animals">
 
     <h1 (click)="goToAnimalsPage()" class="see-animals"> Pets Available for Adoption > </h1>
@@ -157,6 +155,42 @@
       <div *ngFor="let animal of showAnimals; let isLast = last" [class]="isLast ? 'animal-card-last' : 'animal-card'">
         <ng-container *ngIf="isLast ; else notLastTemplate">
           <div (click)="goToAnimalsPage()">
+            <div class="animal-image">
+              <mat-icon class="centered-icon">search</mat-icon>
+
+              <p class="centered-text">300+ pets available on Pawppies </p>
+            </div>
+
+            <div class="animal-last">
+              <p class="meet-animals-text">MEET THEM</p>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-template #notLastTemplate>
+          <button (click)="likeAnimal(animal)" *ngIf="user" [ngClass]="{ 'liked': isLiked(animal) }"
+                  class="like-button">
+            <mat-icon>{{ isLiked(animal) ? 'favorite' : 'favorite_border' }}</mat-icon>
+          </button>
+
+          <img [src]='animal.animalImages[0].url' class="animal-image">
+          <div class="animal-details">
+            <p class="animal-name"> {{ animal.name }} </p>
+            <p class="animal-other-details"> {{ animal.age }}, {{ animal.breed }} </p>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <div class="see-animals">
+
+    <h1 (click)="goToAnimalsFromAnimalCenterPage()" class="see-animals"> More {{animal.type}}s from {{animal.animalCenter.name}} > </h1>
+
+    <div class="animal-grid">
+      <div *ngFor="let animal of animalCenterAnimals; let isLast = last" [class]="isLast ? 'animal-card-last' : 'animal-card'">
+        <ng-container *ngIf="isLast ; else notLastTemplate">
+          <div (click)="goToAnimalsFromAnimalCenterPage()">
             <div class="animal-image">
               <mat-icon class="centered-icon">search</mat-icon>
 
