@@ -9,13 +9,16 @@
         <div id="mz-gallery-container">
           <div id="mz-gallery">
             <!-- Verifică dacă există imagini în array și afișează imaginea anterioară -->
-            <img class="lateral-picture"  *ngIf="imageExists()" [src]="animal.animalImages[getPreviousImageIndex()].url" alt="Previous Animal Image">
+            <img *ngIf="imageExists()" [src]="animal.animalImages[getPreviousImageIndex()].url"
+                 alt="Previous Animal Image"
+                 class="lateral-picture">
 
             <!-- Afișează imaginea curentă -->
-            <img class="central-picture" [src]="animal.animalImages[currentImageIndex].url" alt="Current Animal Image">
+            <img [src]="animal.animalImages[currentImageIndex].url" alt="Current Animal Image" class="central-picture">
 
             <!-- Verifică dacă există imagini în array și afișează imaginea următoare -->
-            <img class="lateral-picture" *ngIf="imageExists()" [src]="animal.animalImages[getNextImageIndex()].url" alt="Next Animal Image">
+            <img *ngIf="imageExists()" [src]="animal.animalImages[getNextImageIndex()].url" alt="Next Animal Image"
+                 class="lateral-picture">
           </div>
         </div>
 
@@ -38,3 +41,147 @@
 
   </div>
 </div>
+
+<body>
+
+<div class="container">
+  <div class="main-container">
+
+    <div class="content-container">
+      <h1> {{animal.name}} </h1>
+      <ul>
+        <li>
+          <button (click)="navigateToBreedPage()" mat-button><h2 style="color:#6504B5; margin-top: 5px">
+            <u>{{animal.breedDetails.name}} </u></h2></button>
+        </li>
+        <hr>
+        <li><h2>  {{animal.gender}}, {{animal.age}}, {{animal.size}}</h2></li>
+        <hr>
+        <li><h2> {{animal.color}}</h2></li>
+      </ul>
+
+      <hr>
+      <h3>About </h3>
+      <ul>
+        <li>
+          <p class="title-description">CHARACTERISTICS</p>
+          <h2>{{animal.description}}</h2>
+        </li>
+
+        <li>
+          <p class="title-description">COAT LENGTH</p>
+          <h2>{{animal.coatLength}}</h2>
+        </li>
+
+        <li>
+          <p class="title-description">HEALTH</p>
+          <h2>{{animal.health}}</h2>
+        </li>
+
+        <li>
+          <p class="title-description">GOOD IN A HOME WITH</p>
+          <h2>{{animal.goodInHome}}</h2>
+        </li>
+
+        <li>
+          <p class="title-description">SPECIAL NEEDS</p>
+          <h2>{{animal.care.includes('Special Needs') ? 'Yes' : 'No'}}</h2>
+        </li>
+
+        <li>
+          <p class="title-description">HOUSE-TRAINED</p>
+          <h2>{{animal.care.includes('House trained') ? 'Yes' : 'No'}}</h2>
+        </li>
+      </ul>
+
+      <div class="distance">
+
+      </div>
+      <hr>
+      <p class="title-description">
+        <mat-icon class="clopotel">notifications</mat-icon>
+        <i> Pawppies recommends that you should always read all the information about a pet before starting an adoption
+          process.
+        </i></p>
+    </div>
+
+    <div class="side-container">
+      <div class="adopt-animal">
+        <p class="text-adopt">Considering {{animal.name}} for adoption?</p>
+        <button class="start-quiz-btn" mat-button>START ADOPTION PROCESS</button>
+        <button class="read-faqs" mat-button>READ FAQs ABOUT ADOPTION</button>
+      </div>
+
+      <div class="anima-center-details">
+        <img class="image-grid" src="../../../assets/logo-shelter.png">
+        <div class="animal-center">
+          <h1> {{animal.animalCenter.name}}</h1>
+          <iframe
+            [src]="getSafeUrl()"
+            class="map"
+            height="350"
+            style="border:0"
+            width="500">
+          </iframe>
+
+          <div class="contact-container">
+            <mat-icon class="clopotel">place</mat-icon>
+            <h2 *ngIf="animal.animalCenter.city && animal.animalCenter.country"> {{animal.animalCenter.city}},
+              {{animal.animalCenter.country}} </h2>
+          </div>
+          <hr>
+          <div class="contact-container">
+            <mat-icon class="clopotel">contact_mail</mat-icon>
+            <h2 *ngIf="animal.animalCenter.contact"> {{animal.animalCenter.contact}}</h2>
+          </div>
+
+          <hr>
+          <div class="phone-container">
+            <mat-icon class="clopotel">phone</mat-icon>
+            <h2 *ngIf="animal.animalCenter.phone"> {{animal.animalCenter.phone}}</h2>
+          </div>
+
+          <button (click)="redirectToAnimalCenter()" class="more-about-center" mat-button>MORE ABOUT US</button>
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="see-animals">
+
+    <!--    <h1 (click)="goToAnimalsPage()" class="see-animals"> Pets Available for Adoption > </h1>-->
+
+    <!--    <div class="animal-grid">-->
+    <!--      <div *ngFor="let animal of showAnimals; let isLast = last" [class]="isLast ? 'animal-card-last' : 'animal-card'">-->
+    <!--        <ng-container *ngIf="isLast ; else notLastTemplate">-->
+    <!--          <div (click)="goToAnimalsPage()">-->
+    <!--            <div class="animal-image">-->
+    <!--              <mat-icon class="centered-icon">search</mat-icon>-->
+
+    <!--              <p class="centered-text">300+ pets available on Pawppies </p>-->
+    <!--            </div>-->
+
+    <!--            <div class="animal-last">-->
+    <!--              <p class="meet-animals-text">MEET THEM</p>-->
+    <!--            </div>-->
+    <!--          </div>-->
+    <!--        </ng-container>-->
+
+    <!--        <ng-template #notLastTemplate>-->
+    <!--          <button *ngIf="user" (click)="likeAnimal(animal)" [ngClass]="{ 'liked': isLiked(animal) }" class="like-button">-->
+    <!--            <mat-icon>{{ isLiked(animal) ? 'favorite' : 'favorite_border' }}</mat-icon>-->
+    <!--          </button>-->
+
+    <!--          <img [src]='animal.animalImages[0].url' class="animal-image">-->
+    <!--          <div class="animal-details">-->
+    <!--            <p class="animal-name"> {{ animal.name }} </p>-->
+    <!--            <p class="animal-other-details"> {{ animal.age }}, {{ animal.breed }} </p>-->
+    <!--          </div>-->
+    <!--        </ng-template>-->
+    <!--      </div>-->
+  </div>
+</div>
+</body>
+

@@ -5,7 +5,7 @@
 }
 
 .image-container {
-  margin-top: 20px;
+  padding-top: 50px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -13,8 +13,11 @@
 
 }
 
+mat-icon {
+  color: #EFEEF1;
+}
 .images {
-  background-color: #EFEEF1;
+  background-color: black;
 }
 
 .actions {
@@ -25,7 +28,203 @@
 }
 
 .lateral-picture {
-  width: 300px;
+  width: 250px;
   height: 350px; /* sau înălțimea dorită */
   filter: brightness(0.4);
+}
+
+
+body {
+  background-color: #EFEEF1;
+  padding-bottom: 20px;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-container {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 20px;
+  caret-color: transparent;
+  justify-content: center;
+}
+
+.see-animals {
+  text-align: center;
+  margin-top: 20px;
+  color: #6504B5;
+}
+
+.see-animals:hover {
+  margin-top: 20px;
+  color: #410078;
+}
+
+.content-container {
+  font-family: 'Montserrat', sans-serif;
+  flex: 0 0 78%;
+  width: 1000px;
+  padding: 20px;
+  background-color: white;
+}
+
+.side-container {
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+h1 {
+  font-weight: bold;
+  color: #6504B5;
+  caret-color: transparent;
+  display: block;
+  font-size: 40px;
+}
+
+h2 {
+  font-weight: normal;
+  color: #3e403f;
+}
+
+h3 {
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.title-description {
+  font-size: 20px;
+}
+
+.distance {
+  height: 70px;
+}
+
+.clopotel {
+  color: #3e403f;
+}
+
+.adopt-animal {
+  border-radius: 10px;
+  background-color: #6504B5;
+  width: 500px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-adopt {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.start-quiz-btn {
+  background-color: white;
+  color: #6504B5; /* Culoarea textului alb */
+  border: 3px solid #6504B5;
+  border-radius: 25px; /* Colțuri foarte rotunjite */
+  margin-bottom: 25px;
+  padding: 25px 30px; /* Spațiere internă pentru a mări butonul */
+  font-size: 16px; /* Mărimea fontului pentru text */
+  font-weight: bold; /* Textul bold */
+  box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.25); /* Umbră pentru 3D effect */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Tranziție animată pentru hover */
+  width: 80%;;
+}
+
+.start-quiz-btn:hover {
+  color: white;
+  background-color: #410078; /* Culoarea de fundal se schimbă la hover */
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.25); /* Umbra crește la hover */
+}
+
+.read-faqs {
+  background-color: #6504B5;
+  color: white; /* Culoarea textului alb */
+  border: 3px white #6504B5;
+  border-radius: 25px; /* Colțuri foarte rotunjite */
+  margin-bottom: 25px;
+  padding: 25px 30px; /* Spațiere internă pentru a mări butonul */
+  font-size: 16px; /* Mărimea fontului pentru text */
+  font-weight: bold; /* Textul bold */
+  box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.25); /* Umbră pentru 3D effect */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Tranziție animată pentru hover */
+  width: 80%;;
+}
+
+.read-faqs:hover {
+  color: white;
+  background-color: #410078; /* Culoarea de fundal se schimbă la hover */
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.25); /* Umbra crește la hover */
+}
+
+.image-grid {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1px solid #6504B5;
+  z-index: 3;
+}
+
+.anima-center-details {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.animal-center {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  border-radius: 10px;
+  padding-top: 80px;
+  margin-top: -60px;
+
+}
+
+.contact-container {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.more-about-center {
+  background-color: white;
+  color: #3e403f; /* Culoarea textului alb */
+  border: 3px solid #3e403f;
+  border-radius: 25px; /* Colțuri foarte rotunjite */
+  margin-bottom: 25px;
+  padding: 25px 30px; /* Spațiere internă pentru a mări butonul */
+  font-size: 16px; /* Mărimea fontului pentru text */
+  font-weight: bold; /* Textul bold */
+  box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.25); /* Umbră pentru 3D effect */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Tranziție animată pentru hover */
+  width: 80%;;
+}
+
+.more-about-center:hover {
+  color: white;
+  background-color: #3e403f; /* Culoarea de fundal se schimbă la hover */
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.25); /* Umbra crește la hover */
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {AnimalService} from "../../services/animal.service.";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ImageProcessingService} from "../../services/image-processing.service";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-animal-details',
@@ -12,7 +13,7 @@ export class AnimalDetailsComponent {
   animal: any;
 
   animalId: any;
-  constructor(private imageProcessingService: ImageProcessingService, private router: Router,  private route: ActivatedRoute, private animalService: AnimalService) { }
+  constructor(private sanitizer: DomSanitizer, private imageProcessingService: ImageProcessingService, private router: Router,  private route: ActivatedRoute, private animalService: AnimalService) { }
 
   ngOnInit() {
     this.animalId = JSON.parse(this.route.snapshot.paramMap.get('animalId') || '{}');
@@ -63,7 +64,7 @@ export class AnimalDetailsComponent {
   }
 
   toggleFullScreen() {
-    const elem = document.querySelector('.image-container img');
+    const elem = document.querySelector('.central-picture');
     if (!document.fullscreenElement) {
       // @ts-ignore
       elem.requestFullscreen().catch(err => {
@@ -89,5 +90,25 @@ export class AnimalDetailsComponent {
 
   stopSlideShow() {
     clearInterval(this.slideShowInterval);
+  }
+
+  navigateToBreedPage() {
+    if (this.animal.type == 'Dog') {
+      this.router.navigate(['/breed-dog', {dogBreedId: this.animal.breedDetails.id}]).then((_) => {
+      });
+    } else if (this.animal.type == 'Cat')  {
+      this.router.navigate(['/breed-cat', {catBreedId: this.animal.breedDetails.id}]).then((_) => {
+      });
+    }
+  }
+
+  getSafeUrl() {
+    const url = `https://www.openstreetmap.org/export/embed.html?bbox=${this.animal.animalCenter.longitude - 0.005},${this.animal.animalCenter.latitude - 0.005},${this.animal.animalCenter.longitude + 0.005},${this.animal.animalCenter.latitude + 0.005}&layer=mapnik&marker=${this.animal.animalCenter.latitude},${this.animal.animalCenter.longitude}`;
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+
+  redirectToAnimalCenter() {
+    this.router
+      .navigate(['/center-details', {centerId: this.animal.animalCenter.id},]);
   }
 }
