@@ -1,1 +1,29 @@
-<p>animal-details works!</p>
+<div id="mz-gallery-container">
+  <div id="mz-gallery">
+    <div class="images">
+
+    <div class="image-container" *ngIf="animal?.animalImages.length">
+      <button mat-icon-button (click)="moveToPreviousImage()">
+        <mat-icon>navigate_before</mat-icon>
+      </button>
+      <img [src]="animal.animalImages[currentImageIndex].url" alt="Animal Image">
+
+      <button mat-icon-button (click)="moveToNextImage()">
+        <mat-icon>navigate_next</mat-icon>
+      </button>
+    </div>
+
+      <div class="actions">
+        <button mat-icon-button (click)="slideShowInterval ? stopSlideShow() : startSlideShow()">
+          <mat-icon>{{ slideShowInterval ? 'pause' : 'play_arrow' }}</mat-icon>
+        </button>
+        <button mat-icon-button (click)="toggleFullScreen()">
+          <mat-icon>fullscreen</mat-icon>
+        </button>
+      </div>
+
+
+    </div>
+
+  </div>
+</div>

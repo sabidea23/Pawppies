@@ -1,0 +1,25 @@
+
+.image-container img {
+  width: 350px; /* sau lățimea dorită */
+  height: 350px; /* sau înălțimea dorită */
+}
+
+.image-container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.images {
+  background-color: #EFEEF1;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}

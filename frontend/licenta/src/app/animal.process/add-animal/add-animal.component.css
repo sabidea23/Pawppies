@@ -11,9 +11,9 @@ mat-form-field {
 }
 
 body {
-  background-image: url("../../../assets/animal_shelter.png") ;
+  background-image: url("../../../assets/cat0background.png") ;
   background-repeat: no-repeat;
-  background-size: 130%;
+  background-size: 150%;
   caret-color: transparent;
   padding: 20px;
 }

@@ -505,4 +505,8 @@ export class AnimalListComponent implements OnInit {
       this.currentPage--;
     }
   }
+
+  navigateToAnimalDetails(animal: any) {
+    this.router.navigate(['/animal-details', {animalId: animal.id}]);
+  }
 }

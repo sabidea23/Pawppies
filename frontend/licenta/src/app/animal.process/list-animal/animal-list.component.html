@@ -149,7 +149,6 @@
         </div>
       </div>
 
-
       <div *ngIf="(pressedButton['typeDog'] || pressedButton['typeCat']) && !(pressedButton['typeDog'] && pressedButton['typeCat'])" class="filter-group" >
         <h3>BREED</h3>
         <input class="button-filter" type="text"
@@ -188,6 +187,7 @@
 
     <div  *ngIf="!userId" class="animal-grid">
       <div *ngFor="let animal of paginatedDogBreeds" class="animal-card">
+        <a (click)="navigateToAnimalDetails(animal)">
         <button (click)="likeAnimal(animal)" *ngIf="user" [ngClass]="{ 'liked': isLiked(animal) }" class="like-button">
           <mat-icon>{{ isLiked(animal) ? 'favorite' : 'favorite_border' }}</mat-icon>
         </button>
@@ -211,11 +211,13 @@
             <mat-icon>delete</mat-icon>
           </button>
         </div>
+        </a>
       </div>
     </div>
 
     <div  *ngIf="userId"  class="animal-grid">
       <div *ngFor="let animal of animals" class="animal-card">
+        <a (click)="navigateToAnimalDetails(animal)">
         <button (click)="likeAnimal(animal)" *ngIf="user" [ngClass]="{ 'liked': isLiked(animal) }" class="like-button">
           <mat-icon>{{ isLiked(animal) ? 'favorite' : 'favorite_border' }}</mat-icon>
         </button>
@@ -239,6 +241,7 @@
             <mat-icon>delete</mat-icon>
           </button>
         </div>
+        </a>
       </div>
     </div>
 
