@@ -159,7 +159,9 @@ export class AnimalDetailsComponent {
 
   user = this.login.getUser();
 
-  public likeAnimal(animal: any) {
+  public likeAnimal(event: MouseEvent, animal: any) {
+    event.stopPropagation(); // Oprește propagarea evenimentului
+
     this.animalService.getLikeStatus(animal.id, this.user.id).subscribe({
       next: (updatedAnimal: any) => {
         this.animalService.getLikedAnimals(this.user.id).subscribe({
@@ -224,5 +226,9 @@ export class AnimalDetailsComponent {
       .navigate(['/animal', {centerId: this.animal.animalCenter.id},])
       .then((_) => {
       });
+  }
+
+  navigateToAnimalDetails(animal: any) {
+    this.router.navigate(['/animal-details', {animalId: animal.id}]);
   }
 }

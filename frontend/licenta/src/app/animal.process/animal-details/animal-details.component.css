@@ -13,9 +13,10 @@
 
 }
 
-mat-icon {
+.images-icon {
   color: #EFEEF1;
 }
+
 .images {
   background-color: black;
 }
@@ -246,6 +247,7 @@ h3 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border: 2px solid #94939b;
 }
 
 .tips:hover {

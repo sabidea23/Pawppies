@@ -125,7 +125,8 @@ export class AnimalListComponent implements OnInit {
     return this.likedAnimals.some((r: any) => r.id === animal.id);
   }
 
-  public likeAnimal(animal: any) {
+  public likeAnimal(event: MouseEvent, animal: any) {
+    event.stopPropagation(); // Oprește propagarea evenimentului
     this.animalService.getLikeStatus(animal.id, this.user.id).subscribe({
       next: (updatedAnimal: any) => {
         // Update like count directly from the response
@@ -157,7 +158,8 @@ export class AnimalListComponent implements OnInit {
     });
   }
 
-  public editAnimal(animal: any) {
+  public editAnimal(event: MouseEvent, animal: any) {
+    event.stopPropagation(); // Oprește propagarea evenimentului
 
     const dialogRef = this.dialog.open(EditAnimalComponent, {
       width: '600px', maxHeight: '800px', data: animal
@@ -220,7 +222,9 @@ export class AnimalListComponent implements OnInit {
     });
   }
 
-  public deleteAnimal(animal: any) {
+  public deleteAnimal(event: MouseEvent, animal: any) {
+    event.stopPropagation(); // Oprește propagarea evenimentului
+
     Swal.fire({
       title: 'Are you sure?',
       text: 'You will not be able to recover this animal!',

@@ -4,7 +4,7 @@
 
       <div *ngIf="animal?.animalImages.length" class="image-container">
         <button (click)="moveToPreviousImage()" mat-icon-button>
-          <mat-icon>navigate_before</mat-icon>
+          <mat-icon class="images-icon">navigate_before</mat-icon>
         </button>
         <div id="mz-gallery-container">
           <div id="mz-gallery">
@@ -23,30 +23,25 @@
         </div>
 
         <button (click)="moveToNextImage()" mat-icon-button>
-          <mat-icon>navigate_next</mat-icon>
+          <mat-icon class="images-icon">navigate_next</mat-icon>
         </button>
       </div>
 
       <div class="actions">
         <button (click)="slideShowInterval ? stopSlideShow() : startSlideShow()" mat-icon-button>
-          <mat-icon>{{ slideShowInterval ? 'pause' : 'play_arrow' }}</mat-icon>
+          <mat-icon class="images-icon">{{ slideShowInterval ? 'pause' : 'play_arrow' }}</mat-icon>
         </button>
         <button (click)="toggleFullScreen()" mat-icon-button>
-          <mat-icon>fullscreen</mat-icon>
+          <mat-icon class="images-icon">fullscreen</mat-icon>
         </button>
       </div>
-
-
     </div>
-
   </div>
 </div>
-
 <body>
 
 <div class="container">
   <div class="main-container">
-
     <div class="content-container">
       <h1> {{animal.name}} </h1>
       <ul>
@@ -140,7 +135,6 @@
             <mat-icon class="clopotel">phone</mat-icon>
             <h2 *ngIf="animal.animalCenter.phone"> {{animal.animalCenter.phone}}</h2>
           </div>
-
           <button (click)="redirectToAnimalCenter()" class="more-about-center" mat-button>MORE ABOUT US</button>
         </div>
       </div>
@@ -175,22 +169,23 @@
 
     <div class="animal-grid">
       <div *ngFor="let animal of showAnimals; let isLast = last" [class]="isLast ? 'animal-card-last' : 'animal-card'">
-        <ng-container *ngIf="isLast ; else notLastTemplate">
-          <div (click)="goToAnimalsPage()">
-            <div class="animal-image">
-              <mat-icon class="centered-icon">search</mat-icon>
+        <a (click)="navigateToAnimalDetails(animal)">
+          <ng-container *ngIf="isLast ; else notLastTemplate">
+            <div (click)="goToAnimalsPage()">
+              <div class="animal-image">
+                <mat-icon class="centered-icon">search</mat-icon>
 
-              <p class="centered-text">300+ pets available on Pawppies </p>
+                <p class="centered-text">300+ pets available on Pawppies </p>
+              </div>
+
+              <div class="animal-last">
+                <p class="meet-animals-text">MEET THEM</p>
+              </div>
             </div>
-
-            <div class="animal-last">
-              <p class="meet-animals-text">MEET THEM</p>
-            </div>
-          </div>
-        </ng-container>
-
+          </ng-container>
+        </a>
         <ng-template #notLastTemplate>
-          <button (click)="likeAnimal(animal)" *ngIf="user" [ngClass]="{ 'liked': isLiked(animal) }"
+          <button (click)="likeAnimal($event, animal)" *ngIf="user" [ngClass]="{ 'liked': isLiked(animal) }"
                   class="like-button">
             <mat-icon>{{ isLiked(animal) ? 'favorite' : 'favorite_border' }}</mat-icon>
           </button>
@@ -213,22 +208,23 @@
     <div class="animal-grid">
       <div *ngFor="let animal of animalCenterAnimals; let isLast = last"
            [class]="isLast ? 'animal-card-last' : 'animal-card'">
-        <ng-container *ngIf="isLast ; else notLastTemplate">
-          <div (click)="goToAnimalsFromAnimalCenterPage()">
-            <div class="animal-image">
-              <mat-icon class="centered-icon">search</mat-icon>
+        <a (click)="navigateToAnimalDetails(animal)">
+          <ng-container *ngIf="isLast ; else notLastTemplate">
+            <div (click)="goToAnimalsFromAnimalCenterPage()">
+              <div class="animal-image">
+                <mat-icon class="centered-icon">search</mat-icon>
 
-              <p class="centered-text">300+ pets available on Pawppies </p>
+                <p class="centered-text">300+ pets available on Pawppies </p>
+              </div>
+
+              <div class="animal-last">
+                <p class="meet-animals-text">MEET THEM</p>
+              </div>
             </div>
-
-            <div class="animal-last">
-              <p class="meet-animals-text">MEET THEM</p>
-            </div>
-          </div>
-        </ng-container>
-
+          </ng-container>
+        </a>
         <ng-template #notLastTemplate>
-          <button (click)="likeAnimal(animal)" *ngIf="user" [ngClass]="{ 'liked': isLiked(animal) }"
+          <button (click)="likeAnimal($event, animal)" *ngIf="user" [ngClass]="{ 'liked': isLiked(animal) }"
                   class="like-button">
             <mat-icon>{{ isLiked(animal) ? 'favorite' : 'favorite_border' }}</mat-icon>
           </button>

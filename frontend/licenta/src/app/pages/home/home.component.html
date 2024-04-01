@@ -33,8 +33,10 @@
 <div class="see-animals">
   <h1 (click)="goToAnimalsPage()" class="see-animals"> Pets Available for Adoption > </h1>
   <div class="animal-grid">
+
     <div *ngFor="let animal of showAnimals; let isLast = last" [class]="isLast ? 'animal-card-last' : 'animal-card'">
-      <ng-container *ngIf="isLast ; else notLastTemplate">
+      <a (click)="navigateToAnimalDetails(animal)">
+        <ng-container *ngIf="isLast ; else notLastTemplate">
         <div (click)="goToAnimalsPage()">
           <div class="animal-image">
             <mat-icon class="centered-icon">search</mat-icon>
@@ -47,9 +49,10 @@
           </div>
         </div>
       </ng-container>
+      </a>
 
       <ng-template #notLastTemplate>
-        <button (click)="likeAnimal(animal)" *ngIf="user" [ngClass]="{ 'liked': isLiked(animal) }" class="like-button">
+        <button (click)="likeAnimal($event, animal)" *ngIf="user" [ngClass]="{ 'liked': isLiked(animal) }" class="like-button">
           <mat-icon>{{ isLiked(animal) ? 'favorite' : 'favorite_border' }}</mat-icon>
         </button>
 
@@ -71,21 +74,21 @@
       <i class="fas fa-lightbulb" style="color: #6504B5; font-size: 100px;"></i>
       <h3> About Pawppies's mission</h3>
       <p class="about-details"> Read more about our beliefs and mission </p>
-      <button (click)="goToMissionPage()" mat-button class="more-about">Learn More</button>
+      <button (click)="goToMissionPage()" mat-button class="more-about">Read More</button>
     </div>
 
     <div class="misssion-class">
       <i class="fas fa-book" style="color: #6504B5; font-size: 100px;"></i>
       <h3> Read FQAs</h3>
       <p class="about-details"> Find answers to your common questions here  </p>
-      <button mat-button class="more-about">Learn More</button>
+      <button mat-button class="more-about">Read More</button>
     </div>
 
     <div class="misssion-class">
       <i class="fas fa-envelope" style="color: #6504B5; font-size: 100px"></i>
       <h3> Contact Us </h3>
       <p class="about-details"> Reach out to us for any inquiries </p>
-      <button mat-button class="more-about">Learn More</button>
+      <button mat-button class="more-about">Read More</button>
     </div>
   </div>
 </div>
