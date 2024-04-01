@@ -179,3 +179,21 @@ image-grid {
   color: white;
   cursor: pointer;
 }
+
+
+.fields-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.right-container {
+  align-self: center;
+
+}
+
+.left-container {
+  align-items: center;
+  justify-self: center;
+  margin-left: 50px;
+}
