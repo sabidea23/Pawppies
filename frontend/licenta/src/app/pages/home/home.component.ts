@@ -118,4 +118,13 @@ export class HomeComponent {
       .then((_) => {
       });
   }
+
+  goToDogBreedPage() {
+    this.router.navigate(['/breed-details-dog']).then((_) => { });
+
+  }
+
+  goToCatBreedsPage() {
+    this.router.navigate(['/breed-details-cat']).then((_) => { });
+  }
 }

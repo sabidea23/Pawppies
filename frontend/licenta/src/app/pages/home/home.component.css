@@ -270,3 +270,45 @@ h3 {
   background-color: #410078; /* Culoarea de fundal se schimbă la hover */
   box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.25); /* Umbra crește la hover */
 }
+
+
+.tips-and-food {
+  background-color: #EFEEF1;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.tips {
+  margin: 0;
+  background-color: white;
+  width: 400px;
+  height: 500px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid #94939b;
+}
+
+.tips:hover {
+  border: 3px solid #6504B5;
+}
+
+.adopting-image {
+  width: 393px;
+  height: 300px;
+}
+
+.tips-title {
+  color: #3e403f;
+  margin-top: 15px;
+  font-weight: 500;
+  font-size: 23px;
+}
+
