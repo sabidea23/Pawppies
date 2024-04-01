@@ -10,10 +10,19 @@
 
 }
 .top-container {
+  margin-top: 50px;
   display: flex;
   flex-direction: row;
   justify-content:center;
   gap: 400px
+}
+
+.mission-container {
+  background-color: white;
+  margin-bottom: 30px;
+  padding: 10px;
+  border-radius: 10px;
+  border-width: 500;
 }
 
 .left-container {
@@ -126,7 +135,6 @@ body {
   padding: 20px;
   caret-color: transparent;
   justify-content: center;
-  background-color: white;
 }
 
 
@@ -252,11 +260,11 @@ input[type="button"] {
 }
 
 .meet-animals-text {
-
   color: white;
 }
 
 .see-animals {
+  border-radius: 10px;
   max-width: 1500px;
   margin: auto;
   padding: 20px;
@@ -264,7 +272,6 @@ input[type="button"] {
   justify-content: center;
   background-color: white;
   text-align: center;
-  margin-top: 20px;
   color: #6504B5;
 }
 
