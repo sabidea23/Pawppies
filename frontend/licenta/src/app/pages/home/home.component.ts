@@ -97,4 +97,18 @@ export class HomeComponent {
     });
   }
 
+
+  goToAnimalCenterPage() {
+    this.router.navigate(['/centers']).then((_) => { });
+
+  }
+
+  goToDogAnimalPage() {
+    this.router.navigate(['/animal/'], { queryParams: { type: 'Dog'} });
+
+  }
+
+  goToCatAnimalPage() {
+    this.router.navigate(['/animal/'], { queryParams: { type: 'Cat'} });
+  }
 }

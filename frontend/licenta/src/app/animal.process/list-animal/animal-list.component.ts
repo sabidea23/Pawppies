@@ -72,13 +72,16 @@ export class AnimalListComponent implements OnInit {
       const type = params['type'];
       const breed = params['breed'];
 
-      if (type && breed) {
+      if (type) {
         // Aplică filtrele
-          this.applyFilter('type', type);
-          if (type == 'Dog')
-            this.toggleButton('typeDog');
-          else
-            this.toggleButton('typeCat');
+        this.applyFilter('type', type);
+        if (type == 'Dog')
+          this.toggleButton('typeDog');
+        else
+          this.toggleButton('typeCat');
+      }
+
+      if (breed) {
         this.addBreed(breed);
       }
     });
