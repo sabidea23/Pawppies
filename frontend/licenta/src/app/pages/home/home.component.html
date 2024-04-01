@@ -1,85 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Firma de Adopție Animăluțe</title>
-  <style>
-    /* Adaugă aici stilurile CSS */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-    }
 
-    .navbar {
-      background-color: #333;
-      color: white;
-      padding: 15px;
-      text-align: center;
-    }
+<div class="background-container">
+  <img class="background" src="../../../assets/background-home.jpg">
+  <div class="find-animals">
+    <h1 class="find-friend">Find your new best friend</h1>
+    <h2>Browse pets from our network of over 100 shelters and rescues</h2>
 
-    .hero {
-      background-image: url('path_to_your_image.jpg'); /* Înlocuiește cu calea către imaginea ta */
-      background-size: cover;
-      color: white;
-      height: 400px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: 3rem;
-    }
-
-    .section {
-      padding: 20px;
-      text-align: center;
-    }
-
-    footer {
-      background-color: #333;
-      color: white;
-      text-align: center;
-      padding: 10px;
-    }
-  </style>
-</head>
-
-<body>
-
-<header class="navbar">
-  <h1>Firma de Adopție Animăluțe</h1>
-</header>
-
-<div class="hero">
-  <h1>Adoptă un prieten pentru viață!</h1>
+    <div class="find-options">
+      <div class="find-option">
+        <i class="fas fa-dog" style="font-size: 80px; color: #6504B5"></i>
+        <p class="text-options">DOG</p>
+      </div>
+      <div class="find-option">
+        <i class="fas fa-cat" style="font-size: 80px; color: #6504B5"></i>
+        <p class="text-options">CAT</p>
+      </div>
+      <div class="find-option">
+        <i class="fas fa-fish" style="font-size: 80px; color: #6504B5"></i>
+        <p class="text-options">OTHER ANIMALS</p>
+      </div>
+      <div class="find-option">
+        <i class="fas fa-home" style="font-size: 80px; color: #6504B5"></i>
+        <p class="text-options">ANIMAL SHELTERS</p>
+      </div>
+    </div>
+  </div>
 </div>
 
-<section class="section">
-  <h2>Despre Noi</h2>
-  <p>Află mai multe despre misiunea și valorile noastre în ajutorarea animalelor.</p>
-</section>
+<div class="border">
+</div>
 
-<section class="section" style="background-color: #f4f4f4;">
-  <h2>Animale pentru Adopție</h2>
-  <p>Vezi animăluțele care așteaptă să fie adoptate.</p>
-</section>
+<div class="see-animals">
 
-<section class="section">
-  <h2>Cum să Ajuți</h2>
-  <p>Descoperă modalități prin care poți contribui la cauza noastră.</p>
-</section>
+  <h1 (click)="goToAnimalsPage()" class="see-animals"> Pets Available for Adoption > </h1>
 
-<footer>
-  <p>© 2023 Firma de Adopție Animăluțe</p>
-</footer>
+  <div class="animal-grid">
+    <div *ngFor="let animal of showAnimals; let isLast = last" [class]="isLast ? 'animal-card-last' : 'animal-card'">
+      <ng-container *ngIf="isLast ; else notLastTemplate">
+        <div (click)="goToAnimalsPage()">
+          <div class="animal-image">
+            <mat-icon class="centered-icon">search</mat-icon>
 
-</body>
+            <p class="centered-text">300+ pets available on Pawppies </p>
+          </div>
 
-</html>
+          <div class="animal-last">
+            <p class="meet-animals-text">MEET THEM</p>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-template #notLastTemplate>
+        <button (click)="likeAnimal(animal)" *ngIf="user" [ngClass]="{ 'liked': isLiked(animal) }" class="like-button">
+          <mat-icon>{{ isLiked(animal) ? 'favorite' : 'favorite_border' }}</mat-icon>
+        </button>
+
+        <img [src]='animal.animalImages[0].url' class="animal-image">
+        <div class="animal-details">
+          <p class="animal-name"> {{ animal.name }} </p>
+          <p class="animal-other-details"> {{ animal.age }}, {{ animal.breed }} </p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
