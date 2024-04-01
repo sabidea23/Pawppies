@@ -96,21 +96,19 @@ export class AnimalCenterList implements OnInit {
 
   public editAnimalCenter(animalCenter: any) {
     const dialogRef = this.dialog.open(EditAnimalCenterComponent, {
-      width: '500px', data: animalCenter
+      width: '900px', data: animalCenter,
     });
 
     dialogRef.afterClosed().subscribe(updatedData => {
       let modify = false;
       if (updatedData) {
 
-        if ((animalCenter.name != updatedData.name) || (animalCenter.city != updatedData.city) || (animalCenter.longitude != updatedData.longitude) || (animalCenter.latitude != updatedData.latitude) || (animalCenter.contact != updatedData.contact)) {
-          modify = true;
-        }
         animalCenter.name = updatedData.name;
         animalCenter.city = updatedData.city;
         animalCenter.longitude = updatedData.longitude;
         animalCenter.latitude = updatedData.latitude;
         animalCenter.contact = updatedData.contact;
+        animalCenter.mission = updatedData.mission;
         const backedUpAuthorities = animalCenter.admin.authorities;
         animalCenter.admin.authorities = undefined;
 
@@ -126,7 +124,6 @@ export class AnimalCenterList implements OnInit {
               return u;
             });
 
-            if (modify) {
               Swal.fire({
                 title: 'Edited!',
                 text: 'Your animal center has been edited.',
@@ -138,7 +135,7 @@ export class AnimalCenterList implements OnInit {
                 confirmButtonText: 'OK',
                 confirmButtonColor: '#6504B5',
               });
-            }
+
           }, error: (error) => {
             this.snack.open(error.error.message, 'OK', {
               duration: 3000,

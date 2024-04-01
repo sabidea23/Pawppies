@@ -22,6 +22,22 @@ export class EditAnimalCenterComponent {
     mission: this.animalCenter.mission
   };
 
+  public openingHours: any = {
+    mondayOpen: this.animalCenter.openingHours.mondayOpen,
+    mondayClose: this.animalCenter.openingHours.mondayClose,
+    wednesdayOpen: this.animalCenter.openingHours.wednesdayOpen,
+    wednesdayClose: this.animalCenter.openingHours.wednesdayClose,
+    thursdayOpen: this.animalCenter.openingHours.thursdayOpen,
+    thursdayClose: this.animalCenter.openingHours.thursdayClose,
+    fridayOpen: this.animalCenter.openingHours.fridayOpen,
+    fridayClose: this.animalCenter.openingHours.fridayClose,
+    tuesdayOpen: this.animalCenter.openingHours.tuesdayOpen,
+    tuesdayClose: this.animalCenter.openingHours.tuesdayClose,
+    saturdayOpen: this.animalCenter.openingHours.saturdayOpen,
+    saturdayClose: this.animalCenter.openingHours.saturdayClose,
+    sundayOpen: this.animalCenter.openingHours.sundayOpen,
+    sundayClose: this.animalCenter.openingHours.sundayClose,
+  }
   public countries:any = countries;
 
   constructor(

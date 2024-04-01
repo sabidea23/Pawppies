@@ -1,16 +1,46 @@
 mat-card {
-  max-width: 400px;
+  max-width: 1000px;
   margin: auto;
   padding: 20px;
   caret-color: transparent;
+  opacity: 0.9;
+}
+
+.left-description {
+
+  width: 500px;
+}
+
+
+.right-description {
+  display: flex;
+  flex-direction: column;
+
 }
 
 mat-form-field {
   caret-color: transparent;
-  width: 100%;
+  max-width: 80%;
+}
+
+body {
+  background-color: #EFEEF1;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  caret-color: transparent;
+  background-image: url("../../../assets/animal_shelter.png");
+  background-repeat: no-repeat;
+  background-size: 200%;
+
 }
 
 h2 {
+  caret-color: transparent;
+  display: block;
+  text-align: center;
+}
+
+h4 {
   caret-color: transparent;
   display: block;
   text-align: center;
@@ -29,13 +59,11 @@ button {
 }
 
 .social-buttons {
-  caret-color: transparent;
   display: flex;
   justify-content: space-around;
 }
 
 mat-icon {
-  caret-color: transparent;
   margin-right: 8px;
 }
 
@@ -62,33 +90,29 @@ button:hover {
 }
 
 .custom-mat-form-field input {
-  caret-color: transparent;
   margin-left: 20px;
 }
 
 .custom-mat-form-field button {
-  caret-color: transparent;
   right: 0;
   top: 0;
   margin: 12px;
 }
 
-.login-button {
-  background-color: #6504B5;
-  color: #FFFFFF;
-  margin-top: 20px;
-  border-radius: 20px;
-  width: 100%;
-  box-shadow: none;
+.login-form {
+  caret-color: transparent;
+  display: flex;
+  flex-direction: row;
+  max-height: 900px;
+  overflow-y: auto;
 }
 
-.login-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.time-fields {
+  width: 100px;
 }
 
 .custom-mat-form-field {
+  caret-color: transparent;
   height: 80px;
   padding-top: 0;
   padding-bottom: 0;
@@ -100,12 +124,18 @@ button:hover {
 }
 
 .mat-form-field-label-wrapper {
+  caret-color: transparent;
   top: -5px;
 }
 
 .mat-input-element {
+  caret-color: transparent;
   height: 40px;
   margin: 0;
+}
+
+.add-button {
+  background-color: #6504B5;
 }
 
 .cancel-button-class {
@@ -115,7 +145,7 @@ button:hover {
   box-shadow: none;
 }
 
-.confirm-button-class {
+.add_btn {
   background-color: #6504B5; /* culoarea roșie pentru butonul de update */
   color: white;
   border: none;
@@ -124,11 +154,31 @@ button:hover {
 }
 
 .button-container {
+  max-width: 500px;
   display: flex;
-  justify-content: center; /* Centrarea butoanelor orizontal */
+  justify-content: center;
+  align-items: center;
   gap: 10px; /* Distanța dintre butoane */
+}
+
+.form-directions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.textarea-input {
+  height: 250px;
+  width: 100%; /* Asigură-te că textarea se extinde pe toată lățimea posibilă */
 }
 
 * {
   caret-color: transparent;
+
 }
+
+mat-card-content {
+  overflow-y: auto; /* Adaugă scroll vertical dacă este necesar */
+}
+

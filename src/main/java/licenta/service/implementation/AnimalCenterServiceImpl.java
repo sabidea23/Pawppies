@@ -69,7 +69,8 @@ public class AnimalCenterServiceImpl implements AnimalCenterService {
         originalAnimalCenter.setPhone(animalCenter.getPhone());
         originalAnimalCenter.setLatitude(animalCenter.getLatitude());
         originalAnimalCenter.setLongitude(animalCenter.getLongitude());
-
+        originalAnimalCenter.setMission(animalCenter.getMission());
+        originalAnimalCenter.setOpeningHours(animalCenter.getOpeningHours());
         return this.animalCenterRepository.save(originalAnimalCenter);
     }
 
