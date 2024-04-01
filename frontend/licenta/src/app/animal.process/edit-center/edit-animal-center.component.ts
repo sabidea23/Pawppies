@@ -10,18 +10,6 @@ import {countries} from "../../utils/country-data-store";
   styleUrls: ['./edit-animal-center.component.css']
 })
 export class EditAnimalCenterComponent {
-
-  editData = {
-    name: this.animalCenter.name,
-    city: this.animalCenter.city,
-    country: this.animalCenter.country,
-    longitude: this.animalCenter.longitude,
-    latitude: this.animalCenter.latitude,
-    contact: this.animalCenter.contact,
-    phone: this.animalCenter.phone,
-    mission: this.animalCenter.mission
-  };
-
   public openingHours: any = {
     mondayOpen: this.animalCenter.openingHours.mondayOpen,
     mondayClose: this.animalCenter.openingHours.mondayClose,
@@ -38,6 +26,21 @@ export class EditAnimalCenterComponent {
     sundayOpen: this.animalCenter.openingHours.sundayOpen,
     sundayClose: this.animalCenter.openingHours.sundayClose,
   }
+
+  // @ts-ignore
+  editData = {
+    name: this.animalCenter.name,
+    city: this.animalCenter.city,
+    country: this.animalCenter.country,
+    longitude: this.animalCenter.longitude,
+    latitude: this.animalCenter.latitude,
+    contact: this.animalCenter.contact,
+    phone: this.animalCenter.phone,
+    mission: this.animalCenter.mission,
+    openingHours: this.openingHours
+  };
+
+
   public countries:any = countries;
 
   constructor(

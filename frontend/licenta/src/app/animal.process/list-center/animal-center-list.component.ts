@@ -109,6 +109,7 @@ export class AnimalCenterList implements OnInit {
         animalCenter.latitude = updatedData.latitude;
         animalCenter.contact = updatedData.contact;
         animalCenter.mission = updatedData.mission;
+        animalCenter.openingHours = updatedData.openingHours;
         const backedUpAuthorities = animalCenter.admin.authorities;
         animalCenter.admin.authorities = undefined;
 
