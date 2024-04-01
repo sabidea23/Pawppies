@@ -42,6 +42,7 @@
 
 <div class="container">
   <div class="main-container">
+
     <div class="content-container">
       <h1> {{animal.name}} </h1>
       <ul>
@@ -124,14 +125,11 @@
             <h2 *ngIf="animal.animalCenter.city && animal.animalCenter.country"> {{animal.animalCenter.city}},
               {{animal.animalCenter.country}} </h2>
           </div>
-          <hr>
           <div class="contact-container">
             <mat-icon class="clopotel">contact_mail</mat-icon>
             <h2 *ngIf="animal.animalCenter.contact"> {{animal.animalCenter.contact}}</h2>
           </div>
-
-          <hr>
-          <div class="phone-container">
+          <div class="contact-container">
             <mat-icon class="clopotel">phone</mat-icon>
             <h2 *ngIf="animal.animalCenter.phone"> {{animal.animalCenter.phone}}</h2>
           </div>
