@@ -111,4 +111,11 @@ export class HomeComponent {
   goToCatAnimalPage() {
     this.router.navigate(['/animal/'], { queryParams: { type: 'Cat'} });
   }
+
+  goToMissionPage() {
+    this.router
+      .navigate(['/about-pets/mission'])
+      .then((_) => {
+      });
+  }
 }

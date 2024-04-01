@@ -1,7 +1,7 @@
 .background {
   width: 100%;
   height: 400px;
-  filter: brightness(0.4);
+  filter: brightness(0.6);
   position: relative;
 }
 
@@ -82,6 +82,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
 }
 
 
@@ -91,12 +92,14 @@
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1rem;
   padding: 1rem;
+  margin-bottom: 50px;
 }
 
 .animal-card {
   width: 250px;
   height: 300px;
   position: relative;
+  background-color: white;
   border: 3px solid #ddd;
   border-radius: 8px; /* Rotunjirea colțurilor */
   overflow: hidden;
@@ -212,3 +215,58 @@ input[type="button"] {
   color: white;
 }
 
+.planning-to-adopt{
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.cards-about{
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 100px
+}
+
+.misssion-class {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
+
+h3 {
+  margin-top: 20px;
+  color: #6504B5;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+
+.more-about {
+  margin-top: 40px;
+  background-color: white;
+  color: #3e403f; /* Culoarea textului alb */
+  border: 3px solid #6504B5;
+  border-radius: 25px; /* Colțuri foarte rotunjite */
+  margin-bottom: 25px;
+  padding: 25px 30px; /* Spațiere internă pentru a mări butonul */
+  font-size: 16px; /* Mărimea fontului pentru text */
+  font-weight: bold; /* Textul bold */
+  box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.25); /* Umbră pentru 3D effect */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Tranziție animată pentru hover */
+  width: 300px;;
+}
+
+.more-about:hover {
+  color: white;
+  background-color: #410078; /* Culoarea de fundal se schimbă la hover */
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.25); /* Umbra crește la hover */
+}

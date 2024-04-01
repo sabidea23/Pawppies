@@ -8,11 +8,11 @@
     <h2>Browse pets from our network of over 100 shelters and rescues</h2>
 
     <div class="find-options">
-      <div class="find-option" (click)="goToDogAnimalPage()">
+      <div (click)="goToDogAnimalPage()" class="find-option">
         <i class="fas fa-dog" style="font-size: 80px; color: #6504B5"></i>
         <p class="text-options">DOG</p>
       </div>
-      <div class="find-option" (click)="goToCatAnimalPage()">
+      <div (click)="goToCatAnimalPage()" class="find-option">
         <i class="fas fa-cat" style="font-size: 80px; color: #6504B5"></i>
         <p class="text-options">CAT</p>
       </div>
@@ -20,21 +20,18 @@
         <i class="fas fa-fish" style="font-size: 80px; color: #6504B5"></i>
         <p class="text-options">OTHER ANIMALS</p>
       </div>
-      <div class="find-option" (click)="goToAnimalCenterPage()">
+      <div (click)="goToAnimalCenterPage()" class="find-option">
         <i class="fas fa-home" style="font-size: 80px; color: #6504B5"></i>
         <p class="text-options">ANIMAL SHELTERS</p>
       </div>
     </div>
   </div>
 </div>
-
 <div class="border">
 </div>
 
 <div class="see-animals">
-
   <h1 (click)="goToAnimalsPage()" class="see-animals"> Pets Available for Adoption > </h1>
-
   <div class="animal-grid">
     <div *ngFor="let animal of showAnimals; let isLast = last" [class]="isLast ? 'animal-card-last' : 'animal-card'">
       <ng-container *ngIf="isLast ; else notLastTemplate">
@@ -66,3 +63,30 @@
   </div>
 </div>
 
+<div class="planning-to-adopt">
+  <h1> PLANNING TO ADOPT A PET FROM OUR WEBSITE?</h1>
+
+  <div class="cards-about">
+    <div class="misssion-class">
+      <i class="fas fa-lightbulb" style="color: #6504B5; font-size: 100px;"></i>
+      <h3> About Pawppies's mission</h3>
+      <p class="about-details"> Read more about our beliefs and mission </p>
+      <button (click)="goToMissionPage()" mat-button class="more-about">Learn More</button>
+    </div>
+
+    <div class="misssion-class">
+      <i class="fas fa-book" style="color: #6504B5; font-size: 100px;"></i>
+      <h3> Read FQAs</h3>
+      <p class="about-details"> Find answers to your common questions here  </p>
+      <button mat-button class="more-about">Learn More</button>
+    </div>
+
+    <div class="misssion-class">
+      <i class="fas fa-envelope" style="color: #6504B5; font-size: 100px"></i>
+      <h3> Contact Us </h3>
+      <p class="about-details"> Reach out to us for any inquiries </p>
+      <button mat-button class="more-about">Learn More</button>
+    </div>
+  </div>
+
+</div>
