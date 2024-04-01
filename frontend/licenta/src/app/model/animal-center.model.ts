@@ -1,4 +1,3 @@
-import {FileModel} from "./file-handle.model";
 
 export interface AnimalCenterModel {
   name: '',
@@ -9,5 +8,6 @@ export interface AnimalCenterModel {
   mission: '',
   longitude: 0.0,
   latitude: 0.0,
-  phone: ''
+  phone: '',
+  openingHours?: any; // Adaugă openingHours ca un câmp opțional sau definitiv
 }

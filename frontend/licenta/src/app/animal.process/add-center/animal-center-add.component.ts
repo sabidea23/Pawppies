@@ -25,8 +25,26 @@ export class AnimalCenterAddComponent implements OnInit {
     mission: '',
     longitude: 0.0,
     latitude: 0.0,
-    phone: ''
+    phone: '',
   };
+
+  public openingHours: any = {
+    mondayOpen: '',
+    mondayClose: '',
+    wednesdayOpen: '',
+    wednesdayClose: '',
+    thursdayOpen: '',
+    thursdayClose: '',
+    fridayOpen: '',
+    fridayClose: '',
+    tuesdayOpen: '',
+    tuesdayClose: '',
+    saturdayOpen: '',
+    saturdayClose: '',
+    sundayOpen: '',
+    sundayClose: '',
+    animalCenter: ''
+  }
 
   public formInput: any = {
     name: '',
@@ -36,7 +54,7 @@ export class AnimalCenterAddComponent implements OnInit {
     mission: '',
     longitude: '',
     latitude: '',
-    phone: ''
+    phone: '',
   };
 
   constructor(
@@ -62,11 +80,13 @@ export class AnimalCenterAddComponent implements OnInit {
       this.animalCenter[key] = this.formInput[key];
     }
 
+    this.animalCenter.openingHours = this.openingHours;
     const backedUpAuthorities = this.user.authorities;
     this.user.authorities = undefined;
 
     this.animalCenter.admin = this.user;
 
+    console.log(this.animalCenter)
     this.animalCenterService.createAnimalCenter(this.animalCenter).subscribe({
       next: (data) => {
         this.user.authorities = backedUpAuthorities;

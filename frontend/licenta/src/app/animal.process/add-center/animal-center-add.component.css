@@ -1,8 +1,20 @@
 mat-card {
-  max-width: 600px;
+  max-width: 1000px;
   margin: auto;
   padding: 20px;
   caret-color: transparent;
+  opacity: 0.9;
+}
+
+.left-description {
+
+  width: 500px;
+}
+
+
+.right-description {
+  display: flex;
+  flex-direction: column;
 
 }
 
@@ -28,6 +40,11 @@ h2 {
   text-align: center;
 }
 
+h4 {
+  caret-color: transparent;
+  display: block;
+  text-align: center;
+}
 button {
   caret-color: transparent;
   width: 100%;
@@ -84,8 +101,7 @@ button:hover {
 .login-form {
   caret-color: transparent;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
 }
 
 
@@ -132,11 +148,19 @@ button:hover {
 }
 
 .button-container {
+  max-width: 500px;
   display: flex;
   justify-content: center; /* Centrarea butoanelor orizontal */
+  align-items: center;
   gap: 10px; /* Distanța dintre butoane */
 }
 
+.form-directions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .textarea-input {
   height:250px;
   width: 100%; /* Asigură-te că textarea se extinde pe toată lățimea posibilă */

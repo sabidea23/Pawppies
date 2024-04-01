@@ -44,8 +44,8 @@ public class AnimalCenterServiceImpl implements AnimalCenterService {
                 .country(requestDTO.getCountry())
                 .phone(requestDTO.getPhone())
                 .mission(requestDTO.getMission())
+                .openingHours(requestDTO.getOpeningHours())
                 .build();
-
         User admin = userRepository.findById(requestDTO.getAdmin().getId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
         animalCenter.setAdmin(admin);
@@ -105,6 +105,7 @@ public class AnimalCenterServiceImpl implements AnimalCenterService {
                 .mission(animalCenter.getMission())
                 .phone(animalCenter.getPhone())
                 .admin(animalCenter.getAdmin())
+                .openingHours(animalCenter.getOpeningHours())
                 .build();
     }
 

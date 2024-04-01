@@ -4,7 +4,8 @@ body {
   padding-bottom: 20px;
   margin: 0;
   font-family: 'Montserrat', sans-serif;
-  height: 750px;
+  min-height: 100vh; /* Folosește înălțimea minimă în loc de înălțime fixă */
+
 }
 
 .centers-table {

@@ -58,5 +58,10 @@ public class AnimalCenter {
     @OneToMany(mappedBy = "animalCenter", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<Animal> animals;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "opening_hours_id", referencedColumnName = "id")
+    @JsonIgnore
+    private OpeningHours openingHours;
 }
 

@@ -1,5 +1,6 @@
 package licenta.dto;
 
+import licenta.entity.OpeningHours;
 import licenta.entity.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,4 +19,5 @@ public class AnimalCenterRequestDTO {
     private String phone;
     private String mission;
     private User admin;
+    private OpeningHours openingHours;
 }
