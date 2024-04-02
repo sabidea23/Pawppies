@@ -24,6 +24,8 @@ import {KidsDogsComponent} from "./pages/kids-dogs/kids-dogs.component";
 import {PopularDogsComponent} from "./pages/popular-dogs/popular-dogs.component";
 import {BreedCatComponent} from "./pages/breed-cat/breed-cat.component";
 import {AnimalDetailsComponent} from "./animal.process/animal-details/animal-details.component";
+import {ContactComponent} from "./pages/contact/contact.component";
+import {FaqsComponent} from "./pages/faqs/faqs.component";
 
 const routes: Routes = [{
   path: '', component: HomeComponent, pathMatch: 'full',
@@ -38,6 +40,10 @@ const routes: Routes = [{
 }, {
   path: 'breed-details-cat', component: BreedDetailsCatComponent, pathMatch: 'full',
 }, {
+  path: 'faqs', component: FaqsComponent, pathMatch: 'full',
+}, {
+  path: 'contact', component: ContactComponent, pathMatch: 'full',
+}, {
   path: 'about-pets/mission', component: MissionComponent, pathMatch: 'full',
 }, {
   path: 'breed-dog', component: BreedDogComponent, pathMatch: 'full',
@@ -51,8 +57,7 @@ const routes: Routes = [{
   path: 'center-details', component: CenterDetailsComponent,
 }, {
   path: 'animal-details', component: AnimalDetailsComponent,
-},
-  {
+}, {
   path: 'cutest-dogs', component: CutestDogsComponent,
 }, {
   path: 'apartments-dogs', component: ApartamnetsDogsComponent,
@@ -62,8 +67,7 @@ const routes: Routes = [{
   path: 'popular-dogs', component: PopularDogsComponent,
 }, {
   path: 'breed-cat', component: BreedCatComponent,
-},
-  {
+}, {
   path: 'animal', component: AnimalListComponent,
 }, {
   path: 'my-fav-animals', component: AnimalListComponent,
