@@ -55,7 +55,7 @@ public class User implements UserDetails {
     @NotNull
     private Double latitude;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "admin")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "admin")
     @JsonIgnore
     private Set<AnimalCenter> animalCenters = new HashSet<>();
 
