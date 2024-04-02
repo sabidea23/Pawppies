@@ -57,21 +57,26 @@
       </ul>
 
       <hr>
-      <h3>About </h3>
+      <h3>About {{animal.name}} </h3>
       <ul>
         <li>
-          <p class="title-description">CHARACTERISTICS</p>
+          <p class="title-description">DESCRIPTION</p>
           <h2>{{animal.description}}</h2>
-        </li>
-
-        <li>
-          <p class="title-description">COAT LENGTH</p>
-          <h2>{{animal.coatLength}}</h2>
         </li>
 
         <li>
           <p class="title-description">HEALTH</p>
           <h2>{{animal.health}}</h2>
+          <h2> {{animal.name}} is fully vaccinated: {{animal.isFullyVaccinated ? 'Yes' : 'No'}}</h2>
+          <h2 *ngIf="animal.isFullyVaccinated">{{animal.vaccinationDetails}}</h2>
+          <h2> {{animal.name}} has special needs: {{animal.hasSpecialNeeds ? 'Yes' : 'No'}}</h2>
+          <h2 *ngIf="animal.hasSpecialNeeds">{{animal.specialNeedsDetails}}</h2>
+        </li>
+
+        <li>
+          <p class="title-description">TRAINING</p>
+          <h2>The animals is trained: {{animal.isTrained ? 'Yes' : 'No'}}</h2>
+          <h2 *ngIf="animal.isTrained">{{animal.trainedDetails}}</h2>
         </li>
 
         <li>
@@ -79,11 +84,35 @@
           <h2>{{animal.goodInHome}}</h2>
         </li>
 
+        <li>
+          <p class="title-description">SHEDS</p>
+          <h2>{{animal.sheds ? 'Yes' : 'No'}}</h2>
+        </li>
+
+        <li>
+          <p class="title-description">MAINTENANCE COSTS</p>
+          <h2>{{animal.maintenanceCosts}}</h2>
+        </li>
+
+        <li>
+          <p class="title-description">PREFERRED FOOD</p>
+          <h2>{{animal.preferredFoodDescription}}</h2>
+        </li>
+
+        <li>
+          <p class="title-description">PREVIOUS OWNERS</p>
+          <h2>{{animal.hasPreviousOwners ? 'Yes' : 'No'}}</h2>
+        </li>
+
+        <li>
+          <p class="title-description">BREED DETAILS</p>
+          <h2> {{animal.breedDetails.description}}</h2>
+          <h2> For more information about this breed,
+            <a (click)="navigateToBreedPage()" mat-button><h2 style="color:#6504B5; margin-top: 5px">
+              <u>click here </u></h2></a>
+          </h2>
+        </li>
       </ul>
-
-      <div class="distance">
-
-      </div>
       <hr>
       <p class="title-description">
         <mat-icon class="clopotel">notifications</mat-icon>
