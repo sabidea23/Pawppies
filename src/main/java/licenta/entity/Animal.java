@@ -23,69 +23,79 @@ public class Animal {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull
     @Column(length = 100)
     private String name;
 
-    @NotNull
     @Column()
     private String age;
 
-    @NotNull
     @Column(length = 300)
     private String gender;
 
-    @NotNull
     @Column(length = 100)
     private String size;
 
-    @NotNull
     @Column(length = 100)
     private String coatLength;
 
-    @NotNull
-    @Column(length = 2000)
     private String type;
     
-    @NotNull
-    @Column(length = 2000)
+    @Column(length = 1000)
     private String health;
 
-    @NotNull
-    @Column(length = 2000)
-    private String care;
-
-    @NotNull
     @Column(length = 100)
     private String color;
 
-    @NotNull
     @Column(length = 2000)
     private String description;
 
-    @NotNull
     @Column(length = 100)
     private String goodInHome;
 
-    @NotNull
     @Column()
     private LocalDate postedDate;
 
-    @NotNull
     @Column()
     private Boolean isAdopted;
 
-    @NotNull
+    @Column()
+    private Boolean isFullyVaccinated;
+
+    @Column(length = 1000)
+    private String vaccinationDetails;
+    
+    @Column()
+    private Boolean isTrained;
+
+    @Column(length = 1000)
+    private String trainedDetails;
+
+    @Column()
+    private Boolean hasSpecialNeeds;
+
+    @Column(length = 1000)
+    private String specialNeedsDetails;
+
+    @Column()
+    private Boolean sheds;
+
+    @Column(length = 100)
+    private String maintenanceCosts;
+
+    @Column(length = 1000)
+    private String preferredFoodDescription;
+
+    @Column
+    private Boolean hasPreviousOwners;
+
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private User author;
 
-    @NotNull
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private AnimalCenter animalCenter;
 
-    @NotNull
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "breed_details_id")
@@ -95,7 +105,6 @@ public class Animal {
     @ElementCollection
     private Set<Long> liked_by = new HashSet<>();
 
-    @NotNull
     private int likes;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

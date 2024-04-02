@@ -171,7 +171,7 @@ export class AnimalListComponent implements OnInit {
       if (updatedData) {
 
         if ((animal.name != updatedData.name) || (animal.age != updatedData.age) || (animal.size != updatedData.size) ||
-          (animal.coatLength != updatedData.coatLength) || (animal.health != animal.health) || (animal.care != animal.care)
+          (animal.coatLength != updatedData.coatLength) || (animal.health != animal.health)
           || (animal.description != animal.description)) {
           modify = true;
         }
@@ -180,7 +180,6 @@ export class AnimalListComponent implements OnInit {
         animal.size = updatedData.size;
         animal.coatLength = updatedData.coatLength;
         animal.health = updatedData.health;
-        animal.care = updatedData.care;
         animal.description = updatedData.description;
         animal.animalImages = updatedData.animalImages;
         const backedUpAuthorities = animal.author.authorities;
@@ -262,7 +261,6 @@ export class AnimalListComponent implements OnInit {
     age: [],
     size: [],
     gender: [],
-    care: [],
     coatLength: []
   };
 
@@ -298,7 +296,7 @@ export class AnimalListComponent implements OnInit {
     // @ts-ignore
     this.animalFiltered = this.animals.filter(animal => {
       return this.getAnimalsByType(animal) && this.getAnimalAge(animal) && this.getAnimalSize(animal) && this.getAnimalGender(animal)
-        && this.getCare(animal) && this.getCoatLength(animal) && this.filterByName(animal) && this.filterAnimalsByBreed(animal) &&
+         && this.getCoatLength(animal) && this.filterByName(animal) && this.filterAnimalsByBreed(animal) &&
         this.filterAnimalsByColor(animal) && this.filterAnimalsByCenter(animal)});
 
     this.totalElements = this.animalFiltered.length;
@@ -318,14 +316,6 @@ export class AnimalListComponent implements OnInit {
     return !(this.filters.coatLength && this.filters.coatLength.length > 0 && !this.filters.coatLength.includes(coatLength));
   }
 
-  getCare(animal: any):boolean {
-    let care = '';
-    if (animal.care.includes('Special Needs'))
-      care = 'Special Needs'
-    else  if (animal.care.includes('House trained'))
-      care = 'House trained'
-    return !(this.filters.care && this.filters.care.length > 0 && !this.filters.care.includes(care));
-  }
 
   getAnimalSize(animal:any): boolean {
     let size = '';

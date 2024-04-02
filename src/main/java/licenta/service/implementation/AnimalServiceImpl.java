@@ -50,7 +50,6 @@ public class AnimalServiceImpl implements AnimalService {
                 .coatLength(animalRequestDTO.getCoatLength())
                 .type(animalRequestDTO.getType())
                 .health(animalRequestDTO.getHealth())
-                .care(animalRequestDTO.getCare())
                 .color(animalRequestDTO.getColor())
                 .description(animalRequestDTO.getDescription())
                 .goodInHome(animalRequestDTO.getGoodInHome())
@@ -60,6 +59,16 @@ public class AnimalServiceImpl implements AnimalService {
                 .author(animalRequestDTO.getAuthor())
                 .breedDetails(animalRequestDTO.getBreedDetails())
                 .animalImages(imageModels)
+                .isFullyVaccinated(animalRequestDTO.getIsFullyVaccinated())
+                .vaccinationDetails(animalRequestDTO.getVaccinationDetails())
+                .isTrained(animalRequestDTO.getIsTrained())
+                .trainedDetails(animalRequestDTO.getTrainedDetails())
+                .hasSpecialNeeds(animalRequestDTO.getHasSpecialNeeds())
+                .specialNeedsDetails(animalRequestDTO.getSpecialNeedsDetails())
+                .sheds(animalRequestDTO.getSheds())
+                .maintenanceCosts(animalRequestDTO.getMaintenanceCosts())
+                .preferredFoodDescription(animalRequestDTO.getPreferredFoodDescription())
+                .hasPreviousOwners(animalRequestDTO.getHasPreviousOwners())
                 .build();
 
         Animal savedAnimal = this.animalRepository.save(animal);
@@ -76,7 +85,6 @@ public class AnimalServiceImpl implements AnimalService {
                 .coatLength(animal.getCoatLength())
                 .type(animal.getType())
                 .health(animal.getHealth())
-                .care(animal.getCare())
                 .color(animal.getColor())
                 .description(animal.getDescription())
                 .goodInHome(animal.getGoodInHome())
@@ -88,6 +96,16 @@ public class AnimalServiceImpl implements AnimalService {
                 .liked_by(animal.getLiked_by())
                 .likes(animal.getLikes())
                 .animalImages(animal.getAnimalImages())
+                .isFullyVaccinated(animal.getIsFullyVaccinated())
+                .vaccinationDetails(animal.getVaccinationDetails())
+                .isTrained(animal.getIsTrained())
+                .trainedDetails(animal.getTrainedDetails())
+                .hasSpecialNeeds(animal.getHasSpecialNeeds())
+                .specialNeedsDetails(animal.getSpecialNeedsDetails())
+                .sheds(animal.getSheds())
+                .maintenanceCosts(animal.getMaintenanceCosts())
+                .preferredFoodDescription(animal.getPreferredFoodDescription())
+                .hasPreviousOwners(animal.getHasPreviousOwners())
                 .build();
     }
 
@@ -113,7 +131,6 @@ public class AnimalServiceImpl implements AnimalService {
         originalAnimal.setCoatLength(animalDetails.getCoatLength());
         originalAnimal.setType(animalDetails.getType());
         originalAnimal.setHealth(animalDetails.getHealth());
-        originalAnimal.setCare(animalDetails.getCare());
         originalAnimal.setDescription(animalDetails.getDescription());
         originalAnimal.setPostedDate(animalDetails.getPostedDate());
         originalAnimal.setIsAdopted(animalDetails.getIsAdopted());

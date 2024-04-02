@@ -63,17 +63,7 @@
                 role="checkbox" value="Female"> Female
         </button>
       </div>
-      <div class="filter-group">
-        <h3>CARE & BEHAVIOR</h3>
-        <button (click)="applyFilter('care', 'House trained') ; toggleButton('typeTrained')"
-                [ngClass]="{'pressed': pressedButton ['typeTrained'] }" class="button-filter" name="care"
-                role="checkbox" value="House trained"> House trained
-        </button>
-        <button (click)="applyFilter('care', 'Special Needs')  ; toggleButton('typeSpecial') "
-                [ngClass]="{'pressed': pressedButton ['typeSpecial']}" class="button-filter" name="care"
-                role="checkbox" value="Special Needs"> Special Needs
-        </button>
-      </div>
+
       <div class="filter-group">
         <h3>COAT LENGTH</h3>
         <button (click)="applyFilter('coatLength', 'Hairless') ; toggleButton('typeHairless')"

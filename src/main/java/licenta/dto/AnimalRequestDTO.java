@@ -21,16 +21,23 @@ public class AnimalRequestDTO {
     private String coatLength;
     private String type;
     private String health;
-    private String care;
     private String color;
     private String description;
     private String goodInHome;
     private LocalDate postedDate;
     private Boolean isAdopted;
-    private User author;  // Trimiterea întregului obiect User
-    private AnimalCenter animalCenter;  // Trimiterea întregului obiect AnimalCenter
-    private BreedDetails breedDetails;  // Trimiterea întregului obiect BreedDetails
-    private Set<ImageModel> animalImages;  // Setul de imagini poate fi trimis dacă este necesar
-
-    // Getters și setters pentru toate câmpurile
+    private User author;
+    private AnimalCenter animalCenter;
+    private BreedDetails breedDetails;
+    private Set<ImageModel> animalImages;
+    private Boolean isFullyVaccinated;
+    private String vaccinationDetails;
+    private Boolean isTrained;
+    private String trainedDetails;
+    private Boolean hasSpecialNeeds;
+    private String specialNeedsDetails;
+    private Boolean sheds;
+    private String maintenanceCosts;
+    private String preferredFoodDescription;
+    private Boolean hasPreviousOwners;
 }

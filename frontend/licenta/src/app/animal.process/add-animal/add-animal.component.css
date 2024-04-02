@@ -73,6 +73,7 @@ button:hover {
   position: relative;
   width: 100%;
   max-height: 150px;
+
 }
 
 .custom-mat-form-field button {
@@ -159,6 +160,7 @@ image-grid {
   gap: 20px;
   margin-top: 20px;
 }
+
 .image-grid img {
   width: 160px;
   height: 160px;
@@ -184,16 +186,21 @@ image-grid {
 .fields-container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  width: 100%; /* Asigură-te că ocupă întreaga lățime disponibilă */
 }
 
+.left-container,
 .right-container {
-  align-self: center;
+  width: 50%; /* Fiecare container va ocupa 50% din lățimea părintelui */
+  box-sizing: border-box; /* Include padding și border în lățimea totală */
+}
 
+/* Oferă un padding pentru a nu avea conținutul lipit de marginile containerului */
+.left-container,
+.right-container {
+  padding: 10px; /* Ajustează valoarea conform nevoilor de design */
 }
 
 .left-container {
-  align-items: center;
-  justify-self: center;
   margin-left: 50px;
 }

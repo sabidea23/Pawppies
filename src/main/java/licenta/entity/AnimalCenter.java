@@ -36,7 +36,7 @@ public class AnimalCenter {
     @NotNull
     private String city;
 
-    @Column()
+    @Column(length = 2000)
     @NotNull
     private String mission;
 

@@ -1,6 +1,5 @@
 package licenta.controller;
 
-import com.sun.istack.NotNull;
 import licenta.dto.AnimalRequestDTO;
 import licenta.dto.AnimalResponseDTO;
 import licenta.exeptions.ForbiddenActionForRole;
@@ -103,7 +102,13 @@ public class AnimalController {
 
     @DeleteMapping("/{animalId}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void deleteAnimal(@PathVariable("animalId") Long id) {
-        this.animalService.deleteAnimal(id);
+    public void deleteAnimal(@PathVariable("animalId") Long id, Authentication authentication) {
+        if (authentication != null && authentication.getAuthorities().stream()
+                .anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+            this.animalService.deleteAnimal(id);
+        }
+        else {
+            throw new ForbiddenActionForRole("You do not have the right permissions to do this action");
+        }
     }
 }

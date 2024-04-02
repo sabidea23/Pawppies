@@ -96,6 +96,7 @@
               <mat-option value="Long">Long</mat-option> <!-- Am schimbat "Large" cu "Long" -->
             </mat-select>
           </mat-form-field>
+
           <mat-form-field appearance="fill" class="custom-mat-form-field">
             <mat-label>
               <mat-icon>pets</mat-icon>
@@ -107,20 +108,64 @@
               <mat-option value="Children">Children</mat-option>
             </mat-select>
           </mat-form-field>
+
+          <div class="custom-mat-form-field">
+            <mat-label>
+              Fully Vaccinated
+            </mat-label>
+            <mat-checkbox [(ngModel)]="petProfile.inputIsFullyVaccinated" name="isFullyVaccinated">
+              Yes
+            </mat-checkbox>
+          </div>
+
+          <mat-form-field appearance="fill" class="custom-mat-form-field-text" *ngIf="petProfile.inputIsFullyVaccinated">
+            <mat-label>
+              <mat-icon>description</mat-icon>
+              Vaccination Details
+            </mat-label>
+            <textarea [(ngModel)]="petProfile.inputVaccinationDetails" class="vaccinationDetails" matInput
+                      name="vaccinationDetails" placeholder="Add a detailed description"></textarea>
+          </mat-form-field>
+
+          <div class="custom-mat-form-field">
+            <mat-label>
+              Has Special Needs
+            </mat-label>
+            <mat-checkbox [(ngModel)]="petProfile.inputHasSpecialNeeds"  name="hasSpecialNeeds">
+              Yes
+            </mat-checkbox>
+          </div>
+
+          <mat-form-field appearance="fill" class="custom-mat-form-field-text" *ngIf="petProfile.inputHasSpecialNeeds">
+            <mat-label>
+              <mat-icon>description</mat-icon>
+              Special Needs Details
+            </mat-label>
+            <textarea [(ngModel)]="petProfile.inputSpecialNeedsDetails" class="textarea-input" matInput
+                      name="specialNeedsDetails" placeholder="Add a detailed description"></textarea>
+          </mat-form-field>
+
+
+          <div class="custom-mat-form-field-text">
+            <mat-label>
+              Has Previous Owners
+            </mat-label>
+            <mat-checkbox [(ngModel)]="petProfile.inputHasPreviousOwners" name="hasPreviousOwners">
+              Yes
+            </mat-checkbox>
+          </div>
+
+          <div class="custom-mat-form-field">
+            <mat-label>
+              Sheds
+            </mat-label>
+            <mat-checkbox [(ngModel)]="petProfile.inputSheds"  name="sheds">
+              Yes
+            </mat-checkbox>
+          </div>
         </div>
 
         <div class="right-container">
-          <mat-form-field appearance="fill" class="custom-mat-form-field">
-            <mat-label>
-              <mat-icon>healing</mat-icon>
-              Care & Behavior
-            </mat-label>
-            <mat-select [(ngModel)]="petProfile.inputCare" multiple name="care">
-              <mat-option value="House trained">House trained</mat-option>
-              <mat-option value="Special Needs">Special Needs</mat-option>
-            </mat-select>
-          </mat-form-field>
-
           <mat-form-field appearance="fill" class="custom-mat-form-field">
             <mat-label>
               <mat-icon>palette</mat-icon>
@@ -129,6 +174,45 @@
             <mat-select [(ngModel)]="petProfile.inputColors" multiple name="colors">
               <mat-option *ngFor="let color of colorOptions" [value]="color">{{ color }}</mat-option>
             </mat-select>
+          </mat-form-field>
+
+          <div class="custom-mat-form-field">
+            <mat-label>
+              Is Trained
+            </mat-label>
+            <mat-checkbox [(ngModel)]="petProfile.inputIsTrained" name="isTrained">
+              Yes
+            </mat-checkbox>
+          </div>
+
+          <mat-form-field appearance="fill" class="custom-mat-form-field-text" *ngIf="petProfile.inputIsTrained">
+            <mat-label>
+              <mat-icon>description</mat-icon>
+              Trained Details
+            </mat-label>
+            <textarea [(ngModel)]="petProfile.inputTrainedDetails" class="textarea-input" matInput
+                      name="trainedDetails" placeholder="Add a detailed description"></textarea>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="custom-mat-form-field-text">
+            <mat-label>
+              <mat-icon>description</mat-icon>
+              Maintanance Costs
+            </mat-label>
+            <mat-select [(ngModel)]="petProfile.inputMaintenanceCosts"  name="maintenanceCosts">
+              <mat-option value="Low">Low</mat-option>
+              <mat-option value="Medium">Medium</mat-option>
+              <mat-option value="Hight">Hight</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="custom-mat-form-field-text">
+            <mat-label>
+              <mat-icon>description</mat-icon>
+              Preferred Food Description
+            </mat-label>
+            <textarea [(ngModel)]="petProfile.inputPreferredFoodDescription" class="textarea-input" matInput
+                      name="preferredFoodDescription" placeholder="Add a detailed description"></textarea>
           </mat-form-field>
 
           <mat-form-field appearance="fill" class="custom-mat-form-field-text">
@@ -148,7 +232,6 @@
             <textarea [(ngModel)]="petProfile.inputHealth" class="textarea-input" matInput maxlength="2000"
                       name="health" placeholder="Provide any health-related information"></textarea>
           </mat-form-field>
-
 
           <input #selectFile (change)="onFileSelected($event)" class="input-images" multiple type="file">
 

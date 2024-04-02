@@ -30,9 +30,19 @@ export class AddAnimalComponent implements OnInit {
     inputType: undefined,
     inputBreed: undefined,
     inputHealth: undefined,
-    inputCare: undefined,
     inputColors: [],
-    inputDescription: undefined
+    inputDescription: undefined,
+
+    inputIsFullyVaccinated: false,
+    inputVaccinationDetails: '-',
+    inputIsTrained: false,
+    inputTrainedDetails: '-',
+    inputHasSpecialNeeds: false,
+    inputSpecialNeedsDetails: '-',
+    inputSheds: false,
+    inputMaintenanceCosts: undefined,
+    inputPreferredFoodDescription: undefined,
+    inputHasPreviousOwners: undefined,
   };
 
   // @ts-ignore
@@ -42,7 +52,6 @@ export class AddAnimalComponent implements OnInit {
     description: undefined,
     type: undefined,
     color: undefined,
-    care: undefined,
     goodInHome: undefined,
     coatLength: undefined,
     age: undefined,
@@ -51,7 +60,18 @@ export class AddAnimalComponent implements OnInit {
     animalCenter: undefined,
     author: undefined,
     breedDetails: undefined,
-    animalImages: []
+    animalImages: [],
+
+    isFullyVaccinated: false,
+    vaccinationDetails: undefined,
+    isTrained: false,
+    trainedDetails: undefined,
+    hasSpecialNeeds: false,
+    specialNeedsDetails: undefined,
+    sheds: false,
+    maintenanceCosts: undefined,
+    preferredFoodDescription: undefined,
+    hasPreviousOwners: false
   };
 
   isOtherSelected: boolean = false;
@@ -93,14 +113,25 @@ export class AddAnimalComponent implements OnInit {
     this.animal.size = this.petProfile.inputSize;
     this.animal.gender = this.petProfile.inputGender;
     this.animal.age = this.petProfile.inputAge;
-    this.animal.care = this.petProfile.inputCare.join(', ');
     this.animal.health = this.petProfile.inputHealth;
     this.animal.description = this.petProfile.inputDescription;
     this.animal.coatLength = this.petProfile.inputCoatLength;
     this.animal.goodInHome = this.petProfile.inputGoodInHome.join(', ')
     this.animal.type = this.petProfile.inputType;
 
+    this.animal.isFullyVaccinated = this.petProfile.inputIsFullyVaccinated;
+    this.animal.isTrained = this.petProfile.inputIsTrained;
+    this.animal.hasSpecialNeeds = this.petProfile.inputHasSpecialNeeds;
+    this.animal.hasPreviousOwners = this.petProfile.inputHasPreviousOwners;
+    this.animal.vaccinationDetails = this.petProfile.inputVaccinationDetails;
+    this.animal.trainedDetails = this.petProfile.inputTrainedDetails;
+    this.animal.specialNeedsDetails = this.petProfile.inputSpecialNeedsDetails;
+    this.animal.sheds = this.petProfile.inputSheds;
+    this.animal.maintenanceCosts = this.petProfile.inputMaintenanceCosts;
+    this.animal.preferredFoodDescription = this.petProfile.inputPreferredFoodDescription;
+
     const backedUpUserAuthorities = this.user.authorities;
+    console.log(this.animal)
     this.user.authorities = undefined;
     this.animal.author = this.user;
     this.animal.animalCenter = this.animalCenter;
@@ -123,8 +154,7 @@ export class AddAnimalComponent implements OnInit {
               title: 'Success!', text: 'Animal added successfully', icon: 'success', background: 'rgb(230, 230, 230)',
             }).then((_) => {
               const user_role = this.login.getUserRole();
-              if (user_role == 'SUPPLIER')
-                this.router
+              if (user_role == 'SUPPLIER') this.router
                 .navigate(['/animal/', {centerId: this.animalCenterId},])
                 .then((_) => {
                 });
@@ -198,18 +228,29 @@ export class AddAnimalComponent implements OnInit {
   }
 
   clearForm() {
-    this.petProfile.inputName = '';
-    this.petProfile.inputAge = '';
-    this.petProfile.inputSize = '';
-    this.petProfile.inputGender = '';
-    this.petProfile.inputCoatLength = '';
-    this.petProfile.inputType = '';
-    this.petProfile.inputColors = '';
-    this.petProfile.inputCare = '';
-    this.petProfile.inputDescription = '';
-    this.petProfile.inputHealth = '';
-    this.petProfile.inputBreed = '';
-    this.petProfile.inputGoodInHome = '';
-    this.animal.animalImages = [];
+    this.petProfile = {
+      inputName: '',
+      inputAge: '',
+      inputGender: '',
+      inputSize: '',
+      inputCoatLength: '',
+      inputType: '',
+      inputBreed: '',
+      inputHealth: '',
+      inputColors: [],
+      inputDescription: '',
+      inputGoodInHome: [],
+      inputIsFullyVaccinated: 0,  // Presupunem că "0" este valoarea implicită pentru "nu"
+      inputVaccinationDetails: '',
+      inputIsTrained: 0,  // Presupunem că "0" este valoarea implicită pentru "nu"
+      inputTrainedDetails: '',
+      inputHasSpecialNeeds: 0,  // Presupunem că "0" este valoarea implicită pentru "nu"
+      inputSpecialNeedsDetails: '',
+      inputSheds: 0,  // Presupunem că "0" este valoarea implicită pentru "nu"
+      inputMaintenanceCosts: '',
+      inputPreferredFoodDescription: '',
+      inputHasPreviousOwners: 0,  // Presupunem că "0" este valoarea implicită pentru "nu"
+    }
   }
+
 }

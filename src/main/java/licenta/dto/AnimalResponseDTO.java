@@ -22,7 +22,6 @@ public class AnimalResponseDTO {
     private String coatLength;
     private String type;
     private String health;
-    private String care;
     private String color;
     private String description;
     private String goodInHome;
@@ -35,4 +34,14 @@ public class AnimalResponseDTO {
     private int likes;
     private Set<ImageModel> animalImages;
 
+    private Boolean isFullyVaccinated;
+    private String vaccinationDetails;
+    private Boolean isTrained;
+    private String trainedDetails;
+    private Boolean hasSpecialNeeds;
+    private String specialNeedsDetails;
+    private Boolean sheds;
+    private String maintenanceCosts;
+    private String preferredFoodDescription;
+    private Boolean hasPreviousOwners;
 }
