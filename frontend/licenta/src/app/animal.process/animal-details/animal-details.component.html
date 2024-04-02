@@ -131,7 +131,7 @@
       <div class="anima-center-details">
         <img class="image-grid" src="../../../assets/logo-shelter.png">
         <div class="animal-center">
-          <h1> {{animal.animalCenter.name}}</h1>
+          <h1 class="title-center"> {{animal.animalCenter.name}}</h1>
           <iframe
             [src]="getSafeUrl()"
             class="map"
@@ -168,16 +168,25 @@
       <p> Help your {{animal.type}} make the transition to a new home</p>
       <hr>
       <button (click)="redirectToAnimalCenter()" class="tips-button" mat-button>
-        <h3 class="learn-more">Learn More</h3></button>
+        <h3 class="learn-more">Read More</h3></button>
     </div>
     <div class="tips">
       <img class="adopting-image" src="../../../assets/purina-find-food.png">
 
-      <h3 class="tips-title">Purina Pet food finder of {{animal.type}} adoption</h3>
-      <p> This handy tool finds the best food for your pet</p>
+      <h3 class="tips-title">Purina Pet food finder</h3>
+      <p> This handy tool finds the best food for your pet from Purina.</p>
       <hr>
       <button (click)="redirectToPurina()" class="tips-button" mat-button>
-        <h3 class="learn-more">Learn More</h3></button>
+        <h3 class="learn-more">Read More</h3></button>
+    </div>
+    <div class="tips">
+      <img class="adopting-image" src="../../../assets/royal.png">
+
+      <h3 class="tips-title">Royal Canin food finder</h3>
+      <p> Find the perfect diet for your pet in just a few clicks</p>
+      <hr>
+      <button (click)="redirectToRoyal()" class="tips-button" mat-button>
+        <h3 class="learn-more">Read More</h3></button>
     </div>
   </div>
 
@@ -185,7 +194,8 @@
 
     <h1 (click)="goToAnimalsPage()" class="see-animals"> Pets Available for Adoption > </h1>
 
-    <div class="animal-grid">
+    <h1 *ngIf="showAnimals.length <= 1"> No animals found </h1>
+    <div *ngIf="showAnimals.length > 1" class="animal-grid">
       <div *ngFor="let animal of showAnimals; let isLast = last" [class]="isLast ? 'animal-card-last' : 'animal-card'">
         <a (click)="navigateToAnimalDetails(animal)">
           <ng-container *ngIf="isLast ; else notLastTemplate">
@@ -222,8 +232,8 @@
 
     <h1 (click)="goToAnimalsFromAnimalCenterPage()" class="see-animals"> More {{animal.type}}s
       from {{animal.animalCenter.name}} > </h1>
-
-    <div class="animal-grid">
+    <h1 *ngIf="animalCenterAnimals.length <= 1"> No animals found </h1>
+    <div *ngIf="animalCenterAnimals.length > 1" class="animal-grid">
       <div *ngFor="let animal of animalCenterAnimals; let isLast = last"
            [class]="isLast ? 'animal-card-last' : 'animal-card'">
         <a (click)="navigateToAnimalDetails(animal)">

@@ -129,6 +129,10 @@ export class AnimalDetailsComponent {
     window.location.href = 'https://www.purina.com/pet-food-finder-direct?utm_campaign=nbm-petfoodfinder2022&utm_medium=display&utm_source=petfinder&utm_content=cr-pff_petfinder_listing_dog_pt-na&utm_term=';
   }
 
+  redirectToRoyal() {
+    window.location.href = 'https://www.royalcanin.com/us/pet-food-finder';
+  }
+
   goToAnimalsPage() {
     this.router
       .navigate(['/animal'])

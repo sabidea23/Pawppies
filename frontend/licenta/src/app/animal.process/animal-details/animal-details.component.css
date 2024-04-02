@@ -213,6 +213,9 @@ h3 {
 
 }
 
+.title-center {
+  text-align: center;
+}
 .contact-container {
   display: flex;
   flex-direction: row;
