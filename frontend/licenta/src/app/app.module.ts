@@ -54,9 +54,12 @@ import { KidsDogsComponent } from './pages/kids-dogs/kids-dogs.component';
 import { PopularDogsComponent } from './pages/popular-dogs/popular-dogs.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import { BreedCatComponent } from './pages/breed-cat/breed-cat.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { PolicyComponent } from './pages/policy/policy.component';
+import { FaqsComponent } from './pages/faqs/faqs.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, FooterComponent, SignupComponent, LoginComponent, HomeComponent, ProfileComponent, AddAnimalComponent, AnimalListComponent, AnimalCenterAddComponent, AnimalCenterList, MapDialogComponent, EditAnimalCenterComponent, AboutPetsComponent, MissionComponent, QuizComponent, BreedDetailsDogComponent, BreedDetailsCatComponent, BreedDogComponent, EditAnimalComponent, UserManagementComponent, CenterDetailsComponent, AnimalDetailsComponent, CutestDogsComponent, ApartamnetsDogsComponent, KidsDogsComponent, PopularDogsComponent, BreedCatComponent],
+  declarations: [AppComponent, NavbarComponent, FooterComponent, SignupComponent, LoginComponent, HomeComponent, ProfileComponent, AddAnimalComponent, AnimalListComponent, AnimalCenterAddComponent, AnimalCenterList, MapDialogComponent, EditAnimalCenterComponent, AboutPetsComponent, MissionComponent, QuizComponent, BreedDetailsDogComponent, BreedDetailsCatComponent, BreedDogComponent, EditAnimalComponent, UserManagementComponent, CenterDetailsComponent, AnimalDetailsComponent, CutestDogsComponent, ApartamnetsDogsComponent, KidsDogsComponent, PopularDogsComponent, BreedCatComponent, ContactComponent, PolicyComponent, FaqsComponent],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatIconModule, FormsModule, HttpClientModule, MatSnackBarModule, MatCardModule, MatChipsModule, MatToolbarModule, MatIconModule, MatListModule, MatTableModule, ReactiveFormsModule, RouterOutlet, MatGridListModule, MatDialogModule, MatMenuModule, MatPaginatorModule, MatSelectModule, MatCheckboxModule],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
