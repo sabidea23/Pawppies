@@ -261,7 +261,11 @@ export class AnimalListComponent implements OnInit {
     age: [],
     size: [],
     gender: [],
-    coatLength: []
+    coatLength: [],
+    fullyVaccinated: [],
+    haveSpecialNeeds: [],
+    isTrained: [],
+    hadOwners: [],
   };
 
   animalFiltered: any = [];
@@ -272,7 +276,7 @@ export class AnimalListComponent implements OnInit {
     this.pressedButton[key] = !this.pressedButton[key];
   }
 
-  applyFilter(category: string, value: string): void {
+  applyFilter(category: string, value: any): void {
     this.currentPage = 1;
 
     if (category === 'type') {
@@ -295,9 +299,20 @@ export class AnimalListComponent implements OnInit {
   filterBreeds(): void {
     // @ts-ignore
     this.animalFiltered = this.animals.filter(animal => {
-      return this.getAnimalsByType(animal) && this.getAnimalAge(animal) && this.getAnimalSize(animal) && this.getAnimalGender(animal)
-         && this.getCoatLength(animal) && this.filterByName(animal) && this.filterAnimalsByBreed(animal) &&
-        this.filterAnimalsByColor(animal) && this.filterAnimalsByCenter(animal)});
+      return (this.filters.fullyVaccinated.length === 0 || this.filters.fullyVaccinated.includes(animal.isFullyVaccinated)) &&
+        (this.filters.haveSpecialNeeds.length === 0 || this.filters.haveSpecialNeeds.includes(animal.hasSpecialNeeds)) &&
+        (this.filters.isTrained.length === 0 || this.filters.isTrained.includes(animal.isTrained)) &&
+        (this.filters.hadOwners.length === 0 || this.filters.hadOwners.includes(animal.hadOwners)) &&
+        this.getAnimalsByType(animal) &&
+        this.getAnimalAge(animal) &&
+        this.getAnimalSize(animal) &&
+        this.getAnimalGender(animal) &&
+        this.getCoatLength(animal) &&
+        this.filterByName(animal) &&
+        this.filterAnimalsByBreed(animal) &&
+        this.filterAnimalsByColor(animal) &&
+        this.filterAnimalsByCenter(animal);
+    });
 
     this.totalElements = this.animalFiltered.length;
     this.totalPages = Math.ceil(this.totalElements / this.itemsPerPage);

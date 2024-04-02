@@ -83,6 +83,30 @@
                 role="checkbox" value="Long"> Long
         </button>
       </div>
+
+      <div class="filter-group">
+        <h3>CARE</h3>
+        <button (click)="applyFilter('fullyVaccinated', true) ; toggleButton('typeFullyVaccinated')"
+                [ngClass]="{'pressed': pressedButton['typeFullyVaccinated']}" class="button-filter" name="fullyVaccinated">
+          Fully Vaccinated
+        </button>
+
+        <button (click)="applyFilter('haveSpecialNeeds', true) ; toggleButton('typeHaveSpecialNeeds')"
+                [ngClass]="{'pressed': pressedButton['typeHaveSpecialNeeds']}" class="button-filter" name="haveSpecialNeeds">
+          Have Special Needs
+        </button>
+
+        <button (click)="applyFilter('isTrained', true) ; toggleButton('typeIsTrained')"
+                [ngClass]="{'pressed': pressedButton['typeIsTrained']}" class="button-filter" name="isTrained">
+          Is Trained
+        </button>
+
+        <button (click)="applyFilter('hadOwners', true) ; toggleButton('typeHadOwners')"
+                [ngClass]="{'pressed': pressedButton['typeHadOwners']}" class="button-filter" name="hadOwners">
+          Had Previous Owner
+        </button>
+
+      </div>
     </form>
 
     <div class="search-form">
