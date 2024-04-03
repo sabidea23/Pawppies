@@ -151,20 +151,19 @@
           Good to know: The Eskie’s double coat needs regular brushing, especially when she’s shedding.</p>
         <button mat-button class="show-button"  (click)="toggleTextDisplay()">Show Less</button>
       </div>
+      <h2> 13 Cute Dogs or Puppy Breeds</h2>
+      <div class="animal-grid">
+        <div *ngFor="let dog of cuteDogs" class="animal-card">
+          <a (click)="viewDogDetails(dog)">
+            <img [src]='dog.image || "../../../assets/background-animal.png"'
+                 [style.background]="'url(../../../assets/background-animal.png)'"
+                 class="animal-image">
+            <h3 class="animal-name"> {{ dog.name }} </h3>
+          </a>
+          <hr>
 
-
-    </div>
-
-    <div class="side-container">
-
-      <!--    start quizz-->
-      <div class="quiz">
-        <img class="quiz-img" src="../../../../assets/good_match.png">
-        <h2 style="text-align: center; margin-bottom: 0; margin-top: 15px"> Find your best </h2>
-        <h2 style="text-align: center; margin-bottom: 10px"> match </h2>
-        <p class="text-quiz"> It only takes 60 seconds. </p>
-
-        <button (click)="goToQuizPage()" class="start-quiz-btn" mat-button>GET STARTED</button>
+          <button mat-button class="animal-available" (click)="redirectToAnimalPage(dog)"> View Adoptable Pets for This Breed</button>
+        </div>
       </div>
     </div>
   </div>

@@ -38,9 +38,9 @@ body {
 .content-container {
   font-family: 'Montserrat', sans-serif;
   flex: 0 0 78%;
-  max-width: 1000px;
   padding: 20px;
   background-color: white;
+  width: 1200px;
 }
 
 .side-container {
@@ -120,3 +120,57 @@ p, ol {
   justify-content: center;
   align-self: center;
 }
+
+.animal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.animal-card {
+  width: 280px;
+  height: 350px;
+  position: relative;
+  border: 3px solid #ddd;
+  border-radius: 8px; /* Rotunjirea colțurilor */
+  overflow: hidden;
+  transition: border-color 0.3s ease; /* Adaugă tranziție pentru efectul de hover */
+}
+
+
+.animal-card:hover {
+  border-color: #6504B5; /* Schimbă culoarea la hover */
+}
+
+.animal-image{
+  width: 100%;
+  height: 65%;
+}
+
+.animal-details {
+  padding: 0.5rem;
+}
+
+.animal-name {
+  margin: 0;
+  font-size: 1.3rem;
+  font-family: 'Montserrat', sans-serif;
+  color: #6504B5;
+  font-weight: bold;
+  text-align: center;
+}
+
+.animal-available {
+  margin-top: -8px;
+  font-size: 13px;
+  font-family: 'Montserrat', sans-serif;
+  color: #6504B5;
+  font-weight: bold;
+}
+
+.number-dogs {
+  font-family: 'Montserrat', sans-serif;
+  color: #4a4553;
+  margin-left: 25px;
+}
+
