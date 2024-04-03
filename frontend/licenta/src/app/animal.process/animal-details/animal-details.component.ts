@@ -235,4 +235,8 @@ export class AnimalDetailsComponent {
   navigateToAnimalDetails(animal: any) {
     this.router.navigate(['/animal-details', {animalId: animal.id}]);
   }
+
+  navigateToFaqs() {
+    this.router.navigate(['/faqs']);
+  }
 }
