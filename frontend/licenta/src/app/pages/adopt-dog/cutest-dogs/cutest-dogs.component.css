@@ -17,8 +17,6 @@ body {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: 40px;
-  margin: auto;
   padding: 20px;
   caret-color: transparent;
   justify-content: center;
@@ -37,8 +35,7 @@ body {
 
 .content-container {
   font-family: 'Montserrat', sans-serif;
-  flex: 0 0 78%;
-  padding: 20px;
+  padding: 25px;
   background-color: white;
   width: 1200px;
 }
@@ -104,6 +101,7 @@ p, ol {
   font-size: 20px;
   font-weight: 500;
   color: #6504B5;
+  margin-bottom: 15px;
 }
 
 .cute-dog-picture {

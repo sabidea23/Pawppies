@@ -15,7 +15,7 @@
 
         Learn about their temperaments and care requirements to discover whether any of these beautiful dogs are right
         for you.</p>
-      <div *ngIf="!isFullTextShown" class="content-container">
+      <div *ngIf="!isFullTextShown">
         <h2> 1. French Bulldog </h2>
         <p>Short-snouted and bat-eared, it’s no wonder the French Bulldog qualifies to many as a cute small dog breed.
           His
@@ -53,7 +53,7 @@
         <button (click)="toggleTextDisplay()" class="show-button" mat-button>Show More</button>
       </div>
 
-      <div *ngIf="isFullTextShown" class="content-container">
+      <div *ngIf="isFullTextShown">
         <h2> 1. French Bulldog </h2>
         <p>Short-snouted and bat-eared, it’s no wonder the French Bulldog qualifies to many as a cute small dog breed.
           His
