@@ -36,6 +36,10 @@ import {CatHealthComponent} from "./pages/adopt-cat/information/cat-health/cat-h
 import {DogHealthComponent} from "./pages/adopt-dog/infomration/dog-health/dog-health.component";
 import {DogTrainingComponent} from "./pages/adopt-dog/infomration/dog-training/dog-training.component";
 import {CatBehaviorComponent} from "./pages/adopt-cat/information/cat-behavior/cat-behavior.component";
+import {BestCatKidsComponent} from "./pages/adopt-cat/best-cat-kids/best-cat-kids.component";
+import {FluffyCatComponent} from "./pages/adopt-cat/fluffy-cat/fluffy-cat.component";
+import {HairlessCatComponent} from "./pages/adopt-cat/hairless-cat/hairless-cat.component";
+import {CuteCaatComponent} from "./pages/adopt-cat/cute-caat/cute-caat.component";
 
 const routes: Routes = [{
   path: '', component: HomeComponent, pathMatch: 'full',
@@ -75,6 +79,14 @@ const routes: Routes = [{
   path: 'kids-dogs', component: KidsDogsComponent,
 }, {
   path: 'popular-dogs', component: PopularDogsComponent,
+}, {
+  path: 'kids-cat', component: BestCatKidsComponent,
+}, {
+  path: 'fluffy-cats', component: FluffyCatComponent,
+}, {
+  path: 'hairless-cats', component: HairlessCatComponent,
+}, {
+  path: 'cutest-cats', component: CuteCaatComponent,
 }, {
   path: 'breed-cat', component: BreedCatComponent,
 }, {

@@ -246,25 +246,29 @@ export class BreedDetailsCatComponent {
     }
   }
 
-  goToCutestDog() {
-    this.router.navigate(['/cutest-dogs']);
-  }
-
-  goToApartmentsDog() {
-    this.router.navigate(['/apartments-dogs']);
-  }
-
-  goToKidsDog() {
-    this.router.navigate(['/kids-dogs']);
-  }
-
-  goTPopularDog() {
-    this.router.navigate(['/popular-dogs']);
-  }
-
   // @ts-ignore
   redirectToAnimalPage(dog) {
     // Presupunând că dog.breed conține rasa selectată
-    this.router.navigate(['/animal/'], { queryParams: { type: 'Cat', breed: dog.name } });
+    this.router.navigate(['/animal/'], {queryParams: {type: 'Cat', breed: dog.name}});
+  }
+
+  goToCatsKids() {
+    this.router.navigate(['/kids-cat']);
+
+  }
+
+  goToCutestCats() {
+    this.router.navigate(['/cutest-cats']);
+
+  }
+
+  goToFluffiestCata() {
+    this.router.navigate(['/fluffy-cats']);
+
+  }
+
+  goToHairlessCats() {
+    this.router.navigate(['/hairless-cats']);
+
   }
 }
