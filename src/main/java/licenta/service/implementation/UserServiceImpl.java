@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -58,7 +59,8 @@ public class UserServiceImpl implements UserService {
                 .phone(userRequest.getPhone())
                 .latitude(userRequest.getLatitude())
                 .longitude(userRequest.getLongitude())
-                .userRoles(new HashSet<>()) // Inițializează setul pentru a evita NullPointerException
+                .recentlyViewedAnimals(new LinkedList<>())
+                .userRoles(new HashSet<>())
                 .build();
 
         User savedUser = this.userRepository.save(newUser);
@@ -134,5 +136,37 @@ public class UserServiceImpl implements UserService {
         user.setUserRoles(userRoleSet);
 
         return this.userRepository.save(user);
+    }
+
+    @Override
+    public void addRecentlyViewedAnimal(Long userId, Long animalId) {
+        User user = userRepository.findById(userId).orElse(null);
+        if (user == null) {
+            throw new UserNotFoundException("User with id `" + userId + "` not found");
+        }
+
+        // Asigură-te că lista nu este nullă
+        if (user.getRecentlyViewedAnimals() == null) {
+            user.setRecentlyViewedAnimals(new LinkedList<>());
+        }
+
+        // Logica de adăugare a unui animal nou, verificând mai întâi dacă există deja
+        if (!user.getRecentlyViewedAnimals().contains(animalId)) {
+            if (user.getRecentlyViewedAnimals().size() >= 5) {
+                // Elimină primul element dacă lista a atins dimensiunea maximă
+                user.getRecentlyViewedAnimals().remove(0);
+            }
+            user.getRecentlyViewedAnimals().add(animalId);
+            userRepository.save(user);
+        }
+    }
+
+    @Override
+    public List<Long> getRecentlyViewedAnimals(Long userId) {
+        User user = userRepository.findById(userId).orElse(null);
+        if (user == null) {
+            throw new UserNotFoundException("User with id `" + userId + "` not found");
+        }
+        return new LinkedList<>(user.getRecentlyViewedAnimals());
     }
 }

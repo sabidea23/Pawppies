@@ -15,6 +15,7 @@ public interface UserService {
     User updateUser(UserRequestDTO user) throws Exception;
 
     User getUser(String username);
+
     List<User> getUsers();
 
 
@@ -23,4 +24,8 @@ public interface UserService {
     void deleteUser(Long userId);
 
     User updateUserRole(User user, Set<UserRole> userRoleSet);
+
+    void addRecentlyViewedAnimal(Long userId, Long animalId);
+
+    List<Long> getRecentlyViewedAnimals(Long userId);
 }

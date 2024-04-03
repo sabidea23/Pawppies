@@ -6,7 +6,6 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
 import {MatCheckboxChange} from "@angular/material/checkbox";
 
-
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -28,7 +27,6 @@ export class SignupComponent {
     role: new FormControl('NORMAL_USER', [Validators.required]), // Default to NORMAL_USER
     confirmPassword:  new FormControl('', [Validators.required])
   });
-
   constructor(
     private userService: UserService,
     private snack: MatSnackBar,

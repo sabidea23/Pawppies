@@ -6,6 +6,7 @@ import {countries} from "../../utils/country-data-store";
 import {AnimalService} from "../../services/animal.service.";
 import {ImageProcessingService} from "../../services/image-processing.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-mission', templateUrl: './mission.component.html', styleUrls: ['./mission.component.css']
@@ -28,7 +29,7 @@ export class MissionComponent {
 
   public countries: any = countries;
 
-  constructor(private snack: MatSnackBar, private imageProcessingService: ImageProcessingService, private animalService: AnimalService, private login: LoginService, private router: Router, private searchService: SearchService) {
+  constructor(private userService: UserService,  private snack: MatSnackBar, private imageProcessingService: ImageProcessingService, private animalService: AnimalService, private login: LoginService, private router: Router, private searchService: SearchService) {
   }
 
   goToAnimalsPage() {
@@ -122,6 +123,17 @@ export class MissionComponent {
     });
   }
   navigateToAnimalDetails(animal: any) {
+    if (this.user && this.user.id) {
+      // Verifică dacă utilizatorul este autentificat și adaugă animalul la vizualizate recent
+      this.userService.addRecentlyViewedAnimal(this.user.id, animal.id).subscribe({
+        next: () => {
+          console.log('Animal added to recently viewed');
+        },
+        error: (error) => {
+          console.error('Error adding animal to recently viewed', error);
+        }
+      });
+    }
     this.router.navigate(['/animal-details', {animalId: animal.id}]);
   }
 }

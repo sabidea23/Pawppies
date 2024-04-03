@@ -5,6 +5,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {DomSanitizer} from "@angular/platform-browser";
 import {ImageProcessingService} from "../../services/image-processing.service";
 import {AnimalService} from "../../services/animal.service.";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ import {AnimalService} from "../../services/animal.service.";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  constructor(private login: LoginService, private snack: MatSnackBar, private sanitizer: DomSanitizer, private imageProcessingService: ImageProcessingService, private router: Router,  private route: ActivatedRoute, private animalService: AnimalService) { }
+  constructor(private userService: UserService,  private login: LoginService, private snack: MatSnackBar, private sanitizer: DomSanitizer, private imageProcessingService: ImageProcessingService, private router: Router,  private route: ActivatedRoute, private animalService: AnimalService) { }
 
   numberAnimalsLeft: any;
 
@@ -130,7 +131,26 @@ export class HomeComponent {
     this.router.navigate(['/breed-details-cat']).then((_) => { });
   }
 
+  goToContactPage() {
+    this.router.navigate(['/contact']).then((_) => { });
+  }
+
+  goToFaqs() {
+    this.router.navigate(['/faqs']).then((_) => { });
+  }
+
   navigateToAnimalDetails(animal: any) {
+    if (this.user && this.user.id) {
+      // Verifică dacă utilizatorul este autentificat și adaugă animalul la vizualizate recent
+      this.userService.addRecentlyViewedAnimal(this.user.id, animal.id).subscribe({
+        next: () => {
+          console.log('Animal added to recently viewed');
+        },
+        error: (error) => {
+          console.error('Error adding animal to recently viewed', error);
+        }
+      });
+    }
     this.router.navigate(['/animal-details', {animalId: animal.id}]);
   }
 }

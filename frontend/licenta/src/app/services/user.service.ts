@@ -27,6 +27,13 @@ export class UserService {
   public deleteUser(userId: any) {
     console.log(userId)
     return this.http.delete(`${baseUrl}/user/${userId}`);
+  }
 
+  public addRecentlyViewedAnimal(userId: number, animalId: number) {
+    return this.http.post(`${baseUrl}/user/${userId}/viewed/${animalId}`, null);
+  }
+
+  public getRecentlyViewedAnimals(userId: number) {
+    return this.http.get(`${baseUrl}/user/${userId}/viewed`);
   }
 }

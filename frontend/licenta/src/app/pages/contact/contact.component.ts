@@ -8,6 +8,7 @@ import {SearchService} from "../../services/search.service";
 import {countries} from "../../utils/country-data-store";
 import Swal from "sweetalert2";
 import {ContactServiceComponent} from "../../services/contact.service";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-contact', templateUrl: './contact.component.html', styleUrls: ['./contact.component.css']
@@ -29,7 +30,7 @@ export class ContactComponent {
 
   public countries: any = countries;
 
-  constructor(private contactService: ContactServiceComponent, private snack: MatSnackBar, private imageProcessingService: ImageProcessingService, private animalService: AnimalService, private login: LoginService, private router: Router, private searchService: SearchService) {
+  constructor(private userService: UserService, private contactService: ContactServiceComponent, private snack: MatSnackBar, private imageProcessingService: ImageProcessingService, private animalService: AnimalService, private login: LoginService, private router: Router, private searchService: SearchService) {
   }
 
   goToAnimalsPage() {
@@ -124,6 +125,17 @@ export class ContactComponent {
   }
 
   navigateToAnimalDetails(animal: any) {
+    if (this.user && this.user.id) {
+      // Verifică dacă utilizatorul este autentificat și adaugă animalul la vizualizate recent
+      this.userService.addRecentlyViewedAnimal(this.user.id, animal.id).subscribe({
+        next: () => {
+          console.log('Animal added to recently viewed');
+        },
+        error: (error) => {
+          console.error('Error adding animal to recently viewed', error);
+        }
+      });
+    }
     this.router.navigate(['/animal-details', {animalId: animal.id}]);
   }
 

@@ -85,4 +85,15 @@ public class UserController {
     public void deleteUserById(@PathVariable("userId") Long userid) {
         this.userService.deleteUser(userid);
     }
+
+    @PostMapping("/{userId}/viewed/{animalId}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void addRecentlyViewedAnimal(@PathVariable Long userId, @PathVariable Long animalId) {
+        userService.addRecentlyViewedAnimal(userId, animalId);
+    }
+
+    @GetMapping("/{userId}/viewed")
+    public List<Long> getRecentlyViewedAnimals(@PathVariable Long userId) {
+        return userService.getRecentlyViewedAnimals(userId);
+    }
 }

@@ -7,9 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "user_app")
@@ -44,7 +42,6 @@ public class User implements UserDetails {
     private String email;
 
     @Column
-    @NotNull
     private String phone;
 
     @Column
@@ -62,6 +59,7 @@ public class User implements UserDetails {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
     @JsonIgnore
     private Set<UserRole> userRoles = new HashSet<>();
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -95,5 +93,19 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @JsonIgnore
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<Long> recentlyViewedAnimals = new ArrayList<>();
+
+
+    public boolean viewAnimal(Long animalId) {
+        recentlyViewedAnimals.remove(animalId);
+
+        while (recentlyViewedAnimals.size() >= 5) {
+            recentlyViewedAnimals.remove(0);
+        }
+        return recentlyViewedAnimals.add(animalId);
     }
 }

@@ -6,6 +6,7 @@ import {LoginService} from "../../services/login.service";
 import {Router} from "@angular/router";
 import {SearchService} from "../../services/search.service";
 import {countries} from "../../utils/country-data-store";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-faqs',
@@ -29,7 +30,7 @@ export class FaqsComponent {
 
   public countries: any = countries;
 
-  constructor(private snack: MatSnackBar, private imageProcessingService: ImageProcessingService, private animalService: AnimalService, private login: LoginService, private router: Router, private searchService: SearchService) {
+  constructor(private userService: UserService, private snack: MatSnackBar, private imageProcessingService: ImageProcessingService, private animalService: AnimalService, private login: LoginService, private router: Router, private searchService: SearchService) {
   }
 
   goToAnimalsPage() {
@@ -130,6 +131,17 @@ export class FaqsComponent {
     });
   }
   navigateToAnimalDetails(animal: any) {
+    if (this.user && this.user.id) {
+      this.userService.addRecentlyViewedAnimal(this.user.id, animal.id).subscribe({
+        next: () => {
+          console.log('Animal added to recently viewed');
+        },
+        error: (error) => {
+          console.error('Error adding animal to recently viewed', error);
+        }
+      });
+    }
+
     this.router.navigate(['/animal-details', {animalId: animal.id}]);
   }
 }
