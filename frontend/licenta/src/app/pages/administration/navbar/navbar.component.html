@@ -1,0 +1,84 @@
+<mat-toolbar class="top-nav">
+  <!-- Rândul 1: Conține logo, All about pet, și butoanele de autentificare -->
+  <div class="top-row">
+    <div routerLink="/" class="logo">
+      <img  class="logo" src="../../../../assets/logo.png">
+    </div>
+    <div class="menu-button">
+      <button (click)="toggleSubMenu()" mat-button>
+        All about pet
+        <mat-icon [ngClass]="{'rotate': isSubMenuOpen}">expand_more</mat-icon>
+      </button>
+    </div>
+    <div class="auth-buttons">
+
+      <a (click)="isLoggedIn ? redirectToFavoriteAnimalsPage() : redirectToLoginPage()" class="heart-icon" mat-button>
+        <mat-icon>favorite</mat-icon>
+      </a>
+
+        <a *ngIf="!isLoggedIn" [routerLink]="'/signup'" aria-label="Register"
+           class="example-icon login" mat-button>
+          Sign Up
+        </a>
+
+        <!-- Butoanele pentru utilizatori neautentificați -->
+        <a *ngIf="!isLoggedIn" [routerLink]="'/login'" aria-label="Login"
+           class="example-icon register" mat-button>
+          Log In
+        </a>
+
+        <!-- Butoanele pentru utilizatori autentificați -->
+        <div *ngIf="isLoggedIn && user" class="user-menu example-icon">
+          <button (click)="$event.stopPropagation();" mat-button [matMenuTriggerFor]="userMenu" [ngClass]="{'active': profileDetailMenu}"
+          (click)="openUserMenu()">
+            <mat-icon>person</mat-icon> <!-- Pictograma cu utilizator -->
+            {{ user.firstName }} {{ user.lastName }} <!-- Prenume și nume -->
+          </button>
+
+          <mat-menu class="custom-menu"  [hasBackdrop]="false" #userMenu="matMenu" (click)="$event.stopPropagation();">
+            <button mat-menu-item  class="mat-menu-customize-item" (click)="toProfileSettings()">Profile</button>
+            <button *ngIf="getUserRole() == 'ADMIN'"  mat-menu-item  (click)="toUserManagement()" class="mat-menu-customize-item"> User management</button>
+            <button mat-menu-item  class="mat-menu-customize-item" (click)="logout()">Logout</button>
+          </mat-menu>
+        </div>
+
+      </div>
+    </div>
+
+  <div *ngIf="isSubMenuOpen && !profileDetailMenu" class="sub-menu">
+    <a class="sub-menu-item"  mat-button [matMenuTriggerFor]="adoptMenu" >ADOPT OR GET INVOLVED</a>
+    <mat-menu class="custom-menu submeniu" #adoptMenu="matMenu">
+      <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToAboutPawppies()">About Pawppies</button>
+      <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToMission()">Mission</button>
+      <button class="mat-menu-customize-item" mat-menu-item (click)="redirectAnimalCenter()">Animal Centers</button>
+    </mat-menu>
+
+    <a class="sub-menu-item" mat-button [matMenuTriggerFor]="dogs">DOGS & PUPPIES</a>
+    <mat-menu class="custom-menu submeniu" #dogs="matMenu">
+      <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToDogBreeds()">Dog breeds</button>
+      <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToDogAdoption()">Dog adoption</button>
+      <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToFeedDog()">Feeding your dog</button>
+      <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToDogTraining()">Dog training</button>
+      <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToDogHealth()">Dog health</button>
+    </mat-menu>
+
+    <a class="sub-menu-item" mat-button [matMenuTriggerFor]="cat">CATS & KITTENS</a>
+    <mat-menu class="custom-menu submeniu" #cat="matMenu">
+      <button class="mat-menu-customize-item" mat-menu-item  (click)="redirectToCatBreeds()" >Cat breeds</button>
+      <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToCatAdoption()">Cat adoption</button>
+      <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToFeedCat()">Feeding your cat</button>
+      <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToCatBehavior()">Cat behavior</button>
+      <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToCatHealth()">Cat health</button>
+
+    </mat-menu>
+
+    <a class="sub-menu-item" mat-button [matMenuTriggerFor]="others">OTHER TYPES OF PETS</a>
+    <mat-menu class="custom-menu submeniu" #others="matMenu">
+      <button class="mat-menu-customize-item" mat-menu-item>Opțiunea 1</button>
+      <button class="mat-menu-customize-item" mat-menu-item>Opțiunea 2</button>
+    </mat-menu>
+
+  </div>
+</mat-toolbar>
+
+

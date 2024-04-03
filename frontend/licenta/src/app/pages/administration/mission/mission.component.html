@@ -1,0 +1,147 @@
+<body>
+
+<div class="container">
+  <div class="main-container">
+
+    <div class="content-container">
+
+      <h1>Pawppies's Mission</h1>
+      <p>
+        Pawppies is an online, searchable database of animals who need homes. It is also a directory of nearly 11,000
+        animal shelters and adoption organizations across the U.S., Canada and Mexico. Organizations maintain their own
+        home pages and available-pet databases.
+      </p>
+      <h3> OUR MISSION </h3>
+      <p> To use Internet technology and the resources it can generate to: </p>
+      <ol>
+        <li> Increase public awareness of the availability of high-quality adoptable pets</li>
+        <li> Increase the overall effectiveness of pet adoption programs across North America to the extent that the
+          euthanasia of adoptable pets is eliminated
+        </li>
+        <li> Elevate the status of pets to that of family member</li>
+      </ol>
+      <p> From the comfort of their personal computers, pet lovers can search for a pet that best matches their needs.
+        They can then reference a shelter’s web page and discover what services it offers. Petfinder also includes
+        discussion forums, a pet-care resource directory and a library of free pet-care articles to help keep pets in
+        their homes.</p>
+
+      <p> Pawppies is updated DAILY. </p>
+      <p> Organizations wishing to participate should register. A contact person should be responsible for direct
+        communications with Petfinder. Only nonprofit organizations will be included (but Federal 501(c)(3) status is
+        not necessary).</p>
+
+      <p> Petfinder is made up of animal-care professionals and regular people volunteering for their local animal
+        welfare organizations all working together to maintain active and accurate homeless pet lists. Most animal
+        welfare volunteers have “real jobs” by day. The success and the magnitude of this project is largely due to
+        their tireless efforts to make a difference. If you would like to help, let us know! You can find us at
+        https://www.petfinder.com/. Email: pets@petfinder.com.</p>
+
+      <p> If you have a Website and would like to help us promote shelter pets as the #1 choice for a new pet, you may
+        use our free widgets and graphics to add Petfinder to your website. You may also want to check out our Featured
+        Pet Module which allows you to show Petfinder pets from your community on your own home page.</p>
+
+      <h3> DISCLAIMER </h3>
+
+      <p> Petfinder is only a directory of homeless pets and pet adoption organizations. No information in Petfinder is
+        guaranteed. Although the information on Petfinder is updated frequently, it is always best to call the facility
+        or organization that lists the pet to insure it is still available and to insure the information listed in
+        Petfinder is accurate. It is crucial that any pet found through an adoption service be thoroughly examined by a
+        veterinarian immediately upon adoption. Any pets found, adopted through, or listed in Petfinder are the sole
+        responsibility of the adoption organizations and/or the adopting party.</p>
+
+      <p> Petfinder accepts no responsibility for any liability or for any injury or damages to any person or property
+        caused by any listed animal, as well as any cause of action, claims, suits or demands whatsoever that may arise
+        as a result of such injury or damage.</p>
+    </div>
+
+    <div class="side-container">
+
+      <!--    start quizz-->
+      <div class="quiz">
+        <img class="quiz-img" src="../../../../assets/good_match.png">
+        <h2 style="text-align: center; margin-bottom: 0; margin-top: 15px"> Find your best </h2>
+        <h2 style="text-align: center; margin-bottom: 10px"> match </h2>
+        <p class="text-quiz"> It only takes 60 seconds. </p>
+
+        <button (click)="goToQuizPage()" class="start-quiz-btn" mat-button>GET STARTED</button>
+      </div>
+
+      <div class="search-center">
+        <form (ngSubmit)="performSearch()" class="search-form">
+          <h2>Find Pet-Adoption Centers by:</h2>
+
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon matPrefix>location_city</mat-icon>
+              City
+            </mat-label>
+            <input [(ngModel)]="searchData.city" matInput
+                   name="email" placeholder="Enter your email"/>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon>public</mat-icon>
+              Country
+            </mat-label>
+            <mat-select [(ngModel)]="searchData.country" name="country" placeholder="Select Country">
+              <mat-option *ngFor="let country of countries" [value]="country.name">
+                {{ country.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon matPrefix>business</mat-icon>
+              Name
+            </mat-label>
+            <input [(ngModel)]="searchData.name" matInput
+                   name="email" placeholder="Enter name"/>
+          </mat-form-field>
+
+          <button class="start-quiz-btn" mat-flat-button type="submit">
+            SEARCH
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+  <div class="see-animals">
+
+    <h1 (click)="goToAnimalsPage()" class="see-animals"> Pets Available for Adoption > </h1>
+
+    <div class="animal-grid">
+      <div *ngFor="let animal of showAnimals; let isLast = last" [class]="isLast ? 'animal-card-last' : 'animal-card'">
+        <a (click)="navigateToAnimalDetails(animal)">
+        <ng-container *ngIf="isLast ; else notLastTemplate">
+          <div (click)="goToAnimalsPage()">
+            <div class="animal-image">
+              <mat-icon class="centered-icon">search</mat-icon>
+
+              <p class="centered-text">300+ pets available on Pawppies </p>
+            </div>
+
+            <div class="animal-last">
+              <p class="meet-animals-text">MEET THEM</p>
+            </div>
+          </div>
+        </ng-container>
+        </a>
+        <ng-template #notLastTemplate>
+          <button *ngIf="user" (click)="likeAnimal($event, animal)" [ngClass]="{ 'liked': isLiked(animal) }" class="like-button">
+            <mat-icon>{{ isLiked(animal) ? 'favorite' : 'favorite_border' }}</mat-icon>
+          </button>
+
+          <img [src]='animal.animalImages[0].url' class="animal-image">
+          <div class="animal-details">
+            <p class="animal-name"> {{ animal.name }} </p>
+            <p class="animal-other-details"> {{ animal.age }}, {{ animal.breed }} </p>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
