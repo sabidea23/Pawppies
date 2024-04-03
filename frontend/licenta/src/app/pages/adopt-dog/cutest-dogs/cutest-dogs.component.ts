@@ -4,7 +4,6 @@ import {ImageProcessingService} from "../../../services/image-processing.service
 import {AnimalService} from "../../../services/animal.service.";
 import {LoginService} from "../../../services/login.service";
 import {Router} from "@angular/router";
-import {SearchService} from "../../../services/search.service";
 import {Breed_detailsService} from "../../../services/breed_details.service";
 
 @Component({
@@ -13,18 +12,11 @@ import {Breed_detailsService} from "../../../services/breed_details.service";
   styleUrls: ['./cutest-dogs.component.css']
 })
 export class CutestDogsComponent  implements OnInit{
-  constructor(private breedDetailsService: Breed_detailsService, private snack: MatSnackBar, private imageProcessingService: ImageProcessingService, private animalService: AnimalService, private login: LoginService, private router: Router, private searchService: SearchService) {
+  constructor(private breedDetailsService: Breed_detailsService, private snack: MatSnackBar, private imageProcessingService: ImageProcessingService, private animalService: AnimalService, private login: LoginService, private router: Router) {
   }
 
   ngOnInit() {
     this.getAllBreeds();
-  }
-
-  goToQuizPage() {
-    this.router
-      .navigate(['/quiz/'])
-      .then((_) => {
-      });
   }
 
   isFullTextShown = false;

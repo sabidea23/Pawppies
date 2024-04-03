@@ -6,7 +6,7 @@
     <div class="content-container">
       <div class="image-container">
         <h1>What Are the Cutest Dog & Puppy Breeds?</h1>
-        <img src="../../../../assets/cute_dogs.png" class="cute-dog-picture">
+        <img class="cute-dog-picture" src="../../../../assets/cute_dogs.png">
       </div>
 
       <p>Tall, pointy ears or long, droopy ears? Tiny, fluffy bodies or large, regal bodies? Many varying
@@ -15,16 +15,18 @@
 
         Learn about their temperaments and care requirements to discover whether any of these beautiful dogs are right
         for you.</p>
-      <div class="content-container" *ngIf="!isFullTextShown">
+      <div *ngIf="!isFullTextShown" class="content-container">
         <h2> 1. French Bulldog </h2>
-        <p>Short-snouted and bat-eared, it’s no wonder the French Bulldog qualifies to many as a cute small dog breed. His
+        <p>Short-snouted and bat-eared, it’s no wonder the French Bulldog qualifies to many as a cute small dog breed.
+          His
           comical expression matches his comedic personality; he loves playing and entertaining his family. For you
           snugglers out there, you’re in luck. The Frenchie also enjoys cuddling and snoozing with his favorite person.
 
           Good to know: The French Bulldog snores, may wheeze and drool, and his facial wrinkles should be regularly
           cleaned. His bouts in hot, humid weather should be limited.</p>
         <h2> 2. Beagle</h2>
-        <p> One of America’s all-time favorite breeds, the Beagle is a friendly, intelligent pack dog that thrives on the
+        <p> One of America’s all-time favorite breeds, the Beagle is a friendly, intelligent pack dog that thrives on
+          the
           company of other dogs and people. With his long, droopy ears and big brown eyes, he is gentle in nature,
           incredibly tolerant and is always ready to join in a game or an adventure.
 
@@ -39,26 +41,30 @@
           brushing weekly.</p>
 
         <h2>4. Golden Retriever</h2>
-        <p>One of the most popular breeds in the U.S., the Golden Retriever is a large, sweet-faced, kind-eyed dog. As you
-          can tell from her picture, it is no wonder she frequently makes the cut for cute puppy breeds lists, too. She is
+        <p>One of the most popular breeds in the U.S., the Golden Retriever is a large, sweet-faced, kind-eyed dog. As
+          you
+          can tell from her picture, it is no wonder she frequently makes the cut for cute puppy breeds lists, too. She
+          is
           intelligent, patient and loves people. Her favorite activities include learning and games that involve
           retrieving and carrying items in her mouth.
 
           Good to know: The Golden requires daily physical and mental exercise and human interaction.</p>
 
-        <button mat-button class="show-button" (click)="toggleTextDisplay()">Show More</button>
+        <button (click)="toggleTextDisplay()" class="show-button" mat-button>Show More</button>
       </div>
 
-      <div class="content-container" *ngIf="isFullTextShown">
+      <div *ngIf="isFullTextShown" class="content-container">
         <h2> 1. French Bulldog </h2>
-        <p>Short-snouted and bat-eared, it’s no wonder the French Bulldog qualifies to many as a cute small dog breed. His
+        <p>Short-snouted and bat-eared, it’s no wonder the French Bulldog qualifies to many as a cute small dog breed.
+          His
           comical expression matches his comedic personality; he loves playing and entertaining his family. For you
           snugglers out there, you’re in luck. The Frenchie also enjoys cuddling and snoozing with his favorite person.
 
           Good to know: The French Bulldog snores, may wheeze and drool, and his facial wrinkles should be regularly
           cleaned. His bouts in hot, humid weather should be limited.</p>
         <h2> 2. Beagle</h2>
-        <p> One of America’s all-time favorite breeds, the Beagle is a friendly, intelligent pack dog that thrives on the
+        <p> One of America’s all-time favorite breeds, the Beagle is a friendly, intelligent pack dog that thrives on
+          the
           company of other dogs and people. With his long, droopy ears and big brown eyes, he is gentle in nature,
           incredibly tolerant and is always ready to join in a game or an adventure.
 
@@ -73,8 +79,10 @@
           brushing weekly.</p>
 
         <h2>4. Golden Retriever</h2>
-        <p>One of the most popular breeds in the U.S., the Golden Retriever is a large, sweet-faced, kind-eyed dog. As you
-          can tell from her picture, it is no wonder she frequently makes the cut for cute puppy breeds lists, too. She is
+        <p>One of the most popular breeds in the U.S., the Golden Retriever is a large, sweet-faced, kind-eyed dog. As
+          you
+          can tell from her picture, it is no wonder she frequently makes the cut for cute puppy breeds lists, too. She
+          is
           intelligent, patient and loves people. Her favorite activities include learning and games that involve
           retrieving and carrying items in her mouth.
 
@@ -85,7 +93,8 @@
           superior sense of smell. He is exceptionally playful and gets along well with children, making him an ideal
           family pet.
 
-          Good to know: Dachshunds tend to bark, but good ways to burn off some of their energy are daily walks and games
+          Good to know: Dachshunds tend to bark, but good ways to burn off some of their energy are daily walks and
+          games
           in the yard.</p>
 
         <h2> 6. Bernese Mountain Dog</h2>
@@ -96,7 +105,8 @@
           Good to know: The luxurious coat of the Bernese Mountain Dog requires frequent brushing.</p>
 
         <h2> 7. Yorkshire Terrier </h2>
-        <p> Named for the Yorkshire area of England where they originated, Yorkshire Terriers have become one of the most
+        <p> Named for the Yorkshire area of England where they originated, Yorkshire Terriers have become one of the
+          most
           popular breeds in the U.S – and are considered one of the cutest small dog breeds. This toy-sized beauty has a
           long, luxurious coat. She is brave, determined, energetic and investigative, ever eager for adventure.
 
@@ -128,8 +138,10 @@
           Good to know: Some Pomeranians bark a lot, and their double coats need regular brushing.</p>
 
         <h2> 11. Bichon Frise</h2>
-        <p>This small, white powder puff is understandably deemed by many as one of the cutest dog breeds, considering the
-          noted Spanish painter Francisco de Goya depicted the Bichon Frise in a number of his works! Known for his merry
+        <p>This small, white powder puff is understandably deemed by many as one of the cutest dog breeds, considering
+          the
+          noted Spanish painter Francisco de Goya depicted the Bichon Frise in a number of his works! Known for his
+          merry
           temperament, gentle manner, sensitivity and affection, the Bichon makes an excellent family companion.
 
           Good to know: The Bichon barks a lot, loves activity and needs daily exercise. His coat doesn’t shed, but it
@@ -144,12 +156,13 @@
 
         <h2> 13. American Eskimo</h2>
         <p>This white, beautiful dog with flowing fur might blend into the snow if you don’t look closely enough! The
-          American Eskimo Dog is highly intelligent, bright and lively. She loves to run, especially in cold weather, and
+          American Eskimo Dog is highly intelligent, bright and lively. She loves to run, especially in cold weather,
+          and
           is incredibly agile. A vigorous game in the yard or a brisk walk will satisfy the Eskie’s need for a good
           workout every day.
 
           Good to know: The Eskie’s double coat needs regular brushing, especially when she’s shedding.</p>
-        <button mat-button class="show-button"  (click)="toggleTextDisplay()">Show Less</button>
+        <button (click)="toggleTextDisplay()" class="show-button" mat-button>Show Less</button>
       </div>
       <h2> 13 Cute Dogs or Puppy Breeds</h2>
       <div class="animal-grid">
@@ -162,7 +175,9 @@
           </a>
           <hr>
 
-          <button mat-button class="animal-available" (click)="redirectToAnimalPage(dog)"> View Adoptable Pets for This Breed</button>
+          <button (click)="redirectToAnimalPage(dog)" class="animal-available" mat-button> View Adoptable Pets for This
+            Breed
+          </button>
         </div>
       </div>
     </div>
