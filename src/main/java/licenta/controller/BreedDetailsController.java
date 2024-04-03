@@ -14,7 +14,7 @@ import java.util.List;
 @CrossOrigin("*")
 public class BreedDetailsController {
 
-    BreedDetailsService breedDetailsService;
+    private final BreedDetailsService breedDetailsService;
 
     public BreedDetailsController(BreedDetailsService breedDetailsService) {
         this.breedDetailsService = breedDetailsService;
