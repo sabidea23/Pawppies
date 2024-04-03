@@ -85,6 +85,16 @@
 
 }
 
+.recently {
+  font-weight: bold;
+  text-align: center;
+  background-color: #EFEEF1;
+  color: #6504B5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 .animal-grid {
   display: flex;

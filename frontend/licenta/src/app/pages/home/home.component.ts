@@ -39,8 +39,47 @@ export class HomeComponent {
   linkSeeAnimals: any = 3;
 
   showAnimals: any = [];
+
+  recentlyViewedAnimals:any = [];
+
   animals: any = [];
   likedAnimals: any = [];
+
+  getRecentlyViewedPets() {
+    if (this.user ) {
+      const userId = this.user.id;
+
+      this.userService.getRecentlyViewedAnimals(userId).subscribe({
+        next: (animalIds: any) => {
+          this.loadAnimalDetails(animalIds);
+        },
+        error: (error) => {
+          console.error('Error fetching recently viewed animals', error);
+          // Gestionează eroarea corespunzător
+        }
+      });
+    }
+  }
+
+  loadAnimalDetails(animalIds: number[]) {
+    this.recentlyViewedAnimals = [];
+
+    animalIds.forEach(animalId => {
+      this.animalService.getAnimal(animalId).subscribe({
+        next: (animalDetail) => {
+          animalDetail= this.imageProcessingService.createImage(animalDetail);
+          this.recentlyViewedAnimals.push(animalDetail);
+
+          // Acum ai detalii pentru fiecare animal și poți actualiza interfața utilizatorului corespunzător.
+        },
+        error: (error) => {
+          console.error(`Error fetching details for animal with ID ${animalId}`, error);
+          // Gestionează eroarea corespunzător
+        }
+      });
+    });
+  }
+
 
   displayRandomAnimals(): void {
     if (this.animals.length <= 3) {
@@ -94,6 +133,7 @@ export class HomeComponent {
       next: (data) => {
         this.animals = data;
         this.displayRandomAnimals();
+        this.getRecentlyViewedPets();
         this.getimagesShowAnimals();
       }, error: (_) => {
       },
