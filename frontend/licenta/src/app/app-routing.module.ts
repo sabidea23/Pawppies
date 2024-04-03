@@ -26,6 +26,16 @@ import {BreedCatComponent} from "./pages/breed-cat/breed-cat.component";
 import {AnimalDetailsComponent} from "./animal.process/animal-details/animal-details.component";
 import {ContactComponent} from "./pages/contact/contact.component";
 import {FaqsComponent} from "./pages/faqs/faqs.component";
+import {PrivacyPolicyComponent} from "./pages/privacy-policy/privacy-policy.component";
+import {TermsServiceComponent} from "./pages/terms-service/terms-service.component";
+import {AboutDogsComponent} from "./pages/about-dogs/about-dogs.component";
+import {AboutCatComponent} from "./pages/about-cat/about-cat.component";
+import {FeedCatComponent} from "./pages/feed-cat/feed-cat.component";
+import {FeedDogComponent} from "./pages/feed-dog/feed-dog.component";
+import {CatHealthComponent} from "./pages/cat-health/cat-health.component";
+import {DogHealthComponent} from "./pages/dog-health/dog-health.component";
+import {DogTrainingComponent} from "./pages/dog-training/dog-training.component";
+import {CatBehaviorComponent} from "./pages/cat-behavior/cat-behavior.component";
 
 const routes: Routes = [{
   path: '', component: HomeComponent, pathMatch: 'full',
@@ -71,6 +81,26 @@ const routes: Routes = [{
   path: 'animal', component: AnimalListComponent,
 }, {
   path: 'my-fav-animals', component: AnimalListComponent,
+}, {
+  path: 'privacy-policy', component: PrivacyPolicyComponent,
+}, {
+  path: 'terms-of-service', component: TermsServiceComponent,
+}, {
+  path: 'adopt-dogs', component: AboutDogsComponent,
+}, {
+  path: 'adopt-cats', component: AboutCatComponent,
+}, {
+  path: 'feed-cat', component: FeedCatComponent,
+}, {
+  path: 'feed-dog', component: FeedDogComponent,
+}, {
+  path: 'health-cat', component: CatHealthComponent,
+}, {
+  path: 'health-dog', component: DogHealthComponent,
+}, {
+  path: 'training-dog', component: DogTrainingComponent,
+}, {
+  path: 'behavior-cat', component: CatBehaviorComponent,
 }, {
   path: 'admin', canActivate: [AdminGuard], children: [{
     path: 'user-management', component: UserManagementComponent,

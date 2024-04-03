@@ -146,4 +146,43 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/admin/user-management']).then((_) => { });
 
   }
+
+  redirectToDogAdoption() {
+    this.router.navigate(['/adopt-dogs']).then((_) => { });
+
+  }
+
+  redirectToFeedDog() {
+    this.router.navigate(['/feed-dog']).then((_) => { });
+
+  }
+  redirectToDogTraining() {
+    this.router.navigate(['/training-dog']).then((_) => { });
+
+  }
+  redirectToDogHealth() {
+    this.router.navigate(['/health-dog']).then((_) => { });
+
+  }
+  redirectToCatAdoption() {
+    this.router.navigate(['/adopt-cats']).then((_) => { });
+
+  }
+  redirectToFeedCat() {
+    this.router.navigate(['/feed-cat']).then((_) => { });
+
+  }
+  redirectToCatBehavior() {
+    this.router.navigate(['/admin/behavior-cat']).then((_) => { });
+
+  }
+  redirectToCatHealth() {
+    this.router.navigate(['/health-cat']).then((_) => { });
+
+  }
+
+  redirectToMission() {
+    this.router.navigate(['/about-pets/mission']).then((_) => { });
+
+  }
 }

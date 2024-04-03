@@ -45,33 +45,30 @@
       </div>
     </div>
 
-  <!-- Rândul 2: Inițial ascuns, se afișează la click pe All about pet -->
   <div *ngIf="isSubMenuOpen && !profileDetailMenu" class="sub-menu">
     <a class="sub-menu-item"  mat-button [matMenuTriggerFor]="adoptMenu" >ADOPT OR GET INVOLVED</a>
     <mat-menu class="custom-menu submeniu" #adoptMenu="matMenu">
       <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToAboutPawppies()">About Pawppies</button>
+      <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToMission()">Mission</button>
       <button class="mat-menu-customize-item" mat-menu-item (click)="redirectAnimalCenter()">Animal Centers</button>
     </mat-menu>
 
     <a class="sub-menu-item" mat-button [matMenuTriggerFor]="dogs">DOGS & PUPPIES</a>
     <mat-menu class="custom-menu submeniu" #dogs="matMenu">
       <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToDogBreeds()">Dog breeds</button>
-      <button class="mat-menu-customize-item" mat-menu-item>Dog adoption</button>
-      <button class="mat-menu-customize-item" mat-menu-item>Feeding your dog</button>
-      <button class="mat-menu-customize-item" mat-menu-item>Dog behavior</button>
-      <button class="mat-menu-customize-item" mat-menu-item>Dog health</button>
-      <button class="mat-menu-customize-item" mat-menu-item>Other dog information</button>
-
+      <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToDogAdoption()">Dog adoption</button>
+      <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToFeedDog()">Feeding your dog</button>
+      <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToDogTraining()">Dog training</button>
+      <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToDogHealth()">Dog health</button>
     </mat-menu>
 
     <a class="sub-menu-item" mat-button [matMenuTriggerFor]="cat">CATS & KITTENS</a>
     <mat-menu class="custom-menu submeniu" #cat="matMenu">
       <button class="mat-menu-customize-item" mat-menu-item  (click)="redirectToCatBreeds()" >Cat breeds</button>
-      <button class="mat-menu-customize-item" mat-menu-item>Cat adoption</button>
-      <button class="mat-menu-customize-item" mat-menu-item>Feeding your cat</button>
-      <button class="mat-menu-customize-item" mat-menu-item>Cat behavior</button>
-      <button class="mat-menu-customize-item" mat-menu-item>Cat health</button>
-      <button class="mat-menu-customize-item" mat-menu-item>Other cat information</button>
+      <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToCatAdoption()">Cat adoption</button>
+      <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToFeedCat()">Feeding your cat</button>
+      <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToCatBehavior()">Cat behavior</button>
+      <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToCatHealth()">Cat health</button>
 
     </mat-menu>
 

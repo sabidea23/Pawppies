@@ -16,6 +16,14 @@ p {
   color: whitesmoke;
 }
 
+* {
+  caret-color: transparent;
+}
+
+p:hover {
+  text-decoration: underline;
+  color: #9e73b4;
+}
 .title {
   color: white;
   font-family: 'Montserrat', sans-serif;

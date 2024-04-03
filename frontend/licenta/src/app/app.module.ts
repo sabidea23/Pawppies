@@ -59,9 +59,17 @@ import { PolicyComponent } from './pages/policy/policy.component';
 import { FaqsComponent } from './pages/faqs/faqs.component';
 import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
 import { TermsServiceComponent } from './pages/terms-service/terms-service.component';
+import { FeedCatComponent } from './pages/feed-cat/feed-cat.component';
+import { FeedDogComponent } from './pages/feed-dog/feed-dog.component';
+import { AboutDogsComponent } from './pages/about-dogs/about-dogs.component';
+import { AboutCatComponent } from './pages/about-cat/about-cat.component';
+import { CatHealthComponent } from './pages/cat-health/cat-health.component';
+import { DogHealthComponent } from './pages/dog-health/dog-health.component';
+import { DogTrainingComponent } from './pages/dog-training/dog-training.component';
+import { CatBehaviorComponent } from './pages/cat-behavior/cat-behavior.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, FooterComponent, SignupComponent, LoginComponent, HomeComponent, ProfileComponent, AddAnimalComponent, AnimalListComponent, AnimalCenterAddComponent, AnimalCenterList, MapDialogComponent, EditAnimalCenterComponent, AboutPetsComponent, MissionComponent, QuizComponent, BreedDetailsDogComponent, BreedDetailsCatComponent, BreedDogComponent, EditAnimalComponent, UserManagementComponent, CenterDetailsComponent, AnimalDetailsComponent, CutestDogsComponent, ApartamnetsDogsComponent, KidsDogsComponent, PopularDogsComponent, BreedCatComponent, ContactComponent, PolicyComponent, FaqsComponent, PrivacyPolicyComponent, TermsServiceComponent],
+  declarations: [AppComponent, NavbarComponent, FooterComponent, SignupComponent, LoginComponent, HomeComponent, ProfileComponent, AddAnimalComponent, AnimalListComponent, AnimalCenterAddComponent, AnimalCenterList, MapDialogComponent, EditAnimalCenterComponent, AboutPetsComponent, MissionComponent, QuizComponent, BreedDetailsDogComponent, BreedDetailsCatComponent, BreedDogComponent, EditAnimalComponent, UserManagementComponent, CenterDetailsComponent, AnimalDetailsComponent, CutestDogsComponent, ApartamnetsDogsComponent, KidsDogsComponent, PopularDogsComponent, BreedCatComponent, ContactComponent, PolicyComponent, FaqsComponent, PrivacyPolicyComponent, TermsServiceComponent, FeedCatComponent, FeedDogComponent, AboutDogsComponent, AboutCatComponent, CatHealthComponent, DogHealthComponent, DogTrainingComponent, CatBehaviorComponent],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatIconModule, FormsModule, HttpClientModule, MatSnackBarModule, MatCardModule, MatChipsModule, MatToolbarModule, MatIconModule, MatListModule, MatTableModule, ReactiveFormsModule, RouterOutlet, MatGridListModule, MatDialogModule, MatMenuModule, MatPaginatorModule, MatSelectModule, MatCheckboxModule],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
