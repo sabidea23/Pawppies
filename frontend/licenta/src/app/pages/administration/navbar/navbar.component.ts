@@ -88,17 +88,13 @@ export class NavbarComponent implements OnInit {
     window.location.reload();
   }
 
-
-
   public toProfileSettings() {
     const user_role = this.login.getUserRole();
       this.router.navigate(['/profile']).then((_) => { });
   }
 
   public redirectAnimalCenter() {
-
       this.router.navigate(['/centers']).then((_) => { });
-
   }
 
   public redirectToAboutPawppies() {

@@ -1,5 +1,5 @@
 mat-card {
-  max-width: 400px;
+  max-width: 600px;
   margin: auto;
   padding: 20px;
   caret-color: transparent;
@@ -15,6 +15,9 @@ body {
   padding-top: 20px;
   padding-bottom: 20px;
   caret-color: transparent;
+  background-image: url("../../../assets/register.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 h2 {
@@ -62,7 +65,7 @@ button:hover {
 .custom-mat-form-field {
   caret-color: transparent;
   position: relative;
-  width: 100%;
+  width: 80%;
   max-height: 150px;
 }
 
@@ -81,7 +84,7 @@ button:hover {
   color: #FFFFFF;
   margin-top: 20px;
   border-radius: 20px;
-  width: 100%;
+  width: 80%;
   box-shadow: none;
 }
 
