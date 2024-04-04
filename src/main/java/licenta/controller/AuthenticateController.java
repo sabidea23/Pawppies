@@ -1,6 +1,7 @@
 package licenta.controller;
 
 import licenta.config.JwtUtils;
+import licenta.dto.UserResponseDTO;
 import licenta.entity.JwtRequest;
 import licenta.entity.JwtResponse;
 import licenta.entity.User;
@@ -11,11 +12,13 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.Collection;
 
 @RestController
 @CrossOrigin("*")
@@ -57,7 +60,28 @@ public class AuthenticateController {
     }
 
     @GetMapping("/current-user")
-    public User getCurrentUser(Principal principal) {
-        return this.userDetailsService.loadUserByUsername(principal.getName());
+    public UserResponseDTO getCurrentUser(Principal principal) {
+        User user = this.userDetailsService.loadUserByUsername(principal.getName());
+
+        Collection<? extends GrantedAuthority> authorities = user.getAuthorities();
+
+        return UserResponseDTO.builder()
+                .id(user.getId())
+                .username(user.getUsername())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .email(user.getEmail())
+                .phone(user.getPhone())
+                .longitude(user.getLongitude())
+                .latitude(user.getLatitude())
+                .recentlyViewedAnimals(user.getRecentlyViewedAnimals())
+                .animalCenters(user.getAnimalCenters())
+                .userRoles(user.getUserRoles())
+                .authorities(authorities)
+                .adoptedAnimals(user.getAdoptedAnimals())
+                .city(user.getCity())
+                .country(user.getCountry())
+                .street(user.getStreet())
+                .build();
     }
 }

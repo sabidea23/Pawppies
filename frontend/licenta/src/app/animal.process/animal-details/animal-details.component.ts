@@ -239,4 +239,14 @@ export class AnimalDetailsComponent {
   navigateToFaqs() {
     this.router.navigate(['/faqs']);
   }
+
+  redirectToAdoptDogs() {
+    this.router.navigate(['/adopt-dogs']);
+
+  }
+
+  redirecttoAdoptCats() {
+    this.router.navigate(['/adopt-cats']);
+
+  }
 }

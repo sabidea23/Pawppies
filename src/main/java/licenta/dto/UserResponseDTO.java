@@ -1,9 +1,14 @@
 package licenta.dto;
 
+import licenta.entity.Animal;
+import licenta.entity.AnimalCenter;
 import licenta.entity.UserRole;
+import org.springframework.security.core.GrantedAuthority;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 @Builder
@@ -11,15 +16,18 @@ import java.util.Set;
 public class UserResponseDTO {
     private Long id;
     private String username;
-    private Double latitude;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String phone;
     private Double longitude;
-    private Set<UserRole> userRole;
-
-    public UserResponseDTO(Long id, String username, Double latitude, Double longitude, Set<UserRole> userRole) {
-        this.id = id;
-        this.username = username;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.userRole = userRole;
-    }
+    private Double latitude;
+    private List<Long> recentlyViewedAnimals;
+    private Set<AnimalCenter> animalCenters;
+    private Set<UserRole> userRoles;
+    private Collection<? extends GrantedAuthority> authorities; // Inclusiv autoritățile
+    private Set<Animal> adoptedAnimals;
+    private String city;
+    private String country;
+    private String street;
 }

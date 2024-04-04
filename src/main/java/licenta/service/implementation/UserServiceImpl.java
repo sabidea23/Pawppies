@@ -61,6 +61,8 @@ public class UserServiceImpl implements UserService {
                 .longitude(userRequest.getLongitude())
                 .recentlyViewedAnimals(new LinkedList<>())
                 .userRoles(new HashSet<>())
+                .animalCenters(new HashSet<>())
+                .adoptedAnimals(new HashSet<>())
                 .build();
 
         User savedUser = this.userRepository.save(newUser);
@@ -90,6 +92,10 @@ public class UserServiceImpl implements UserService {
         user.setPhone(userRequestDTO.getPhone());
         user.setLatitude(userRequestDTO.getLatitude());
         user.setLongitude(userRequestDTO.getLongitude());
+        user.setStreet(userRequestDTO.getStreet());
+        user.setCity(userRequestDTO.getCity());
+        user.setCountry(userRequestDTO.getCountry());
+
 
         if (userRequestDTO.getPassword() != null && !userRequestDTO.getPassword().isEmpty()) {
             user.setPassword(this.bCryptPasswordEncoder.encode(userRequestDTO.getPassword()));

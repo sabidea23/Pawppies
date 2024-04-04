@@ -165,4 +165,8 @@ public class Animal {
     public boolean isLikedBy(Long userId) {
         return liked_by.contains(userId);
     }
+
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    private User adoptionUser;
 }

@@ -1,7 +1,6 @@
 package licenta.controller;
 
 import licenta.dto.UserRequestDTO;
-import licenta.dto.UserResponseDTO;
 import licenta.entity.Role;
 import licenta.entity.User;
 import licenta.entity.UserRole;
@@ -43,19 +42,6 @@ public class UserController {
     public List<User> getAllUsers() {
         return this.userService.getUsers();
     }
-    
-    @GetMapping("/{username}")
-    @ResponseStatus(code = HttpStatus.OK)
-    public UserResponseDTO getUserByUsername(@PathVariable("username") String username) {
-        User user = this.userService.getUserByUsername(username);
-        return  UserResponseDTO.builder()
-                .userRole(user.getUserRoles())
-                .username(user.getUsername())
-                .latitude(user.getLatitude())
-                .longitude(user.getLongitude())
-                .build();
-    }
-
 
     @PutMapping("/{username}/role/{roleName}")
     @ResponseStatus(code = HttpStatus.CREATED)

@@ -108,4 +108,17 @@ public class User implements UserDetails {
         }
         return recentlyViewedAnimals.add(animalId);
     }
+
+    @Column
+    private String city;
+
+    @Column
+    private String country;
+
+    @Column
+    private String street;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "adoptionUser")
+    @JsonIgnore
+    private Set<Animal> adoptedAnimals;
 }

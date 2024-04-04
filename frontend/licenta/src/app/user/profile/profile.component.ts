@@ -42,11 +42,27 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.user = this.login.getUser();
-    this.userInput.firstName = this.user.firstName;
-    this.userInput.lastName = this.user.lastName;
-    this.userInput.email = this.user.email;
-    this.userInput.phone = this.user.phone;
+    if (this.login.isLoggedIn()) {
+      this.login.getCurrentUser().subscribe({
+        next: (user: any) => {
+          this.login.setUser(user);  // Actualizează utilizatorul în localStorage
+          this.user = user;  // Actualizează variabila user a componentei
+
+          console.log(this.user)
+          // Setează valorile formularului cu noile date ale utilizatorului
+          this.userInput.firstName = user.firstName;
+          this.userInput.lastName = user.lastName;
+          this.userInput.email = user.email;
+          this.userInput.phone = user.phone;
+        },
+        error: (err) => {
+          this.snack.open('Failed to load user data!', 'OK', {duration: 3000});
+          console.error('Error loading user data:', err);
+        }
+      });
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
 
   formSubmit() {

@@ -167,7 +167,9 @@
       <h3 class="tips-title">Tips for the first 30 days of {{animal.type}} adoption</h3>
       <p> Help your {{animal.type}} make the transition to a new home</p>
       <hr>
-      <button (click)="redirectToAnimalCenter()" class="tips-button" mat-button>
+      <button *ngIf="animal.type == 'Dog'" (click)="redirectToAdoptDogs()" class="tips-button" mat-button>
+        <h3 class="learn-more">Read More</h3></button>
+      <button  *ngIf="animal.type == 'Cat'"  (click)="redirecttoAdoptCats()" class="tips-button" mat-button>
         <h3 class="learn-more">Read More</h3></button>
     </div>
     <div class="tips">

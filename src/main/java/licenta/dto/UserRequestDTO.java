@@ -5,6 +5,7 @@ import licenta.entity.UserRole;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import java.util.Set;
 
 @Data
@@ -21,8 +22,15 @@ public class UserRequestDTO {
     private  Double longitude;
     private String role;
 
+
+    private String city;
+
+    private String country;
+
+    private String street;
+
     public UserRequestDTO(Long id, String username, String password, String firstName, String lastName, String email,
-                          String phone, Double latitude, Double longitude, String role) {
+                          String phone, Double latitude, Double longitude, String role, String city, String country, String street) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -33,6 +41,9 @@ public class UserRequestDTO {
         this.latitude = latitude;
         this.longitude = longitude;
         this.role = role;
+        this.city = city;
+        this.country = country;
+        this.street = street;
     }
 }
 
