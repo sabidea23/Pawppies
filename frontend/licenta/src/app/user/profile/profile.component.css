@@ -66,3 +66,24 @@ h1 {
   background-color: #EFEEF1;
   color: #6504B5;
 }
+
+.menu {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-size: 30px;
+  display: flex;
+  flex-direction: row;
+  gap:50px ;
+  border-bottom: 1px solid #666666;
+
+}
+
+.menu button:hover {
+  border-bottom: 1px solid #6504B5;
+
+}
+
+h2 {
+  margin: 0
+}
+

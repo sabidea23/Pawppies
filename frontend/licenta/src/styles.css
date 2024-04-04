@@ -36,3 +36,20 @@
   margin-left: 20px;
 }
 
+.mat-button-focus-overlay {
+  display: none !important;
+}
+
+.mat-button-ripple {
+  display: none !important;
+}
+
+button.mat-button:focus {
+  outline: none !important;
+}
+
+* {
+  caret-color: transparent;
+  font-family: 'Montserrat', sans-serif; /* Aplică fontul Montserrat */
+
+}

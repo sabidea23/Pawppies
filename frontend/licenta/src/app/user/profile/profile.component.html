@@ -5,10 +5,17 @@
     <div class="content-container">
 
       <h1>My account details </h1>
-      <h2> Welcome, {{ user.firstName }} {{ user.lastName }}! </h2>
 
+      <div class="menu" >
+        <button mat-button (click)="selectTab('aboutMe')"> <h2> About me</h2> </button>
+        <button  mat-button (click)="selectTab('adopterProfile')"> <h2>   Adopter Profile </h2>  </button>
+        <button mat-button (click)="selectTab('myAnimalCenters')"> <h2>   My Animal Centers </h2> </button>
+        <button mat-button (click)="selectTab('animalsAdopted')"> <h2> Animals Adopted </h2> </button>
+        <button mat-button (click)="selectTab('recentlyViewedAnimals')"> <h2> Recently viewed animals</h2> </button>
 
-      <form (ngSubmit)="formSubmit()" [formGroup]="editForm" class="form-details">
+      </div>
+
+      <form *ngIf="selectedTab === 'aboutMe'" (ngSubmit)="formSubmit()" [formGroup]="editForm" class="form-details">
 
         <h2> WHAT IS YOUR NAME? </h2>
         <div class="name">

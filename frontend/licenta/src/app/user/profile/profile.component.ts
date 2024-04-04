@@ -118,4 +118,9 @@ export class ProfileComponent implements OnInit {
       },
     });
   }
+  selectedTab: string = 'aboutMe'; // Default tab
+
+  selectTab(tabName: string) {
+    this.selectedTab = tabName;
+  }
 }
