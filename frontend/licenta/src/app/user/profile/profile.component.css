@@ -58,13 +58,13 @@ h1 {
   color: #FFFFFF;
   margin-top: 20px;
   border-radius: 20px;
+  font-weight: bold;
   width: 200px; /* Ocupă întreaga lățime a containerului */
   box-shadow: none; /* Înlătură orice umbre dacă există */
 }
 
-.update-button.reset {
-  background-color: #EFEEF1;
-  color: #6504B5;
+.update-button:hover {
+  background-color: #410078;
 }
 
 .menu {

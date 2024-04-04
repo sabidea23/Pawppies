@@ -54,13 +54,17 @@ export class ProfileComponent implements OnInit {
     private userService: UserService
   ) { }
 
+  public getUserRole() {
+    return this.login.getUserRole();
+  }
+
   ngOnInit(): void {
     if (this.login.isLoggedIn()) {
       this.login.getCurrentUser().subscribe({
         next: (user: any) => {
           this.login.setUser(user);
           this.user = user;
-
+                          console.log(this.user)
           this.userInput.firstName = user.firstName;
           this.userInput.lastName = user.lastName;
           this.userInput.email = user.email;
@@ -81,6 +85,28 @@ export class ProfileComponent implements OnInit {
   }
 
   formSubmit() {
+    if (this.userInput.firstName == '' || this.userInput.firstName == null) {
+      this.snack.open('First name cannot be empty!', 'OK', {
+        duration: 3000,
+      });
+      return;
+    }
+
+    if (this.userInput.lastName == '' || this.userInput.lastName == null) {
+      this.snack.open('Last name cannot be empty!', 'OK', {
+        duration: 3000,
+      });
+      return;
+    }
+
+    if (this.userInput.email == '' || this.userInput.email == null) {
+      this.snack.open('Email cannot be empty!', 'OK', {
+        duration: 3000,
+      });
+      return;
+    }
+
+
     if (this.userInput.password != this.userInput.confirmPassword) {
       this.snack.open('Oops! The passwords you entered do not match. Please try again.', 'OK', {
         duration: 3000,
@@ -122,5 +148,20 @@ export class ProfileComponent implements OnInit {
 
   selectTab(tabName: string) {
     this.selectedTab = tabName;
+  }
+
+  goToQuizPage() {
+    const user_role = this.login.getUserRole();
+    if (user_role == 'NORMAL') this.router
+      .navigate(['/quiz/'])
+      .then((_) => {
+      });
+  }
+
+  goToAnimalsPage() {
+    this.router
+      .navigate(['/animal'])
+      .then((_) => {
+      });
   }
 }

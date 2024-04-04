@@ -8,51 +8,22 @@
 
       <div class="menu" >
         <button mat-button (click)="selectTab('aboutMe')"> <h2> About me</h2> </button>
-        <button  mat-button (click)="selectTab('adopterProfile')"> <h2>   Adopter Profile </h2>  </button>
-        <button mat-button (click)="selectTab('myAnimalCenters')"> <h2>   My Animal Centers </h2> </button>
-        <button mat-button (click)="selectTab('animalsAdopted')"> <h2> Animals Adopted </h2> </button>
-        <button mat-button (click)="selectTab('recentlyViewedAnimals')"> <h2> Recently viewed animals</h2> </button>
-
+        <button  *ngIf="getUserRole() == 'NORMAL' || getUserRole() == 'SUPPLIER'" mat-button (click)="selectTab('accountDetails')"> <h2>  Account Details </h2>  </button>
+        <button  *ngIf="getUserRole() == 'NORMAL'" mat-button (click)="selectTab('adopterProfile')"> <h2>   Adopter Profile </h2>  </button>
+        <button *ngIf="getUserRole() == 'NORMAL' || getUserRole() == 'SUPPLIER'"  mat-button (click)="selectTab('animalsAdopted')"> <h2> Animals Adopted </h2> </button>
       </div>
 
-      <form *ngIf="selectedTab === 'aboutMe'" (ngSubmit)="formSubmit()" [formGroup]="editForm" class="form-details">
+      <div *ngIf="selectedTab === 'adopterProfile'" class="form-details">
+        <h2> Start completing your Adopter Profile now!   </h2>
+        <button class="update-button" mat-button (click)="goToQuizPage()">START QUIZ</button>
+      </div>
 
-        <h2> WHAT IS YOUR NAME? </h2>
-        <div class="name">
-          <mat-form-field appearance="fill" class="custom-mat-form-field">
-            <mat-label>
-              <mat-icon>first_page</mat-icon>
-              First Name
-            </mat-label>
-            <input [(ngModel)]="userInput.firstName" formControlName="firstname" matInput name="firstName"
-                   placeholder="First Name"/>
-            <button (click)="userInput.firstName=''" mat-icon-button matSuffix>
-              <mat-icon>close</mat-icon>
-            </button>
-            <mat-error *ngIf="editForm.get('firstName')?.hasError('required')">
-              First name is required.
-            </mat-error>
-          </mat-form-field>
+      <div *ngIf="selectedTab === 'animalsAdopted'" class="form-details">
+        <h2> Start your journey to find the perfect animal companion for you.   </h2>
+        <button class="update-button" mat-button (click)="goToAnimalsPage()">SEARCH</button>
+      </div>
 
-          <!-- Last Name -->
-          <mat-form-field appearance="fill" class="custom-mat-form-field">
-            <mat-label>
-              <mat-icon>last_page</mat-icon>
-              Last Name
-            </mat-label>
-            <input [(ngModel)]="userInput.lastName" formControlName="lastname" matInput name="lastName"
-                   placeholder="Last Name"/>
-            <button (click)="userInput.lastName=''" mat-icon-button matSuffix>
-              <mat-icon>close</mat-icon>
-            </button>
-            <mat-error *ngIf="editForm.get('lastName')?.hasError('required')">
-              Last name is required.
-            </mat-error>
-          </mat-form-field>
-        </div>
-
-        <hr>
-
+      <form *ngIf="selectedTab === 'accountDetails'" (ngSubmit)="formSubmit()" [formGroup]="editForm" class="form-details">
         <h2> HOW CAN YOU BE REACHED? </h2>
         <div class="name">
           <!-- Email -->
@@ -90,6 +61,85 @@
               Phone number format is not valid.
             </mat-error>
 
+          </mat-form-field>
+        </div>
+
+        <!-- New Password -->
+        <h2>CHANGE PASSWORD </h2>
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon>vpn_key</mat-icon>
+            New Password
+          </mat-label>
+          <input [(ngModel)]="userInput.password" clas="form-input" formControlName="password" matInput name="password"
+                 placeholder="New Password" type="password"/>
+          <button (click)="userInput.password=''" mat-icon-button matSuffix>
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="editForm.get('password')?.hasError('required')">
+            Password is required.
+          </mat-error>
+          <mat-error *ngIf="editForm.get('password')?.hasError('minlength')">
+            Password must be at least 8 characters long.
+          </mat-error>
+          <mat-error *ngIf="editForm.get('password')?.hasError('pattern')">
+            Must contain upper, lower case letters, numbers.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon>vpn_key</mat-icon>
+            Confirm Password
+          </mat-label>
+          <input [(ngModel)]="userInput.confirmPassword" clas="form-input" formControlName="confirmPassword" matInput
+                 name="confirmPassword"
+                 placeholder="Confirm New Password" type="password"/>
+          <button (click)="userInput.confirmPassword=''" mat-icon-button matSuffix>
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="editForm.get('confirmPassword')?.hasError('required')">
+            Confirming your password is required.
+          </mat-error>
+        </mat-form-field>
+        <button class="update-button" mat-raised-button type="submit">
+          UPDATE
+        </button>
+      </form>
+
+      <form *ngIf="selectedTab === 'aboutMe'" (ngSubmit)="formSubmit()" [formGroup]="editForm" class="form-details">
+
+        <h2> WHAT IS YOUR NAME? </h2>
+        <div class="name">
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon>first_page</mat-icon>
+              First Name
+            </mat-label>
+            <input [(ngModel)]="userInput.firstName" formControlName="firstname" matInput name="firstName"
+                   placeholder="First Name"/>
+            <button (click)="userInput.firstName=''" mat-icon-button matSuffix>
+              <mat-icon>close</mat-icon>
+            </button>
+            <mat-error *ngIf="editForm.get('firstName')?.hasError('required')">
+              First name is required.
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Last Name -->
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon>last_page</mat-icon>
+              Last Name
+            </mat-label>
+            <input [(ngModel)]="userInput.lastName" formControlName="lastname" matInput name="lastName"
+                   placeholder="Last Name"/>
+            <button (click)="userInput.lastName=''" mat-icon-button matSuffix>
+              <mat-icon>close</mat-icon>
+            </button>
+            <mat-error *ngIf="editForm.get('lastName')?.hasError('required')">
+              Last name is required.
+            </mat-error>
           </mat-form-field>
         </div>
         <hr>
@@ -135,50 +185,11 @@
           </button>
         </mat-form-field>
 
-
-        <!-- New Password -->
-        <h2>CHANGE PASSWORD </h2>
-        <mat-form-field appearance="fill" class="custom-mat-form-field">
-          <mat-label>
-            <mat-icon>vpn_key</mat-icon>
-            New Password
-          </mat-label>
-          <input [(ngModel)]="userInput.password" clas="form-input" formControlName="password" matInput name="password"
-                 placeholder="New Password" type="password"/>
-          <button (click)="userInput.password=''" mat-icon-button matSuffix>
-            <mat-icon>close</mat-icon>
-          </button>
-          <mat-error *ngIf="editForm.get('password')?.hasError('required')">
-            Password is required.
-          </mat-error>
-          <mat-error *ngIf="editForm.get('password')?.hasError('minlength')">
-            Password must be at least 8 characters long.
-          </mat-error>
-          <mat-error *ngIf="editForm.get('password')?.hasError('pattern')">
-            Must contain upper, lower case letters, numbers.
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" class="custom-mat-form-field">
-          <mat-label>
-            <mat-icon>vpn_key</mat-icon>
-            Confirm Password
-          </mat-label>
-          <input [(ngModel)]="userInput.confirmPassword" clas="form-input" formControlName="confirmPassword" matInput
-                 name="confirmPassword"
-                 placeholder="Confirm New Password" type="password"/>
-          <button (click)="userInput.confirmPassword=''" mat-icon-button matSuffix>
-            <mat-icon>close</mat-icon>
-          </button>
-          <mat-error *ngIf="editForm.get('confirmPassword')?.hasError('required')">
-            Confirming your password is required.
-          </mat-error>
-        </mat-form-field>
-
         <button class="update-button" mat-raised-button type="submit">
           UPDATE
         </button>
       </form>
+
     </div>
   </div>
 </div>
