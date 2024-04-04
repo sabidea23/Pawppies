@@ -31,7 +31,6 @@ public class AnimalCenterController {
     @PostMapping("/")
     @ResponseStatus(code = HttpStatus.CREATED)
     public AnimalCenter createAnimalCenter(@RequestBody AnimalCenterRequestDTO animalCenterRequest, Authentication authentication) throws Exception {
-        // Verifică rolul utilizatorului
         if (authentication != null && authentication.getAuthorities().stream()
                 .anyMatch(a -> a.getAuthority().equals("SUPPLIER"))) {
 

@@ -96,7 +96,6 @@ public class UserServiceImpl implements UserService {
         user.setCity(userRequestDTO.getCity());
         user.setCountry(userRequestDTO.getCountry());
 
-
         if (userRequestDTO.getPassword() != null && !userRequestDTO.getPassword().isEmpty()) {
             user.setPassword(this.bCryptPasswordEncoder.encode(userRequestDTO.getPassword()));
         }

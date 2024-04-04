@@ -1,79 +1,178 @@
-<mat-card *ngIf="user" class="all">
-  <mat-card-content>
+<body>
 
-    <form (ngSubmit)="formSubmit()" [formGroup]="editForm">
-      <div class="con">
-        <header>
-          <h1>Your profile details</h1>
-          <h1 class="mt20"> {{ user.firstName }} {{ user.lastName }} </h1>
-        </header>
+<div class="container">
+  <div class="main-container">
+    <div class="content-container">
 
-        <div class="field-set">
+      <h1>My account details </h1>
+      <h2> Welcome, {{ user.firstName }} {{ user.lastName }}! </h2>
 
-          <!-- First Name -->
-          <mat-form-field appearance="fill" class="full-width">
-            <mat-label><mat-icon>first_page</mat-icon> First Name</mat-label>
-            <input [(ngModel)]="userInput.firstName" class="form-input" formControlName="firstname" matInput name="firstName" placeholder="First Name"/>
-            <button mat-icon-button matSuffix (click)="userInput.firstName=''">
+
+      <form (ngSubmit)="formSubmit()" [formGroup]="editForm" class="form-details">
+
+        <h2> WHAT IS YOUR NAME? </h2>
+        <div class="name">
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon>first_page</mat-icon>
+              First Name
+            </mat-label>
+            <input [(ngModel)]="userInput.firstName" formControlName="firstname" matInput name="firstName"
+                   placeholder="First Name"/>
+            <button (click)="userInput.firstName=''" mat-icon-button matSuffix>
               <mat-icon>close</mat-icon>
             </button>
+            <mat-error *ngIf="editForm.get('firstName')?.hasError('required')">
+              First name is required.
+            </mat-error>
           </mat-form-field>
 
           <!-- Last Name -->
-          <mat-form-field appearance="fill" class="full-width">
-            <mat-label><mat-icon>last_page</mat-icon> Last Name</mat-label>
-            <input [(ngModel)]="userInput.lastName" class="form-input" formControlName="lastname" matInput name="lastName" placeholder="Last Name"/>
-            <button mat-icon-button matSuffix (click)="userInput.lastName=''">
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon>last_page</mat-icon>
+              Last Name
+            </mat-label>
+            <input [(ngModel)]="userInput.lastName" formControlName="lastname" matInput name="lastName"
+                   placeholder="Last Name"/>
+            <button (click)="userInput.lastName=''" mat-icon-button matSuffix>
               <mat-icon>close</mat-icon>
             </button>
+            <mat-error *ngIf="editForm.get('lastName')?.hasError('required')">
+              Last name is required.
+            </mat-error>
           </mat-form-field>
+        </div>
 
+        <hr>
+
+        <h2> HOW CAN YOU BE REACHED? </h2>
+        <div class="name">
           <!-- Email -->
-          <mat-form-field appearance="fill" class="full-width">
-            <mat-label><mat-icon>email</mat-icon> Email</mat-label>
-            <input [(ngModel)]="userInput.email" class="form-input" formControlName="email" matInput name="email" placeholder="Email"/>
-            <button mat-icon-button matSuffix (click)="userInput.email=''">
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon>email</mat-icon>
+              Email
+            </mat-label>
+            <input [(ngModel)]="userInput.email" formControlName="email" matInput name="email" placeholder="Email"/>
+            <button (click)="userInput.email=''" mat-icon-button matSuffix>
               <mat-icon>close</mat-icon>
             </button>
-            <mat-error *ngIf="editForm.value.email">{{ emailError }}</mat-error>
-
+            <mat-error *ngIf="editForm.get('email')?.hasError('required')">
+              Email is required.
+            </mat-error>
+            <mat-error *ngIf="editForm.get('email')?.hasError('email')">
+              Email format is not valid.
+            </mat-error>
           </mat-form-field>
 
           <!-- Phone -->
-          <mat-form-field appearance="fill" class="full-width">
-            <mat-label><mat-icon>call</mat-icon> Phone</mat-label>
-            <input [(ngModel)]="userInput.phone" class="form-input" formControlName="phone" matInput name="phone" placeholder="Phone"/>
-            <button mat-icon-button matSuffix (click)="userInput.phone=''">
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon>call</mat-icon>
+              Phone
+            </mat-label>
+            <input [(ngModel)]="userInput.phone" formControlName="phone" matInput name="phone" placeholder="Phone"/>
+            <button (click)="userInput.phone=''" mat-icon-button matSuffix>
               <mat-icon>close</mat-icon>
             </button>
-            <mat-error *ngIf="editForm.value.phone">{{ phoneError }}</mat-error>
+            <mat-error *ngIf="editForm.get('phone')?.hasError('required')">
+              Phone number is required.
+            </mat-error>
+            <mat-error *ngIf="editForm.get('phone')?.hasError('pattern')">
+              Phone number format is not valid.
+            </mat-error>
 
           </mat-form-field>
-
-          <!-- New Password -->
-          <mat-form-field appearance="fill" class="full-width">
-            <mat-label><mat-icon>vpn_key</mat-icon> New Password</mat-label>
-            <input [(ngModel)]="userInput.password" class="form-input" formControlName="password" matInput name="password" placeholder="New Password" type="password"/>
-            <button mat-icon-button matSuffix (click)="userInput.password=''">
-              <mat-icon>close</mat-icon>
-            </button>
-            <mat-error *ngIf="editForm.value.password"> {{errorPassword}}</mat-error>
-
-          </mat-form-field>
-
-          <div class="other">
-            <button class="btn submits" mat-raised-button type="reset" (click)="clearForm()">
-              <mat-icon>clear_all</mat-icon>
-              Clear
-            </button>
-            <button class="btn submits" mat-raised-button type="submit">
-              Update
-              <mat-icon>update</mat-icon>
-            </button>
-          </div>
         </div>
-      </div>
-    </form>
+        <hr>
 
-  </mat-card-content>
-</mat-card>
+        <h2>WHERE DO YOU LIVE? </h2>
+
+        <div class="name">
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon>location_city</mat-icon>
+              City
+            </mat-label>
+            <input [(ngModel)]="userInput.city" clas="form-input" formControlName="city" matInput name="city"
+                   placeholder="City"/>
+            <button (click)="userInput.city=''" mat-icon-button matSuffix>
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon>public</mat-icon>
+              Country
+            </mat-label>
+            <mat-select [(ngModel)]="userInput.country" formControlName="country" name="country"
+                        placeholder="Select Country">
+              <mat-option *ngFor="let country of countries" [value]="country.name">
+                {{ country.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon>add_road</mat-icon>
+            Street
+          </mat-label>
+          <input [(ngModel)]="userInput.street" clas="form-input" formControlName="street" matInput name="street"
+                 placeholder="Street"/>
+          <button (click)="userInput.street=''" mat-icon-button matSuffix>
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+
+
+        <!-- New Password -->
+        <h2>CHANGE PASSWORD </h2>
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon>vpn_key</mat-icon>
+            New Password
+          </mat-label>
+          <input [(ngModel)]="userInput.password" clas="form-input" formControlName="password" matInput name="password"
+                 placeholder="New Password" type="password"/>
+          <button (click)="userInput.password=''" mat-icon-button matSuffix>
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="editForm.get('password')?.hasError('required')">
+            Password is required.
+          </mat-error>
+          <mat-error *ngIf="editForm.get('password')?.hasError('minlength')">
+            Password must be at least 8 characters long.
+          </mat-error>
+          <mat-error *ngIf="editForm.get('password')?.hasError('pattern')">
+            Must contain upper, lower case letters, numbers.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon>vpn_key</mat-icon>
+            Confirm Password
+          </mat-label>
+          <input [(ngModel)]="userInput.confirmPassword" clas="form-input" formControlName="confirmPassword" matInput
+                 name="confirmPassword"
+                 placeholder="Confirm New Password" type="password"/>
+          <button (click)="userInput.confirmPassword=''" mat-icon-button matSuffix>
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="editForm.get('confirmPassword')?.hasError('required')">
+            Confirming your password is required.
+          </mat-error>
+        </mat-form-field>
+
+        <button class="update-button" mat-raised-button type="submit">
+          UPDATE
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
