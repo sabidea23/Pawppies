@@ -87,12 +87,14 @@
       <div class="filter-group">
         <h3>CARE</h3>
         <button (click)="applyFilter('fullyVaccinated', true) ; toggleButton('typeFullyVaccinated')"
-                [ngClass]="{'pressed': pressedButton['typeFullyVaccinated']}" class="button-filter" name="fullyVaccinated">
+                [ngClass]="{'pressed': pressedButton['typeFullyVaccinated']}" class="button-filter"
+                name="fullyVaccinated">
           Fully Vaccinated
         </button>
 
         <button (click)="applyFilter('haveSpecialNeeds', true) ; toggleButton('typeHaveSpecialNeeds')"
-                [ngClass]="{'pressed': pressedButton['typeHaveSpecialNeeds']}" class="button-filter" name="haveSpecialNeeds">
+                [ngClass]="{'pressed': pressedButton['typeHaveSpecialNeeds']}" class="button-filter"
+                name="haveSpecialNeeds">
           Have Special Needs
         </button>
 
@@ -112,74 +114,77 @@
     <div class="search-form">
       <div class="filter-group">
         <h3>NAME</h3>
-        <input class="button-filter" type="text" [(ngModel)]="searchTerm" placeholder="Search by name..." (keyup.enter)="addSearchTerm(searchTerm)">
+        <input (keyup.enter)="addSearchTerm(searchTerm)" [(ngModel)]="searchTerm" class="button-filter" placeholder="Search by name..."
+               type="text">
         <div class="chip-container">
           <div *ngFor="let name of searchTerms" class="chip">
             {{ name }}
-            <span class="close" (click)="removeSearchTerm(name)">x</span>
+            <span (click)="removeSearchTerm(name)" class="close">x</span>
           </div>
         </div>
       </div>
 
       <div class="filter-group">
         <h3>COLOR</h3>
-        <input class="button-filter" type="text"
+        <input (blur)="hideColorOptions()" (focus)="showColorOptions = true"
                [(ngModel)]="colorSearchTerm"
-               (focus)="showColorOptions = true"
-               (blur)="hideColorOptions()"
+               class="button-filter"
                placeholder="Select Color..."
-               readonly>
+               readonly
+               type="text">
         <div *ngIf="showColorOptions" class="options-container">
-          <div class="option" *ngFor="let color of colorOptions" (click)="addColor(color)">
+          <div (click)="addColor(color)" *ngFor="let color of colorOptions" class="option">
             {{ color }}
           </div>
         </div>
         <div class="chip-container">
           <div *ngFor="let color of selectedColors" class="chip">
             {{ color }}
-            <span class="close" (click)="removeColor(color)">x</span>
+            <span (click)="removeColor(color)" class="close">x</span>
           </div>
         </div>
       </div>
 
       <div *ngIf="!animalCenter && !userId" class="filter-group">
         <h3>ANIMAL CENTER</h3>
-        <input class="button-filter" type="text"
+        <input (blur)="hideCenterOptions()" (focus)="showCenterOptions = true"
                [(ngModel)]="centerSearchTerm"
-               (focus)="showCenterOptions = true"
-               (blur)="hideCenterOptions()"
+               class="button-filter"
                placeholder="Select Animal Center..."
-               readonly>
+               readonly
+               type="text">
         <div *ngIf="showCenterOptions" class="options-container">
-          <div class="option" *ngFor="let center of centerNames" (click)="addCenter(center)">
+          <div (click)="addCenter(center)" *ngFor="let center of centerNames" class="option">
             {{ center }}
           </div>
         </div>
         <div class="chip-container">
           <div *ngFor="let center of selectedCenters" class="chip">
             {{ center }}
-            <span class="close" (click)="removeCenter(center)">x</span>
+            <span (click)="removeCenter(center)" class="close">x</span>
           </div>
         </div>
       </div>
 
-      <div *ngIf="(pressedButton['typeDog'] || pressedButton['typeCat']) && !(pressedButton['typeDog'] && pressedButton['typeCat'])" class="filter-group" >
+      <div
+        *ngIf="(pressedButton['typeDog'] || pressedButton['typeCat']) && !(pressedButton['typeDog'] && pressedButton['typeCat'])"
+        class="filter-group">
         <h3>BREED</h3>
-        <input class="button-filter" type="text"
+        <input (blur)="hideBreedOptions()" (focus)="showBreedOptions = true"
                [(ngModel)]="breedSearchTerm"
-               (focus)="showBreedOptions = true"
-               (blur)="hideBreedOptions()"
+               class="button-filter"
                placeholder="Select Breed..."
-               readonly>
+               readonly
+               type="text">
         <div *ngIf="showBreedOptions" class="options-container">
-          <div class="option" *ngFor="let breed of animalBreeds" (click)="addBreed(breed)">
+          <div (click)="addBreed(breed)" *ngFor="let breed of animalBreeds" class="option">
             {{ breed }}
           </div>
         </div>
         <div class="chip-container">
           <div *ngFor="let breed of selectedBreeds" class="chip">
             {{ breed }}
-            <span class="close" (click)="removeBreed(breed)">x</span>
+            <span (click)="removeBreed(breed)" class="close">x</span>
           </div>
         </div>
       </div>
@@ -199,71 +204,102 @@
       </button>
     </div>
 
-    <div  *ngIf="!userId" class="animal-grid">
+    <div *ngIf="!userId" class="animal-grid">
       <div *ngFor="let animal of paginatedDogBreeds" class="animal-card">
         <a (click)="navigateToAnimalDetails(animal)">
-        <button (click)="likeAnimal($event, animal)" *ngIf="user" [ngClass]="{ 'liked': isLiked(animal) }" class="like-button">
-          <mat-icon>{{ isLiked(animal) ? 'favorite' : 'favorite_border' }}</mat-icon>
-        </button>
-
-        <img [src]='animal.animalImages[0].url  || "../../../assets/background-animal.png"'
-             [style.background]="'url(../../../assets/background-animal.png)'"
-             class="animal-image">
-
-        <div class="description">
-          <button (click)="editAnimal($event, animal)" *ngIf="getUserRole() == 'SUPPLIER' && animal.author.id == user.id"
-                  mat-button>
-            <mat-icon>edit</mat-icon>
+          <button (click)="likeAnimal($event, animal)" *ngIf="user" [ngClass]="{ 'liked': isLiked(animal) }"
+                  class="like-button">
+            <mat-icon>{{ isLiked(animal) ? 'favorite' : 'favorite_border' }}</mat-icon>
           </button>
 
-          <div class="animal-details">
-            <p class="animal-name"> {{ animal.name }} </p>
-            <p class="animal-other-details"> {{ animal.age }}, {{ animal.type }} </p>
+          <img [src]='animal.animalImages[0].url  || "../../../assets/background-animal.png"'
+               [style.background]="'url(../../../assets/background-animal.png)'"
+               class="animal-image">
+
+          <div class="description">
+            <button (click)="editAnimal($event, animal)"
+                    *ngIf="getUserRole() == 'SUPPLIER' && animal.author.id == user.id"
+                    mat-button>
+              <mat-icon>edit</mat-icon>
+            </button>
+
+            <div class="animal-details">
+              <p class="animal-name"> {{ animal.name }} </p>
+              <p class="animal-other-details"> {{ animal.age }}, {{ animal.type }} </p>
+            </div>
+
+            <button (click)="deleteAnimal($event, animal)" *ngIf="getUserRole() === 'ADMIN'" mat-button>
+              <mat-icon>delete</mat-icon>
+            </button>
           </div>
-
-          <button (click)="deleteAnimal($event, animal)" *ngIf="getUserRole() === 'ADMIN'" mat-button>
-            <mat-icon>delete</mat-icon>
-          </button>
-        </div>
         </a>
       </div>
     </div>
 
-    <div  *ngIf="userId"  class="animal-grid">
+    <div *ngIf="userId" class="animal-grid">
       <div *ngFor="let animal of animals" class="animal-card">
         <a (click)="navigateToAnimalDetails(animal)">
-        <button (click)="likeAnimal($event, animal)" *ngIf="user" [ngClass]="{ 'liked': isLiked(animal) }" class="like-button">
-          <mat-icon>{{ isLiked(animal) ? 'favorite' : 'favorite_border' }}</mat-icon>
-        </button>
-
-        <img [src]='animal.animalImages[0].url  || "../../../assets/background-animal.png"'
-             [style.background]="'url(../../../assets/background-animal.png)'"
-             class="animal-image">
-
-        <div class="description">
-          <button (click)="editAnimal($event, animal)" *ngIf="getUserRole() == 'SUPPLIER' && animal.author.id == user.id"
-                  mat-button>
-            <mat-icon>edit</mat-icon>
+          <button (click)="likeAnimal($event, animal)" *ngIf="user" [ngClass]="{ 'liked': isLiked(animal) }"
+                  class="like-button">
+            <mat-icon>{{ isLiked(animal) ? 'favorite' : 'favorite_border' }}</mat-icon>
           </button>
 
-          <div class="animal-details">
-            <p class="animal-name"> {{ animal.name }} </p>
-            <p class="animal-other-details"> {{ animal.age }}, {{ animal.type }} </p>
+          <img [src]='animal.animalImages[0].url  || "../../../assets/background-animal.png"'
+               [style.background]="'url(../../../assets/background-animal.png)'"
+               class="animal-image">
+
+          <div class="description">
+            <button (click)="editAnimal($event, animal)"
+                    *ngIf="getUserRole() == 'SUPPLIER' && animal.author.id == user.id"
+                    mat-button>
+              <mat-icon>edit</mat-icon>
+            </button>
+
+            <div class="animal-details">
+              <p class="animal-name"> {{ animal.name }} </p>
+              <p class="animal-other-details"> {{ animal.age }}, {{ animal.type }} </p>
+            </div>
+
+            <button (click)="deleteAnimal($event, animal)" *ngIf="getUserRole() === 'ADMIN'" mat-button>
+              <mat-icon>delete</mat-icon>
+            </button>
           </div>
-
-          <button (click)="deleteAnimal($event, animal)" *ngIf="getUserRole() === 'ADMIN'" mat-button>
-            <mat-icon>delete</mat-icon>
-          </button>
-        </div>
         </a>
       </div>
     </div>
+
 
     <div class="pagination-controls">
       <button (click)="prevPage()" *ngIf="currentPage > 1" class="pagination-button prev">< PREVIOUS</button>
       <span>Page {{currentPage}}</span>
       <button (click)="nextPage()" *ngIf="currentPage < totalPages" class="pagination-button next">NEXT ></button>
     </div>
+
   </div>
 </div>
+<div *ngIf="userId" class="main-container">
+  <div class="content-container">
+    <div class="recently" *ngIf="user && recentlyViewedAnimals.length > 0">
+      <h1 class="recently"> Recently viewed pets </h1>
+      <div class="animal-grid">
+
+        <div *ngFor="let animal of recentlyViewedAnimals" class="animal-card">
+          <a (click)="navigateToAnimalDetails(animal)">
+            <button (click)="likeAnimal($event, animal)" *ngIf="user" [ngClass]="{ 'liked': isLiked(animal) }"
+                    class="like-button">
+              <mat-icon>{{ isLiked(animal) ? 'favorite' : 'favorite_border' }}</mat-icon>
+            </button>
+
+            <img [src]='animal.animalImages[0].url' class="animal-image">
+            <div class="animal-details">
+              <p class="animal-name"> {{ animal.name }} </p>
+              <p class="animal-other-details"> {{ animal.age }}, {{ animal.breed }} </p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>

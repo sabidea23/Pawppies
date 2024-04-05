@@ -108,7 +108,7 @@ export class AnimalListComponent implements OnInit {
     this.getAllCentersNames();
 
     this.totalPages = Math.ceil(this.totalElements / this.itemsPerPage);
-
+    this.getRecentlyViewedPets();
   }
 
   public getUserRole() {
@@ -533,5 +533,38 @@ export class AnimalListComponent implements OnInit {
     }
 
     this.router.navigate(['/animal-details', {animalId: animal.id}]);
+  }
+
+  recentlyViewedAnimals:any = [];
+
+  getRecentlyViewedPets() {
+    if (this.user ) {
+      const userId = this.user.id;
+
+      this.userService.getRecentlyViewedAnimals(userId).subscribe({
+        next: (animalIds: any) => {
+          this.loadAnimalDetails(animalIds);
+        },
+        error: (error) => {
+          console.error('Error fetching recently viewed animals', error);
+        }
+      });
+    }
+  }
+
+  loadAnimalDetails(animalIds: number[]) {
+    this.recentlyViewedAnimals = [];
+
+    animalIds.forEach(animalId => {
+      this.animalService.getAnimal(animalId).subscribe({
+        next: (animalDetail) => {
+          animalDetail= this.imageProcessingService.createImage(animalDetail);
+          this.recentlyViewedAnimals.push(animalDetail);
+        },
+        error: (error) => {
+          console.error(`Error fetching details for animal with ID ${animalId}`, error);
+        }
+      });
+    });
   }
 }

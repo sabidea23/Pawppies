@@ -3,6 +3,7 @@ body {
   padding-bottom: 20px;
   margin: 0;
   font-family: 'Montserrat', sans-serif;
+
 }
 
 .centers-table {
@@ -312,6 +313,7 @@ input[type="button"] {
 .animal-details {
   width: 150px;
   padding: 0.5rem;
+  text-align: center;
 }
 
 .animal-name {
@@ -321,6 +323,7 @@ input[type="button"] {
   font-family: 'Montserrat', sans-serif;
   color: #6504B5;
   font-weight: bold;
+  text-align: center;
 }
 
 .header-container {
@@ -451,3 +454,4 @@ h3 {
 .pagination-button.next {
   margin-left: 20px;
 }
+
