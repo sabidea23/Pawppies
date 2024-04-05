@@ -3,15 +3,36 @@
   <div class="content-container">
 
     <div class="header-container">
-      <h2>Search For Animal Welfare Groups by </h2>
-      <!-- Buton pentru adăugare centru animal, vizibil doar pentru ADMIN -->
+      <h1>Helping Homeless Pet Owners Keep Their Pets</h1>
       <button (click)="navigateToAddAnimalCenter()" *ngIf="getUserRole() == 'SUPPLIER'" class="add-animal-center-button"
               mat-raised-button>
         ADD CENTER
       </button>
     </div>
+    <img class="cute-dog-picture" src="../../../assets/animal-centers.png">
+    <p>Pets bring a great deal of joy and comfort, as well as better health, to their owner's lives, but financial
+      problems can leave pet owners scrambling to hold onto pets, or any sense of normalcy. Sandy Swank, the director of
+      housing and homeless services for Inter-Faith Ministries in Wichita, Kansas, says in a Wichita Eagle interview
+      that homeless pet owners can find themselves faced with the painful decision of leaving a beloved pet behind in
+      order to get a meal and spend a night in a shelter, or sleeping on the street.
+    </p>
 
-
+    <h1> HELP WITH PET CARE COSTS </h1>
+    <p> Wilson was not able to find help feeding or caring for Free during the transition to homelessness, but he
+      managed to keep Free with him until he got back on his feet. According to Wilson, Free comforted him during the
+      darkest time of his life and gave him a reason to keep fighting. However, if assistance, such as the programs
+      mentioned below, had been available for Wilson and Free, the impact of losing their home might have been lessened,
+      making it easier for them to stay together.
+    </p>
+    <ul>
+      <li><b> Veterinary care assistance: </b> Programs such as Project Care, MSPCA, and Pets of the Homeless provide
+        pets of homeless individuals with veterinary care. This helps ensure the health of the animals, which is
+        important. Some shelters accept people with pets only if their pet is vaccinated.
+      </li>
+      <li><b> Pet food assistance:</b> Programs such as a pet food drive program or Pet Food Stamps reach out to
+        financially challenged and homeless pet owners by providing food for hungry pets.
+      </li>
+    </ul>
     <div *ngIf="searchFilters.length > 0" class="filter-container">
       <div *ngFor="let filter of searchFilters">
         <p *ngIf="filter.value" class="filter-chip">
@@ -68,10 +89,10 @@
       <!-- Coloana pentru Editare -->
       <ng-container matColumnDef="edit">
         <th *matHeaderCellDef>EDIT</th>
-        <td *matCellDef="let animalCenter" mat-cell >
-          <button *ngIf="getUserRole() == 'SUPPLIER' && animalCenter.admin.id == user.id"
-                  (click)="editAnimalCenter(animalCenter)" class="btn bg-transparent" mat-button>
-            <mat-icon >edit</mat-icon>
+        <td *matCellDef="let animalCenter" mat-cell>
+          <button (click)="editAnimalCenter(animalCenter)"
+                  *ngIf="getUserRole() == 'SUPPLIER' && animalCenter.admin.id == user.id" class="btn bg-transparent" mat-button>
+            <mat-icon>edit</mat-icon>
           </button>
         </td>
       </ng-container>
