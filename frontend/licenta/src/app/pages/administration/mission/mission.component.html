@@ -115,22 +115,23 @@
     <div class="animal-grid">
       <div *ngFor="let animal of showAnimals; let isLast = last" [class]="isLast ? 'animal-card-last' : 'animal-card'">
         <a (click)="navigateToAnimalDetails(animal)">
-        <ng-container *ngIf="isLast ; else notLastTemplate">
-          <div (click)="goToAnimalsPage()">
-            <div class="animal-image">
-              <mat-icon class="centered-icon">search</mat-icon>
+          <ng-container *ngIf="isLast ; else notLastTemplate">
+            <div (click)="goToAnimalsPage()">
+              <div class="animal-image">
+                <mat-icon class="centered-icon">search</mat-icon>
 
-              <p class="centered-text">300+ pets available on Pawppies </p>
-            </div>
+                <p class="centered-text">300+ pets available on Pawppies </p>
+              </div>
 
-            <div class="animal-last">
-              <p class="meet-animals-text">MEET THEM</p>
+              <div class="animal-last">
+                <p class="meet-animals-text">MEET THEM</p>
+              </div>
             </div>
-          </div>
-        </ng-container>
+          </ng-container>
         </a>
         <ng-template #notLastTemplate>
-          <button *ngIf="user" (click)="likeAnimal($event, animal)" [ngClass]="{ 'liked': isLiked(animal) }" class="like-button">
+          <button (click)="likeAnimal($event, animal)" *ngIf="user" [ngClass]="{ 'liked': isLiked(animal) }"
+                  class="like-button">
             <mat-icon>{{ isLiked(animal) ? 'favorite' : 'favorite_border' }}</mat-icon>
           </button>
 
