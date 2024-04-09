@@ -207,7 +207,6 @@ mat-form-field {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 }
 
 .recently {
@@ -335,4 +334,51 @@ input[type="button"] {
   height: 50px;
   width: 50px;
   font-size: 70px;
+}
+
+.see-about {
+  padding-top: 50px;
+}
+
+.see-about .about-grid {
+  display: flex;
+  flex-wrap: wrap; /* Permite cardurilor să treacă pe rândul următor */
+  justify-content: flex-start; /* Aliniază cardurile la începutul containerului */
+  gap: 1rem; /* Definește spațiul dintre carduri */
+}
+
+.see-about .about-card {
+  border-radius: 10px;
+  flex: 0 0 calc(25% - 1rem); /* Fiecare card va avea o lățime care să permită 4 pe rând */
+  max-width: calc(25% - 1rem); /* Asigură că lățimea maximă a fiecărui card nu depășește 25% minus gap */
+  background-color: white;
+  border: 2px solid #ddd;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+  height: 240px;
+}
+
+.see-about .about-card:hover {
+  border: 2px solid #6504B5;
+}
+
+.see-about .about-image {
+  width: 100%;
+  height: 65%; /* Menține imaginea la 50% din înălțimea totală a cardului */
+  object-fit: cover;
+}
+
+.see-about .about-detail {
+  padding: 0.5rem;
+}
+
+.title-about {
+  font-size: 14px;
+  color: #6504B5;
+  margin: 0;
+  font-weight: bold;
+}
+
+.text-about {
+  font-size: 16px;
 }

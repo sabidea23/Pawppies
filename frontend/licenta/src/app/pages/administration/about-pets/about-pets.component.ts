@@ -147,4 +147,34 @@ export class AboutPetsComponent {
       },
     });
   }
+
+  navigateToAnimalCenters() {
+    this.router.navigate(['/centers']);
+
+  }
+
+  navigateToDogBreedsPage(){
+    this.router.navigate(['/breed-details-dog']);
+
+  }
+
+  navigateToCatBreedsPage(){
+    this.router.navigate(['/breed-details-cat']);
+
+  }
+
+  navigateToFAQSPage() {
+    this.router.navigate(['/faqs']);
+
+  }
+
+  navigateToCatAdoption(){
+    this.router.navigate(['/adopt-cats']);
+
+  }
+
+  navigateToDogAdoptionPage(){
+    this.router.navigate(['/adopt-dogs']);
+
+  }
 }
