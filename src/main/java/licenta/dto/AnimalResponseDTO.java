@@ -7,7 +7,7 @@ import licenta.entity.BreedDetails;
 import lombok.Builder;
 import lombok.Data;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Data
@@ -25,7 +25,7 @@ public class AnimalResponseDTO {
     private String color;
     private String description;
     private String goodInHome;
-    private LocalDate postedDate;
+    private LocalDateTime postedDate;
     private Boolean isAdopted;
     private User author;
     private AnimalCenter animalCenter;

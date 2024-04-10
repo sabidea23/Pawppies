@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
 import { Router, Scroll } from '@angular/router';
+import {NotificationService} from "../../../services/notification.service";
 
 
 @Component({
@@ -15,7 +16,10 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     public login: LoginService,
-    public router: Router) {
+    public router: Router,
+
+    public notificationService: NotificationService)
+  {
       this.router.events.subscribe((event: any) => {
         if (event instanceof Scroll && event.anchor) {
           setTimeout(() => {
@@ -24,6 +28,49 @@ export class NavbarComponent implements OnInit {
         }
       });
   }
+
+  unreadCount: number = 0;
+   notifications: any = [];
+
+
+  private getNotifications() {
+    this.notificationService.getNotificationsByUserId(this.user.id).subscribe(
+      notifications => {
+        // @ts-ignore
+        this.notifications = notifications.sort((a, b) => {
+          return new Date(b.localDate).getTime() - new Date(a.localDate).getTime();
+        });
+        this.unreadCount = notifications.filter(notification => !notification.isReadByUser).length;
+        console.log(this.notifications);
+        console.log(this.unreadCount);
+      },
+      error => {
+        console.error('There was an error retrieving the notifications', error);
+      }
+    );
+  }
+
+
+  markAllNotificationsAsRead(): void {
+    // @ts-ignore
+    this.notifications.forEach(notification => {
+      // @ts-ignore
+      if (!notification.isReadByUser) {
+        // @ts-ignore
+        this.notificationService.userReadNotificationById(this.user.id, notification.id).subscribe(
+          () => {
+            // @ts-ignore
+            notification.isReadByUser = true;
+          },
+          error => {
+            console.error('Error marking notification as read', error);
+          }
+        );
+      }
+      this.unreadCount = 0;
+    });
+  }
+
 
   private scroll(query: string) {
     const targetElement = document.querySelector(query);
@@ -80,6 +127,10 @@ export class NavbarComponent implements OnInit {
         sessionStorage.setItem('initSumm', JSON.stringify(itemJson));
 
       }
+    }
+
+    if (this.user) {
+      this.getNotifications();
     }
   }
 

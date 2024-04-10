@@ -5,7 +5,6 @@
   width: 185px;
   overflow-x: hidden;
   overflow-scrolling: unset;
-
 }
 
 .mat-mdc-menu-panel.custom-menu.submeniu {
@@ -17,6 +16,7 @@
   overflow-x: hidden;
   overflow-scrolling: unset;
 }
+
 
 .mat-mdc-menu-item.mat-menu-customize-item:hover {
   transform: scale(1.1);
@@ -51,5 +51,22 @@ button.mat-button:focus {
 * {
   caret-color: transparent;
   font-family: 'Montserrat', sans-serif; /* Aplică fontul Montserrat */
+}
 
+.cdk-overlay-container .menu-notification {
+  top: 60px;
+}
+
+
+.mat-mdc-menu-content .menu-notification {
+  height: 600px;
+  background-color: #666666;
+  padding-top: 0;
+}
+
+.mat-mdc-menu-panel.menu-notification {
+  max-height: 400px;
+  width: 800px;
+  overflow-x: hidden;
+  overflow-scrolling: unset;
 }

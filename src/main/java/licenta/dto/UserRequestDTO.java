@@ -21,14 +21,9 @@ public class UserRequestDTO {
     private  Double latitude;
     private  Double longitude;
     private String role;
-
-
     private String city;
-
     private String country;
-
     private String street;
-
     public UserRequestDTO(Long id, String username, String password, String firstName, String lastName, String email,
                           String phone, Double latitude, Double longitude, String role, String city, String country, String street) {
         this.id = id;

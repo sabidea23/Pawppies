@@ -23,10 +23,8 @@ import java.util.Set;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-
     private final RoleRepository roleRepository;
     private final UserRoleRepository userRoleRepository;
-
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository,
@@ -63,6 +61,8 @@ public class UserServiceImpl implements UserService {
                 .userRoles(new HashSet<>())
                 .animalCenters(new HashSet<>())
                 .adoptedAnimals(new HashSet<>())
+                .notifications(new HashSet<>())
+                .adoptionRequests(new HashSet<>())
                 .build();
 
         User savedUser = this.userRepository.save(newUser);
@@ -150,15 +150,12 @@ public class UserServiceImpl implements UserService {
             throw new UserNotFoundException("User with id `" + userId + "` not found");
         }
 
-        // Asigură-te că lista nu este nullă
         if (user.getRecentlyViewedAnimals() == null) {
             user.setRecentlyViewedAnimals(new LinkedList<>());
         }
 
-        // Logica de adăugare a unui animal nou, verificând mai întâi dacă există deja
         if (!user.getRecentlyViewedAnimals().contains(animalId)) {
             if (user.getRecentlyViewedAnimals().size() >= 5) {
-                // Elimină primul element dacă lista a atins dimensiunea maximă
                 user.getRecentlyViewedAnimals().remove(0);
             }
             user.getRecentlyViewedAnimals().add(animalId);

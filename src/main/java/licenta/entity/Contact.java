@@ -3,8 +3,7 @@ package licenta.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Table(name = "contact_form")
 @Getter
@@ -31,5 +30,5 @@ public class Contact {
     @Column(length = 2000)
     private String message;
 
-    private LocalDate postedDate;
+    private LocalDateTime postedDate;
 }

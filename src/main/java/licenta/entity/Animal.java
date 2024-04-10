@@ -2,11 +2,10 @@ package licenta.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -53,7 +52,7 @@ public class Animal {
     private String goodInHome;
 
     @Column()
-    private LocalDate postedDate;
+    private LocalDateTime postedDate;
 
     @Column()
     private Boolean isAdopted;
@@ -169,4 +168,8 @@ public class Animal {
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private User adoptionUser;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "adoptionRequestAnimal")
+    @JsonIgnore
+    private Set<AdoptionRequest> adoptionRequests;
 }

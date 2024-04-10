@@ -12,9 +12,32 @@
     </div>
     <div class="auth-buttons">
 
-      <a (click)="isLoggedIn ? redirectToFavoriteAnimalsPage() : redirectToLoginPage()" class="heart-icon" mat-button>
+      <a *ngIf="user" (click)="redirectToFavoriteAnimalsPage()" class="heart-icon" mat-button>
         <mat-icon>favorite</mat-icon>
       </a>
+
+      <a *ngIf="user" mat-button [matMenuTriggerFor]="notificationMenu" class="notification-icon" (click)="markAllNotificationsAsRead()">
+        <mat-icon matBadge="{{unreadCount}}" matBadgeHidden="{{unreadCount === 0}}" matBadgePosition="above after" matBadgeColor="warn">notifications</mat-icon>
+      </a>
+
+      <mat-menu #notificationMenu="matMenu" class="menu-notification" yPosition="above">
+        <h2 class="title-notifications">Notifications</h2>
+        <div *ngIf="notifications.length == 0">
+          <p class="no-notification-yet">You have no notifications</p>
+        </div>
+        <div *ngFor="let notification of notifications" class="details-notifications">
+          <div class="top-notification">
+            <i *ngIf="!notification.isReadByUser" class="fi fi-rr-envelope-dot" style="font-size: 23px"></i>
+            <i *ngIf="notification.isReadByUser" class="fi fi-rr-envelope-open" style="font-size: 23px"></i>
+            <div class="notification-title-date">
+              <p class="nnotification-author" >{{ notification.author }}</p>
+              <p class="nnotification-date"> {{ notification.localDate | date:'medium' }}</p>
+            </div>
+          </div>
+
+          <p>{{ notification.message }}</p>
+        </div>
+      </mat-menu>
 
         <a *ngIf="!isLoggedIn" [routerLink]="'/signup'" aria-label="Register"
            class="example-icon login" mat-button>
@@ -31,7 +54,6 @@
         <div *ngIf="isLoggedIn && user" class="user-menu example-icon">
           <button (click)="$event.stopPropagation();" mat-button [matMenuTriggerFor]="userMenu" [ngClass]="{'active': profileDetailMenu}"
           (click)="openUserMenu()">
-            <mat-icon>person</mat-icon> <!-- Pictograma cu utilizator -->
             {{ user.firstName }} {{ user.lastName }} <!-- Prenume și nume -->
           </button>
 

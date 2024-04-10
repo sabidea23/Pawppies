@@ -99,16 +99,6 @@ public class User implements UserDetails {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<Long> recentlyViewedAnimals = new ArrayList<>();
 
-
-    public boolean viewAnimal(Long animalId) {
-        recentlyViewedAnimals.remove(animalId);
-
-        while (recentlyViewedAnimals.size() >= 5) {
-            recentlyViewedAnimals.remove(0);
-        }
-        return recentlyViewedAnimals.add(animalId);
-    }
-
     @Column
     private String city;
 
@@ -121,4 +111,12 @@ public class User implements UserDetails {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "adoptionUser")
     @JsonIgnore
     private Set<Animal> adoptedAnimals;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "adoptionRequestUser")
+    @JsonIgnore
+    private Set<AdoptionRequest> adoptionRequests;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "userNotificated")
+    @JsonIgnore
+    private Set<Notification> notifications;
 }

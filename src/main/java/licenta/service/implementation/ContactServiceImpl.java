@@ -6,6 +6,7 @@ import licenta.service.ContactService;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Component
 public class ContactServiceImpl implements ContactService {
@@ -17,7 +18,7 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public Contact submitFormContact(Contact contact) {
-        contact.setPostedDate(LocalDate.now());
+        contact.setPostedDate(LocalDateTime.now());
         return this.contactRepository.save(contact);
     }
 }

@@ -82,6 +82,8 @@ public class AuthenticateController {
                 .city(user.getCity())
                 .country(user.getCountry())
                 .street(user.getStreet())
+                .notifications(user.getNotifications())
+                .adoptionRequests(user.getAdoptionRequests())
                 .build();
     }
 }

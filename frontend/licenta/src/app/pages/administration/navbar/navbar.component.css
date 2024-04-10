@@ -152,12 +152,93 @@ mat mat-icon.heart-icon {
 .heart-icon mat-icon {
   margin-top: 17px;;
   font-size: 22px; /* Ajustați această valoare după preferințe */
-  width: 30px;
+  width: 20px;
   color: #6504B5; /* Culoarea inițială a inimii */
+  margin-right: 0;
 }
 
 .heart-icon:hover mat-icon {
   color: #FF1053; /* Culoare la survolare */
 }
 
+.notification-icon mat-icon{
+  margin-top: 17px;;
+  font-size: 22px; /* Ajustați această valoare după preferințe */
+  width: 20px;
+  color: #6504B5; /* Culoarea inițială a inimii */
+  padding-top: -50px;
+}
 
+.notification-icon:hover mat-icon{
+  color: #410078;
+}
+
+.mat-menu-content {
+  max-height: 300px;
+  overflow: auto;
+  width: 1600px;
+}
+
+.menu-notification {
+  height: 300px;
+  top: -100px
+}
+
+.details-notifications {
+  padding: 15px;
+  padding-top: 10px;
+  border: 1px solid #EFEEF1;
+}
+
+.details-notifications:hover {
+  padding: 15px;
+  padding-top: 10px;
+  background-color: #EFEEF1;
+  display: flex;
+  flex-direction: column;
+}
+
+.title-notifications {
+  padding: 15px;
+  padding-bottom: 0;
+}
+
+h2 {
+  margin: 0;
+  padding: 0;
+  color: #6504B5;
+  padding-bottom: 15px;
+}
+
+hr {
+  margin: 0;
+}
+
+.no-notification-yet{
+  padding: 15px;
+}
+
+.top-notification {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.notification-title-date {
+  display: flex;
+  flex-direction: column;
+}
+
+.nnotification-author {
+  font-size: 14px;
+  font-weight: bold;
+  color: #6504B5;
+  margin: 0;
+}
+
+.nnotification-date {
+  font-size: 9px;
+  color: #666666;
+  margin: 0;
+
+}

@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -53,7 +54,7 @@ public class AnimalServiceImpl implements AnimalService {
                 .color(animalRequestDTO.getColor())
                 .description(animalRequestDTO.getDescription())
                 .goodInHome(animalRequestDTO.getGoodInHome())
-                .postedDate(LocalDate.now())
+                .postedDate(LocalDateTime.now())
                 .isAdopted(false)
                 .animalCenter(animalRequestDTO.getAnimalCenter())
                 .author(animalRequestDTO.getAuthor())
