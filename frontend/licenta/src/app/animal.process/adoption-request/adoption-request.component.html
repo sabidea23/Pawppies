@@ -1,0 +1,70 @@
+<body>
+<div class="main-container">
+  <form (ngSubmit)="formSubmit()" [formGroup]="adoptionData" class="login-form">
+    <div class="top-form">
+      <h1>Submit your inquiry </h1>
+      <h3> review your information which will be sent to the shelter</h3>
+    </div>
+
+    <br>
+    <h2 class="title-h3"> CONTACT INFO</h2>
+
+    <h3><b> First name: </b> {{user.firstName}}</h3>
+    <h3><b> Last name: </b> {{user.lastName}}</h3>
+    <h3><b> Email: </b> {{user.email }}</h3>
+
+
+    <!-- Phone -->
+    <div class="custom-mat-form-field">
+      <h3 class="phone-number"><b> Phone number: </b></h3>
+      <mat-form-field appearance="fill">
+
+        <input [(ngModel)]="request.phone" formControlName="phone"
+               matInput placeholder="Phone number"/>
+
+        <mat-error *ngIf="adoptionData.get('phone')?.hasError('required')">
+          Phone number is required.
+        </mat-error>
+        <mat-error *ngIf="adoptionData.get('phone')?.hasError('pattern')">
+          Phone number format is not valid.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <br>
+    <h2 class="title-h3">PERSONALIZE YOUR INQUIRY </h2>
+
+    <h3> Briefly tell the shelter why you are a good fit for {{animal.name}}. Please do not share email addresses or
+      website
+      links here. The email address you use for your Pawppies account will be shared in your introduction.</h3>
+
+    <mat-form-field appearance="fill" class="custom-mat-form-field-text">
+
+      <textarea [(ngModel)]="request.reason" class="reason-area" matInput
+                formControlName="reason" placeholder="I think I would be a good fit because..."></textarea>
+      <mat-error *ngIf="adoptionData.get('reason')?.hasError('required')">
+        Reason is required.
+      </mat-error>
+    </mat-form-field>
+
+    <div class="consent-checkbox">
+      <input formControlName="acknowledge" id="acknowledge" required type="checkbox">
+      <mat-error *ngIf="adoptionData.get('acknowledge')?.hasError('requiredTrue')">
+        Acknowledgement is required.
+      </mat-error>
+      <label for="acknowledge">I acknowledge that I will receive notifications about the status of the adoption process
+        and am required to read them. </label>
+      <label for="acknowledge"> Once the shelter administrator approves my request, I must visit the shelter within
+        5 days to adopt the animal.</label>
+    </div>
+
+    <div class="buton-login">
+      <button class="login-button" mat-flat-button type="submit">
+        SEND YOUR INQUIRY
+      </button>
+    </div>
+
+  </form>
+</div>
+
+</body>

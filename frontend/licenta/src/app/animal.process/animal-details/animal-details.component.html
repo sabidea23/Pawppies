@@ -124,7 +124,7 @@
     <div class="side-container">
       <div class="adopt-animal">
         <p class="text-adopt">Considering {{animal.name}} for adoption?</p>
-        <button class="start-quiz-btn" mat-button>START ADOPTION PROCESS</button>
+        <button (click)="startAdoptionProcess()" class="start-quiz-btn" mat-button>START ADOPTION PROCESS</button>
         <button (click)="navigateToFaqs()" class="read-faqs" mat-button>READ FAQs ABOUT ADOPTION</button>
       </div>
 

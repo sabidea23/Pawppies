@@ -40,6 +40,7 @@ import {BestCatKidsComponent} from "./pages/adopt-cat/best-cat-kids/best-cat-kid
 import {FluffyCatComponent} from "./pages/adopt-cat/fluffy-cat/fluffy-cat.component";
 import {HairlessCatComponent} from "./pages/adopt-cat/hairless-cat/hairless-cat.component";
 import {CuteCaatComponent} from "./pages/adopt-cat/cute-caat/cute-caat.component";
+import {AdoptionRequestComponent} from "./animal.process/adoption-request/adoption-request.component";
 
 const routes: Routes = [{
   path: '', component: HomeComponent, pathMatch: 'full',
@@ -59,6 +60,8 @@ const routes: Routes = [{
   path: 'contact', component: ContactComponent, pathMatch: 'full',
 }, {
   path: 'about-pets/mission', component: MissionComponent, pathMatch: 'full',
+}, {
+  path: 'adoption-request', component: AdoptionRequestComponent, pathMatch: 'full',
 }, {
   path: 'breed-dog', component: BreedDogComponent, pathMatch: 'full',
 }, {

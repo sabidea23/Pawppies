@@ -249,4 +249,13 @@ export class AnimalDetailsComponent {
     this.router.navigate(['/adopt-cats']);
 
   }
+
+  startAdoptionProcess() {
+    if (!this.user) {
+      this.router.navigate(['/login']);
+    }
+    else {
+      this.router.navigate(['/adoption-request', {animalId: this.animal.id}]);
+    }
+  }
 }
