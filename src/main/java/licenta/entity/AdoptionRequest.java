@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "adoption_reequest")
@@ -27,11 +27,21 @@ public class AdoptionRequest {
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     Animal adoptionRequestAnimal;
 
+    @Column(length = 2000)
     String reason;
+
+    @Column
     String firstName;
+    @Column
     String lastName;
+    @Column
     String email;
+    @Column
     String phone;
-    LocalDate requestedDate;
-    String status; //pending, approved, denied
+    @Column
+    LocalDateTime requestedDate;
+    @Column
+    LocalDateTime pendingDate;
+    @Column
+    String status; // submit, pending, approved, reject,
 }
