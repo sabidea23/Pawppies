@@ -94,10 +94,13 @@
 
     </mat-menu>
 
-    <a class="sub-menu-item" mat-button [matMenuTriggerFor]="others">OTHER TYPES OF PETS</a>
+    <a class="sub-menu-item" mat-button [matMenuTriggerFor]="others">RESOURCES</a>
     <mat-menu class="custom-menu submeniu" #others="matMenu">
-      <button class="mat-menu-customize-item" mat-menu-item>Opțiunea 1</button>
-      <button class="mat-menu-customize-item" mat-menu-item>Opțiunea 2</button>
+      <button class="mat-menu-customize-item" mat-menu-item  (click)="redirectToFAQs()"> FAQs </button>
+      <button class="mat-menu-customize-item" mat-menu-item  (click)="redirectToContact()"> Contact </button>
+      <button class="mat-menu-customize-item" mat-menu-item  (click)="redirectToPrivacyPolicy()" > Privacy Policy </button>
+      <button class="mat-menu-customize-item" mat-menu-item  (click)="redirectToTearmsOfService()"> Terms of Service </button>
+
     </mat-menu>
 
   </div>
