@@ -25,19 +25,13 @@
               <mat-icon>category</mat-icon>
               Animal Type
             </mat-label>
-            <mat-select (selectionChange)="checkOtherType($event.value)" [(ngModel)]="petProfile.inputType" name="type">
+            <mat-select [(ngModel)]="petProfile.inputType" name="type">
               <mat-option value="Dog">Dog</mat-option>
               <mat-option value="Cat">Cat</mat-option>
-              <mat-option value="Others">Others - Specify below</mat-option>
             </mat-select>
           </mat-form-field>
 
-          <mat-form-field *ngIf="isOtherSelected" appearance="fill" class="custom-mat-form-field">
-            <mat-label>Specify Other Type</mat-label>
-            <input [(ngModel)]="petProfile.otherType" matInput name="otherType" placeholder="E.g., Rabbit, Parrot"/>
-          </mat-form-field>
-
-          <mat-form-field *ngIf="petProfile.inputType !== 'Others'" appearance="fill" class="custom-mat-form-field">
+          <mat-form-field  appearance="fill" class="custom-mat-form-field">
             <mat-label>
               <mat-icon>merge_type</mat-icon>
               Animal Breed
@@ -46,11 +40,6 @@
               <mat-option *ngFor="let breed of getBreedOptions(petProfile.inputType)"
                           [value]="breed">{{ breed }}</mat-option>
             </mat-select>
-          </mat-form-field>
-
-          <mat-form-field *ngIf="petProfile.inputType === 'Others'" appearance="fill" class="custom-mat-form-field">
-            <mat-label>Specify Breed</mat-label>
-            <input [(ngModel)]="petProfile.inputBreed" matInput name="breed" placeholder="E.g., Mixed, Unknown"/>
           </mat-form-field>
 
           <mat-form-field appearance="fill" class="custom-mat-form-field">

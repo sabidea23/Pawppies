@@ -93,14 +93,6 @@ export class AddAnimalComponent implements OnInit {
       });
   }
 
-
-  checkOtherType(value: string): void {
-    this.isOtherSelected = value === 'Others';
-    if (!this.isOtherSelected) {
-      this.petProfile.otherType = '';
-    }
-  }
-
   deleteImage(index: number): void {
     this.animal.animalImages.splice(index, 1);
 
