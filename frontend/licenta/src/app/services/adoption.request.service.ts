@@ -62,4 +62,12 @@ export class AdoptionRequestService {
     console.log(requestId)
     return this.http.delete(`${baseUrl}/adopt-request/cancel/${requestId}`, {});
   }
+
+  getRequestsForAnimalCenterId(animalCenterId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${baseUrl}/adopt-request/center/${animalCenterId}`);
+  }
+
+  getUserForRequest(userId: number): Observable<any> {
+    return this.http.get<any>(`${baseUrl}/adopt-request/user-from-request/${userId}`);
+  }
 }

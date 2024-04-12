@@ -3,6 +3,7 @@ package licenta.controller;
 import licenta.dto.AdoptionRequestDTO;
 import licenta.entity.AdoptionRequest;
 import licenta.entity.Animal;
+import licenta.entity.User;
 import licenta.service.AnimalRequestsService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,11 @@ public class AdoptionRequestController {
     @PostMapping("/submit")
     public ResponseEntity<AdoptionRequest> submitAdoptionRequest(@RequestBody AdoptionRequestDTO adoptionRequestDTO) {
         return ResponseEntity.ok(animalRequestsService.submitAdoptionRequest(adoptionRequestDTO));
+    }
+
+    @GetMapping("/user-from-request/{userId}")
+    public ResponseEntity<User> getUserForRequest(@PathVariable Long userId) {
+        return ResponseEntity.ok(animalRequestsService.getUserForRequest(userId));
     }
 
     @GetMapping("/animal-from-request/{requestId}")
@@ -49,6 +55,11 @@ public class AdoptionRequestController {
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<AdoptionRequest>> getAdoptedRequestByUserId(@PathVariable Long userId) {
         return ResponseEntity.ok(animalRequestsService.getAdoptedRequestByUserId(userId));
+    }
+
+    @GetMapping("/center/{animalCenterId}")
+    public ResponseEntity<List<AdoptionRequest>> getRequestsForAnimalCenterId(@PathVariable Long animalCenterId) {
+        return ResponseEntity.ok(animalRequestsService.getRequestsForAnimalCenterId(animalCenterId));
     }
 
     @GetMapping("/pending/animal/{animalId}")

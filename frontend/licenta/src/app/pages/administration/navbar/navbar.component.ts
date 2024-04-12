@@ -180,7 +180,11 @@ export class NavbarComponent implements OnInit {
   toUserManagement() {
     this.router.navigate(['/admin/user-management']).then((_) => {
     });
+  }
 
+  toAdoptionRequests() {
+    this.router.navigate(['/supplier/requests-management']).then((_) => {
+    });
   }
 
   redirectToDogAdoption() {

@@ -41,6 +41,7 @@ import {FluffyCatComponent} from "./pages/adopt-cat/fluffy-cat/fluffy-cat.compon
 import {HairlessCatComponent} from "./pages/adopt-cat/hairless-cat/hairless-cat.component";
 import {CuteCaatComponent} from "./pages/adopt-cat/cute-caat/cute-caat.component";
 import {AdoptionRequestComponent} from "./animal.process/adoption-request/adoption-request.component";
+import {RequestsManagementComponent} from "./user/requests-management/requests-management.component";
 
 const routes: Routes = [{
   path: '', component: HomeComponent, pathMatch: 'full',
@@ -125,6 +126,8 @@ const routes: Routes = [{
     path: 'animal/add', component: AddAnimalComponent,
   }, {
     path: 'centers/add', component: AnimalCenterAddComponent,
+  }, {
+    path: 'requests-management', component: RequestsManagementComponent,
   }]
 }];
 

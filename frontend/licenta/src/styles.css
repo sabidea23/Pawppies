@@ -12,7 +12,7 @@
   margin-left: -5px;
   background-color: #410078; /* Culoarea de fundal dorită */
   animation: fadeIn 0.4s; /* Schimbă durata după preferințe */
-  width: 250px;
+  width: 260px;
   overflow-x: hidden;
   overflow-scrolling: unset;
 }
@@ -33,7 +33,7 @@
   color: white;
   display: block;
   animation: fadeIn 0.4s; /* Schimbă durata după preferințe */
-  margin-left: 20px;
+  margin-left: 5px;
 }
 
 .mat-button-focus-overlay {

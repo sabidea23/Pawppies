@@ -1,0 +1,70 @@
+
+body {
+  background-color: #EFEEF1;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  justify-content: center;
+
+}
+
+.main-container {
+  width: 1500px;
+  margin: auto;
+  padding: 50px;
+  margin-left: 200px;
+  margin-right: 200px;
+  caret-color: transparent;
+  background-color: white;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 50px;
+  font-weight: 550;
+}
+
+.main-container {
+  margin: 20px;
+}
+
+.mat-elevation-z8 {
+  box-shadow: 0 6px 10px -1px rgba(0,0,0,0.15), 0 4px 5px 0 rgba(0,0,0,0.1), 0 1px 10px 0 rgba(0,0,0,0.1);
+}
+
+mat-header-cell, mat-cell {
+  padding: 8px;
+  text-align: left;
+}
+
+mat-row, mat-header-row {
+  min-height: 48px;
+}
+
+.buttons-request {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  gap: 20px;
+
+}
+
+.button-accept {
+  color: white !important;
+  height: 48px !important; /* Ajustat pentru a fi mai practic */
+  background-color: #6504B5 !important;
+  border-radius: 4px !important; /* Adaugă rotunjire pentru estetică */
+  font-weight: bold;
+}
+
+.button-reject {
+  font-weight: bold;
+  color: white !important;
+  height: 48px !important; /* Ajustat pentru a fi mai practic */
+  background-color: #FF1053 !important;
+  border-radius: 4px !important; /* Adaugă rotunjire pentru estetică */
+}
+

@@ -59,6 +59,8 @@
 
           <mat-menu class="custom-menu"  [hasBackdrop]="false" #userMenu="matMenu" (click)="$event.stopPropagation();">
             <button mat-menu-item  class="mat-menu-customize-item" (click)="toProfileSettings()">Profile</button>
+            <button *ngIf="getUserRole() == 'SUPPLIER'"  mat-menu-item  (click)="toAdoptionRequests()" class="mat-menu-customize-item"> Adoption Requests </button>
+
             <button *ngIf="getUserRole() == 'ADMIN'"  mat-menu-item  (click)="toUserManagement()" class="mat-menu-customize-item"> User management</button>
             <button mat-menu-item  class="mat-menu-customize-item" (click)="logout()">Logout</button>
           </mat-menu>

@@ -118,7 +118,7 @@ export class ProfileComponent implements OnInit {
       if (result.isConfirmed) {
         this.adoptionRequests.cancelRequest(request).subscribe({
           next: () => {
-            window.location.reload();
+            this.getUserRequests();
           }
         });
       }

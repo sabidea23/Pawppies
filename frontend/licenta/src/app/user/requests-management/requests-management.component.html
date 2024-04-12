@@ -1,0 +1,60 @@
+<body>
+
+<div class="main-container">
+  <h1>Adoption Requests for {{ user.animalCenters[0]?.name }}</h1>
+  <mat-table [dataSource]="requests" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="requestId">
+      <mat-header-cell *matHeaderCellDef><b> Request ID  </b> </mat-header-cell>
+      <mat-cell *matCellDef="let request"> <b>   {{request.id}} </b> </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="userName">
+      <mat-header-cell *matHeaderCellDef> <b> Username </b>  </mat-header-cell>
+      <mat-cell *matCellDef="let request"> <b> {{request.user.username}}  </b>  </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="reason">
+      <mat-header-cell *matHeaderCellDef> <b> Adoption Reason </b> </mat-header-cell>
+      <mat-cell *matCellDef="let request"> {{request.reason}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="postedDate">
+      <mat-header-cell *matHeaderCellDef>  <b>  Request Date </b> </mat-header-cell>
+      <mat-cell *matCellDef="let request"> {{request.requestedDate | date:'mediumDate'}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="animalName">
+      <mat-header-cell *matHeaderCellDef> <b> Animal Name </b>  </mat-header-cell>
+      <mat-cell *matCellDef="let request"> <button mat-flat-button (click)="redirectToAnimalPage(request)"> <b> {{request.animal.name}} </b> </button>   </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef> <b> Status </b>  </mat-header-cell>
+      <mat-cell *matCellDef="let request" class="buttons-request" > <b> {{request.status}} </b>
+        <p *ngIf="request.status == 'PENDING'">  from {{request.pendingDate | date:'mediumDate'}} </p>
+        <p *ngIf="request.status == 'PENDING'">  to {{ calculateDueDate(request.pendingDate) | date:'mediumDate'}} </p>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> <b> Actions </b> </mat-header-cell>
+      <mat-cell *matCellDef="let request" class="buttons-request">
+        <button mat-flat-button *ngIf="request.status === 'SUBMITTED'"  class="button-accept" (click)="setPending(request.id)">SET PENDING</button>
+        <button mat-flat-button class="button-accept" *ngIf="request.status === 'PENDING'" (click)="acceptRequest(request.id)">ACCEPT</button>
+        <button mat-flat-button class="button-reject" *ngIf="request.status === 'PENDING'" (click)="rejectRequest(request.id)">REJECT</button>
+      </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="userInfo">
+      <mat-header-cell *matHeaderCellDef> <b> Contact </b>  </mat-header-cell>
+      <mat-cell *matCellDef="let request"> {{ request.user.firstName }} {{ request.user.lastName }}, {{ request.user.email }}, {{ request.user.phone }} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
+
+</body>

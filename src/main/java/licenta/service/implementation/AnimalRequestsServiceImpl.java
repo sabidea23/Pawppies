@@ -43,6 +43,15 @@ public class AnimalRequestsServiceImpl implements AnimalRequestsService {
         return this.adoptionRequestRepository.save(adoptionRequest1);
     }
 
+    public List<AdoptionRequest> getRequestsForAnimalCenterId(Long animalCenterId) {
+        return this.adoptionRequestRepository.findAllByAdoptionRequestAnimalAnimalCenterId(animalCenterId);
+    }
+
+    public User getUserForRequest(Long requestid) {
+        Optional<AdoptionRequest> adoptionRequest = this.adoptionRequestRepository.findById(requestid);
+        return adoptionRequest.get().getAdoptionRequestUser();
+    }
+
     public List<AdoptionRequest> getRequestsForAnimal(Long animalId) {
         return this.adoptionRequestRepository.findAllByAdoptionRequestAnimalId(animalId);
     }
@@ -88,7 +97,7 @@ public class AnimalRequestsServiceImpl implements AnimalRequestsService {
         NotificationRequest notificationRequest = new NotificationRequest();
         notificationRequest.setAuthor(adoptionRequest.get().getAdoptionRequestAnimal().getAnimalCenter().getName());
         notificationRequest.setUserId(adoptionRequest.get().getAdoptionRequestUser().getId());
-        notificationRequest.setMessage("Congratulations! Your adoption request for" + adoptionRequest.get().getAdoptionRequestAnimal().getName() + " has been accepted." + " Please visit our animal center within the next 5 days to meet your potential new family member. We're excited to see you!");
+        notificationRequest.setMessage("Congratulations! Your adoption request for " + adoptionRequest.get().getAdoptionRequestAnimal().getName() + " has been accepted." + " Please visit our animal center within the next 5 days to meet your potential new family member. We're excited to see you!");
         this.notificationService.createNotification(notificationRequest);
 
         adoptionRequest.get().setStatus("PENDING");
@@ -130,7 +139,7 @@ public class AnimalRequestsServiceImpl implements AnimalRequestsService {
             NotificationRequest notificationRequestReject = new NotificationRequest();
             notificationRequestReject.setAuthor(animal.getAnimalCenter().getName());
             notificationRequestReject.setUserId(id);
-            notificationRequestReject.setMessage("We appreciate your interest in adopting" + animal.getName() + " from " + animal.getAnimalCenter().getName() + ". We wanted to inform you that the animal you applied for has been adopted" + " by another family. We encourage you to keep looking at our center as there are many animals still" + " waiting for a loving home. Thank you for your understanding and your willingness to adopt.");
+            notificationRequestReject.setMessage("We appreciate your interest in adopting " + animal.getName() + " from " + animal.getAnimalCenter().getName() + ". We wanted to inform you that the animal you applied for has been adopted" + " by another family. We encourage you to keep looking at our center as there are many animals still" + " waiting for a loving home. Thank you for your understanding and your willingness to adopt.");
             this.notificationService.createNotification(notificationRequestReject);
         }
     }
