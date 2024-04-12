@@ -106,20 +106,34 @@ h2 {
 
 }
 
-.status-approved {
-  color: green;
-}
-
 .status-pending {
-  color: orange;
+  color: #6504B5;
+  font-weight: bold;
 }
 
-.status-rejected {
-  color: red;
-}
 
 img {
   max-height: 200px;
   width: 100%; /* Asigură-te că imaginea se redimensionează corespunzător */
   object-fit: cover;
+}
+
+
+.butons-container {
+  display: flex;
+  align-content: flex-end;
+  justify-content: flex-end;
+  padding: 20px;
+}
+
+.cancel-button {
+  width: 180px !important;    color: whitesmoke ;
+  background-color: #FF1053;
+  height: 35px !important; /* Ajustat pentru a fi mai practic */
+  border: 3px solid  #FF1053 !important;
+  border-radius: 10px !important; /* Adaugă rotunjire pentru estetică */
+}
+
+.cancel-button:hover {
+
 }

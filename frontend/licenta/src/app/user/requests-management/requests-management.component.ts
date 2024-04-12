@@ -31,6 +31,8 @@ export class RequestsManagementComponent {
     return result;
   }
 
+
+
   redirectToAnimalPage(request:any) {
     this.router.navigate(['/animal-details', {animalId: request.animal.id}]).then((_) => {
     });

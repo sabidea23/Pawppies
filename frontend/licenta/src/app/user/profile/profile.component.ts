@@ -60,7 +60,11 @@ export class ProfileComponent implements OnInit {
     } else {
       this.selectedTab = 'aboutMe';
     }
+  }
 
+  goToAnimalPage(animal: any) {
+    this.router.navigate(['/animal-details', {animalId: animal.id}]).then((_) => {
+    });
   }
 
   getImagesForAnimals() {
@@ -99,7 +103,13 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  cancelRequest(request:any) {
+  calculateDueDate(date: Date): Date {
+    const result = new Date(date); // Crează o nouă instanță de dată pentru a evita modificarea originalului
+    result.setDate(result.getDate() + 5); // Adaugă 5 zile
+    return result;
+  }
+
+  cancelRequest(request: any) {
 
     Swal.fire({
       title: 'Confirm Deletion',

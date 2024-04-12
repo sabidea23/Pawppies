@@ -20,7 +20,7 @@
       <div *ngIf="selectedTab === 'adoptionRequests'" class="form-details">
         <h2> Adoption Requests Status: </h2>
         <div *ngIf="requests" class="request-container">
-          <mat-card *ngFor="let request of requests" class="request-card">
+          <mat-card *ngFor="let request of requests" class="request-card" (click)="goToAnimalPage(request.animal)">
             <mat-card-header>
               <mat-card-title>{{ request.animal.name }}</mat-card-title>
               <mat-card-subtitle>
@@ -30,13 +30,16 @@
             <img [src]="request.animal.animalImages[0]?.url" alt="Animal image" class="image-container">
             <mat-card-content>
               <p><strong>Reason for adoption:</strong> {{ request.reason }}</p>
-              <p><strong>Status:</strong> <span
+              <p><strong>Status: </strong> <span
                 [ngClass]="{'status-pending': request.status === 'PENDING'}">{{ request.status }}</span>
               </p>
+              <p *ngIf="request.status == 'PENDING'"> {{request.animal.name}} is waiting for your visit starting
+                <b> {{request.pendingDate | date:'mediumDate'}}  </b> to <b>  {{ calculateDueDate(request.pendingDate) | date:'mediumDate'}} </b> </p>
             </mat-card-content>
-            <mat-card-actions>
-              <button (click)="cancelRequest(request.id)" color="warn" mat-button>Cancel Request</button>
-            </mat-card-actions>
+
+            <div class="butons-container">
+              <button class="cancel-button" (click)="cancelRequest(request.id)"  mat-button>CANCEL REQUEST</button>
+            </div>
           </mat-card>
 
         </div>
