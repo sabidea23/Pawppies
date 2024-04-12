@@ -84,9 +84,8 @@ public class AdoptionRequestController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/cancel/{requestId}")
-    public ResponseEntity<Void> cancelRequest(@PathVariable Long requestId) {
+    @DeleteMapping("/cancel/{requestId}")
+    public void cancelRequest(@PathVariable Long requestId) {
         animalRequestsService.cancelRequest(requestId);
-        return ResponseEntity.ok().build();
     }
 }

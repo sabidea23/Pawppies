@@ -85,7 +85,6 @@ public class AnimalRequestsServiceImpl implements AnimalRequestsService {
 
         Optional<AdoptionRequest> adoptionRequest = this.adoptionRequestRepository.findById(requestId);
 
-        //notiificare user ca a primit animalul
         NotificationRequest notificationRequest = new NotificationRequest();
         notificationRequest.setAuthor(adoptionRequest.get().getAdoptionRequestAnimal().getAnimalCenter().getName());
         notificationRequest.setUserId(adoptionRequest.get().getAdoptionRequestUser().getId());
@@ -103,21 +102,17 @@ public class AnimalRequestsServiceImpl implements AnimalRequestsService {
 
     public void acceptRequest(Long requestId) {
 
-        //sterge cerere
         Optional<AdoptionRequest> adoptionRequest = this.adoptionRequestRepository.findById(requestId);
         User user = adoptionRequest.get().getAdoptionRequestUser();
         Animal animal = adoptionRequest.get().getAdoptionRequestAnimal();
         this.adoptionRequestRepository.deleteById(requestId);
 
-        //setare animal adoptat
         animal.setIsAdopted(true);
         this.animalRepository.save(animal);
 
-        //adaugare animal in lista de animale adoptate
         user.getAdoptedAnimals().add(animal);
         this.userRepository.save(user);
 
-        //stergere restul cererilor care au animalul
         List<AdoptionRequest> requests = this.adoptionRequestRepository.findAllByAdoptionRequestAnimalId(animal.getId());
         List<Long> userIds = requests.stream().map(request -> request.getAdoptionRequestUser().getId()).collect(Collectors.toList());
 
@@ -125,14 +120,12 @@ public class AnimalRequestsServiceImpl implements AnimalRequestsService {
             this.adoptionRequestRepository.deleteById(request.getId());
         }
 
-        //notiificare user ca a primit animalul
         NotificationRequest notificationRequest = new NotificationRequest();
         notificationRequest.setAuthor(animal.getAnimalCenter().getName());
         notificationRequest.setUserId(user.getId());
         notificationRequest.setMessage("Congratulations on your successful animal adoption! " + "Thank you for providing a loving home. Best wishes from." + animal.getAnimalCenter().getName());
         this.notificationService.createNotification(notificationRequest);
 
-        //notificare restul oamenilor ca animalul a fost dat
         for (Long id : userIds) {
             NotificationRequest notificationRequestReject = new NotificationRequest();
             notificationRequestReject.setAuthor(animal.getAnimalCenter().getName());
@@ -143,13 +136,12 @@ public class AnimalRequestsServiceImpl implements AnimalRequestsService {
     }
 
     public void rejectRequest(Long requestId) {
-        //sterge cerere
+
         Optional<AdoptionRequest> adoptionRequest = this.adoptionRequestRepository.findById(requestId);
         User user = adoptionRequest.get().getAdoptionRequestUser();
         Animal animal = adoptionRequest.get().getAdoptionRequestAnimal();
         this.adoptionRequestRepository.deleteById(requestId);
 
-        //notiificare user ca a fost respinsa cererea 
         NotificationRequest notificationRequest = new NotificationRequest();
         notificationRequest.setAuthor(animal.getAnimalCenter().getName());
         notificationRequest.setUserId(user.getId());
@@ -157,28 +149,28 @@ public class AnimalRequestsServiceImpl implements AnimalRequestsService {
         this.notificationService.createNotification(notificationRequest);
     }
 
+    @Override
     public void cancelRequest(Long requestId) {
         //sterge cerere
         Optional<AdoptionRequest> adoptionRequest = this.adoptionRequestRepository.findById(requestId);
         User user = adoptionRequest.get().getAdoptionRequestUser();
         Animal animal = adoptionRequest.get().getAdoptionRequestAnimal();
         this.adoptionRequestRepository.deleteById(requestId);
-
-        //notiificare user ca a fost respinsa cererea
+        
         NotificationRequest notificationRequest = new NotificationRequest();
         notificationRequest.setAuthor(animal.getAnimalCenter().getName());
         notificationRequest.setUserId(user.getId());
-        notificationRequest.setMessage("Your adoption request for" + animal.getName() + " has been successfully canceled. " + "If you change your mind or wish to adopt in the future, please feel free to reach out to us again at" + animal.getAnimalCenter().getName() + ". Thank you for considering adoption.");
+        notificationRequest.setMessage("Your adoption request for " + animal.getName() + " has been successfully canceled. " + "If you change your mind or wish to adopt in the future, please feel free to reach out to us again at" + animal.getAnimalCenter().getName() + ". Thank you for considering adoption.");
         this.notificationService.createNotification(notificationRequest);
     }
 
-
-    @Scheduled(cron = "0 0 * * * ?")
+    @Scheduled(cron = "0 * * * * ?")
     public void performHourlyTask() {
 
         // scoate requests in starea pending din repository- lista
         List<AdoptionRequest> adoptionRequests = this.adoptionRequestRepository.findAll();
-        List<AdoptionRequest> pendingRequest = adoptionRequests.stream().filter(adoptionRequest -> adoptionRequest.getPendingDate().isAfter(LocalDateTime.now().minusDays(5))).collect(Collectors.toList());
+        List<AdoptionRequest> pendingRequest = adoptionRequests.stream()
+                .filter(adoptionRequest -> adoptionRequest.getPendingDate().isBefore(LocalDateTime.now().minusDays(5))).collect(Collectors.toList());
 
         // daca da =>
         Map<User, Animal> userAnimalMap = pendingRequest.stream().collect(Collectors.toMap(AdoptionRequest::getAdoptionRequestUser, AdoptionRequest::getAdoptionRequestAnimal, (existing, replacement) -> existing));
@@ -195,7 +187,7 @@ public class AnimalRequestsServiceImpl implements AnimalRequestsService {
             NotificationRequest notificationRequestReject = new NotificationRequest();
             notificationRequestReject.setAuthor(animal.getAnimalCenter().getName());
             notificationRequestReject.setUserId(user.getId());
-            notificationRequestReject.setMessage("Your adoption request for" + animal.getName() + " has been canceled due to no " + "visit within the 5-day period. Please visit" + animal.getAnimalCenter().getName() + " future adoptions. Thank you.");
+            notificationRequestReject.setMessage("Your adoption request for " + animal.getName() + " has been canceled due to no " + "visit within the 5-day period. Please visit" + animal.getAnimalCenter().getName() + " future adoptions. Thank you.");
             this.notificationService.createNotification(notificationRequestReject);
         }
     }

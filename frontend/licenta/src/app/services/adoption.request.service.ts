@@ -58,7 +58,8 @@ export class AdoptionRequestService {
     return this.http.put<void>(`${baseUrl}/adopt-request/reject/${requestId}`, {});
   }
 
-  cancelRequest(requestId: number): Observable<void> {
-    return this.http.put<void>(`${baseUrl}/adopt-request/cancel/${requestId}`, {});
+  cancelRequest(requestId: number): any {
+    console.log(requestId)
+    return this.http.delete(`${baseUrl}/adopt-request/cancel/${requestId}`, {});
   }
 }

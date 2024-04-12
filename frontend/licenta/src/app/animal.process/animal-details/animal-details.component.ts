@@ -54,11 +54,7 @@ export class AnimalDetailsComponent {
       next: (data) => {
         this.requestsByUser = data;
         console.log(this.requestsByUser)
-      }, error: (error) => {
-        this.snack.open(error.error.message, 'OK', {
-          duration: 3000,
-        });
-      },
+      }
     });
   }
 
@@ -112,10 +108,6 @@ export class AnimalDetailsComponent {
   }
 
   slideShowInterval: any;
-
-  ngOnDestroy() {
-    this.stopSlideShow();
-  }
 
   startSlideShow() {
     const slideDuration = 3000; // Durata fiecărui slide în milisecunde
@@ -246,13 +238,6 @@ export class AnimalDetailsComponent {
       this.animalCenterAnimals = [...selectedIndices].map(index => filterAnimals[index]);
       this.animalCenterAnimals.push(this.linkSeeAnimals);
     }
-  }
-
-  public goToAnimalsFromAnimalCenterPage() {
-    this.router
-      .navigate(['/animal', {centerId: this.animal.animalCenter.id},])
-      .then((_) => {
-      });
   }
 
   navigateToAnimalDetails(animal: any) {

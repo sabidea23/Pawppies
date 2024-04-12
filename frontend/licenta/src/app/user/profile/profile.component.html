@@ -6,12 +6,15 @@
 
       <h1>My account details </h1>
 
-      <div class="menu" >
-        <button mat-button (click)="selectTab('aboutMe')"> <h2> About me</h2> </button>
-        <button  *ngIf="getUserRole() == 'NORMAL' || getUserRole() == 'SUPPLIER'" mat-button (click)="selectTab('accountDetails')"> <h2>  Account Details </h2>  </button>
-        <button  *ngIf="getUserRole() == 'NORMAL'" mat-button (click)="selectTab('adopterProfile')"> <h2>   Adopter Profile </h2>  </button>
-        <button *ngIf="getUserRole() == 'NORMAL' || getUserRole() == 'SUPPLIER'"  mat-button (click)="selectTab('animalsAdopted')"> <h2> Animals Adopted </h2> </button>
-        <button  mat-button (click)="selectTab('adoptionRequests')"> <h2> Adoption Requests </h2> </button>
+      <div class="menu">
+        <button (click)="selectTab('aboutMe')" mat-button><h2> About me</h2></button>
+        <button (click)="selectTab('accountDetails')" *ngIf="getUserRole() == 'NORMAL' || getUserRole() == 'SUPPLIER'"
+                mat-button><h2> Account Details </h2></button>
+        <button (click)="selectTab('adopterProfile')" *ngIf="getUserRole() == 'NORMAL'" mat-button><h2> Adopter
+          Profile </h2></button>
+        <button (click)="selectTab('animalsAdopted')" *ngIf="getUserRole() == 'NORMAL' || getUserRole() == 'SUPPLIER'"
+                mat-button><h2> Animals Adopted </h2></button>
+        <button (click)="selectTab('adoptionRequests')" mat-button><h2> Adoption Requests </h2></button>
       </div>
 
       <div *ngIf="selectedTab === 'adoptionRequests'" class="form-details">
@@ -24,13 +27,15 @@
                 Requested on: {{ request.requestedDate | date:'mediumDate' }}
               </mat-card-subtitle>
             </mat-card-header>
-            <img class="image-container" [src]="request.animal.animalImages[0]?.url" alt="Animal image">
+            <img [src]="request.animal.animalImages[0]?.url" alt="Animal image" class="image-container">
             <mat-card-content>
               <p><strong>Reason for adoption:</strong> {{ request.reason }}</p>
-              <p><strong>Status:</strong> <span [ngClass]="{'status-approved': request.status === 'APPROVED', 'status-pending': request.status === 'PENDING', 'status-rejected': request.status === 'REJECTED'}">{{ request.status }}</span></p>
+              <p><strong>Status:</strong> <span
+                [ngClass]="{'status-pending': request.status === 'PENDING'}">{{ request.status }}</span>
+              </p>
             </mat-card-content>
             <mat-card-actions>
-              <button mat-button color="warn" >Cancel Request</button>
+              <button (click)="cancelRequest(request.id)" color="warn" mat-button>Cancel Request</button>
             </mat-card-actions>
           </mat-card>
 
@@ -39,21 +44,22 @@
         <div *ngIf="requests.length < 1">
           <hr>
           <h2> You have no adoption requests submitted at this moment.</h2>
-          <button class="update-button" mat-button (click)="goToAnimalsPage()">SEE ANIMALS</button>
+          <button (click)="goToAnimalsPage()" class="update-button" mat-button>SEE ANIMALS</button>
         </div>
       </div>
 
       <div *ngIf="selectedTab === 'adopterProfile'" class="form-details">
-        <h2> Start completing your Adopter Profile now!   </h2>
-        <button class="update-button" mat-button (click)="goToQuizPage()">START QUIZ</button>
+        <h2> Start completing your Adopter Profile now! </h2>
+        <button (click)="goToQuizPage()" class="update-button" mat-button>START QUIZ</button>
       </div>
 
       <div *ngIf="selectedTab === 'animalsAdopted'" class="form-details">
-        <h2> Start your journey to find the perfect animal companion for you.   </h2>
-        <button class="update-button" mat-button (click)="goToAnimalsPage()">SEARCH</button>
+        <h2> Start your journey to find the perfect animal companion for you. </h2>
+        <button (click)="goToAnimalsPage()" class="update-button" mat-button>SEARCH</button>
       </div>
 
-      <form *ngIf="selectedTab === 'accountDetails'" (ngSubmit)="formSubmit()" [formGroup]="editForm" class="form-details">
+      <form (ngSubmit)="formSubmit()" *ngIf="selectedTab === 'accountDetails'" [formGroup]="editForm"
+            class="form-details">
         <h2> HOW CAN YOU BE REACHED? </h2>
         <div class="name">
           <!-- Email -->
@@ -137,7 +143,7 @@
         </button>
       </form>
 
-      <form *ngIf="selectedTab === 'aboutMe'" (ngSubmit)="formSubmit()" [formGroup]="editForm" class="form-details">
+      <form (ngSubmit)="formSubmit()" *ngIf="selectedTab === 'aboutMe'" [formGroup]="editForm" class="form-details">
 
         <h2> WHAT IS YOUR NAME? </h2>
         <div class="name">

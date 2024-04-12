@@ -112,7 +112,8 @@ public class User implements UserDetails {
     @JsonIgnore
     private Set<Animal> adoptedAnimals;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "adoptionRequestUser")
+    @OneToMany(mappedBy = "adoptionRequestUser", cascade = CascadeType.ALL)
+
     @JsonIgnore
     private Set<AdoptionRequest> adoptionRequests;
 

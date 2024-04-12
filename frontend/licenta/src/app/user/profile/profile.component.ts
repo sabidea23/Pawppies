@@ -7,9 +7,10 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
 import {countries} from "../../utils/country-data-store";
 import {AdoptionRequestService} from "../../services/adoption.request.service";
-import { forkJoin, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import {forkJoin, of} from 'rxjs';
+import {catchError, map} from 'rxjs/operators';
 import {ImageProcessingService} from "../../services/image-processing.service";
+
 @Component({
   selector: 'app-profile', templateUrl: './profile.component.html', styleUrls: ['./profile.component.css'],
 })
@@ -69,34 +70,57 @@ export class ProfileComponent implements OnInit {
   }
 
   getUserRequests() {
+
     this.adoptionRequests.getAdoptedRequestByUserId(this.user.id).subscribe({
       next: (requests: any[]) => {
         if (requests.length > 0) {
           // Combina solicitările pentru a prelua detalii despre fiecare animal asociat fiecărei cereri
           const requestsWithAnimals = requests.map(request => {
-            return this.adoptionRequests.getAnimalFromRequest(request.id).pipe(
-              catchError(error => {
+            return this.adoptionRequests.getAnimalFromRequest(request.id).pipe(catchError(error => {
                 console.error('Error fetching animal details', error);
                 return of(null); // Gestionează erorile pentru a nu întrerupe întregul flux
-              }),
-              map(animal => ({ ...request, animal })) // Combinați cererea cu detaliile animalului
+              }), map(animal => ({...request, animal})) // Combinați cererea cu detaliile animalului
             );
           });
 
           forkJoin(requestsWithAnimals).subscribe(completeRequests => {
             this.requests = completeRequests;
             this.getImagesForAnimals();
-            console.log('Requests with animals:', this.requests);
           });
 
         } else {
           this.requests = [];
           console.log('No adoption requests found for this user.');
         }
-      },
-      error: (err) => {
-        this.snack.open('Failed to load adoption requests!', 'OK', { duration: 3000 });
+      }, error: (err) => {
+        this.snack.open('Failed to load adoption requests!', 'OK', {duration: 3000});
         console.error('Error loading adoption requests:', err);
+      }
+    });
+  }
+
+  cancelRequest(request:any) {
+
+    Swal.fire({
+      title: 'Confirm Deletion',
+      text: 'Are you sure you want to cancel this request?',
+      icon: 'warning',
+      background: '#fff',
+      customClass: {
+        confirmButton: 'confirm-button-class', cancelButton: 'cancel-button-class'
+      },
+      showCancelButton: true,
+      confirmButtonText: 'DELETE',
+      cancelButtonText: 'CANCEL',
+      cancelButtonColor: '#6504B5',
+      confirmButtonColor: '#FF1053',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.adoptionRequests.cancelRequest(request).subscribe({
+          next: () => {
+            window.location.reload();
+          }
+        });
       }
     });
   }
@@ -111,7 +135,6 @@ export class ProfileComponent implements OnInit {
         next: (user: any) => {
           this.login.setUser(user);
           this.user = user;
-          console.log(this.user)
           this.userInput.firstName = user.firstName;
           this.userInput.lastName = user.lastName;
           this.userInput.email = user.email;
@@ -169,7 +192,6 @@ export class ProfileComponent implements OnInit {
 
     const backedUpAuthorities = this.user.authorities;
     this.user.authorities = undefined;
-    console.log(this.user)
     this.userService.updateUser(this.user).subscribe({
       next: (data) => {
         this.user.authorities = backedUpAuthorities;

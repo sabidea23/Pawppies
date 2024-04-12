@@ -169,7 +169,7 @@ public class Animal {
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private User adoptionUser;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "adoptionRequestAnimal")
+    @OneToMany(mappedBy = "adoptionRequestAnimal", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<AdoptionRequest> adoptionRequests;
 }

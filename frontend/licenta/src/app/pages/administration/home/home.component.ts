@@ -45,17 +45,23 @@ export class HomeComponent {
   animals: any = [];
   likedAnimals: any = [];
 
+  uniqueAnimalIds: Set<number> = new Set();
+
   getRecentlyViewedPets() {
     if (this.user ) {
       const userId = this.user.id;
 
       this.userService.getRecentlyViewedAnimals(userId).subscribe({
         next: (animalIds: any) => {
-          this.loadAnimalDetails(animalIds);
+          // @ts-ignore
+          animalIds.forEach(id => {
+            this.uniqueAnimalIds.add(id);
+          });
+
+          this.loadAnimalDetails(Array.from(this.uniqueAnimalIds));
         },
         error: (error) => {
           console.error('Error fetching recently viewed animals', error);
-          // Gestionează eroarea corespunzător
         }
       });
     }

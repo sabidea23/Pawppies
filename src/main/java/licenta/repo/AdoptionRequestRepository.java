@@ -11,4 +11,5 @@ public interface AdoptionRequestRepository extends JpaRepository<AdoptionRequest
 
     List<AdoptionRequest> findAllByAdoptionRequestUserId(Long userId);
 
+    void deleteById(Long userId);
 }
