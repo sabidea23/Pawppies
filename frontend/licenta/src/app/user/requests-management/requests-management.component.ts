@@ -7,6 +7,7 @@ import {AdoptionRequestService} from "../../services/adoption.request.service";
 import {forkJoin, Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import {Router} from "@angular/router";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-requests-management',
@@ -56,6 +57,29 @@ export class RequestsManagementComponent {
 
   rejectRequest(requestId: number) {
     // Logic to reject the request
+    Swal.fire({
+      title: 'Confirm Deletion',
+      text: 'Are you sure you want to reject this request?',
+      icon: 'warning',
+      background: '#fff',
+      customClass: {
+        confirmButton: 'confirm-button-class', cancelButton: 'cancel-button-class'
+      },
+      showCancelButton: true,
+      confirmButtonText: 'DELETE',
+      cancelButtonText: 'CANCEL',
+      cancelButtonColor: '#6504B5',
+      confirmButtonColor: '#FF1053',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.adoptionRequestService.rejectRequest(requestId).subscribe({
+          next: () => {
+            this.getRequestsForAnimalCenter();
+
+          }
+        });
+      }
+    });
   }
 
   getRequestsForAnimalCenter(): void {

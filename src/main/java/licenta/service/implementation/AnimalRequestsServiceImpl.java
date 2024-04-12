@@ -154,7 +154,7 @@ public class AnimalRequestsServiceImpl implements AnimalRequestsService {
         NotificationRequest notificationRequest = new NotificationRequest();
         notificationRequest.setAuthor(animal.getAnimalCenter().getName());
         notificationRequest.setUserId(user.getId());
-        notificationRequest.setMessage("We regret to inform you that your adoption request for" + animal.getName() + " has been " + "declined by the administrator our center. We appreciate your willingness to adopt and encourage you to consider other animals in need of a home. Thank you for your understanding.");
+        notificationRequest.setMessage("We regret to inform you that your adoption request for " + animal.getName() + " has been " + "declined by the administrator our center. We appreciate your willingness to adopt and encourage you to consider other animals in need of a home. Thank you for your understanding.");
         this.notificationService.createNotification(notificationRequest);
     }
 
