@@ -122,11 +122,19 @@
     </div>
 
     <div class="side-container">
-      <div class="adopt-animal">
-        <p class="text-adopt">Considering {{animal.name}} for adoption?</p>
-        <button (click)="startAdoptionProcess()" class="start-quiz-btn" mat-button>START ADOPTION PROCESS</button>
+      <div class="adopt-animal" *ngIf="requestsByUser; else noRequest">
+        <p class="text-adopt">You have already submitted a request for {{animal.name}}</p>
+        <button (click)="goToProfileRequests()" class="start-quiz-btn" mat-button>SEE STATUS FOR ALL REQUESTS</button>
         <button (click)="navigateToFaqs()" class="read-faqs" mat-button>READ FAQs ABOUT ADOPTION</button>
       </div>
+
+      <ng-template class="adopt-animal" #noRequest>
+        <div class="adopt-animal">
+          <p class="text-adopt">Considering {{animal.name}} for adoption?</p>
+          <button (click)="startAdoptionProcess()" class="start-quiz-btn" mat-button>START ADOPTION PROCESS</button>
+          <button (click)="navigateToFaqs()" class="read-faqs" mat-button>READ FAQs ABOUT ADOPTION</button>
+        </div>
+      </ng-template>
 
       <div class="anima-center-details">
         <img class="image-grid" src="../../../assets/logo-shelter.png">
@@ -167,9 +175,9 @@
       <h3 class="tips-title">Tips for the first 30 days of {{animal.type}} adoption</h3>
       <p> Help your {{animal.type}} make the transition to a new home</p>
       <hr>
-      <button *ngIf="animal.type == 'Dog'" (click)="redirectToAdoptDogs()" class="tips-button" mat-button>
+      <button (click)="redirectToAdoptDogs()" *ngIf="animal.type == 'Dog'" class="tips-button" mat-button>
         <h3 class="learn-more">Read More</h3></button>
-      <button  *ngIf="animal.type == 'Cat'"  (click)="redirecttoAdoptCats()" class="tips-button" mat-button>
+      <button (click)="redirecttoAdoptCats()" *ngIf="animal.type == 'Cat'" class="tips-button" mat-button>
         <h3 class="learn-more">Read More</h3></button>
     </div>
     <div class="tips">

@@ -2,6 +2,7 @@ package licenta.service;
 
 import licenta.dto.AdoptionRequestDTO;
 import licenta.entity.AdoptionRequest;
+import licenta.entity.Animal;
 
 import java.util.List;
 
@@ -10,7 +11,9 @@ public interface AnimalRequestsService {
 
     List<AdoptionRequest> getRequestsForAnimal(Long animalId);
 
-    AdoptionRequest getAdoptedRequestById(Long requestId);
+     Animal getAnimalFromRequest(Long requestId);
+
+     AdoptionRequest getAdoptedRequestById(Long requestId);
 
     List<AdoptionRequest> getAdoptedRequestByUserId(Long userId);
 
@@ -27,4 +30,6 @@ public interface AnimalRequestsService {
     void rejectRequest(Long requestId);
 
     void cancelRequest(Long requestId);
+    AdoptionRequest getAdoptionRequestFromUserAndAnimalIds(Long animalId, Long userId);
+
 }

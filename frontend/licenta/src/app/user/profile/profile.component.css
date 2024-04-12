@@ -87,3 +87,39 @@ h2 {
   margin: 0
 }
 
+
+.request-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.request-card {
+  border: 2px solid #EFEEF1;
+  border-radius: 10px;
+  margin: 10px;
+  flex: 0 0 48%; /* Fiecare card va lua aproximativ 48% din lățimea containerului, permițând două carduri pe rând */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Opțional, adaugă o umbră pentru un efect vizual mai plăcut */
+}
+
+.request-card:hover {
+  border: 2px solid #6504B5;
+
+}
+
+.status-approved {
+  color: green;
+}
+
+.status-pending {
+  color: orange;
+}
+
+.status-rejected {
+  color: red;
+}
+
+img {
+  max-height: 200px;
+  width: 100%; /* Asigură-te că imaginea se redimensionează corespunzător */
+  object-fit: cover;
+}

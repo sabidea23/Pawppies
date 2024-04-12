@@ -5,6 +5,7 @@ import {ImageProcessingService} from "../../services/image-processing.service";
 import {DomSanitizer} from "@angular/platform-browser";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {LoginService} from "../../services/login.service";
+import {AdoptionRequestService} from "../../services/adoption.request.service";
 
 @Component({
   selector: 'app-animal-details',
@@ -15,17 +16,25 @@ export class AnimalDetailsComponent {
   animal: any;
 
   animalId: any;
-  constructor(private login: LoginService, private snack: MatSnackBar, private sanitizer: DomSanitizer, private imageProcessingService: ImageProcessingService, private router: Router,  private route: ActivatedRoute, private animalService: AnimalService) { }
 
   numberAnimalsLeft: any;
+  requestsByUser: any = null;
 
-  ngOnInit() {
+  constructor(private adoptionRequest:AdoptionRequestService,
+
+              private login: LoginService, private snack: MatSnackBar, private sanitizer: DomSanitizer,
+              private imageProcessingService: ImageProcessingService, private router: Router,  private route: ActivatedRoute,
+              private animalService: AnimalService) {
     this.animalId = JSON.parse(this.route.snapshot.paramMap.get('animalId') || '{}');
     this.animalService.getAnimal(this.animalId).subscribe(data => {
       this.animal = data;
       this.getImagesForAnimals();
-      console.log(data)
     });
+    this.checkAlreadySubmittedRequest();
+  }
+
+
+  ngOnInit() {
 
     this.startSlideShow();
 
@@ -37,6 +46,20 @@ export class AnimalDetailsComponent {
       },
     });
     this.numberAnimalsLeft = this.animals.length - this.showAnimals.length;
+  }
+
+  checkAlreadySubmittedRequest() {
+
+    this.adoptionRequest.getAdoptionRequestFromUserAndAnimalIds(this.animalId, this.user.id).subscribe({
+      next: (data) => {
+        this.requestsByUser = data;
+        console.log(this.requestsByUser)
+      }, error: (error) => {
+        this.snack.open(error.error.message, 'OK', {
+          duration: 3000,
+        });
+      },
+    });
   }
 
   getImagesForAnimals() {
@@ -238,6 +261,11 @@ export class AnimalDetailsComponent {
 
   navigateToFaqs() {
     this.router.navigate(['/faqs']);
+  }
+
+
+  goToProfileRequests() {
+    this.router.navigate(['/profile', {section: 3}]);
   }
 
   redirectToAdoptDogs() {

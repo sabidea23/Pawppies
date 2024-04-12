@@ -14,6 +14,14 @@ export class AdoptionRequestService {
     return this.http.post<any>(`${baseUrl}/adopt-request/submit`, adoptionRequestDTO);
   }
 
+  getAnimalFromRequest(requestId: number): Observable<any> {
+    return this.http.get<any>(`${baseUrl}/adopt-request/animal-from-request/${requestId}`);
+  }
+
+  getAdoptionRequestFromUserAndAnimalIds(animalId: number, userId: number): Observable<any> {
+    return this.http.get<any>(`${baseUrl}/adopt-request/animal/${animalId}/user/${userId}`);
+  }
+
   getRequestsForAnimal(animalId: number): Observable<any[]> {
     return this.http.get<any[]>(`${baseUrl}/adopt-request/animal/${animalId}`);
   }

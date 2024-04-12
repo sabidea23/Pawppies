@@ -40,8 +40,8 @@
 
     <mat-form-field appearance="fill" class="custom-mat-form-field-text">
 
-      <textarea [(ngModel)]="request.reason" class="reason-area" matInput
-                formControlName="reason" placeholder="I think I would be a good fit because..."></textarea>
+      <textarea [(ngModel)]="request.reason" class="reason-area" formControlName="reason"
+                matInput placeholder="I think I would be a good fit because..."></textarea>
       <mat-error *ngIf="adoptionData.get('reason')?.hasError('required')">
         Reason is required.
       </mat-error>

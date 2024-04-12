@@ -11,6 +11,36 @@
         <button  *ngIf="getUserRole() == 'NORMAL' || getUserRole() == 'SUPPLIER'" mat-button (click)="selectTab('accountDetails')"> <h2>  Account Details </h2>  </button>
         <button  *ngIf="getUserRole() == 'NORMAL'" mat-button (click)="selectTab('adopterProfile')"> <h2>   Adopter Profile </h2>  </button>
         <button *ngIf="getUserRole() == 'NORMAL' || getUserRole() == 'SUPPLIER'"  mat-button (click)="selectTab('animalsAdopted')"> <h2> Animals Adopted </h2> </button>
+        <button  mat-button (click)="selectTab('adoptionRequests')"> <h2> Adoption Requests </h2> </button>
+      </div>
+
+      <div *ngIf="selectedTab === 'adoptionRequests'" class="form-details">
+        <h2> Adoption Requests Status: </h2>
+        <div *ngIf="requests" class="request-container">
+          <mat-card *ngFor="let request of requests" class="request-card">
+            <mat-card-header>
+              <mat-card-title>{{ request.animal.name }}</mat-card-title>
+              <mat-card-subtitle>
+                Requested on: {{ request.requestedDate | date:'mediumDate' }}
+              </mat-card-subtitle>
+            </mat-card-header>
+            <img class="image-container" [src]="request.animal.animalImages[0]?.url" alt="Animal image">
+            <mat-card-content>
+              <p><strong>Reason for adoption:</strong> {{ request.reason }}</p>
+              <p><strong>Status:</strong> <span [ngClass]="{'status-approved': request.status === 'APPROVED', 'status-pending': request.status === 'PENDING', 'status-rejected': request.status === 'REJECTED'}">{{ request.status }}</span></p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button color="warn" >Cancel Request</button>
+            </mat-card-actions>
+          </mat-card>
+
+        </div>
+
+        <div *ngIf="requests.length < 1">
+          <hr>
+          <h2> You have no adoption requests submitted at this moment.</h2>
+          <button class="update-button" mat-button (click)="goToAnimalsPage()">SEE ANIMALS</button>
+        </div>
       </div>
 
       <div *ngIf="selectedTab === 'adopterProfile'" class="form-details">

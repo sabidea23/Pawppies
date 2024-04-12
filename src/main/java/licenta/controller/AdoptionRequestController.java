@@ -2,8 +2,8 @@ package licenta.controller;
 
 import licenta.dto.AdoptionRequestDTO;
 import licenta.entity.AdoptionRequest;
+import licenta.entity.Animal;
 import licenta.service.AnimalRequestsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,17 +14,31 @@ import java.util.List;
 @CrossOrigin("*")
 public class AdoptionRequestController {
 
-    @Autowired
-    private AnimalRequestsService animalRequestsService;
+    private final AnimalRequestsService animalRequestsService;
+
+    public AdoptionRequestController(AnimalRequestsService animalRequestsService) {
+        this.animalRequestsService = animalRequestsService;
+    }
 
     @PostMapping("/submit")
     public ResponseEntity<AdoptionRequest> submitAdoptionRequest(@RequestBody AdoptionRequestDTO adoptionRequestDTO) {
         return ResponseEntity.ok(animalRequestsService.submitAdoptionRequest(adoptionRequestDTO));
     }
 
+    @GetMapping("/animal-from-request/{requestId}")
+    public ResponseEntity<Animal> getAnimalFromRequest(@PathVariable Long requestId) {
+        return ResponseEntity.ok(animalRequestsService.getAnimalFromRequest(requestId));
+    }
+
     @GetMapping("/animal/{animalId}")
     public ResponseEntity<List<AdoptionRequest>> getRequestsForAnimal(@PathVariable Long animalId) {
         return ResponseEntity.ok(animalRequestsService.getRequestsForAnimal(animalId));
+    }
+
+    @GetMapping("/animal/{animalId}/user/{userId}")
+    public ResponseEntity<AdoptionRequest> getAdoptionRequestFromUserAndAnimalIds(@PathVariable Long animalId,
+                                                                                  @PathVariable Long userId) {
+        return ResponseEntity.ok(animalRequestsService.getAdoptionRequestFromUserAndAnimalIds(animalId, userId));
     }
 
     @GetMapping("/request/{requestId}")

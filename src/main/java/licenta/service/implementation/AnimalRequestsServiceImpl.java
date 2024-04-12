@@ -51,8 +51,24 @@ public class AnimalRequestsServiceImpl implements AnimalRequestsService {
         return this.adoptionRequestRepository.findById(requestId).get();
     }
 
+    public Animal getAnimalFromRequest(Long requestId) {
+        Optional<AdoptionRequest> adoptionRequest = this.adoptionRequestRepository.findById(requestId);
+        return adoptionRequest.get().getAdoptionRequestAnimal();
+    }
+
     public List<AdoptionRequest> getAdoptedRequestByUserId(Long userId) {
         return this.adoptionRequestRepository.findAllByAdoptionRequestUserId(userId);
+    }
+
+    public AdoptionRequest getAdoptionRequestFromUserAndAnimalIds(Long animalId, Long userId) {
+        List<AdoptionRequest> adoptionRequestsFromUser = getAdoptedRequestByUserId(userId);
+        if (adoptionRequestsFromUser.size() == 0) {
+            return null;
+        }
+        List<AdoptionRequest> adoptionRequest = adoptionRequestsFromUser.stream()
+                .filter(adoptionRequest1 -> adoptionRequest1.getAdoptionRequestAnimal().getId() == animalId)
+                .collect(Collectors.toList());
+        return adoptionRequest.get(0);
     }
 
     public List<AdoptionRequest> getAdoptionRequestPendingForAnimalId(Long animalId) {

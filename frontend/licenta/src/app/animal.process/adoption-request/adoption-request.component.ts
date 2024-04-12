@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {LoginService} from "../../services/login.service";
@@ -33,16 +33,16 @@ export class AdoptionRequestComponent {
 
   animalId: any;
 
-  constructor(private animalService:AnimalService, private route: ActivatedRoute, private adoptionRequestService: AdoptionRequestService, private snack: MatSnackBar, private login: LoginService, private router: Router) {
+  constructor(private animalService: AnimalService, private route: ActivatedRoute, private adoptionRequestService: AdoptionRequestService, private snack: MatSnackBar, private login: LoginService, private router: Router) {
   }
 
-  animal :any;
+  animal: any;
 
   ngOnInit(): void {
     this.animalId = JSON.parse(this.route.snapshot.paramMap.get('animalId') || 'null') || undefined;
     // @ts-ignore
     this.animalService.getAnimal(this.animalId).subscribe({
-      next: (data : any) => {
+      next: (data: any) => {
         this.animal = data;
       },
     });
@@ -75,10 +75,10 @@ export class AdoptionRequestComponent {
           icon: 'success',
           background: 'rgb(230, 230, 230)',
         }).then((_) => {
-          this.router.navigate(['/animal']).then((_) => { });
+          this.router.navigate(['/animal']).then((_) => {
+          });
         });
-      },
-      error: (error) => {
+      }, error: (error) => {
         this.snack.open(error.error.message, 'OK', {
           duration: 3000,
         });
