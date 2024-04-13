@@ -90,6 +90,13 @@ export class RequestsManagementComponent {
     });
   }
 
+  totalElements:any;
+  totalPages = 0;
+
+  ngOnInit() {
+    this.totalPages = Math.ceil(this.totalElements / this.itemsPerPage);
+  }
+
   getRequestsForAnimalCenter(): void {
     this.adoptionRequestService.getRequestsForAnimalCenterId(this.user.animalCenters[0].id)
       .subscribe({
@@ -97,17 +104,13 @@ export class RequestsManagementComponent {
           if (requests.length > 0) {
             const enrichedRequests$: Observable<any>[] = requests.map(request => {
               const animalDetails$ = this.adoptionRequestService.getAnimalFromRequest(request.id).pipe(map(animal => ({
-                ...request,
-                animal
+                ...request, animal
               })));
               const userDetails$ = this.adoptionRequestService.getUserForRequest(request.id).pipe(map(user => ({
-                ...request,
-                user
+                ...request, user
               })));
               return forkJoin([animalDetails$, userDetails$]).pipe(map(([animalData, userData]) => ({
-                ...request,
-                animal: animalData.animal,
-                user: userData.user
+                ...request, animal: animalData.animal, user: userData.user
               })));
             });
 
@@ -115,6 +118,8 @@ export class RequestsManagementComponent {
               this.requests = enrichedRequests;
               this.filterRequests();
               console.log(this.filteredRequests);
+              this.totalElements = this.requests.length;
+
               console.log('Requests with animals and users:', this.requests);
             });
           } else {
@@ -142,7 +147,7 @@ export class RequestsManagementComponent {
   }
 
   applyFilter(category: string, value: any): void {
-//    this.currentPage = 1;
+    this.currentPage = 1;
 
     if (this.filters[category].includes(value)) {
       // @ts-ignore
@@ -157,22 +162,18 @@ export class RequestsManagementComponent {
   filterRequests(): void {
     // @ts-ignore
     this.filteredRequests = this.requests.filter(request => {
-      return (this.getStatusForRequest(request) &&
-        this.filterByName(request.animal) && this.filterByUser(request.user)  )
+      return (this.getStatusForRequest(request) && this.filterByName(request.animal) && this.filterByUser(request.user))
 
     });
 
-  //  this.totalElements = this.animalFiltered.length;
-   // this.totalPages = Math.ceil(this.totalElements / this.itemsPerPage);
+     this.totalElements = this.filteredRequests.length;
+    this.totalPages = Math.ceil(this.totalElements / this.itemsPerPage);
   }
 
-  getStatusForRequest(request:any):boolean {
+  getStatusForRequest(request: any): boolean {
 
     let status = '';
-    if (request.status == 'SUBMITTED')
-      status = 'SUBMITTED';
-    else if (request.status == 'PENDING')
-      status = 'PENDING';
+    if (request.status == 'SUBMITTED') status = 'SUBMITTED'; else if (request.status == 'PENDING') status = 'PENDING';
 
     return !(this.filters.status && this.filters.status.length > 0 && !this.filters.status.includes(status));
   }
@@ -215,5 +216,25 @@ export class RequestsManagementComponent {
 
   filterByUser(user: any): boolean {
     return this.userSearchTerms.length ? this.userSearchTerms.some(userName => user.username.toLowerCase().includes(userName.toLowerCase())) : true;
+  }
+
+  currentPage = 1;
+  itemsPerPage = 7;
+
+  nextPage() {
+    if (this.currentPage * this.itemsPerPage < this.totalElements) {
+      this.currentPage++;
+    }
+  }
+
+  get paginatedFilteredAnimals() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    return this.filteredRequests.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
   }
 }

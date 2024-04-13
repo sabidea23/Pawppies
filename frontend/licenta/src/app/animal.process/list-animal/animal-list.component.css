@@ -358,10 +358,6 @@ input[type="button"] {
   flex-direction: column;
 }
 
-h2 {
-  text-align: center;
-}
-
 .button-filter {
   border: 1px solid #6504B5;
   background-color: white;
@@ -393,14 +389,9 @@ h3 {
   margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
-  width: 200px;
   gap: 5px; /* Asigură un spațiu mic între chips-uri */
 }
 
-.filter-group {
-  width: 200px;
-
-}
 .chip {
   display: inline-flex;
   align-items: center;
