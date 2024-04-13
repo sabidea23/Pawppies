@@ -46,9 +46,6 @@ export class AdoptionRequestService {
     return this.http.put<any>(`${baseUrl}/adopt-request/update-pending/${requestId}`, {});
   }
 
-  deleteRequest(requestId: number): Observable<void> {
-    return this.http.delete<void>(`${baseUrl}/adopt-request/delete/${requestId}`);
-  }
 
   acceptRequest(requestId: number): Observable<void> {
     return this.http.put<void>(`${baseUrl}/adopt-request/accept/${requestId}`, {});

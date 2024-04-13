@@ -117,10 +117,10 @@ export class NavbarComponent implements OnInit {
   public logout() {
     this.login.logout();
     window.location.reload();
+
   }
 
   public toProfileSettings() {
-    const user_role = this.login.getUserRole();
     this.router.navigate(['/profile']).then((_) => {
     });
   }

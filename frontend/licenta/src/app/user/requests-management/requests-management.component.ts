@@ -33,6 +33,9 @@ export class RequestsManagementComponent  implements AfterViewInit {
 
   constructor(private router: Router, private adoptionRequestService: AdoptionRequestService, private loginService: LoginService, private snackBar: MatSnackBar, private userService: UserService) {
     this.user = this.loginService.getUser();
+  }
+
+  ngOnInit() {
     this.getRequestsForAnimalCenter();
   }
 
@@ -41,24 +44,41 @@ export class RequestsManagementComponent  implements AfterViewInit {
     result.setDate(result.getDate() + 5); // Adaugă 5 zile
     return result;
   }
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
+
   redirectToAnimalPage(request: any) {
     this.router.navigate(['/animal-details', {animalId: request.animal.id}]).then((_) => {
     });
   }
 
   setPending(requestId: number) {
-    // Logic to set the request to pending
     this.adoptionRequestService.updatePendingRequests(requestId).subscribe({
       next: () => {
         this.getRequestsForAnimalCenter();
-
       }
     });
   }
+
+
+  checkPendingStatusAndSetActions(requests: any[]): void {
+    requests.forEach(request => {
+      if (request.status === 'SUBMITTED') {
+        this.adoptionRequestService.getAdoptedRequestPendingForAnimalId(request.animal.id).subscribe({
+          next: (data) => {
+            request.isPendingDisabled = data.length > 0;
+            if (data.length > 0) {
+              request.pendingMessage = "There's already a pending request for this animal.";
+            }
+          }
+        });
+      }
+    });
+  }
+
 
   acceptRequest(requestId: number) {
     // Logic to accept the request
@@ -128,6 +148,7 @@ export class RequestsManagementComponent  implements AfterViewInit {
               this.filterRequests();
               console.log(this.filteredRequests);
               this.totalElements = this.requests.length;
+              this.checkPendingStatusAndSetActions(this.requests);
 
               console.log('Requests with animals and users:', this.requests);
             });

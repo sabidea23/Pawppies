@@ -172,7 +172,7 @@ public class AnimalRequestsServiceImpl implements AnimalRequestsService {
         this.notificationService.createNotification(notificationRequest);
     }
 
-    @Scheduled(cron = "0 * * * * ?")
+  //  @Scheduled(cron = "0 * * * * ?")
     public void performHourlyTask() {
 
         // scoate requests in starea pending din repository- lista

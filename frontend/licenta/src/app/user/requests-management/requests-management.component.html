@@ -91,9 +91,11 @@
       <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef><b> Actions </b></mat-header-cell>
         <mat-cell *matCellDef="let request" class="buttons-request">
-          <button (click)="setPending(request.id)" *ngIf="request.status === 'SUBMITTED'" class="button-accept"
-                  mat-flat-button>SET PENDING
+          <button *ngIf="!request.isPendingDisabled && request.status != 'PENDING'" (click)="setPending(request.id)" mat-flat-button class="button-accept">
+            SET PENDING
           </button>
+
+
           <button (click)="acceptRequest(request.id)" *ngIf="request.status === 'PENDING'" class="button-accept"
                   mat-flat-button>ACCEPT
           </button>
@@ -117,5 +119,4 @@
 
   </div>
 </div>
-
 </body>
