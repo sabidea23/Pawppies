@@ -8,11 +8,11 @@
 
       <div class="menu">
         <button (click)="selectTab('aboutMe')" mat-button><h2> About me</h2></button>
-        <button (click)="selectTab('accountDetails')" *ngIf="getUserRole() == 'NORMAL' || getUserRole() == 'SUPPLIER'"
+        <button (click)="selectTab('accountDetails')"
                 mat-button><h2> Account Details </h2></button>
-        <button (click)="selectTab('adopterProfile')" *ngIf="getUserRole() == 'NORMAL'" mat-button><h2> Adopter
+        <button (click)="selectTab('adopterProfile')"  mat-button><h2> Adopter
           Profile </h2></button>
-        <button (click)="selectTab('animalsAdopted')" *ngIf="getUserRole() == 'NORMAL' || getUserRole() == 'SUPPLIER'"
+        <button (click)="selectTab('animalsAdopted')"
                 mat-button><h2> Animals Adopted </h2></button>
         <button (click)="selectTab('adoptionRequests')" mat-button><h2> Adoption Requests </h2></button>
       </div>
@@ -27,6 +27,7 @@
                 Requested on: {{ request.requestedDate | date:'mediumDate' }}
               </mat-card-subtitle>
             </mat-card-header>
+
             <img [src]="request.animal.animalImages[0]?.url" alt="Animal image" class="image-container">
             <mat-card-content>
               <p><strong>Reason for adoption:</strong> {{ request.reason }}</p>
@@ -58,8 +59,32 @@
       </div>
 
       <div *ngIf="selectedTab === 'animalsAdopted'" class="form-details">
-        <h2> Start your journey to find the perfect animal companion for you. </h2>
-        <button (click)="goToAnimalsPage()" class="update-button" mat-button>SEARCH</button>
+
+        <h2> Animals Adopted: </h2>
+        <div *ngIf="user.adoptedAnimals.length > 0" class="request-container">
+        <mat-card  *ngFor="let animalAdopted of user.adoptedAnimals" class="request-card">
+
+            <mat-card-header>
+              <mat-card-title>{{ animalAdopted.name }}</mat-card-title>
+              <mat-card-subtitle>
+                 {{ animalAdopted.type }}, {{animalAdopted.gender}}, {{animalAdopted.size}}
+              </mat-card-subtitle>
+            </mat-card-header>
+
+            <img [src]='animalAdopted.animalImages[0].url' >
+          <mat-card-content>
+            <p> {{animalAdopted.description}}</p>
+          </mat-card-content>
+        </mat-card>
+        </div>
+
+        <div *ngIf="user.adoptedAnimals.length < 1">
+          <hr>
+          <h2> You have no animals adopted at this moment.
+            Start your journey to find the perfect animal companion for you. </h2>
+          <button (click)="goToAnimalsPage()" class="update-button" mat-button>SEARCH</button>
+        </div>
+
       </div>
 
       <form (ngSubmit)="formSubmit()" *ngIf="selectedTab === 'accountDetails'" [formGroup]="editForm"

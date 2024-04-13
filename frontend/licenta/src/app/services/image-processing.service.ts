@@ -11,7 +11,6 @@ export class ImageProcessingService {
   constructor(private sanitizer: DomSanitizer) { }
   public createImage (animal: any) {
     const animalImages: any[] =  animal.animalImages;
-
     const animalImagesToFileHandle: FileModel[] = [];
 
     for (let i = 0; i < animalImages.length; i++) {

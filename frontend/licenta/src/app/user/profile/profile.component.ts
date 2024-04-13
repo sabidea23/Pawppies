@@ -51,8 +51,12 @@ export class ProfileComponent implements OnInit {
 
   animal: any;
 
-  constructor(private imageProcessingService: ImageProcessingService, private route: ActivatedRoute, private login: LoginService, private snack: MatSnackBar, private router: Router, private userService: UserService, private adoptionRequests: AdoptionRequestService) {
+  constructor(private imageProcessingService: ImageProcessingService, private route: ActivatedRoute,
+              private login: LoginService, private snack: MatSnackBar, private router: Router, private userService: UserService,
+              private adoptionRequests: AdoptionRequestService) {
+
     this.user = this.login.getUser();
+
     console.log(this.user)
     this.getUserRequests();
     const section = JSON.parse(this.route.snapshot.paramMap.get('section') || '{}');
@@ -60,6 +64,14 @@ export class ProfileComponent implements OnInit {
       this.selectedTab = 'adoptionRequests';
     } else {
       this.selectedTab = 'aboutMe';
+    }
+  }
+
+  getImagesForUser() {
+    if (this.user.adoptedAnimals.length > 0) {
+      for (let i = 0; i < this.user.adoptedAnimals.length; i++) {
+        this.user.adoptedAnimals[i] = this.imageProcessingService.createImage(this.user.adoptedAnimals[i]);
+      }
     }
   }
 
@@ -91,6 +103,8 @@ export class ProfileComponent implements OnInit {
           forkJoin(requestsWithAnimals).subscribe(completeRequests => {
             this.requests = completeRequests;
             this.getImagesForAnimals();
+            console.log(this.requests)
+
           });
 
         } else {
@@ -153,6 +167,8 @@ export class ProfileComponent implements OnInit {
           this.userInput.street = user.street;
           this.userInput.city = user.city;
           this.userInput.country = user.country;
+          this.getImagesForUser()
+
         },
 
         error: (err) => {
