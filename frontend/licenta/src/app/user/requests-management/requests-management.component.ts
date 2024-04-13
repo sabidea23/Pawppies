@@ -157,7 +157,9 @@ export class RequestsManagementComponent {
   filterRequests(): void {
     // @ts-ignore
     this.filteredRequests = this.requests.filter(request => {
-      return this.getStatusForRequest(request);
+      return (this.getStatusForRequest(request) &&
+        this.filterByName(request.animal) && this.filterByUser(request.user)  )
+
     });
 
   //  this.totalElements = this.animalFiltered.length;
@@ -173,5 +175,45 @@ export class RequestsManagementComponent {
       status = 'PENDING';
 
     return !(this.filters.status && this.filters.status.length > 0 && !this.filters.status.includes(status));
+  }
+
+  searchTerms: string[] = [];
+  searchTerm: string = '';
+
+  addSearchTerm(term: string): void {
+    if (term && !this.searchTerms.includes(term)) {
+      this.searchTerms.push(term);
+      this.filterRequests();
+    }
+    this.searchTerm = '';
+  }
+
+  removeSearchTerm(term: string): void {
+    this.searchTerms = this.searchTerms.filter(t => t !== term);
+    this.filterRequests();
+  }
+
+  filterByName(animal: any): boolean {
+    return this.searchTerms.length ? this.searchTerms.some(name => animal.name.toLowerCase().includes(name.toLowerCase())) : true;
+  }
+
+  userSearchTerms: string[] = [];
+  usernameFilter: string = '';
+
+  addUserSearchTerm(term: string): void {
+    if (term && !this.userSearchTerms.includes(term)) {
+      this.userSearchTerms.push(term);
+      this.filterRequests();
+    }
+    this.usernameFilter = '';
+  }
+
+  removeUserSearchTerm(term: string): void {
+    this.userSearchTerms = this.userSearchTerms.filter(t => t !== term);
+    this.filterRequests();
+  }
+
+  filterByUser(user: any): boolean {
+    return this.userSearchTerms.length ? this.userSearchTerms.some(userName => user.username.toLowerCase().includes(userName.toLowerCase())) : true;
   }
 }

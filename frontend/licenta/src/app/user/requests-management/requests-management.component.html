@@ -18,22 +18,32 @@
       </div>
     </form>
 
-<!--    <div class="search-form">-->
-<!--      <div class="filter-group">-->
-<!--        <h3>NAME</h3>-->
-<!--        <input (keyup.enter)="addSearchTerm(searchTerm)" [(ngModel)]="searchTerm" class="button-filter"-->
-<!--               placeholder="Search by name..."-->
-<!--               type="text">-->
-<!--        <div class="chip-container">-->
-<!--          <div *ngFor="let name of searchTerms" class="chip">-->
-<!--            {{ name }}-->
-<!--            <span (click)="removeSearchTerm(name)" class="close">x</span>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
+    <div class="search-form">
+      <div class="filter-group">
+        <h3> ANIMAL NAME </h3>
+        <input (keyup.enter)="addSearchTerm(searchTerm)" [(ngModel)]="searchTerm" class="button-filter"
+               placeholder="Search by animal name..."
+               type="text">
+        <div class="chip-container">
+          <div *ngFor="let name of searchTerms" class="chip">
+            {{ name }}
+            <span (click)="removeSearchTerm(name)" class="close">x</span>
+          </div>
+        </div>
 
 
-<!--    </div>-->
+        <h3> USER NAME </h3>
+        <input matInput placeholder="Search by username..."  class="button-filter"
+               [(ngModel)]="usernameFilter" (keyup.enter)="addUserSearchTerm(usernameFilter)" />
+        <div class="chip-container">
+          <div *ngFor="let name of userSearchTerms" class="chip">
+            {{ name }}
+            <span (click)="removeUserSearchTerm(name)" class="close">x</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
 
 
