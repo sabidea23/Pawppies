@@ -53,6 +53,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(private imageProcessingService: ImageProcessingService, private route: ActivatedRoute, private login: LoginService, private snack: MatSnackBar, private router: Router, private userService: UserService, private adoptionRequests: AdoptionRequestService) {
     this.user = this.login.getUser();
+    console.log(this.user)
     this.getUserRequests();
     const section = JSON.parse(this.route.snapshot.paramMap.get('section') || '{}');
     if (section == 3) {

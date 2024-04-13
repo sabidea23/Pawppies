@@ -117,10 +117,9 @@ public class AnimalRequestsServiceImpl implements AnimalRequestsService {
         this.adoptionRequestRepository.deleteById(requestId);
 
         animal.setIsAdopted(true);
+        animal.setAdoptionUser(user);
         this.animalRepository.save(animal);
 
-        user.getAdoptedAnimals().add(animal);
-        this.userRepository.save(user);
 
         List<AdoptionRequest> requests = this.adoptionRequestRepository.findAllByAdoptionRequestAnimalId(animal.getId());
         List<Long> userIds = requests.stream().map(request -> request.getAdoptionRequestUser().getId()).collect(Collectors.toList());

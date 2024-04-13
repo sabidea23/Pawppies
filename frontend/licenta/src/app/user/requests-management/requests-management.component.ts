@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {LoginService} from "../../services/login.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {UserService} from "../../services/user.service";
@@ -33,26 +33,33 @@ export class RequestsManagementComponent {
   }
 
 
-
-  redirectToAnimalPage(request:any) {
+  redirectToAnimalPage(request: any) {
     this.router.navigate(['/animal-details', {animalId: request.animal.id}]).then((_) => {
     });
   }
 
   setPending(requestId: number) {
     // Logic to set the request to pending
-    this.adoptionRequestService.updatePendingRequests(requestId).subscribe(
-      {
-        next:() => {
-          this.getRequestsForAnimalCenter();
+    this.adoptionRequestService.updatePendingRequests(requestId).subscribe({
+      next: () => {
+        this.getRequestsForAnimalCenter();
 
-        }
       }
-    );
+    });
   }
 
   acceptRequest(requestId: number) {
     // Logic to accept the request
+    this.adoptionRequestService.acceptRequest(requestId).subscribe({
+      next: (data) => {
+
+        Swal.fire({
+          title: 'Success!', text: 'Adoption Request accepted', icon: 'success', background: 'rgb(230, 230, 230)',
+        }).then((_) => {
+          this.getRequestsForAnimalCenter();
+        });
+      },
+    });
   }
 
   rejectRequest(requestId: number) {
@@ -88,15 +95,19 @@ export class RequestsManagementComponent {
         next: (requests: any[]) => {
           if (requests.length > 0) {
             const enrichedRequests$: Observable<any>[] = requests.map(request => {
-              const animalDetails$ = this.adoptionRequestService.getAnimalFromRequest(request.id).pipe(
-                map(animal => ({ ...request, animal }))
-              );
-              const userDetails$ = this.adoptionRequestService.getUserForRequest(request.id).pipe(
-                map(user => ({ ...request, user }))
-              );
-              return forkJoin([animalDetails$, userDetails$]).pipe(
-                map(([animalData, userData]) => ({ ...request, animal: animalData.animal, user: userData.user }))
-              );
+              const animalDetails$ = this.adoptionRequestService.getAnimalFromRequest(request.id).pipe(map(animal => ({
+                ...request,
+                animal
+              })));
+              const userDetails$ = this.adoptionRequestService.getUserForRequest(request.id).pipe(map(user => ({
+                ...request,
+                user
+              })));
+              return forkJoin([animalDetails$, userDetails$]).pipe(map(([animalData, userData]) => ({
+                ...request,
+                animal: animalData.animal,
+                user: userData.user
+              })));
             });
 
             forkJoin(enrichedRequests$).subscribe(enrichedRequests => {
@@ -105,12 +116,11 @@ export class RequestsManagementComponent {
             });
           } else {
             console.log('No requests found for this center.');
-            this.snackBar.open('No requests found for this center.', 'OK', { duration: 3000 });
+            this.snackBar.open('No requests found for this center.', 'OK', {duration: 3000});
           }
-        },
-        error: (err) => {
+        }, error: (err) => {
           console.error('Error loading requests:', err);
-          this.snackBar.open('Failed to load requests!', 'OK', { duration: 3000 });
+          this.snackBar.open('Failed to load requests!', 'OK', {duration: 3000});
         }
       });
   }
