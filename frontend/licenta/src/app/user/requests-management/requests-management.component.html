@@ -50,12 +50,12 @@
   <div class="content-container">
 
     <h1>Adoption Requests for {{ user.animalCenters[0]?.name }}</h1>
-    <mat-table [dataSource]="paginatedFilteredAnimals" class="mat-elevation-z8">
 
-      <ng-container matColumnDef="requestId">
-        <mat-header-cell *matHeaderCellDef><b> Request ID </b></mat-header-cell>
-        <mat-cell *matCellDef="let request"><b>   {{request.id}} </b></mat-cell>
-      </ng-container>
+      <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+        <ng-container matColumnDef="requestId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="id"> <b> Request ID </b></th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
 
       <ng-container matColumnDef="userName">
         <mat-header-cell *matHeaderCellDef><b> Username </b></mat-header-cell>
@@ -67,10 +67,10 @@
         <mat-cell *matCellDef="let request"> {{request.reason}} </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="postedDate">
-        <mat-header-cell *matHeaderCellDef><b> Request Date </b></mat-header-cell>
-        <mat-cell *matCellDef="let request"> {{request.requestedDate | date:'mediumDate'}} </mat-cell>
-      </ng-container>
+        <ng-container matColumnDef="postedDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="requestedDate"> <b>Request Date</b> </th>
+          <td mat-cell *matCellDef="let element"> {{element.requestedDate | date:'mediumDate'}} </td>
+        </ng-container>
 
       <ng-container matColumnDef="animalName">
         <mat-header-cell *matHeaderCellDef><b> Animal Name </b></mat-header-cell>
@@ -113,12 +113,8 @@
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 
-    <div class="pagination-controls">
-      <button (click)="prevPage()" *ngIf="currentPage > 1" class="pagination-button prev">< PREVIOUS</button>
-      <span>Page {{currentPage}}</span>
-      <button (click)="nextPage()" *ngIf="currentPage < totalPages" class="pagination-button next">NEXT ></button>
-    </div>
   </div>
 </div>
 

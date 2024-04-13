@@ -74,10 +74,11 @@ import { BestCatKidsComponent } from './pages/adopt-cat/best-cat-kids/best-cat-k
 import {MatBadgeModule} from "@angular/material/badge";
 import { AdoptionRequestComponent } from './animal.process/adoption-request/adoption-request.component';
 import { RequestsManagementComponent } from './user/requests-management/requests-management.component';
+import {MatSortModule} from "@angular/material/sort";
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent, FooterComponent, SignupComponent, LoginComponent, HomeComponent, ProfileComponent, AddAnimalComponent, AnimalListComponent, AnimalCenterAddComponent, AnimalCenterList, MapDialogComponent, EditAnimalCenterComponent, AboutPetsComponent, MissionComponent, QuizComponent, BreedDetailsDogComponent, BreedDetailsCatComponent, BreedDogComponent, EditAnimalComponent, UserManagementComponent, CenterDetailsComponent, AnimalDetailsComponent, CutestDogsComponent, ApartamnetsDogsComponent, KidsDogsComponent, PopularDogsComponent, BreedCatComponent, ContactComponent, PolicyComponent, FaqsComponent, PrivacyPolicyComponent, TermsServiceComponent, FeedCatComponent, FeedDogComponent, AboutDogsComponent, AboutCatComponent, CatHealthComponent, DogHealthComponent, DogTrainingComponent, CatBehaviorComponent, CuteCaatComponent, FluffyCatComponent, HairlessCatComponent, BestCatKidsComponent, AdoptionRequestComponent, RequestsManagementComponent],
-    imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatIconModule, FormsModule, HttpClientModule, MatSnackBarModule, MatCardModule, MatChipsModule, MatToolbarModule, MatIconModule, MatListModule, MatTableModule, ReactiveFormsModule, RouterOutlet, MatGridListModule, MatDialogModule, MatMenuModule, MatPaginatorModule, MatSelectModule, MatCheckboxModule, MatBadgeModule],
+    imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatIconModule, FormsModule, HttpClientModule, MatSnackBarModule, MatCardModule, MatChipsModule, MatToolbarModule, MatIconModule, MatListModule, MatTableModule, ReactiveFormsModule, RouterOutlet, MatGridListModule, MatDialogModule, MatMenuModule, MatPaginatorModule, MatSelectModule, MatCheckboxModule, MatBadgeModule, MatSortModule],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
 })

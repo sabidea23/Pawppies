@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {LoginService} from "../../services/login.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {UserService} from "../../services/user.service";
@@ -9,31 +9,42 @@ import {map} from "rxjs/operators";
 import {Router} from "@angular/router";
 import Swal from "sweetalert2";
 import {catBreeds, dogBreedsName} from "../../utils/breeds-store";
+import {MatTableDataSource} from "@angular/material/table";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatSort} from "@angular/material/sort";
 
 @Component({
   selector: 'app-requests-management',
   templateUrl: './requests-management.component.html',
   styleUrls: ['./requests-management.component.css']
 })
-export class RequestsManagementComponent {
+export class RequestsManagementComponent  implements AfterViewInit {
 
   user: any;
   requests: any[] = [];
   filteredRequests: any = [];
+  displayedColumns: string[] = ['requestId', 'userName', 'userInfo', 'reason', 'postedDate', 'animalName', 'status', 'actions'];
+  dataSource = new MatTableDataSource<any>([]);
+
+  // @ts-ignore
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  // @ts-ignore
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(private router: Router, private adoptionRequestService: AdoptionRequestService, private loginService: LoginService, private snackBar: MatSnackBar, private userService: UserService) {
     this.user = this.loginService.getUser();
     this.getRequestsForAnimalCenter();
   }
 
-  displayedColumns: string[] = ['requestId', 'userName', 'userInfo', 'reason', 'postedDate', 'animalName', 'status', 'actions'];
-
   calculateDueDate(date: Date): Date {
     const result = new Date(date); // Crează o nouă instanță de dată pentru a evita modificarea originalului
     result.setDate(result.getDate() + 5); // Adaugă 5 zile
     return result;
   }
-
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
   redirectToAnimalPage(request: any) {
     this.router.navigate(['/animal-details', {animalId: request.animal.id}]).then((_) => {
     });
@@ -93,9 +104,6 @@ export class RequestsManagementComponent {
   totalElements:any;
   totalPages = 0;
 
-  ngOnInit() {
-    this.totalPages = Math.ceil(this.totalElements / this.itemsPerPage);
-  }
 
   getRequestsForAnimalCenter(): void {
     this.adoptionRequestService.getRequestsForAnimalCenterId(this.user.animalCenters[0].id)
@@ -115,6 +123,7 @@ export class RequestsManagementComponent {
             });
 
             forkJoin(enrichedRequests$).subscribe(enrichedRequests => {
+              this.dataSource.data = enrichedRequests;
               this.requests = enrichedRequests;
               this.filterRequests();
               console.log(this.filteredRequests);
@@ -147,7 +156,6 @@ export class RequestsManagementComponent {
   }
 
   applyFilter(category: string, value: any): void {
-    this.currentPage = 1;
 
     if (this.filters[category].includes(value)) {
       // @ts-ignore
@@ -161,13 +169,9 @@ export class RequestsManagementComponent {
 
   filterRequests(): void {
     // @ts-ignore
-    this.filteredRequests = this.requests.filter(request => {
+    this.dataSource.data = this.requests.filter(request => {
       return (this.getStatusForRequest(request) && this.filterByName(request.animal) && this.filterByUser(request.user))
-
     });
-
-     this.totalElements = this.filteredRequests.length;
-    this.totalPages = Math.ceil(this.totalElements / this.itemsPerPage);
   }
 
   getStatusForRequest(request: any): boolean {
@@ -218,23 +222,4 @@ export class RequestsManagementComponent {
     return this.userSearchTerms.length ? this.userSearchTerms.some(userName => user.username.toLowerCase().includes(userName.toLowerCase())) : true;
   }
 
-  currentPage = 1;
-  itemsPerPage = 7;
-
-  nextPage() {
-    if (this.currentPage * this.itemsPerPage < this.totalElements) {
-      this.currentPage++;
-    }
-  }
-
-  get paginatedFilteredAnimals() {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    return this.filteredRequests.slice(startIndex, startIndex + this.itemsPerPage);
-  }
-
-  prevPage() {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-    }
-  }
 }
