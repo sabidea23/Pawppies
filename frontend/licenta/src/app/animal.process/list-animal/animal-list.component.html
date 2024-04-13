@@ -4,6 +4,7 @@
     <form class="search-form">
       <h2>Find Animals by:</h2>
       <div class="filter-group">
+
         <h3>TYPE</h3>
         <button (click)="applyFilter('type', 'Dog') ; toggleButton('typeDog')"
                 [ngClass]="{'pressed': pressedButton ['typeDog'] }" class="button-filter" name="type"
@@ -14,6 +15,7 @@
                 role="checkbox" value="Cat"> Cat
         </button>
       </div>
+
       <div class="filter-group">
         <h3>AGE</h3>
         <button (click)="applyFilter('age', 'Puppy/Kitten') ; toggleButton('typePuppy/Kitten')"

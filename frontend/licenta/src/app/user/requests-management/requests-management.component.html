@@ -1,60 +1,109 @@
 <body>
 
 <div class="main-container">
-  <h1>Adoption Requests for {{ user.animalCenters[0]?.name }}</h1>
-  <mat-table [dataSource]="requests" class="mat-elevation-z8">
+  <div class="side-container">
+    <form class="search-form">
+      <h2>Filter Requests by:</h2>
+      <div class="filter-group">
 
-    <ng-container matColumnDef="requestId">
-      <mat-header-cell *matHeaderCellDef><b> Request ID  </b> </mat-header-cell>
-      <mat-cell *matCellDef="let request"> <b>   {{request.id}} </b> </mat-cell>
-    </ng-container>
+        <h3> STATUS </h3>
+        <button (click)="applyFilter('status', 'SUBMITTED') ; toggleButton('statusSubmitted')"
+                [ngClass]="{'pressed': pressedButton ['statusSubmitted'] }" class="button-filter" name="status"
+                role="checkbox" value="SUBMITTED"> SUBMITTED
+        </button>
+        <button (click)="applyFilter('status', 'PENDING')  ; toggleButton('typePending') "
+                [ngClass]="{'pressed': pressedButton ['typePending']}" class="button-filter" name="status"
+                role="checkbox" value="PENDING"> PENDING
+        </button>
+      </div>
+    </form>
 
-    <ng-container matColumnDef="userName">
-      <mat-header-cell *matHeaderCellDef> <b> Username </b>  </mat-header-cell>
-      <mat-cell *matCellDef="let request"> <b> {{request.user.username}}  </b>  </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="reason">
-      <mat-header-cell *matHeaderCellDef> <b> Adoption Reason </b> </mat-header-cell>
-      <mat-cell *matCellDef="let request"> {{request.reason}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="postedDate">
-      <mat-header-cell *matHeaderCellDef>  <b>  Request Date </b> </mat-header-cell>
-      <mat-cell *matCellDef="let request"> {{request.requestedDate | date:'mediumDate'}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="animalName">
-      <mat-header-cell *matHeaderCellDef> <b> Animal Name </b>  </mat-header-cell>
-      <mat-cell *matCellDef="let request"> <button mat-flat-button (click)="redirectToAnimalPage(request)"> <b> {{request.animal.name}} </b> </button>   </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="status">
-      <mat-header-cell *matHeaderCellDef> <b> Status </b>  </mat-header-cell>
-      <mat-cell *matCellDef="let request" class="buttons-request" > <b> {{request.status}} </b>
-        <p *ngIf="request.status == 'PENDING'">  from {{request.pendingDate | date:'mediumDate'}} </p>
-        <p *ngIf="request.status == 'PENDING'">  to {{ calculateDueDate(request.pendingDate) | date:'mediumDate'}} </p>
-      </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="actions">
-      <mat-header-cell *matHeaderCellDef> <b> Actions </b> </mat-header-cell>
-      <mat-cell *matCellDef="let request" class="buttons-request">
-        <button mat-flat-button *ngIf="request.status === 'SUBMITTED'"  class="button-accept" (click)="setPending(request.id)">SET PENDING</button>
-        <button mat-flat-button class="button-accept" *ngIf="request.status === 'PENDING'" (click)="acceptRequest(request.id)">ACCEPT</button>
-        <button mat-flat-button class="button-reject" *ngIf="request.status === 'PENDING'" (click)="rejectRequest(request.id)">REJECT</button>
-      </mat-cell>
-    </ng-container>
+<!--    <div class="search-form">-->
+<!--      <div class="filter-group">-->
+<!--        <h3>NAME</h3>-->
+<!--        <input (keyup.enter)="addSearchTerm(searchTerm)" [(ngModel)]="searchTerm" class="button-filter"-->
+<!--               placeholder="Search by name..."-->
+<!--               type="text">-->
+<!--        <div class="chip-container">-->
+<!--          <div *ngFor="let name of searchTerms" class="chip">-->
+<!--            {{ name }}-->
+<!--            <span (click)="removeSearchTerm(name)" class="close">x</span>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
 
 
-    <ng-container matColumnDef="userInfo">
-      <mat-header-cell *matHeaderCellDef> <b> Contact </b>  </mat-header-cell>
-      <mat-cell *matCellDef="let request"> {{ request.user.firstName }} {{ request.user.lastName }}, {{ request.user.email }}, {{ request.user.phone }} </mat-cell>
-    </ng-container>
+<!--    </div>-->
+  </div>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
-</div>
+
+    <div class="content-container">
+
+      <h1>Adoption Requests for {{ user.animalCenters[0]?.name }}</h1>
+      <mat-table [dataSource]="filteredRequests" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="requestId">
+          <mat-header-cell *matHeaderCellDef><b> Request ID </b></mat-header-cell>
+          <mat-cell *matCellDef="let request"><b>   {{request.id}} </b></mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="userName">
+          <mat-header-cell *matHeaderCellDef><b> Username </b></mat-header-cell>
+          <mat-cell *matCellDef="let request"><b> {{request.user.username}}  </b></mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="reason">
+          <mat-header-cell *matHeaderCellDef><b> Adoption Reason </b></mat-header-cell>
+          <mat-cell *matCellDef="let request"> {{request.reason}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="postedDate">
+          <mat-header-cell *matHeaderCellDef><b> Request Date </b></mat-header-cell>
+          <mat-cell *matCellDef="let request"> {{request.requestedDate | date:'mediumDate'}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="animalName">
+          <mat-header-cell *matHeaderCellDef><b> Animal Name </b></mat-header-cell>
+          <mat-cell *matCellDef="let request">
+            <button (click)="redirectToAnimalPage(request)" mat-flat-button><b> {{request.animal.name}} </b></button>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef><b> Status </b></mat-header-cell>
+          <mat-cell *matCellDef="let request" class="buttons-request"><b> {{request.status}} </b>
+            <p *ngIf="request.status == 'PENDING'"> from {{request.pendingDate | date:'mediumDate'}} </p>
+            <p *ngIf="request.status == 'PENDING'">
+              to {{ calculateDueDate(request.pendingDate) | date:'mediumDate'}} </p>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef><b> Actions </b></mat-header-cell>
+          <mat-cell *matCellDef="let request" class="buttons-request">
+            <button (click)="setPending(request.id)" *ngIf="request.status === 'SUBMITTED'" class="button-accept"
+                    mat-flat-button>SET PENDING
+            </button>
+            <button (click)="acceptRequest(request.id)" *ngIf="request.status === 'PENDING'" class="button-accept"
+                    mat-flat-button>ACCEPT
+            </button>
+            <button (click)="rejectRequest(request.id)" *ngIf="request.status === 'PENDING'" class="button-reject"
+                    mat-flat-button>REJECT
+            </button>
+          </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="userInfo">
+          <mat-header-cell *matHeaderCellDef><b> Contact </b></mat-header-cell>
+          <mat-cell *matCellDef="let request"> {{ request.user.firstName }} {{ request.user.lastName }}
+            , {{ request.user.email }}, {{ request.user.phone }} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </div>
+  </div>
 
 </body>

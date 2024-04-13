@@ -8,6 +8,7 @@ import {forkJoin, Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import {Router} from "@angular/router";
 import Swal from "sweetalert2";
+import {catBreeds, dogBreedsName} from "../../utils/breeds-store";
 
 @Component({
   selector: 'app-requests-management',
@@ -18,6 +19,7 @@ export class RequestsManagementComponent {
 
   user: any;
   requests: any[] = [];
+  filteredRequests: any = [];
 
   constructor(private router: Router, private adoptionRequestService: AdoptionRequestService, private loginService: LoginService, private snackBar: MatSnackBar, private userService: UserService) {
     this.user = this.loginService.getUser();
@@ -31,7 +33,6 @@ export class RequestsManagementComponent {
     result.setDate(result.getDate() + 5); // Adaugă 5 zile
     return result;
   }
-
 
   redirectToAnimalPage(request: any) {
     this.router.navigate(['/animal-details', {animalId: request.animal.id}]).then((_) => {
@@ -112,6 +113,8 @@ export class RequestsManagementComponent {
 
             forkJoin(enrichedRequests$).subscribe(enrichedRequests => {
               this.requests = enrichedRequests;
+              this.filterRequests();
+              console.log(this.filteredRequests);
               console.log('Requests with animals and users:', this.requests);
             });
           } else {
@@ -123,5 +126,52 @@ export class RequestsManagementComponent {
           this.snackBar.open('Failed to load requests!', 'OK', {duration: 3000});
         }
       });
+  }
+
+  //filtrare
+  filters: any = {
+    status: [],
+
+  };
+
+  pressedButton: { [key: string]: boolean } = {};
+
+
+  toggleButton(key: string) {
+    this.pressedButton[key] = !this.pressedButton[key];
+  }
+
+  applyFilter(category: string, value: any): void {
+//    this.currentPage = 1;
+
+    if (this.filters[category].includes(value)) {
+      // @ts-ignore
+      this.filters[category] = this.filters[category].filter(item => item !== value);
+    } else {
+      this.filters[category].push(value);
+    }
+    this.filterRequests();
+  }
+
+
+  filterRequests(): void {
+    // @ts-ignore
+    this.filteredRequests = this.requests.filter(request => {
+      return this.getStatusForRequest(request);
+    });
+
+  //  this.totalElements = this.animalFiltered.length;
+   // this.totalPages = Math.ceil(this.totalElements / this.itemsPerPage);
+  }
+
+  getStatusForRequest(request:any):boolean {
+
+    let status = '';
+    if (request.status == 'SUBMITTED')
+      status = 'SUBMITTED';
+    else if (request.status == 'PENDING')
+      status = 'PENDING';
+
+    return !(this.filters.status && this.filters.status.length > 0 && !this.filters.status.includes(status));
   }
 }
