@@ -29,7 +29,7 @@
             </mat-card-header>
 
             <img [src]="request.animal.animalImages[0]?.url" alt="Animal image" class="image-container">
-            <mat-card-content>
+            <mat-card-content class="content-request">
               <p><strong>Reason for adoption:</strong> {{ request.reason }}</p>
               <p><strong>Status: </strong> <span
                 [ngClass]="{'status-pending': request.status === 'PENDING'}">{{ request.status }}</span>
@@ -40,7 +40,7 @@
             </mat-card-content>
 
             <div class="butons-container">
-              <button (click)="cancelRequest(request.id)" class="cancel-button" mat-button>CANCEL REQUEST</button>
+              <button (click)="cancelRequest($event, request.id)" class="cancel-button" mat-button>CANCEL REQUEST</button>
             </div>
           </mat-card>
 

@@ -124,7 +124,8 @@ export class ProfileComponent implements OnInit {
     return result;
   }
 
-  cancelRequest(request: any) {
+  cancelRequest(event: MouseEvent, request: any) {
+    event.stopPropagation(); // Oprește propagarea evenimentului
 
     Swal.fire({
       title: 'Confirm Deletion',

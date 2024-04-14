@@ -134,6 +134,6 @@ img {
   border-radius: 10px !important; /* Adaugă rotunjire pentru estetică */
 }
 
-.cancel-button:hover {
-
+.content-request {
+  height: 200px;
 }
