@@ -212,6 +212,9 @@ export class AnimalDetailsComponent {
     this.animalService.getAnimals().subscribe({
       next: (data) => {
         this.animals = data;
+        // @ts-ignore
+        // @ts-ignore
+        this.animals = this.animals.filter(animal => animal.isAdopted == false)
         this.displayRandomAnimals();
         this.displayAnimalsFromAnimalCenter();
         this.getimagesShowAnimals();

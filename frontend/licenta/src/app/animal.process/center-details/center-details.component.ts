@@ -115,6 +115,8 @@ export class CenterDetailsComponent {
     this.animalService.getAnimals().subscribe({
       next: (data) => {
         this.animals = data;
+        // @ts-ignore
+        this.animals = this.animals.filter(animal => animal.isAdopted == false)
         this.displayAnimalsFromAnimalCenter();
         this.getimagesShowAnimals();
       }, error: (_) => {

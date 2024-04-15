@@ -34,6 +34,8 @@ export class AnimalListComponent implements OnInit {
       this.animalService.getAnimalsByCenterId(this.animalCenterId).subscribe({
         next: (data) => {
           this.animals = data;
+          // @ts-ignore
+          this.animals = this.animals.filter(animal => animal.isAdopted == false)
           this.totalElements = this.animals.length;
           this.getImagesForAnimals();
           this.filterBreeds();
@@ -44,6 +46,8 @@ export class AnimalListComponent implements OnInit {
       this.animalService.getLikedAnimals(this.user.id).subscribe({
         next: (data) => {
           this.animals = data;
+          // @ts-ignore
+          this.animals = this.animals.filter(animal => animal.isAdopted = false)
           this.totalElements = this.animals.length;
           console.log(data)
           this.getImagesForAnimals();
@@ -53,6 +57,8 @@ export class AnimalListComponent implements OnInit {
       this.animalService.getAnimals().subscribe({
         next: (data) => {
           this.animals = data;
+          // @ts-ignore
+          this.animals = this.animals.filter(animal => animal.isAdopted == false)
           this.totalElements = this.animals.length;
           this.getImagesForAnimals();
           this.filterBreeds();
@@ -535,7 +541,9 @@ export class AnimalListComponent implements OnInit {
     this.router.navigate(['/animal-details', {animalId: animal.id}]);
   }
 
-  recentlyViewedAnimals:any = [];
+  uniqueAnimalIds: Set<number> = new Set();
+
+  recentlyViewedAnimals: any;
 
   getRecentlyViewedPets() {
     if (this.user ) {
@@ -543,7 +551,11 @@ export class AnimalListComponent implements OnInit {
 
       this.userService.getRecentlyViewedAnimals(userId).subscribe({
         next: (animalIds: any) => {
-          this.loadAnimalDetails(animalIds);
+          // @ts-ignore
+          animalIds.forEach(id => {
+            this.uniqueAnimalIds.add(id);
+          });
+          this.loadAnimalDetails(Array.from(this.uniqueAnimalIds));
         },
         error: (error) => {
           console.error('Error fetching recently viewed animals', error);

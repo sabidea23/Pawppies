@@ -65,6 +65,8 @@ export class ContactComponent {
   getFavouriteAnimals() {
     this.animalService.getAnimals().subscribe({
       next: (data) => {
+        // @ts-ignore
+        this.animals = this.animals.filter(animal => animal.isAdopted == false)
         this.animals = data;
         this.displayRandomAnimals();
         this.getImagesForAnimals();

@@ -73,6 +73,8 @@ export class FaqsComponent {
     this.animalService.getAnimals().subscribe({
       next: (data) => {
         this.animals = data;
+        // @ts-ignore
+        this.animals = this.animals.filter(animal => animal.isAdopted == false)
         this.displayRandomAnimals();
         this.getImagesForAnimals();
       }, error: (_) => {
