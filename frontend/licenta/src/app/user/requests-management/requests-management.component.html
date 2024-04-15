@@ -51,7 +51,10 @@
 
     <h1>Adoption Requests for {{ user.animalCenters[0]?.name }}</h1>
 
-      <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <div *ngIf="dataSource.data.length < 1">
+      <h2> No requests for this moment. </h2>
+    </div>
+      <mat-table *ngIf="dataSource.data.length > 0" [dataSource]="dataSource" matSort class="mat-elevation-z8">
         <ng-container matColumnDef="requestId">
           <th mat-header-cell *matHeaderCellDef mat-sort-header="id"> <b> Request ID </b></th>
           <td mat-cell *matCellDef="let element"> {{element.id}} </td>
@@ -94,7 +97,7 @@
           <button *ngIf="!request.isPendingDisabled && request.status != 'PENDING'" (click)="setPending(request.id)" mat-flat-button class="button-accept">
             SET PENDING
           </button>
-
+          <p *ngIf="request.status == 'SUBMITTED' && request.isPendingDisabled"> This animal is in pending to be visited by another user</p>
 
           <button (click)="acceptRequest(request.id)" *ngIf="request.status === 'PENDING'" class="button-accept"
                   mat-flat-button>ACCEPT

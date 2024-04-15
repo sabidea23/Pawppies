@@ -109,14 +109,14 @@
                 [ngClass]="{'pressed': pressedButton['typeHadOwners']}" class="button-filter" name="hadOwners">
           Had Previous Owner
         </button>
-
       </div>
     </form>
 
     <div class="search-form">
       <div class="filter-group">
         <h3>NAME</h3>
-        <input (keyup.enter)="addSearchTerm(searchTerm)" [(ngModel)]="searchTerm" class="button-filter" placeholder="Search by name..."
+        <input (keyup.enter)="addSearchTerm(searchTerm)" [(ngModel)]="searchTerm" class="button-filter"
+               placeholder="Search by name..."
                type="text">
         <div class="chip-container">
           <div *ngFor="let name of searchTerms" class="chip">
@@ -198,7 +198,7 @@
     <div class="header-container">
       <h2 *ngIf="!animalCenter && !userId">Animals available for adoption ({{animals.length}})</h2>
       <h2 *ngIf="userId"> My Favorites ({{animals.length}})</h2>
-      <h2 *ngIf="animalCenter">Animals from {{ animalCenter.name }} ({{animalFiltered.length}})</h2>
+      <h2 *ngIf="animalCenter">Animals from {{ animalCenter.name }} ({{paginatedDogBreeds.length}})</h2>
       <button (click)="goToAddAnimal()"
               *ngIf=" animalCenterId && getUserRole() === 'SUPPLIER' && animalCenter.admin.id == user.id"
               class="add-animal-center-button">
@@ -230,7 +230,9 @@
               <p class="animal-other-details"> {{ animal.age }}, {{ animal.type }} </p>
             </div>
 
-            <button (click)="deleteAnimal($event, animal)" *ngIf="getUserRole() === 'ADMIN'" mat-button>
+            <button (click)="deleteAnimal($event, animal)"
+                    *ngIf="getUserRole() == 'SUPPLIER' && animal.author.id == user.id"
+                    mat-button>
               <mat-icon>delete</mat-icon>
             </button>
           </div>
@@ -251,37 +253,26 @@
                class="animal-image">
 
           <div class="description">
-            <button (click)="editAnimal($event, animal)"
-                    *ngIf="getUserRole() == 'SUPPLIER' && animal.author.id == user.id"
-                    mat-button>
-              <mat-icon>edit</mat-icon>
-            </button>
-
             <div class="animal-details">
               <p class="animal-name"> {{ animal.name }} </p>
               <p class="animal-other-details"> {{ animal.age }}, {{ animal.type }} </p>
             </div>
-
-            <button (click)="deleteAnimal($event, animal)" *ngIf="getUserRole() === 'ADMIN'" mat-button>
-              <mat-icon>delete</mat-icon>
-            </button>
           </div>
         </a>
       </div>
     </div>
-
 
     <div class="pagination-controls">
       <button (click)="prevPage()" *ngIf="currentPage > 1" class="pagination-button prev">< PREVIOUS</button>
       <span>Page {{currentPage}}</span>
       <button (click)="nextPage()" *ngIf="currentPage < totalPages" class="pagination-button next">NEXT ></button>
     </div>
-
   </div>
 </div>
+
 <div *ngIf="userId" class="main-container">
-  <div class="content-container">
-    <div class="recently" *ngIf="user && recentlyViewedAnimals.length > 0">
+  <div *ngIf="user && recentlyViewedAnimals.length > 0" class="content-container">
+    <div class="recently">
       <h1 class="recently"> Recently viewed pets </h1>
       <div class="animal-grid">
 
@@ -293,9 +284,11 @@
             </button>
 
             <img [src]='animal.animalImages[0].url' class="animal-image">
-            <div class="animal-details">
-              <p class="animal-name"> {{ animal.name }} </p>
-              <p class="animal-other-details"> {{ animal.age }}, {{ animal.breedDetails.name  }} </p>
+            <div class="description">
+              <div class="animal-details">
+                <p class="animal-name"> {{ animal.name }} </p>
+                <p class="animal-other-details"> {{ animal.age }}, {{ animal.type }} </p>
+              </div>
             </div>
           </a>
         </div>
@@ -303,5 +296,4 @@
     </div>
   </div>
 </div>
-
 </body>

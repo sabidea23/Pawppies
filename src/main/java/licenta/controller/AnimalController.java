@@ -104,7 +104,7 @@ public class AnimalController {
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void deleteAnimal(@PathVariable("animalId") Long id, Authentication authentication) {
         if (authentication != null && authentication.getAuthorities().stream()
-                .anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+                .anyMatch(a -> a.getAuthority().equals("SUPPLIER"))) {
             this.animalService.deleteAnimal(id);
         }
         else {

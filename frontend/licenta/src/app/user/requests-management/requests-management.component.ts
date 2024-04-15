@@ -129,7 +129,6 @@ export class RequestsManagementComponent  implements AfterViewInit {
     this.adoptionRequestService.getRequestsForAnimalCenterId(this.user.animalCenters[0].id)
       .subscribe({
         next: (requests: any[]) => {
-          if (requests.length > 0) {
             const enrichedRequests$: Observable<any>[] = requests.map(request => {
               const animalDetails$ = this.adoptionRequestService.getAnimalFromRequest(request.id).pipe(map(animal => ({
                 ...request, animal
@@ -152,10 +151,7 @@ export class RequestsManagementComponent  implements AfterViewInit {
 
               console.log('Requests with animals and users:', this.requests);
             });
-          } else {
-            console.log('No requests found for this center.');
-            this.snackBar.open('No requests found for this center.', 'OK', {duration: 3000});
-          }
+
         }, error: (err) => {
           console.error('Error loading requests:', err);
           this.snackBar.open('Failed to load requests!', 'OK', {duration: 3000});

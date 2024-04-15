@@ -79,7 +79,9 @@
       <ng-container matColumnDef="delete">
         <th *matHeaderCellDef>DELETE</th>
         <td *matCellDef="let animalCenter" mat-cell>
-          <button (click)="deleteAnimalCenter(animalCenter)" class="btn bg-transparent" mat-button>
+          <button (click)="deleteAnimalCenter(animalCenter)"
+                  *ngIf="getUserRole() == 'SUPPLIER' && animalCenter.admin.id == user.id"
+                  class="btn bg-transparent" mat-button>
             <mat-icon>delete</mat-icon>
           </button>
         </td>

@@ -25,14 +25,10 @@ export class AnimalCenterList implements OnInit {
 
   displayedColumns: string[] = ['animalCenter', 'petList', 'cityState', 'contact', 'showOnMap'];
 
-  displayedColumnsAdmin: string[] = ['animalCenter', 'petList', 'cityState', 'contact', 'showOnMap', 'delete'];
-
-  displayedColumnsSupplier: string[] = ['animalCenter', 'petList', 'cityState', 'contact', 'showOnMap', 'edit'];
+  displayedColumnsSupplier: string[] = ['animalCenter', 'petList', 'cityState', 'contact', 'showOnMap', 'edit', 'delete'];
 
   getHeader() {
-    if (this.getUserRole() == "ADMIN") {
-      return this.displayedColumnsAdmin;
-    } else if (this.getUserRole() == "SUPPLIER" ) {
+  if (this.getUserRole() == "SUPPLIER" ) {
       return this.displayedColumnsSupplier;
     }
     return this.displayedColumns;

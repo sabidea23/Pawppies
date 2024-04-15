@@ -77,7 +77,7 @@ public class AnimalCenterController {
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void deleteAnimalCenter(@PathVariable("centerId") Long id, Authentication authentication) {
         if (authentication != null && authentication.getAuthorities().stream()
-                .anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+                .anyMatch(a -> a.getAuthority().equals("SUPPLIER"))) {
             this.animalCenterService.deleteAnimalCenter(id);
         } else {
             throw new ForbiddenActionForRole("You do not have the right permissions to do this action");
