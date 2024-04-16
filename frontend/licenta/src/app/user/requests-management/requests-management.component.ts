@@ -18,7 +18,7 @@ import {MatSort} from "@angular/material/sort";
   templateUrl: './requests-management.component.html',
   styleUrls: ['./requests-management.component.css']
 })
-export class RequestsManagementComponent  implements AfterViewInit {
+export class RequestsManagementComponent implements AfterViewInit {
 
   user: any;
   requests: any[] = [];
@@ -27,9 +27,9 @@ export class RequestsManagementComponent  implements AfterViewInit {
   dataSource = new MatTableDataSource<any>([]);
 
   // @ts-ignore
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   // @ts-ignore
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(private router: Router, private adoptionRequestService: AdoptionRequestService, private loginService: LoginService, private snackBar: MatSnackBar, private userService: UserService) {
     this.user = this.loginService.getUser();
@@ -121,7 +121,7 @@ export class RequestsManagementComponent  implements AfterViewInit {
     });
   }
 
-  totalElements:any;
+  totalElements: any;
   totalPages = 0;
 
 
@@ -129,31 +129,28 @@ export class RequestsManagementComponent  implements AfterViewInit {
     this.adoptionRequestService.getRequestsForAnimalCenterId(this.user.animalCenters[0].id)
       .subscribe({
         next: (requests: any[]) => {
-            const enrichedRequests$: Observable<any>[] = requests.map(request => {
-              const animalDetails$ = this.adoptionRequestService.getAnimalFromRequest(request.id).pipe(map(animal => ({
-                ...request, animal
-              })));
-              const userDetails$ = this.adoptionRequestService.getUserForRequest(request.id).pipe(map(user => ({
-                ...request, user
-              })));
-              return forkJoin([animalDetails$, userDetails$]).pipe(map(([animalData, userData]) => ({
-                ...request, animal: animalData.animal, user: userData.user
-              })));
-            });
+          const enrichedRequests$: Observable<any>[] = requests.map(request => {
+            const animalDetails$ = this.adoptionRequestService.getAnimalFromRequest(request.id).pipe(map(animal => ({
+              ...request, animal
+            })));
+            const userDetails$ = this.adoptionRequestService.getUserForRequest(request.id).pipe(map(user => ({
+              ...request, user
+            })));
+            return forkJoin([animalDetails$, userDetails$]).pipe(map(([animalData, userData]) => ({
+              ...request, animal: animalData.animal, user: userData.user
+            })));
+          });
 
-            forkJoin(enrichedRequests$).subscribe(enrichedRequests => {
-              this.dataSource.data = enrichedRequests;
-              this.requests = enrichedRequests;
-              this.filterRequests();
-              console.log(this.filteredRequests);
-              this.totalElements = this.requests.length;
-              this.checkPendingStatusAndSetActions(this.requests);
+          forkJoin(enrichedRequests$).subscribe(enrichedRequests => {
+            this.dataSource.data = enrichedRequests;
+            this.requests = enrichedRequests;
+            this.filterRequests();
+            this.totalElements = this.requests.length;
+            this.checkPendingStatusAndSetActions(this.requests);
 
-              console.log('Requests with animals and users:', this.requests);
-            });
+          });
 
         }, error: (err) => {
-          console.error('Error loading requests:', err);
           this.snackBar.open('Failed to load requests!', 'OK', {duration: 3000});
         }
       });

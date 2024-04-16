@@ -33,10 +33,7 @@ export class NavbarComponent implements OnInit {
         return new Date(b.localDate).getTime() - new Date(a.localDate).getTime();
       });
       this.unreadCount = notifications.filter(notification => !notification.isReadByUser).length;
-      console.log(this.notifications);
-      console.log(this.unreadCount);
-    }, error => {
-      console.error('There was an error retrieving the notifications', error);
+
     });
   }
 
@@ -51,7 +48,6 @@ export class NavbarComponent implements OnInit {
           // @ts-ignore
           notification.isReadByUser = true;
         }, error => {
-          console.error('Error marking notification as read', error);
         });
       }
       this.unreadCount = 0;

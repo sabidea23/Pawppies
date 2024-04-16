@@ -113,7 +113,7 @@ h2 {
 
 
 img {
-  max-height: 200px;
+  height: 300px;
   width: 100%; /* Asigură-te că imaginea se redimensionează corespunzător */
   object-fit: cover;
 }
@@ -135,5 +135,6 @@ img {
 }
 
 .content-request {
-  height: 200px;
+  height: 120px;
+  padding-top: 15px;
 }

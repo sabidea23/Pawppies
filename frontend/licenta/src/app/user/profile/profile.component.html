@@ -10,7 +10,7 @@
         <button (click)="selectTab('aboutMe')" mat-button><h2> About me</h2></button>
         <button (click)="selectTab('accountDetails')"
                 mat-button><h2> Account Details </h2></button>
-        <button (click)="selectTab('adopterProfile')"  mat-button><h2> Adopter
+        <button (click)="selectTab('adopterProfile')" mat-button><h2> Adopter
           Profile </h2></button>
         <button (click)="selectTab('animalsAdopted')"
                 mat-button><h2> Animals Adopted </h2></button>
@@ -33,6 +33,8 @@
               <p><strong>Reason for adoption:</strong> {{ request.reason }}</p>
               <p><strong>Status: </strong> <span
                 [ngClass]="{'status-pending': request.status === 'PENDING'}">{{ request.status }}</span>
+              <p *ngIf="request.status === 'SUBMITTED'">
+                There are currently {{ request.numberRequestsBefore }} other adoption requests for this animal submitted before yours.
               </p>
               <p *ngIf="request.status == 'PENDING'"> {{request.animal.name}} is waiting for your visit starting
                 <b> {{request.pendingDate | date:'mediumDate'}}  </b> to
@@ -40,7 +42,8 @@
             </mat-card-content>
 
             <div class="butons-container">
-              <button (click)="cancelRequest($event, request.id)" class="cancel-button" mat-button>CANCEL REQUEST</button>
+              <button (click)="cancelRequest($event, request.id)" class="cancel-button" mat-button>CANCEL REQUEST
+              </button>
             </div>
           </mat-card>
 
@@ -62,20 +65,20 @@
 
         <h2> Animals Adopted: </h2>
         <div *ngIf="user.adoptedAnimals.length > 0" class="request-container">
-        <mat-card  *ngFor="let animalAdopted of user.adoptedAnimals" class="request-card">
+          <mat-card *ngFor="let animalAdopted of user.adoptedAnimals" class="request-card">
 
             <mat-card-header>
               <mat-card-title>{{ animalAdopted.name }}</mat-card-title>
               <mat-card-subtitle>
-                 {{ animalAdopted.type }}, {{animalAdopted.gender}}, {{animalAdopted.size}}
+                {{ animalAdopted.type }}, {{animalAdopted.gender}}, {{animalAdopted.size}}
               </mat-card-subtitle>
             </mat-card-header>
 
-            <img [src]='animalAdopted.animalImages[0].url' >
-          <mat-card-content>
-            <p> {{animalAdopted.description}}</p>
-          </mat-card-content>
-        </mat-card>
+            <img [src]='animalAdopted.animalImages[0].url'>
+            <mat-card-content>
+              <p> {{animalAdopted.description}}</p>
+            </mat-card-content>
+          </mat-card>
         </div>
 
         <div *ngIf="user.adoptedAnimals.length < 1">

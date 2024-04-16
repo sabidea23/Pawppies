@@ -51,13 +51,9 @@ export class ProfileComponent implements OnInit {
 
   animal: any;
 
-  constructor(private imageProcessingService: ImageProcessingService, private route: ActivatedRoute,
-              private login: LoginService, private snack: MatSnackBar, private router: Router, private userService: UserService,
-              private adoptionRequests: AdoptionRequestService) {
+  constructor(private adoptionRequestsService: AdoptionRequestService, private imageProcessingService: ImageProcessingService, private route: ActivatedRoute, private login: LoginService, private snack: MatSnackBar, private router: Router, private userService: UserService, private adoptionRequests: AdoptionRequestService) {
 
     this.user = this.login.getUser();
-
-    console.log(this.user)
     this.getUserRequests();
     const section = JSON.parse(this.route.snapshot.paramMap.get('section') || '{}');
     if (section == 3) {
@@ -87,7 +83,6 @@ export class ProfileComponent implements OnInit {
   }
 
   getUserRequests() {
-
     this.adoptionRequests.getAdoptedRequestByUserId(this.user.id).subscribe({
       next: (requests: any[]) => {
         if (requests.length > 0) {
@@ -103,13 +98,12 @@ export class ProfileComponent implements OnInit {
           forkJoin(requestsWithAnimals).subscribe(completeRequests => {
             this.requests = completeRequests;
             this.getImagesForAnimals();
-            console.log(this.requests)
+            this.getNumberRequestsForAllAnimals(); // Ensure each request has the count of previous requests
 
           });
 
         } else {
           this.requests = [];
-          console.log('No adoption requests found for this user.');
         }
       }, error: (err) => {
         this.snack.open('Failed to load adoption requests!', 'OK', {duration: 3000});
@@ -221,7 +215,7 @@ export class ProfileComponent implements OnInit {
     const backedUpAuthorities = this.user.authorities;
     this.user.authorities = undefined;
     this.userService.updateUser(this.user).subscribe({
-      next: (data) => {
+      next: () => {
         this.user.authorities = backedUpAuthorities;
         this.login.setUser(this.user);
 
@@ -261,4 +255,20 @@ export class ProfileComponent implements OnInit {
       .then((_) => {
       });
   }
+
+  getNumberRequestsForAllAnimals() {
+    // @ts-ignore
+    this.requests.forEach(request => {
+      this.adoptionRequestsService.getRequestsForAnimal(request.animal.id).subscribe({
+        next: (data: any) => {
+          const userRequestedDate = new Date(request.requestedDate);
+          request.numberRequestsBefore = data.filter((item: any) => {
+            const itemDate = new Date(item.requestedDate);
+            return itemDate < userRequestedDate;
+          }).length;
+        }
+      });
+    });
+  }
+
 }
