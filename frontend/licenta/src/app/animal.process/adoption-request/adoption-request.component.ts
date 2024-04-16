@@ -37,6 +37,7 @@ export class AdoptionRequestComponent {
   }
 
   animal: any;
+  requestsForAnimals: any;
 
   ngOnInit(): void {
     this.animalId = JSON.parse(this.route.snapshot.paramMap.get('animalId') || 'null') || undefined;
@@ -45,6 +46,38 @@ export class AdoptionRequestComponent {
       next: (data: any) => {
         this.animal = data;
       },
+    });
+  }
+
+  getNumberRequestsForAnimals() {
+    this.adoptionRequestService.getRequestsForAnimal(this.animalId).subscribe({
+      next: (data: any) => {
+        this.requestsForAnimals = data;
+
+        // Verifică dacă există alte cereri pentru acest animal
+        if (this.requestsForAnimals && this.requestsForAnimals.length > 0) {
+          // Pregătirea mesajului pentru utilizator
+          const message = `There are currently ${this.requestsForAnimals.length} other request(s) for this animal. There might be a delay before your visit is scheduled. Please make sure to check your notifications regularly.`;
+
+          // Afișează un dialog de confirmare
+          Swal.fire({
+            title: 'Attention',
+            text: message,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Proceed',
+            cancelButtonText: 'Cancel',
+            background: 'rgb(230, 230, 230)'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.submitRequest();
+            }
+          });
+        } else {
+          // Dacă nu există alte cereri, trimite direct
+          this.submitRequest();
+        }
+      }
     });
   }
 
@@ -66,9 +99,15 @@ export class AdoptionRequestComponent {
       return;
     }
 
+    // Apelarea funcției pentru a obține numărul de cereri și pentru a gestiona logica de verificare
+    this.getNumberRequestsForAnimals();
+  }
+
+
+// Metoda pentru trimiterea cererii
+  submitRequest() {
     this.adoptionRequestService.submitAdoptionRequest(this.request).subscribe({
       next: () => {
-
         Swal.fire({
           title: 'Success!',
           text: 'Adoption Request was submitted successfully',
@@ -85,4 +124,5 @@ export class AdoptionRequestComponent {
       },
     });
   }
+
 }

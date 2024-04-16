@@ -47,7 +47,7 @@ export class AnimalListComponent implements OnInit {
         next: (data) => {
           this.animals = data;
           // @ts-ignore
-          this.animals = this.animals.filter(animal => animal.isAdopted = false)
+          this.animals = this.animals.filter(animal => animal.isAdopted == false)
           this.totalElements = this.animals.length;
           console.log(data)
           this.getImagesForAnimals();
