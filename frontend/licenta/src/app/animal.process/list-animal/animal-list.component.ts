@@ -174,14 +174,8 @@ export class AnimalListComponent implements OnInit {
 
     // @ts-ignore
     dialogRef.afterClosed().subscribe(updatedData => {
-      let modify = false;
       if (updatedData) {
 
-        if ((animal.name != updatedData.name) || (animal.age != updatedData.age) || (animal.size != updatedData.size) ||
-          (animal.coatLength != updatedData.coatLength) || (animal.health != animal.health)
-          || (animal.description != animal.description)) {
-          modify = true;
-        }
         animal.name = updatedData.name;
         animal.age = updatedData.age;
         animal.size = updatedData.size;
@@ -194,7 +188,13 @@ export class AnimalListComponent implements OnInit {
         animal.animalCenter.admin.authorities = undefined;
         animal.author.authorities = undefined;
         this.animalService.updateAnimal(animal.id, animal, animal.animalImages).subscribe({
-          next: (data: any) => {
+          next: () => {
+            Swal.fire({
+              title: 'Edited!',
+              text: 'The animal has been edited successfully!',
+              icon: 'success',
+              background: 'rgb(230, 230, 230)',
+            })
             this.getFavouriteAnimals();
             animal.author.authorities = backedUpAuthorities;
             animal.animalCenter.admin.authorities = backUpAuthoritiesCenter;
@@ -205,19 +205,6 @@ export class AnimalListComponent implements OnInit {
               return u;
             });
 
-            if (modify) {
-              Swal.fire({
-                title: 'Edited!',
-                text: 'Your animal center has been edited.',
-                icon: 'success',
-                background: '#fff',
-                customClass: {
-                  confirmButton: 'confirm-button-class',
-                },
-                confirmButtonText: 'OK',
-                confirmButtonColor: '#6504B5',
-              });
-            }
           }, error: (error: any) => {
             this.snack.open(error.error.message, 'OK', {
               duration: 3000,
@@ -340,7 +327,7 @@ export class AnimalListComponent implements OnInit {
 
 
   getAnimalSize(animal:any): boolean {
-    let size = '';
+    let size: string;
     if (animal.size.startsWith('Small'))
       size = 'Small'
     else if (animal.size.startsWith('Medium'))
@@ -364,7 +351,7 @@ export class AnimalListComponent implements OnInit {
   }
 
   getAnimalAge(animal: any):boolean {
-    let age = '';
+    let age: string;
     if (animal.age == "Kitten" || animal.age == 'Puppy')
       age = 'Puppy/Kitten';
     else if (animal.age == "Young")
@@ -378,7 +365,7 @@ export class AnimalListComponent implements OnInit {
   }
 
   getAnimalGender(animal:any):boolean {
-    let gender = '';
+    let gender: string;
     if (animal.gender == 'Male')
       gender = 'Male'
     else
