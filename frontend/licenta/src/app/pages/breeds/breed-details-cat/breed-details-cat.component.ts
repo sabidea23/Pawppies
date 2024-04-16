@@ -21,11 +21,11 @@ export class BreedDetailsCatComponent {
   filters: any = {
     size: [],
     activityLevel: [],
-    exerciseRequirements: [],
+    intelligence: [],
     vocality: [],
     affectionForOwners: [],
     groomingRequirements: [],
-    easeOfTraining: [],
+    independence: [],
     friendliness: []
   };
 
@@ -92,7 +92,7 @@ export class BreedDetailsCatComponent {
   filterBreeds(): void {
     // @ts-ignore
     this.dogBreeds = this.breeds.filter(breed => {
-      return this.isBreedValid(breed) && this.getVocalityLevel(breed) && this.isactivityLevelValid(breed) && this.getgroomingRequirementsLevel(breed) && this.getaffectionForOwnersLevel(breed) && this.geteaseOfTrainingLevel(breed) && this.exerciseRequirementsLevel(breed) && this.getFriendliness(breed);
+      return this.isBreedValid(breed) && this.getVocalityLevel(breed) && this.isactivityLevelValid(breed) && this.getgroomingRequirementsLevel(breed) && this.getaffectionForOwnersLevel(breed) && this.getIndependenceLevel(breed) && this.getIntelligence(breed) && this.getFriendliness(breed);
     });
     this.totalElements = this.dogBreeds.length;
     this.totalPages = Math.ceil(this.totalElements / this.itemsPerPage);
@@ -135,18 +135,18 @@ export class BreedDetailsCatComponent {
   }
 
 
-  geteaseOfTrainingLevel(breed: any): boolean {
-    let easeOfTraining = '';
+  getIndependenceLevel(breed: any): boolean {
+    let independence = '';
 
-    if (breed.easeOfTraining === 1 || breed.easeOfTraining === 2) {
-      easeOfTraining = 'Easy';
-    } else if (breed.easeOfTraining === 3) {
-      easeOfTraining = 'Average';
-    } else if (breed.easeOfTraining === 4 || breed.easeOfTraining === 5) {
-      easeOfTraining = 'Difficult';
+    if (breed.independence === 1 || breed.independence === 2) {
+      independence = 'Low';
+    } else if (breed.independence === 3) {
+      independence = 'Medium';
+    } else if (breed.independence === 4 || breed.independence === 5) {
+      independence = 'High';
     }
 
-    return !(this.filters.easeOfTraining && this.filters.easeOfTraining.length > 0 && !this.filters.easeOfTraining.includes(easeOfTraining));
+    return !(this.filters.independence && this.filters.independence.length > 0 && !this.filters.independence.includes(independence));
   }
 
   getFriendliness(breed: any): boolean {
@@ -190,18 +190,18 @@ export class BreedDetailsCatComponent {
     return !(this.filters.vocality && this.filters.vocality.length > 0 && !this.filters.vocality.includes(vocality));
   }
 
-  exerciseRequirementsLevel(breed: any): any {
-    let exerciseRequirements = '';
+  getIntelligence(breed: any): any {
+    let intelligence = '';
 
-    if (breed.exerciseRequirements === 1 || breed.exerciseRequirements === 2) {
-      exerciseRequirements = 'Moderate';
-    } else if (breed.exerciseRequirements === 3) {
-      exerciseRequirements = 'Significant';
-    } else if (breed.exerciseRequirements === 4 || breed.exerciseRequirements === 5) {
-      exerciseRequirements = 'Rigorous';
+    if (breed.intelligence === 1 || breed.intelligence === 2) {
+      intelligence = 'Low';
+    } else if (breed.intelligence === 3) {
+      intelligence = 'Medium';
+    } else if (breed.intelligence === 4 || breed.intelligence === 5) {
+      intelligence = 'High';
     }
 
-    return !(this.filters.exerciseRequirements && this.filters.exerciseRequirements.length > 0 && !this.filters.exerciseRequirements.includes(exerciseRequirements));
+    return !(this.filters.intelligence && this.filters.intelligence.length > 0 && !this.filters.intelligence.includes(intelligence));
   }
 
   getaffectionForOwnersLevel(breed: any): any {
