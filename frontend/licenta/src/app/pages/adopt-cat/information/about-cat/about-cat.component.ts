@@ -39,12 +39,7 @@ export class AboutCatComponent {
 
   constructor(private userService: UserService, private snack: MatSnackBar, private imageProcessingService: ImageProcessingService, private animalService: AnimalService, private login: LoginService, private router: Router, private searchService: SearchService) {
   }
-  goToPawppiesMission() {
-    this.router
-      .navigate(['/about-pets/mission'])
-      .then((_) => {
-      });
-  }
+
 
   goToQuizPage() {
     const user_role = this.login.getUserRole();
@@ -151,16 +146,6 @@ export class AboutCatComponent {
       }, error: (_) => {
       },
     });
-  }
-
-  navigateToAnimalCenters() {
-    this.router.navigate(['/centers']);
-
-  }
-
-  navigateToDogBreedsPage(){
-    this.router.navigate(['/breed-details-dog']);
-
   }
 
   navigateToCatBreedsPage(){
