@@ -26,16 +26,12 @@ import {BreedCatComponent} from "./pages/breeds/breed-cat/breed-cat.component";
 import {AnimalDetailsComponent} from "./animal.process/animal-details/animal-details.component";
 import {ContactComponent} from "./pages/administration/contact/contact.component";
 import {FaqsComponent} from "./pages/administration/faqs/faqs.component";
-import {PrivacyPolicyComponent} from "./pages/administration/privacy-policy/privacy-policy.component";
-import {TermsServiceComponent} from "./pages/administration/terms-service/terms-service.component";
 import {AboutDogsComponent} from "./pages/adopt-dog/infomration/about-dogs/about-dogs.component";
 import {AboutCatComponent} from "./pages/adopt-cat/information/about-cat/about-cat.component";
 import {FeedCatComponent} from "./pages/adopt-cat/information/feed-cat/feed-cat.component";
 import {FeedDogComponent} from "./pages/adopt-dog/infomration/feed-dog/feed-dog.component";
 import {CatHealthComponent} from "./pages/adopt-cat/information/cat-health/cat-health.component";
 import {DogHealthComponent} from "./pages/adopt-dog/infomration/dog-health/dog-health.component";
-import {DogTrainingComponent} from "./pages/adopt-dog/infomration/dog-training/dog-training.component";
-import {CatBehaviorComponent} from "./pages/adopt-cat/information/cat-behavior/cat-behavior.component";
 import {BestCatKidsComponent} from "./pages/adopt-cat/best-cat-kids/best-cat-kids.component";
 import {FluffyCatComponent} from "./pages/adopt-cat/fluffy-cat/fluffy-cat.component";
 import {HairlessCatComponent} from "./pages/adopt-cat/hairless-cat/hairless-cat.component";
@@ -98,10 +94,6 @@ const routes: Routes = [{
 }, {
   path: 'my-fav-animals', component: AnimalListComponent,
 }, {
-  path: 'privacy-policy', component: PrivacyPolicyComponent,
-}, {
-  path: 'terms-of-service', component: TermsServiceComponent,
-}, {
   path: 'adopt-dogs', component: AboutDogsComponent,
 }, {
   path: 'adopt-cats', component: AboutCatComponent,
@@ -113,10 +105,6 @@ const routes: Routes = [{
   path: 'health-cat', component: CatHealthComponent,
 }, {
   path: 'health-dog', component: DogHealthComponent,
-}, {
-  path: 'training-dog', component: DogTrainingComponent,
-}, {
-  path: 'behavior-cat', component: CatBehaviorComponent,
 }, {
   path: 'admin', canActivate: [AdminGuard], children: [{
     path: 'user-management', component: UserManagementComponent,

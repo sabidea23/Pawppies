@@ -55,18 +55,13 @@ import { PopularDogsComponent } from './pages/adopt-dog/popular-dogs/popular-dog
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import { BreedCatComponent } from './pages/breeds/breed-cat/breed-cat.component';
 import { ContactComponent } from './pages/administration/contact/contact.component';
-import { PolicyComponent } from './pages/administration/policy/policy.component';
 import { FaqsComponent } from './pages/administration/faqs/faqs.component';
-import { PrivacyPolicyComponent } from './pages/administration/privacy-policy/privacy-policy.component';
-import { TermsServiceComponent } from './pages/administration/terms-service/terms-service.component';
-import { FeedCatComponent } from './pages/adopt-cat/information/feed-cat/feed-cat.component';
+
 import { FeedDogComponent } from './pages/adopt-dog/infomration/feed-dog/feed-dog.component';
 import { AboutDogsComponent } from './pages/adopt-dog/infomration/about-dogs/about-dogs.component';
 import { AboutCatComponent } from './pages/adopt-cat/information/about-cat/about-cat.component';
 import { CatHealthComponent } from './pages/adopt-cat/information/cat-health/cat-health.component';
 import { DogHealthComponent } from './pages/adopt-dog/infomration/dog-health/dog-health.component';
-import { DogTrainingComponent } from './pages/adopt-dog/infomration/dog-training/dog-training.component';
-import { CatBehaviorComponent } from './pages/adopt-cat/information/cat-behavior/cat-behavior.component';
 import { CuteCaatComponent } from './pages/adopt-cat/cute-caat/cute-caat.component';
 import { FluffyCatComponent } from './pages/adopt-cat/fluffy-cat/fluffy-cat.component';
 import { HairlessCatComponent } from './pages/adopt-cat/hairless-cat/hairless-cat.component';
@@ -75,9 +70,10 @@ import {MatBadgeModule} from "@angular/material/badge";
 import { AdoptionRequestComponent } from './animal.process/adoption-request/adoption-request.component';
 import { RequestsManagementComponent } from './user/requests-management/requests-management.component';
 import {MatSortModule} from "@angular/material/sort";
+import {FeedCatComponent} from "./pages/adopt-cat/information/feed-cat/feed-cat.component";
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, FooterComponent, SignupComponent, LoginComponent, HomeComponent, ProfileComponent, AddAnimalComponent, AnimalListComponent, AnimalCenterAddComponent, AnimalCenterList, MapDialogComponent, EditAnimalCenterComponent, AboutPetsComponent, MissionComponent, QuizComponent, BreedDetailsDogComponent, BreedDetailsCatComponent, BreedDogComponent, EditAnimalComponent, UserManagementComponent, CenterDetailsComponent, AnimalDetailsComponent, CutestDogsComponent, ApartamnetsDogsComponent, KidsDogsComponent, PopularDogsComponent, BreedCatComponent, ContactComponent, PolicyComponent, FaqsComponent, PrivacyPolicyComponent, TermsServiceComponent, FeedCatComponent, FeedDogComponent, AboutDogsComponent, AboutCatComponent, CatHealthComponent, DogHealthComponent, DogTrainingComponent, CatBehaviorComponent, CuteCaatComponent, FluffyCatComponent, HairlessCatComponent, BestCatKidsComponent, AdoptionRequestComponent, RequestsManagementComponent],
+  declarations: [AppComponent, NavbarComponent, FooterComponent, SignupComponent, LoginComponent, HomeComponent, ProfileComponent, AddAnimalComponent, AnimalListComponent, AnimalCenterAddComponent, AnimalCenterList, MapDialogComponent, EditAnimalCenterComponent, AboutPetsComponent, MissionComponent, QuizComponent, BreedDetailsDogComponent, BreedDetailsCatComponent, BreedDogComponent, EditAnimalComponent, UserManagementComponent, CenterDetailsComponent, AnimalDetailsComponent, CutestDogsComponent, ApartamnetsDogsComponent, KidsDogsComponent, PopularDogsComponent, BreedCatComponent, ContactComponent, FaqsComponent, FeedCatComponent, FeedDogComponent, AboutDogsComponent, AboutCatComponent, CatHealthComponent, DogHealthComponent, CuteCaatComponent, FluffyCatComponent, HairlessCatComponent, BestCatKidsComponent, AdoptionRequestComponent, RequestsManagementComponent],
     imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatIconModule, FormsModule, HttpClientModule, MatSnackBarModule, MatCardModule, MatChipsModule, MatToolbarModule, MatIconModule, MatListModule, MatTableModule, ReactiveFormsModule, RouterOutlet, MatGridListModule, MatDialogModule, MatMenuModule, MatPaginatorModule, MatSelectModule, MatCheckboxModule, MatBadgeModule, MatSortModule],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

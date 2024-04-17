@@ -1,8 +1,5 @@
 import {Component} from '@angular/core';
-import {LoginService} from "../../../services/login.service";
-import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
-import {AnimalCenterService} from "../../../services/animal.center.service";
 
 @Component({
   selector: 'app-footer', templateUrl: './footer.component.html', styleUrls: ['./footer.component.css']
@@ -22,16 +19,6 @@ export class FooterComponent {
     this.router.navigate(['/contact']).then((_) => {
     });
 
-  }
-
-  redirectToPrivaacyPolicy() {
-    this.router.navigate(['/privacy-policy']).then((_) => {
-    });
-  }
-
-  redirectToTermsofService() {
-    this.router.navigate(['/terms-of-service']).then((_) => {
-    });
   }
 
   redirectToAboutPage() {
@@ -86,12 +73,6 @@ export class FooterComponent {
 
   }
 
-
-  redirecttoCatBehaviour() {
-    this.router.navigate(['/admin/behavior-cat']).then((_) => { });
-
-  }
-
   redirectToCatHealth() {
     this.router.navigate(['/health-cat']).then((_) => { });
 
@@ -99,11 +80,6 @@ export class FooterComponent {
 
   redirectToDogHealth() {
     this.router.navigate(['/health-dog']).then((_) => { });
-
-  }
-
-  redirecToDogTraining() {
-    this.router.navigate(['/training-dog']).then((_) => { });
 
   }
 }

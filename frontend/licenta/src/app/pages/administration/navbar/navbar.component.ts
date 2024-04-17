@@ -168,11 +168,6 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  redirectToLoginPage() {
-    this.router.navigate(['/login']).then((_) => {
-    });
-  }
-
   toUserManagement() {
     this.router.navigate(['/admin/user-management']).then((_) => {
     });
@@ -195,12 +190,6 @@ export class NavbarComponent implements OnInit {
 
   }
 
-  redirectToDogTraining() {
-    this.router.navigate(['/training-dog']).then((_) => {
-    });
-
-  }
-
   redirectToDogHealth() {
     this.router.navigate(['/health-dog']).then((_) => {
     });
@@ -216,12 +205,6 @@ export class NavbarComponent implements OnInit {
   redirectToFeedCat() {
     this.router.navigate(['/feed-cat']).then((_) => {
     });
-
-  }
-
-  redirectToCatBehavior() {
-    this.router.navigate(['/admin/behavior-cat']).then((_) => {
-    });
   }
 
   redirectToFAQs() {
@@ -233,19 +216,6 @@ export class NavbarComponent implements OnInit {
   redirectToContact() {
     this.router.navigate(['/contact']).then((_) => {
     });
-
-  }
-
-  redirectToPrivacyPolicy() {
-    this.router.navigate(['/privacy-policy']).then((_) => {
-    });
-
-  }
-
-  redirectToTearmsOfService() {
-    this.router.navigate(['terms-of-service']).then((_) => {
-    });
-
   }
 
   redirectToCatHealth() {

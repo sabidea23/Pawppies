@@ -79,19 +79,17 @@
 
     <a class="sub-menu-item" mat-button [matMenuTriggerFor]="dogs">DOGS & PUPPIES</a>
     <mat-menu class="custom-menu submeniu" #dogs="matMenu">
-      <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToDogBreeds()">Dog breeds</button>
       <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToDogAdoption()">Dog adoption</button>
+      <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToDogBreeds()">Dog breeds</button>
       <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToFeedDog()">Feeding your dog</button>
-      <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToDogTraining()">Dog training</button>
       <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToDogHealth()">Dog health</button>
     </mat-menu>
 
     <a class="sub-menu-item" mat-button [matMenuTriggerFor]="cat">CATS & KITTENS</a>
     <mat-menu class="custom-menu submeniu" #cat="matMenu">
-      <button class="mat-menu-customize-item" mat-menu-item  (click)="redirectToCatBreeds()" >Cat breeds</button>
       <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToCatAdoption()">Cat adoption</button>
+      <button class="mat-menu-customize-item" mat-menu-item  (click)="redirectToCatBreeds()" >Cat breeds</button>
       <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToFeedCat()">Feeding your cat</button>
-      <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToCatBehavior()">Cat behavior</button>
       <button class="mat-menu-customize-item" mat-menu-item (click)="redirectToCatHealth()">Cat health</button>
 
     </mat-menu>
@@ -100,9 +98,6 @@
     <mat-menu class="custom-menu submeniu" #others="matMenu">
       <button class="mat-menu-customize-item" mat-menu-item  (click)="redirectToFAQs()"> FAQs </button>
       <button class="mat-menu-customize-item" mat-menu-item  (click)="redirectToContact()"> Contact </button>
-      <button class="mat-menu-customize-item" mat-menu-item  (click)="redirectToPrivacyPolicy()" > Privacy Policy </button>
-      <button class="mat-menu-customize-item" mat-menu-item  (click)="redirectToTearmsOfService()"> Terms of Service </button>
-
     </mat-menu>
 
   </div>
