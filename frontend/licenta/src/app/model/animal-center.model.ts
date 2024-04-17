@@ -9,5 +9,5 @@ export interface AnimalCenterModel {
   longitude: 0.0,
   latitude: 0.0,
   phone: '',
-  openingHours?: any; // Adaugă openingHours ca un câmp opțional sau definitiv
+  openingHours?: any;
 }

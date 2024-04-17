@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 import { AnimalCenterService } from '../../services/animal.center.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
-import {countries} from "../../utils/country-data-store";
-import {AnimalCenterModel} from "../../model/animal-center.model";
+import { countries } from "../../utils/country-data-store";
+import { AnimalCenterModel } from "../../model/animal-center.model";
 
 @Component({
   selector: 'app-animal-center-add',
@@ -14,108 +15,116 @@ import {AnimalCenterModel} from "../../model/animal-center.model";
 })
 export class AnimalCenterAddComponent implements OnInit {
   user = this.login.getUser();
-  public countries:any = countries;
-
-  public animalCenter: AnimalCenterModel = {
-    name: '',
-    city: '',
-    country: '',
-    contact: '',
-    admin: undefined,
-    mission: '',
-    longitude: 0.0,
-    latitude: 0.0,
-    phone: '',
-  };
-
-  public openingHours: any = {
-    mondayOpen: '',
-    mondayClose: '',
-    wednesdayOpen: '',
-    wednesdayClose: '',
-    thursdayOpen: '',
-    thursdayClose: '',
-    fridayOpen: '',
-    fridayClose: '',
-    tuesdayOpen: '',
-    tuesdayClose: '',
-    saturdayOpen: '',
-    saturdayClose: '',
-    sundayOpen: '',
-    sundayClose: '',
-    animalCenter: ''
-  }
-
-  public formInput: any = {
-    name: '',
-    city: '',
-    country: '',
-    contact: '',
-    mission: '',
-    longitude: '',
-    latitude: '',
-    phone: '',
-  };
+  public countries: any = countries;
+  // @ts-ignore
+  public addCenterForm: FormGroup;
 
   constructor(
+    private fb: FormBuilder,
     private login: LoginService,
     private snack: MatSnackBar,
     private router: Router,
-    private animalCenterService: AnimalCenterService,
+    private animalCenterService: AnimalCenterService
   ) { }
 
   ngOnInit(): void {
     this.user = this.login.getUser();
+    this.initializeForm();
   }
 
-  public isFormValid() {
-    return this.formInput.name && this.formInput.longitude &&
-      this.formInput.latitude && this.formInput.city && this.formInput.contact
-      && this.formInput.country && this.formInput.mission && this.formInput.phone;
-  }
-
-  formSubmit() {
-    for (const key in this.formInput) {
-      // @ts-ignore
-      this.animalCenter[key] = this.formInput[key];
-    }
-
-    this.animalCenter.openingHours = this.openingHours;
-    const backedUpAuthorities = this.user.authorities;
-    this.user.authorities = undefined;
-
-    this.animalCenter.admin = this.user;
-
-    console.log(this.animalCenter)
-    this.animalCenterService.createAnimalCenter(this.animalCenter).subscribe({
-      next: (data) => {
-        this.user.authorities = backedUpAuthorities;
-
-        Swal.fire({
-          title: 'Success!',
-          text: 'Animal Center added successfully',
-          icon: 'success',
-          background: 'rgb(230, 230, 230)',
-        }).then((_) => {
-          this.router.navigate(['/centers']).then((_) => { });
-        });
-      },
-      error: (error) => {
-        this.snack.open(error.error.message, 'OK', {
-          duration: 3000,
-        });
-      },
+  initializeForm(): void {
+    this.addCenterForm = this.fb.group({
+      name: ['', Validators.required],
+      city: ['', Validators.required],
+      country: ['', Validators.required],
+      contact: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      mission: ['', Validators.required],
+      longitude: ['', Validators.required],
+      latitude: ['', Validators.required],
+      mondayOpen: ['', Validators.required],
+      mondayClose: ['', Validators.required],
+      tuesdayOpen: ['', Validators.required],
+      tuesdayClose: ['', Validators.required],
+      wednesdayOpen: ['', Validators.required],
+      wednesdayClose: ['', Validators.required],
+      thursdayOpen: ['', Validators.required],
+      thursdayClose: ['', Validators.required],
+      fridayOpen: ['', Validators.required],
+      fridayClose: ['', Validators.required],
+      saturdayOpen: ['', Validators.required],
+      saturdayClose: ['', Validators.required],
+      sundayOpen: ['', Validators.required],
+      sundayClose: ['', Validators.required]
     });
   }
 
+  formSubmit() {
+    if (this.addCenterForm.valid) {
+      const openingHours = {
+        mondayOpen: this.addCenterForm.value.mondayOpen,
+        mondayClose: this.addCenterForm.value.mondayClose,
+        tuesdayOpen: this.addCenterForm.value.tuesdayOpen,
+        tuesdayClose: this.addCenterForm.value.tuesdayClose,
+        wednesdayOpen: this.addCenterForm.value.wednesdayOpen,
+        wednesdayClose: this.addCenterForm.value.wednesdayClose,
+        thursdayOpen: this.addCenterForm.value.thursdayOpen,
+        thursdayClose: this.addCenterForm.value.thursdayClose,
+        fridayOpen: this.addCenterForm.value.fridayOpen,
+        fridayClose: this.addCenterForm.value.fridayClose,
+        saturdayOpen: this.addCenterForm.value.saturdayOpen,
+        saturdayClose: this.addCenterForm.value.saturdayClose,
+        sundayOpen: this.addCenterForm.value.sundayOpen,
+        sundayClose: this.addCenterForm.value.sundayClose,
+      };
+
+      // Prepare the data to send, merging form data with admin details
+      const animalCenterData: AnimalCenterModel = {
+        ...this.addCenterForm.value,
+        openingHours: openingHours, // Attach the opening hours object
+
+        admin: this.user,
+
+      };
+
+      // Backup user authorities (if any specific logic or data needs to be restored after submission)
+      const backedUpAuthorities = this.user.authorities;
+      this.user.authorities = undefined; // Temporarily unset authorities if needed for the submission logic
+
+      // Log the complete data for debugging before sending to the server
+      console.log(animalCenterData);
+
+      // Send the data to the server via the AnimalCenterService
+      this.animalCenterService.createAnimalCenter(animalCenterData).subscribe({
+        next: (data) => {
+          // Restore authorities back to the user after the successful operation
+          this.user.authorities = backedUpAuthorities;
+          Swal.fire({
+            title: 'Success!',
+            text: 'Animal Center added successfully',
+            icon: 'success',
+            background: 'rgb(230, 230, 230)',
+          }).then((_) => {
+            this.router.navigate(['/centers']).then((_) => { });
+          });
+        },
+        error: (error) => {
+          // In case of an error, also restore authorities
+          this.user.authorities = backedUpAuthorities;
+          this.snack.open(error.error.message, 'OK', {
+            duration: 3000,
+          });
+        },
+      });
+    } else {
+      this.snack.open('Please fill all required fields.', 'OK', {
+        duration: 3000,
+      });
+    }
+  }
+
+
   clearForm() {
-    this.formInput.name = '';
-    this.formInput.longitude = '';
-    this.formInput.latitude = '';
-    this.formInput.contact = '';
-    this.formInput.city = '';
-    this.formInput.country = '';
-    this.formInput.mission = '';
-    this.formInput.phone = '';
+    this.addCenterForm.reset();
   }
 }
