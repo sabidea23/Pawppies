@@ -115,6 +115,12 @@ h2 {
   display: block;
 }
 
+h1 {
+  margin-top: 15px;
+  caret-color: transparent;
+  display: block;
+  font-weight: 500;
+}
 
 .container {
   caret-color: transparent;
@@ -358,6 +364,11 @@ input[type="button"] {
   flex-direction: column;
 }
 
+.filter-group-sort {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
 .button-filter {
   border: 1px solid #6504B5;
   background-color: white;
@@ -365,6 +376,18 @@ input[type="button"] {
   text-align: left;
   border-radius: 4px;
   padding: -2px;
+}
+
+.button-sort {
+  border: 2px solid #6504B5;
+  background-color: white;
+  margin-top: 0;
+  text-align: left;
+  border-radius: 4px;
+  padding: -2px;
+  height: 30px;
+  font-size: 18px;
+  width: 300px;
 }
 
 .button-filter {
@@ -455,3 +478,6 @@ h3 {
   margin-left: 20px;
 }
 
+.sort-title {
+  margin-top: 0px;
+}

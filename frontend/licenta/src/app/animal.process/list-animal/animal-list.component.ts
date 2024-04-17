@@ -29,13 +29,76 @@ export class AnimalListComponent implements OnInit {
               private imageProcessingService: ImageProcessingService) {
   }
 
+  currentSort: string = 'randomize';
+
+  applySort(sortOrder: string) {
+    this.currentSort = sortOrder;
+    this.getFavouriteAnimals();
+  }
+
+  shuffleAnimals() {
+    let currentIndex = this.animals.length, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (currentIndex !== 0) {
+
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      // And swap it with the current element.
+      [this.animals[currentIndex], this.animals[randomIndex]] = [
+        this.animals[randomIndex], this.animals[currentIndex]];
+    }
+
+    // Additional operations after shuffling
+    this.filterBreeds(); // Apply any active filters after shuffling
+  }
+
+  haversineDistance(lat1: any, lon1 :any, lat2:any, lon2:any) {
+    // @ts-ignore
+    function toRadians(degrees) {
+      return degrees * Math.PI / 180;
+    }
+
+    var R = 6371; // km
+    var dLat = toRadians(lat2 - lat1);
+    var dLon = toRadians(lon2 - lon1);
+    lat1 = toRadians(lat1);
+    lat2 = toRadians(lat2);
+
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+  }
+
+  sortAnimals() {
+    // @ts-ignore
+    this.animals = this.animals.filter(animal => animal.isAdopted == false)
+    if (this.currentSort === 'dateAsc') {
+      // @ts-ignore
+      this.animals.sort((a, b) => new Date(a.postedDate).getTime() - new Date(b.postedDate).getTime());
+    } else if (this.currentSort === 'dateDesc') {
+      // @ts-ignore
+      this.animals.sort((a, b) => new Date(b.postedDate).getTime() - new Date(a.postedDate).getTime());
+    } else if (this.currentSort == 'randomize') {
+      this.shuffleAnimals();
+    }  else if (this.currentSort === 'nearest') {
+      // @ts-ignore
+      this.animals.sort((a, b) => this.haversineDistance(this.user.latitude, this.user.longitude, a.animalCenter.latitude, a.animalCenter.longitude) - this.haversineDistance(this.user.latitude, this.user.longitude, b.animalCenter.latitude, b.animalCenter.longitude));
+    } else if (this.currentSort === 'farthest') {
+      // @ts-ignore
+      this.animals.sort((a, b) => this.haversineDistance(this.user.latitude, this.user.longitude, b.animalCenter.latitude, b.animalCenter.longitude) - this.haversineDistance(this.user.latitude, this.user.longitude, a.animalCenter.latitude, a.animalCenter.longitude));
+    }
+  }
+
   getFavouriteAnimals() {
   if (this.animalCenterId) {
       this.animalService.getAnimalsByCenterId(this.animalCenterId).subscribe({
         next: (data) => {
           this.animals = data;
           // @ts-ignore
-          this.animals = this.animals.filter(animal => animal.isAdopted == false)
+          this.sortAnimals();
           this.totalElements = this.animals.length;
           this.getImagesForAnimals();
           this.filterBreeds();
@@ -59,6 +122,7 @@ export class AnimalListComponent implements OnInit {
           this.animals = data;
           // @ts-ignore
           this.animals = this.animals.filter(animal => animal.isAdopted == false)
+          this.sortAnimals();
           this.totalElements = this.animals.length;
           this.getImagesForAnimals();
           this.filterBreeds();
