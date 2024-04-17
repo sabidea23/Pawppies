@@ -121,7 +121,8 @@ const routes: Routes = [{
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    useHash: true, onSameUrlNavigation: 'reload',
+    useHash: true, onSameUrlNavigation: 'reload', scrollPositionRestoration: 'top'  // Această opțiune resetează scroll-ul la top la schimbarea rutei
+
   }),], exports: [RouterModule],
 })
 export class AppRoutingModule {

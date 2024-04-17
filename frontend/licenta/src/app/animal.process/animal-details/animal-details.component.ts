@@ -40,22 +40,18 @@ export class AnimalDetailsComponent {
 
     this.getFavouriteAnimals();
 
-    this.animalService.getLikedAnimals(this.user.id).subscribe({
-      next: (data) => {
-        this.likedAnimals = data;
-      },
-    });
     this.numberAnimalsLeft = this.animals.length - this.showAnimals.length;
   }
 
   checkAlreadySubmittedRequest() {
 
-    this.adoptionRequest.getAdoptionRequestFromUserAndAnimalIds(this.animalId, this.user.id).subscribe({
-      next: (data) => {
-        this.requestsByUser = data;
-        console.log(this.requestsByUser)
-      }
-    });
+    if (this.user && this.animal.id) {
+      this.adoptionRequest.getAdoptionRequestFromUserAndAnimalIds(this.animalId, this.user.id).subscribe({
+        next: (data) => {
+          this.requestsByUser = data;
+        }
+      });
+    }
   }
 
   getImagesForAnimals() {
@@ -159,7 +155,6 @@ export class AnimalDetailsComponent {
 
   showAnimals: any = [];
   animals: any = [];
-  likedAnimals: any = [];
 
   displayRandomAnimals(): void {
     if (this.animals.length <= 3) {
@@ -177,30 +172,6 @@ export class AnimalDetailsComponent {
   }
 
   user = this.login.getUser();
-
-  public likeAnimal(event: MouseEvent, animal: any) {
-    event.stopPropagation(); // Oprește propagarea evenimentului
-
-    this.animalService.getLikeStatus(animal.id, this.user.id).subscribe({
-      next: (updatedAnimal: any) => {
-        this.animalService.getLikedAnimals(this.user.id).subscribe({
-          next: (data) => {
-            this.likedAnimals = data;
-          },
-        });
-
-        animal.likes = updatedAnimal.likes;
-      }, error: (error) => {
-        this.snack.open(error.error.message, 'OK', {
-          duration: 3000,
-        });
-      },
-    });
-  }
-
-  public isLiked(animal: any) {
-    return this.likedAnimals.some((r: any) => r.id === animal.id);
-  }
 
   getimagesShowAnimals() {
     for (let i = 0; i < this.animals.length; i++) {
