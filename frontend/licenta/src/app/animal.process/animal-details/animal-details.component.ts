@@ -45,7 +45,7 @@ export class AnimalDetailsComponent {
 
   checkAlreadySubmittedRequest() {
 
-    if (this.user && this.animal.id) {
+    if (this.user && this.animalId) {
       this.adoptionRequest.getAdoptionRequestFromUserAndAnimalIds(this.animalId, this.user.id).subscribe({
         next: (data) => {
           this.requestsByUser = data;
