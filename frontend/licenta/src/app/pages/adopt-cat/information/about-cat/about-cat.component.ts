@@ -143,6 +143,9 @@ export class AboutCatComponent {
         this.animals = data;
         // @ts-ignore
         this.animals = this.animals.filter(animal => animal.isAdopted == false)
+        console.log(this.animals)
+        // @ts-ignore
+        this.animals = this.animals.filter(animal => animal.breedDetails.animalType == 'CAT')
         this.displayRandomAnimals();
         this.getimagesShowAnimals();
       }, error: (_) => {
@@ -162,22 +165,31 @@ export class AboutCatComponent {
 
   navigateToCatBreedsPage(){
     this.router.navigate(['/breed-details-cat']);
-
   }
 
-  navigateToFAQSPage() {
-    this.router.navigate(['/faqs']);
-
+  navigateToFeedingCat() {
+    this.router.navigate(['/feed-cat']);
   }
 
-  navigateToCatAdoption(){
-    this.router.navigate(['/adopt-cats']);
-
+  navigateToCatHealth() {
+    this.router.navigate(['/health-cat']);
   }
 
-  navigateToDogAdoptionPage(){
-    this.router.navigate(['/adopt-dogs']);
+  navigateToCutestCat() {
+    this.router.navigate(['/cutest-cats']);
+  }
 
+  navigateToKidsCat() {
+    this.router.navigate(['/kids-cat']);
+  }
+
+  naviateTooAdoptCats() {
+    this.router.navigate(['/animal/'], { queryParams: { type: 'Cat'} });
+  }
+
+  isFullTextShown = false;
+  toggleTextDisplay() {
+    this.isFullTextShown = !this.isFullTextShown;
   }
 
 }
