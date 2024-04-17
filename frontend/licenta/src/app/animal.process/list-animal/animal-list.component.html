@@ -208,7 +208,7 @@
     </div>
     <hr>
 
-    <div class="filter-group-sort">
+    <div class="filter-group-sort" *ngIf="!userId">
       <h2 class="sort-title">Sort animals by</h2>
       <select [(ngModel)]="currentSort" (change)="applySort(currentSort)" class="button-sort">
         <option value="dateAsc">Older Addition</option>
