@@ -213,8 +213,8 @@
       <select [(ngModel)]="currentSort" (change)="applySort(currentSort)" class="button-sort">
         <option value="dateAsc">Older Addition</option>
         <option value="dateDesc">Newest Addition</option>
-        <option value="nearest">Nearest</option>
-        <option value="farthest">Farthest</option>
+        <option value="nearest" *ngIf="user && !animalCenterId">Nearest</option>
+        <option value="farthest"  *ngIf="user && !animalCenterId">Farthest</option>
         <option value="randomize">Randomize</option>
       </select>
     </div>
