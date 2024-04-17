@@ -63,7 +63,6 @@ button:hover {
 
 .custom-mat-form-field input, mat-select, textarea {
   caret-color: transparent;
-  margin-left: 20px;
 }
 
 

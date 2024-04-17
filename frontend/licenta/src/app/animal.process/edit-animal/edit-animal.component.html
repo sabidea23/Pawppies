@@ -1,71 +1,62 @@
 <mat-card>
   <mat-card-content style="font-family: 'Montserrat', sans-serif;">
-    <form (ngSubmit)="save()" class="login-form">
+    <form [formGroup]="editForm" (ngSubmit)="save()" class="login-form">
       <h2>Edit Animal Details</h2>
 
       <mat-form-field appearance="fill" class="custom-mat-form-field">
-        <mat-label>
-          <mat-icon matPrefix>pets</mat-icon>
-          Name
-        </mat-label>
-        <input [(ngModel)]="editData.name" matInput name="name" placeholder="Enter Animal Name" required/>
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" placeholder="Enter Animal Name"/>
+        <mat-icon matPrefix>pets</mat-icon>
+        <mat-error *ngIf="editForm.get('name')?.hasError('required')">Name is required.</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="custom-mat-form-field">
-        <mat-label>
-          <mat-icon matPrefix>calendar_today</mat-icon>
-          Age
-        </mat-label>
-        <mat-select [(ngModel)]="editData.age" name="age">
-          <mat-option *ngFor="let age of getAgeOptions(editData.type)" [value]="age">{{age}}</mat-option>
+        <mat-label>Age</mat-label>
+        <mat-select formControlName="age">
+          <mat-option *ngFor="let age of getAgeOptions()" [value]="age">{{ age }}</mat-option>
         </mat-select>
+        <mat-icon matPrefix>calendar_today</mat-icon>
+        <mat-error *ngIf="editForm.get('age')?.hasError('required')">Age is required.</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="custom-mat-form-field">
-        <mat-label>
-          <mat-icon matPrefix>straighten</mat-icon>
-          Size
-        </mat-label>
-        <mat-select [(ngModel)]="editData.size" name="size">
-          <mat-option *ngFor="let size of getSizeOptions(editData.type)" [value]="size">{{size}}</mat-option>
+        <mat-label>Size</mat-label>
+        <mat-select formControlName="size">
+          <mat-option *ngFor="let size of getSizeOptions()" [value]="size">{{ size }}</mat-option>
         </mat-select>
+        <mat-icon matPrefix>straighten</mat-icon>
+        <mat-error *ngIf="editForm.get('size')?.hasError('required')">Size is required.</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="custom-mat-form-field">
-        <mat-label>
-          <mat-icon matPrefix>texture</mat-icon>
-          Coat Length
-        </mat-label>
-        <mat-select [(ngModel)]="editData.coatLength" name="coatlength">
+        <mat-label>Coat Length</mat-label>
+        <mat-select formControlName="coatLength">
           <mat-option value="Hairless">Hairless</mat-option>
           <mat-option value="Short">Short</mat-option>
           <mat-option value="Medium">Medium</mat-option>
           <mat-option value="Long">Long</mat-option>
         </mat-select>
+        <mat-icon matPrefix>texture</mat-icon>
+        <mat-error *ngIf="editForm.get('coatLength')?.hasError('required')">Coat Length is required.</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="custom-mat-form-field">
-        <mat-label>
-          <mat-icon matPrefix>local_hospital</mat-icon>
-          Health
-        </mat-label>
-        <textarea [(ngModel)]="editData.health" matInput name="health" placeholder="Enter Animal Health"
-                  required></textarea>
+        <mat-label>Health</mat-label>
+        <textarea matInput formControlName="health" placeholder="Enter Animal Health"></textarea>
+        <mat-icon matPrefix>local_hospital</mat-icon>
+        <mat-error *ngIf="editForm.get('health')?.hasError('required')">Health is required.</mat-error>
       </mat-form-field>
 
-
       <mat-form-field appearance="fill" class="full-width-input">
-        <mat-label>
-          <mat-icon matPrefix>description</mat-icon>
-          Description
-        </mat-label>
-        <textarea [(ngModel)]="editData.description" matInput name="description" placeholder="Enter Animal Description"
-                  required></textarea>
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" placeholder="Enter Animal Description"></textarea>
+        <mat-icon matPrefix>description</mat-icon>
+        <mat-error *ngIf="editForm.get('description')?.hasError('required')">Description is required.</mat-error>
       </mat-form-field>
 
       <div class="button-container">
-        <button class="login-button" mat-button>UPDATE</button>
-        <button class="cancel-button" mat-button>CANCEL</button>
+        <button class="login-button" mat-raised-button type="submit" [disabled]="!editForm.valid">UPDATE</button>
+        <button class="cancel-button" mat-button type="button" (click)="dialogRef.close()">CANCEL</button>
       </div>
     </form>
   </mat-card-content>
