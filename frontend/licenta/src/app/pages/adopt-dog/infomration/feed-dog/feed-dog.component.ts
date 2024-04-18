@@ -147,30 +147,6 @@ export class FeedDogComponent {
     });
   }
 
-  navigateToCatBreedsPage(){
-    this.router.navigate(['/breed-details-dog']);
-  }
-
-  navigateToFeedingCat() {
-    this.router.navigate(['/feed-dog']);
-  }
-
-  navigateToCatHealth() {
-    this.router.navigate(['/health-dog']);
-  }
-
-  navigateToCutestCat() {
-    this.router.navigate(['/cutest-dogs']);
-  }
-
-  navigateToKidsCat() {
-    this.router.navigate(['/kids-dogs']);
-  }
-
-  naviateTooAdoptCats() {
-    this.router.navigate(['/animal/'], { queryParams: { type: 'Dog'} });
-  }
-
   isFullTextShown = false;
   toggleTextDisplay() {
     this.isFullTextShown = !this.isFullTextShown;
