@@ -150,8 +150,6 @@ export class RequestsManagementComponent implements AfterViewInit {
 
           });
 
-        }, error: (err) => {
-          this.snackBar.open('Failed to load requests!', 'OK', {duration: 3000});
         }
       });
   }

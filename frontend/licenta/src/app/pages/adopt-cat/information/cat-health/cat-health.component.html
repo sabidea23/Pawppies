@@ -1,1 +1,378 @@
-<p>cat-health works!</p>
+<body>
+
+<div class="main-container">
+
+  <div class="content-container">
+
+    <div class="container">
+      <div *ngIf="!isFullTextShown">
+        <h1> Cat & Kitten Health </h1>
+
+        <h2>Cat Vaccinations </h2>
+        <p>When it comes to medicine, there is no “one-size-fits-all” approach. And preventive care recommendations for
+          our cats are no exception.
+        </p>
+        <p> Cat vaccination recommendations are among the most contentious debates in veterinary medicine. It’s easy to
+          be overwhelmed when you hear conflicting information about whether your cat needs them and the adverse effects
+          they may have.
+
+        </p>
+        <p> Even though it’s a confusing topic, making sure your cat has the shots they need and keeping up with booster
+          shots is very important.
+
+        </p>
+        <h2> What Vaccines Should My Cat Get? </h2>
+        <img src="../../../../../assets/vaccination-cats.png">
+
+        <p>Most vets will highly recommend the FVRCP and rabies vaccines. These diseases are highly infectious and seen
+          worldwide. They are very dangerous to young cats, and the vaccines are considered to provide a good deal of
+          protection with minimal risk.
+        </p>
+        <button (click)="toggleTextDisplay()" class="show-button" mat-button>Show More</button>
+      </div>
+
+      <div *ngIf="isFullTextShown">
+        <h1> Cat & Kitten Health </h1>
+
+        <h2>Cat Vaccinations </h2>
+        <p>When it comes to medicine, there is no “one-size-fits-all” approach. And preventive care recommendations for
+          our cats are no exception.
+        </p>
+        <p> Cat vaccination recommendations are among the most contentious debates in veterinary medicine. It’s easy to
+          be overwhelmed when you hear conflicting information about whether your cat needs them and the adverse effects
+          they may have.
+
+        </p>
+        <p> Even though it’s a confusing topic, making sure your cat has the shots they need and keeping up with booster
+          shots is very important.
+
+        </p>
+        <h2> What Vaccines Should My Cat Get? </h2>
+        <img src="../../../../../assets/vaccination-cats.png">
+
+        <p>Most vets will highly recommend the FVRCP and rabies vaccines. These diseases are highly infectious and seen
+          worldwide. They are very dangerous to young cats, and the vaccines are considered to provide a good deal of
+          protection with minimal risk.
+        </p>
+        <br>
+        <h2>Cat Vaccination Schedule </h2>
+
+        <p>Many factors affect the likelihood of a cat developing an infectious disease. The factors that your
+          veterinarian will consider to determine your cat’s vaccination schedule include:
+        </p>
+        <ul>
+          <li>Age
+          </li>
+          <li> Medical history
+          </li>
+          <li> Vaccination history
+          </li>
+          <li> How likely they are to be exposed to a pathogen
+          </li>
+          <li> Severity of disease caused by a pathogen
+          </li>
+        </ul>
+
+        <h2> Kittens (up to 1 year of age)
+
+        </h2>
+
+        <table>
+          <tr>
+            <th>Age</th>
+            <th>Vaccines</th>
+            <th>Type</th>
+          </tr>
+          <tr>
+            <td>6-8 weeks</td>
+            <td>FVRCP<br>FeLV</td>
+            <td>Core<br>Core</td>
+          </tr>
+          <tr>
+            <td>10-12 weeks</td>
+            <td>FVRCP (first or second shot)<br>FeLV (first or second shot)</td>
+            <td>Core<br>Core</td>
+          </tr>
+          <tr>
+            <td>14-16 weeks</td>
+            <td>FVRCP (only if first shot given at 10-12 weeks)<br>Rabies<br>FeLV (only if first shot given at 10-12
+              weeks)
+            </td>
+            <td>Core<br>Core<br>Core</td>
+          </tr>
+          <tr>
+            <td>1 year after initial series</td>
+            <td>FVRCP booster<br>Rabies booster</td>
+            <td>Core Booster<br>Core Booster</td>
+          </tr>
+        </table>
+        <br>
+        <h2> Adult and Senior Cats (Over 1 year old)
+        </h2>
+        <table>
+          <tr>
+            <th>Frequency</th>
+            <th>Vaccines</th>
+            <th>Details</th>
+          </tr>
+          <tr>
+            <td>Every year</td>
+            <td>FeLV</td>
+            <td>Optional non-core vaccine</td>
+          </tr>
+          <tr>
+            <td>Every 1-3 years</td>
+            <td>FVRCP<br>Rabies</td>
+            <td>Every 3 years for indoor cats, and every year for indoor/outdoor, outdoor-only, very young, or senior
+              cats<br>1-year or 3-year vaccine depending on state laws
+            </td>
+          </tr>
+        </table>
+
+        <br>
+        <h2>Rabies Vaccine (Core)
+        </h2>
+        <p>Rabies vaccination is given every year or every three years, depending on state laws and the brand of vaccine
+          used.
+
+        </p>
+        <p> Rabies is significant not only for its effect on the cat but because it is a disease that is transmissible
+          to humans and can be fatal.
+
+        </p>
+        <p> While cats are not natural carriers for the disease, they can be infected by a bite from any infected mammal
+          and then pass it on to others. After an incubation stage, clinical signs of aggression, disorientation, and
+          death rapidly progress.
+
+        </p>
+
+        <h2> FVRCP Vaccine (Core)
+        </h2>
+        <p> The other three core vaccines are combined into a single three-in-one vaccine called the FVRCP vaccine. This
+          allows veterinarians to efficiently administer the vaccines all at once, instead of having to inject a cat
+          three separate times in one visit:</p>
+        <ul>
+          <li> Feline rhinotracheitis virus/herpesvirus 1 (FVR/FHV-1)
+          </li>
+
+          <li> Feline Calicivirus (FCV)
+          </li>
+          <li> Feline Panleukopenia (FPV)
+          </li>
+        </ul>
+
+        <h2> FeLV Vaccine (Core for Kittens)
+        </h2>
+        <p> The FeLV vaccine works to protect your cat against feline leukemia virus.
+
+        </p>
+        <p> FeLV is found worldwide. Transmitted through body fluids including saliva, urine, and feces, FeLV is spread
+          when an infected cat comes into close contact with another cat that they groom or share bowls with.
+
+        </p>
+        <p> Infection with FeLV is not an automatic death sentence. Many cats are fortunate to go into a regressive
+          state and appear perfectly healthy throughout their lives, but some do not fare as well.
+
+        </p>
+
+        <br>
+        <h1> Neutering a Cat: Everything You Need to Know
+        </h1>
+        <h2> What is neutering a cat?
+        </h2>
+        <p>Neutering (also referred to as feline castration, or getting your cat “fixed”) is a surgical procedure
+          performed by a veterinarian to remove your cat’s testicles.
+
+        </p>
+
+        <h2> Reasons for neutering female cats
+        </h2>
+
+        <ul>
+          <li><b> Population control.</b> It is important to neuter a female cat before she can have kittens herself.
+            This happens very quickly depending on breed, time of year born and individual development. The first season
+            usually occurs around six months but can be earlier. Queens can have up to three litters in a year.
+          </li>
+          <li><b> Control of nuisance.</b> Female cats will ‘call’ (come into season and be receptive to the male cat)
+            regularly, about every three weeks during sexually active times of the year if they do not get pregnant.
+            Having entire female cats in an area will attract entire males with the attendant problems of spraying,
+            fighting and caterwauling.
+          </li>
+          <li><b>Welfare issues. </b> Unwanted kittens may not be cared for and are likely to suffer from various
+            infectious diseases such as cat ‘flu or worse. There are unlikely to be enough new homes available for them.
+          </li>
+          <li> Health issues. Female cats which are not neutered are more likely to suffer from pyometra (infection of
+            the womb) later in life and with mammary tumours. Queens with infectious diseases may pass these on to their
+            kittens. Pregnancy and birth are also not without risk.
+          </li>
+        </ul>
+
+        <h2> Reasons for neutering male cats </h2>
+        <ul>
+          <li><b> Control of nuisance.</b> Unneutered male cats are likely to stray over a large area, will mark their
+            territory with a very pungent spray and are much more likely to fight – with attendant noise nuisance.
+          </li>
+          <li><b> Health issues.</b> Fighting males are much more likely to spread diseases such as FIV and FeLV to
+            other cats. They are also likely to suffer from fight injuries such as abscesses. Because they wander over a
+            large area they are also at greater risk of suffering road traffic accidents.
+          </li>
+          <li><b> Pet issues. </b> Unneutered male cats will wander from home and may not return. They may also spray
+            inside the home and may be aggressive to their owners. Therefore it is desirable to neuter kittens early
+            enough to ensure that the above problems are prevented. Most people do not want to live with an unneutered
+            male cat.
+          </li>
+        </ul>
+
+        <h2>
+          Postoperative care
+        </h2>
+        <p>Cats usually recover from the neutering operation remarkably quickly. They may be a little drowsy for a few
+          hours, but by the next day, they are usually very lively again. It is sensible to try to keep your kitten
+          fairly quiet for a day or two to allow the internal wounds some time to heal. However, if your kitten seems
+          unusually quiet or dull you should contact your vet. Also, if your kitten starts to lick or scratch
+          excessively at the skin sutures, contact your vet to get a dressing or special collar to prevent any damage
+          being done to the wound.
+
+        </p>
+
+        <p> It is important to remember that once a cat has been neutered, there is a stronger tendency for it to become
+          overweight. You may, therefore, need to adjust the amount of food you provide should your cat start to put on
+          too much weight.
+
+        </p>
+
+        <h2> Age for neutering
+        </h2>
+        <p> Traditionally male and female cats have often been neutered at six months of age, but this is after many
+          cats reach sexual maturity and not based on any scientific rationale. For social, health and population
+          control reasons, it is now recommended neutering should routinely take place at around <b> 4 months of
+            age.</b>
+
+        </p>
+        <p>The timing of neutering is discussed in more detail in the Cat Group Policy statement
+
+        </p>
+        <button (click)="toggleTextDisplay()" class="show-button" mat-button>Show Less</button>
+      </div>
+    </div>
+
+
+    <div class="tips-and-food">
+      <div class="tips">
+        <img class="adopting-image" src="../../../assets/purina-find-food.png">
+
+        <h3 class="tips-title">Purina Pet food finder</h3>
+        <p class="tips-text"> This handy tool finds the best food for your pet from Purina.</p>
+        <hr>
+        <button (click)="redirectToPurina()" class="tips-button" mat-button>
+          <h3 class="learn-more">Read More</h3></button>
+      </div>
+      <div class="tips">
+        <img class="adopting-image" src="../../../assets/royal.png">
+
+        <h3 class="tips-title">Royal Canin food finder</h3>
+        <p class="tips-text"> Find the perfect diet for your pet in just a few clicks</p>
+        <hr>
+        <button (click)="redirectToRoyal()" class="tips-button" mat-button>
+          <h3 class="learn-more">Read More</h3></button>
+      </div>
+    </div>
+    <div class="see-animals">
+      <h1 (click)="goToAnimalsPage()" *ngIf="showAnimals.length > 0" class="see-animals"> Cats Available for Adoption
+        > </h1>
+      <div class="animal-grid">
+
+        <div *ngFor="let animal of showAnimals; let isLast = last"
+             [class]="isLast ? 'animal-card-last' : 'animal-card'">
+          <a (click)="navigateToAnimalDetails(animal)">
+            <ng-container *ngIf="isLast ; else notLastTemplate">
+              <div (click)="goToAnimalsPage()">
+                <div class="animal-image">
+                  <mat-icon class="centered-icon">search</mat-icon>
+
+                  <p class="centered-text">300+ pets available on Pawppies </p>
+                </div>
+
+                <div class="animal-last">
+                  <p class="meet-animals-text">MEET THEM</p>
+                </div>
+              </div>
+            </ng-container>
+          </a>
+
+          <ng-template #notLastTemplate>
+            <button (click)="likeAnimal($event, animal)" *ngIf="user" [ngClass]="{ 'liked': isLiked(animal) }"
+                    class="like-button">
+              <mat-icon>{{ isLiked(animal) ? 'favorite' : 'favorite_border' }}</mat-icon>
+            </button>
+
+            <img [src]='animal.animalImages[0].url' class="animal-image">
+            <div class="animal-details">
+              <p class="animal-name"> {{ animal.name }} </p>
+              <p class="animal-other-details"> {{ animal.age }}, {{ animal.breedDetails.name }} </p>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="side-container">
+
+    <!--    start quizz-->
+    <div class="quiz">
+      <img class="quiz-img" src="../../../../assets/good_match.png">
+      <h2 style="text-align: center; margin-bottom: 0; margin-top: 15px"> Find your best </h2>
+      <h2 style="text-align: center; margin-bottom: 10px"> match </h2>
+      <p class="text-quiz"> It only takes 60 seconds. </p>
+
+      <button (click)="goToQuizPage()" class="start-quiz-btn" mat-button>GET STARTED</button>
+    </div>
+
+
+    <div class="search-center">
+      <form (ngSubmit)="performSearch()" class="search-form">
+        <h2>Find Pet-Adoption Centers by:</h2>
+
+        <!--      //city-->
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon matPrefix>location_city</mat-icon>
+            City
+          </mat-label>
+          <input [(ngModel)]="searchData.city" matInput
+                 name="email" placeholder="Enter your email"/>
+        </mat-form-field>
+
+        <!--        //country/-->
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon>public</mat-icon>
+            Country
+          </mat-label>
+          <mat-select [(ngModel)]="searchData.country" name="country" placeholder="Select Country">
+            <mat-option *ngFor="let country of countries" [value]="country.name">
+              {{ country.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+        <!--        //name-->
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon matPrefix>business</mat-icon>
+            Name
+          </mat-label>
+          <input [(ngModel)]="searchData.name" matInput
+                 name="email" placeholder="Enter name"/>
+        </mat-form-field>
+
+        <button class="start-quiz-btn" mat-flat-button type="submit">
+          SEARCH
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
