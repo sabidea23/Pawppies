@@ -1,0 +1,500 @@
+body {
+  background-color: #EFEEF1;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 40px;
+  margin: auto;
+  padding: 20px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  caret-color: transparent;
+  justify-content: center;
+}
+
+.side-bar-title {
+  text-align: center;
+  padding-top: 20px;
+  font-weight: bold;
+}
+
+
+.content-container {
+  font-family: 'Montserrat', sans-serif;
+  flex: 0 0 78%;
+  max-width: 1000px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.side-container {
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+H4 {
+  color: #4a4553;
+  font-weight: bold;
+}
+
+H2 {
+  color: #6504B5;
+  font-weight: bold;
+  padding: 3px;
+  font-size: 24px;
+}
+
+h3 {
+  color: #6504B5;
+  font-weight: bold;
+}
+
+.btn-learn {
+  padding: 7px;
+  margin-top: 10px;
+  border-radius: 20px; /* Colțuri rotunjite */
+  border: 3px solid #6504B5; /* Contur cu culoarea specificată */
+  background-color: white; /* Fundal alb */
+  transition: background-color 0.3s, color 0.3s; /* Tranziție animată pentru hover */
+}
+
+.btn-learn h3.btn-learn {
+  margin: 0; /* Elimină marginile implicite */
+  color: #6504B5; /* Culoarea textului când butonul nu este hoverat */
+  font-size: 16px; /* Ajustează mărimea textului dacă este necesar */
+  font-weight: normal; /* Ajustează grosimea fontului dacă este necesar */
+  transition: color 0.3s; /* Tranziție animată pentru hover */
+}
+
+.btn-learn:hover {
+  color: white; /* Culoarea textului la hover */
+
+  background-color: #410078; /* Culoarea de fundal la hover */
+  border: 3px solid #410078; /* Contur cu culoarea specificată la hover */
+}
+
+
+p {
+  font-size: large;
+  color: #4a4553;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 20px;
+}
+
+.text-quiz {
+  text-align: center;
+  font-weight:  bold;
+  margin-bottom: 15px;
+}
+
+.meet-animals-text {
+  color: white;
+}
+
+.centered-text {
+  /* Centrează textul și adaugă spațiu deasupra pentru a-l separa de icon */
+  margin-top: 20px;
+  color: white;
+  font-size: 17px;
+}
+
+.quiz {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Alinează orizontal la centru */
+  align-items: center; /* Alinează vertical la centru, dacă este necesar */
+  background-color: white;
+}
+
+.search-center {
+  background-color: white;
+}
+
+.start-quiz-btn {
+  background-color: #6504B5; /* Culoarea mov a butonului */
+  color: white; /* Culoarea textului alb */
+  border-radius: 25px; /* Colțuri foarte rotunjite */
+  margin-bottom: 25px;
+  padding: 25px 30px; /* Spațiere internă pentru a mări butonul */
+  font-size: 16px; /* Mărimea fontului pentru text */
+  font-weight: bold; /* Textul bold */
+  box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.25); /* Umbră pentru 3D effect */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Tranziție animată pentru hover */
+  width: 80%;;
+}
+
+.start-quiz-btn:hover {
+  background-color: #410078; /* Culoarea de fundal se schimbă la hover */
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.25); /* Umbra crește la hover */
+}
+
+.Learn-btn {
+  background-color: #6504B5; /* Culoarea mov a butonului */
+  color: white; /* Culoarea textului alb */
+  border-radius: 25px; /* Colțuri foarte rotunjite */
+  margin-bottom: 25px;
+  padding: 25px 30px; /* Spațiere internă pentru a mări butonul */
+  font-size: 16px; /* Mărimea fontului pentru text */
+  font-weight: bold; /* Textul bold */
+  box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.25); /* Umbră pentru 3D effect */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Tranziție animată pentru hover */
+  width: 250px;;
+}
+
+.Learn-btn:hover {
+  background-color: #410078; /* Culoarea de fundal se schimbă la hover */
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.25); /* Umbra crește la hover */
+}
+
+h1 {
+  color: #4a4553;
+  font-weight: bold;
+  caret-color: transparent;
+  display: block;
+}
+
+
+
+.container {
+  caret-color: transparent;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 25px;
+}
+
+
+
+
+/*--pentru side-container partea de search*/
+
+.search-form {
+  padding: 16px 24px;
+  caret-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mat-input-element {
+  caret-color: transparent;
+  height: 40px;
+  margin: 0;
+}
+
+mat-form-field {
+  caret-color: transparent;
+  width: 100%;
+}
+
+
+
+.see-animals {
+  font-weight: bold;
+  text-align: center;
+  background-color: #EFEEF1;
+  color: #6504B5;
+  padding-top: 3%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.recently {
+  font-weight: bold;
+  text-align: center;
+  background-color: #EFEEF1;
+  color: #6504B5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.animal-grid {
+  display: flex;
+  flex-direction: row;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  margin-bottom: 50px;
+}
+
+.animal-card {
+  width: 250px;
+  height: 300px;
+  position: relative;
+  background-color: white;
+  border: 3px solid #ddd;
+  border-radius: 8px; /* Rotunjirea colțurilor */
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+
+.like-button {
+  position: absolute;
+  right: 3px;
+  border: none;
+  background-color: transparent; /* Fundalul butonului este transparent */
+  border-radius: 50%; /* Face butonul rotund */
+  width: 36px; /* Lățimea butonului */
+  height: 36px; /* Înălțimea butonului */
+  background-color: white;
+  margin: 10px;
+  transition: transform 0.2s; /* Adaugă o tranziție pentru transform */
+}
+
+/* Animație la hover */
+.like-button:hover {
+  transform: scale(1.1); /* Mărește butonul ușor când mouse-ul este deasupra */
+}
+
+
+/* Animație la click */
+.like-button:active {
+  transform: scale(0.9); /* Micșorează butonul când este apăsat */
+}
+
+button,
+button:active,
+button:focus {
+  outline: none;
+}
+
+input[type="button"] {
+  border: none;
+  outline: none;
+}
+
+/* Clasa adăugată când animal-ul este apreciat */
+.liked {
+  color: #6504B5; /* Culoarea pentru când este apreciat */
+}
+
+.animal-card:hover {
+  border-color: #6504B5; /* Schimbă culoarea la hover */
+}
+
+.animal-image {
+  width: 100%;
+  height: 75%;
+  display: block;
+}
+
+.animal-details {
+  padding: 0.5rem;
+}
+
+.animal-last {
+  margin-top: 40px;
+  padding: 20px;
+  border: 1px solid black;
+}
+
+
+.animal-last:hover {
+  background-color: #410078;
+}
+
+.animal-name {
+  margin: 0;
+  font-size: 1.3rem;
+  font-family: 'Montserrat', sans-serif;
+  color: #6504B5;
+  font-weight: bold;
+}
+
+.animal-card-last {
+  background-color: #6504B5;
+
+}
+
+.animal-card-last {
+  width: 250px;
+  height: 300px;
+  position: relative;
+  border: 3px solid #ddd;
+  border-radius: 8px; /* Rotunjirea colțurilor */
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+
+.centered-icon {
+  margin-top: 50px;
+  color: white; /* Setează culoarea iconului la alb */
+  height: 50px;
+  width: 50px;
+  font-size: 70px;
+}
+
+.see-about {
+  padding-top: 50px;
+}
+
+.see-about .about-grid {
+  display: flex;
+  flex-wrap: wrap; /* Permite cardurilor să treacă pe rândul următor */
+  justify-content: flex-start; /* Aliniază cardurile la începutul containerului */
+  gap: 1rem; /* Definește spațiul dintre carduri */
+}
+
+.see-about .about-card {
+  border-radius: 10px;
+  flex: 0 0 calc(25% - 1rem); /* Fiecare card va avea o lățime care să permită 4 pe rând */
+  max-width: calc(25% - 1rem); /* Asigură că lățimea maximă a fiecărui card nu depășește 25% minus gap */
+  background-color: white;
+  border: 2px solid #ddd;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+  height: 240px;
+}
+
+.see-about .about-card:hover {
+  border: 2px solid #6504B5;
+}
+
+.see-about .about-image {
+  width: 100%;
+  height: 65%; /* Menține imaginea la 50% din înălțimea totală a cardului */
+  object-fit: cover;
+}
+
+.see-about .about-detail {
+  padding: 0.5rem;
+}
+
+.title-about {
+  font-size: 14px;
+  color: #6504B5;
+  margin: 0;
+  font-weight: bold;
+}
+
+.text-about {
+  font-size: 16px;
+}
+
+th {
+  margin-right: 15px;
+}
+
+details {
+  background-color: #f8f9fa;
+  border-left: 5px solid #6504B5;
+  margin: 5px 0;
+  padding: 0 10px;
+  overflow: hidden;
+  transition: height 0.5s ease;
+}
+
+details[open] {
+  padding: 10px;
+}
+
+summary {
+  font-size: 20px;
+  line-height: 50px; /* Ajustează înălțimea liniei pentru a respecta înălțimea dorită */
+  cursor: pointer;
+  list-style: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary:after {
+  content: '+';
+  float: right;
+  margin-right: 5px;
+}
+
+details[open] summary:after {
+  content: '-';
+}
+
+.food-recommand-grid{
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+}
+
+.food-card {
+  width: 230px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+}
+
+.name-food {
+  font-size: 17px;
+  font-weight: 550;
+}
+.img-food{
+  width: 230px;
+  height: 300px;
+}
+.tips-and-food {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.tips {
+  margin-top: 50px;
+  background-color: white;
+  width: 350px;
+  height: 450px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #94939b;
+}
+
+.tips:hover {
+  border: 3px solid #6504B5;
+}
+
+.adopting-image {
+  width: 345px;
+  height: 360px;
+  border-radius: 10;
+}
+
+
+.tips-title {
+  color: #3e403f;
+  margin-top: 15px;
+  font-weight: 500;
+  font-size: 23px;
+}
+
+.tips-text {
+  padding: 10px;
+  text-align: center;
+}
+
+table {
+
+}
+th, td {
+  border: 1px solid black;
+  padding: 10px;
+  text-align: left;
+}
