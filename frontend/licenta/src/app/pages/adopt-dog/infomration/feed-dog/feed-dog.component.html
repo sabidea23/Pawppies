@@ -1,1 +1,527 @@
-<p>feed-dog works!</p>
+<body>
+
+<div class="main-container">
+
+  <div class="content-container">
+
+    <div class="container">
+      <div *ngIf="!isFullTextShown">
+        <h1>Dog & Puppy Feeding </h1>
+        <h2> Your Dog’s Necessary Nutrients</h2>
+        <p> Before you decide among commercial, home-cooked, and raw food for your dog, it's important to have a basic
+          understanding of the building blocks of a healthy canine diet.</p>
+
+        <p><b> Water. </b> Your dog should always have access to fresh water, from a clean bowl. Some people limit a
+          dog's water supply or take it away altogether in the evenings, to avoid late-night bathroom needs. This may be
+          a helpful house-training tool, but it is not fair or healthy for your dog in the long-term.</p>
+        <p><b> Proteins.</b> Proteins build and maintain muscles, organs, bones, blood, body tissues, hair, nails, and
+          the immune system. Many foods contain protein, but the best sources are beef, poultry, fish, eggs, dairy
+          products, grains, and soy.</p>
+        <p><b>Fats. </b> Fats are the main source of dietary energy (or calories) in a dog's diet and provide the most
+          concentrated source of energy in foods. One gram of fat contains more than twice the energy than one gram of
+          protein or carbohydrate. They are needed for healthy skin, coat, eyes, brain, and other tissues.</p>
+        <p><b> Carbohydrates.</b> Along with proteins and fats, carbohydrates are one of the three major nutrients in
+          food and a major source of energy for a dog's body.</p>
+        <button (click)="toggleTextDisplay()" class="show-button" mat-button>Show More</button>
+      </div>
+
+      <div *ngIf="isFullTextShown">
+        <h1>Dog & Puppy Feeding </h1>
+        <h2> Your Dog’s Necessary Nutrients</h2>
+        <p> Before you decide among commercial, home-cooked, and raw food for your dog, it's important to have a basic
+          understanding of the building blocks of a healthy canine diet.</p>
+
+        <p><b> Water. </b> Your dog should always have access to fresh water, from a clean bowl. Some people limit a
+          dog's water supply or take it away altogether in the evenings, to avoid late-night bathroom needs. This may be
+          a helpful house-training tool, but it is not fair or healthy for your dog in the long-term.</p>
+        <p><b> Proteins.</b> Proteins build and maintain muscles, organs, bones, blood, body tissues, hair, nails, and
+          the immune system. Many foods contain protein, but the best sources are beef, poultry, fish, eggs, dairy
+          products, grains, and soy.</p>
+        <p><b>Fats. </b> Fats are the main source of dietary energy (or calories) in a dog's diet and provide the most
+          concentrated source of energy in foods. One gram of fat contains more than twice the energy than one gram of
+          protein or carbohydrate. They are needed for healthy skin, coat, eyes, brain, and other tissues.</p>
+        <p><b> Carbohydrates.</b> Along with proteins and fats, carbohydrates are one of the three major nutrients in
+          food and a major source of energy for a dog's body.</p>
+
+        <h2> Dog Feeding Chart: How Much Should I Feed My Dog? </h2>
+        <p>Several factors can impact not only how much food to feed your dog, but also what type of food he needs.
+        </p>
+        <ul>
+          <li><b> Weight </b> : Maintaining an ideal body condition is important for your dog’s overall health. “If your
+            dog is not his ideal body condition, you may need to make adjustments in what and how much you are feeding
+            him,” says Dr. Callie Harris, DVM. We also recommend working with your veterinarian to rule out any health
+            concerns.
+          </li>
+          <br>
+          <li><b> Activity Levels:</b> The feeding recommendations on dog food packages are based on average adult dogs
+            with normal activity levels. If your dog gets a lot of daily exercise by going on daily runs or hikes with
+            you, he may need more calories to meet his energy needs. “Dogs who are less active and overweight may need a
+            more managed daily caloric intake,” according to Dr. Harris.
+          </li>
+          <br>
+          <li><b> Age:</b> As your dog grows, his nutritional needs change. If your dog is still a puppy, he needs a
+            puppy food for growth and development. Seniors may benefit from senior formulas that help keep older dogs
+            active and their minds sharp. Work with your veterinarian to determine the type of food your dog needs based
+            on his life stage and life style.
+          </li>
+        </ul>
+
+        <h2> What Are Dog Feeding Charts? </h2>
+        <p> Dog feeding charts are required on dog food packaging. The layout of the chart, however, can vary from brand
+          to brand.
+        </p>
+        <p>.Here’s a sample dog feeding chart similar to the one you will find on any dry dog food packaging:
+        </p>
+
+        <table style="border-collapse: separate; border-spacing: 10px;">
+          <thead>
+          <tr>
+            <th style="padding: 5px;">Adult Dog Size (lbs)</th>
+            <th style="padding: 5px;">Dry Food Feeding Amount (Cups)</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td style="padding: 5px;">3 to 12</td>
+            <td style="padding: 5px;">1/3 to 1</td>
+          </tr>
+          <tr>
+            <td style="padding: 5px;">13 to 20</td>
+            <td style="padding: 5px;">1 to 1/3</td>
+          </tr>
+          <tr>
+            <td style="padding: 5px;">21 to 35</td>
+            <td style="padding: 5px;">1-1/3 to 2</td>
+          </tr>
+          <tr>
+            <td style="padding: 5px;">26 to 50</td>
+            <td style="padding: 5px;">2 to 2-2/3</td>
+          </tr>
+          <tr>
+            <td style="padding: 5px;">51 to 75</td>
+            <td style="padding: 5px;">2-2/3 to 3-1/3</td>
+          </tr>
+          <tr>
+            <td style="padding: 5px;">76 to 100</td>
+            <td style="padding: 5px;">3-1/3 to 4-1/4</td>
+          </tr>
+          <tr>
+            <td style="padding: 5px;">100+</td>
+            <td style="padding: 5px;">4-1/4 plus 1/4 cup for each 10 lbs of body weight over 100 lbs</td>
+          </tr>
+          </tbody>
+        </table>
+        <p><b> Note:</b> Dog feeding amounts vary from product to product based on calorie content and formula. Consult
+          the feeding chart on the back of your dog’s food packaging. Individual needs can vary, so consult your
+          veterinarian regarding special dietary needs.</p>
+
+        <p> Here is a more detailed pet guide for how much food is right for your pet: <a
+          href="https://www.purina.com/pet-food-feeding-guide-calculator-direct" target="_blank">Go to Purina Pet Food
+          Feeding Guide</a>
+        </p>
+
+        <h2> How Often Should I Feed My Dog? </h2>
+        <p> Set mealtimes are recommended for most dogs for a variety of reasons. Keeping mealtimes consistent, as well
+          as the type and amount of food you feed him, will help him maintain both his digestive health and his weight.
+          Consistent mealtimes can also help prevent accidents in the house.</p>
+        <p> For most dogs, feeding twice each day—once in the morning and once in the evening—is appropriate.
+        </p>
+
+        <h2> FAQs about feeding your dog </h2>
+        <details>
+          <summary>Is it Bad for Adult Dogs to Continue Eating Puppy Food?</summary>
+          <div class="faq-answer">
+            <p>Because puppy foods are formulated to deliver higher amounts of protein and fat, along with other
+              nutrients needed for a puppy’s rapid initial growth, feeding puppy food regularly to a healthy adult can
+              cause unwanted weight gain, among other health problems. Can older dogs eat puppy food? While puppy food
+              is generally safe for adult dogs, it may not be ideal or provide optimal nutrition for older life stages.
+            </p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Can Senior Dogs Eat Puppy Food?</summary>
+          <div class="faq-answer">
+            <p>In rare cases a veterinarian may recommend a higher calorie puppy food for a senior dog who is
+              underweight or becoming picky about eating. Unless your veterinarian has recommended this for your senior
+              dog, your best option is a diet formulated for adult maintenance or a senior dog food.
+
+            </p>
+          </div>
+        </details>
+
+        <details>
+          <summary>When to Take Your Dog Off of Puppy Food</summary>
+          <div class="faq-answer">
+            <p> A puppy is ready to transition from puppy food to adult dog food once they have reached skeletal
+              maturity. While the conventional wisdom is that this transition point happens at one year of age, the
+              actual point can vary depending on your dog’s breed and size.
+            </p>
+
+            <p> Medium-size m breed dogs are typically considered adult dogs at one year of age. Toy and small breeds
+              may reach maturity slightly earlier. Large and giant breed dogs, however, can take longer to reach
+              adulthood, and may continue to grow until two years of age.
+            </p>
+          </div>
+        </details>
+
+        <details>
+          <summary>When Should I Transition to Adult Dog Food?</summary>
+          <div class="faq-answer">
+            <p> A general rule to follow is that you can switch your puppy to adult dog food once they have finished
+              growing. As your puppy approaches adulthood, they will no longer need the high-calorie puppy food to
+              support their development and are now in a maintenance phase. Proactively changing their food when growth
+              is completed rather than waiting until your dog displays weight gain will help them make a healthy
+              transition to adulthood.</p>
+            <p> When you and your vet decide to switch to adult dog food, plan on slowly making the change over the
+              course of 7 to 10 days by gradually increasing the ratio of adult dog food in your puppy's diet. If not,
+              your puppy may experience loose stool as a result.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>When Should My Dog Start Eating Senior Dog Food?</summary>
+          <div class="faq-answer">
+            <p> If your dog is already between the ages of 6 and 10, they may now be considered a senior. In general,
+              larger breeds tend to mature earlier than smaller breeds, becoming a little grayer around the muzzle or
+              stiffer than they were in their youthful years. Since they're now a "senior," it’s probably a good time to
+              switch to senior dog food, right? Maybe, but maybe not.
+            </p>
+            <p>However, some veterinarians may recommend switching your senior dog to a prescription diet. These diets
+              are formulated with supplements to aid in age-related conditions, such as arthritis, joint problems, and
+              weight loss. As these foods are tailored to special dietary needs, they may not follow the guidelines of
+              the AAFCO. Only add supplements under your vet’s guidance, as supplements don’t have the same safety
+              regulations as food and medication, meaning their effectiveness and safety may pose a risk.
+            </p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Can a Puppy Eat Adult Food?</summary>
+          <div class="faq-answer">
+            <p> If you already own a dog and just added a new puppy to your pack, it may seem practical to feed your new
+              addition the same food that your adult dog already eats. However, even though your puppy may chow down
+              with no apparent issues, your puppy is not eating the diet that fits their needs. For example, would you
+              feed a newborn baby a plate of spaghetti and meatballs for dinner? Let’s hope not. Just like human babies,
+              puppies need appropriate food for their small stature.
+            </p>
+            <p> Your puppy has a small body, but needs big calories to support growth and development. So, while it may
+              be tempting to let them chow away at anything they want since they're growing, it's important to make sure
+              each mouthful provides the correct amount of protein and calories without overwhelming their little
+              bodies. In addition, many small breed puppies require extra small food or else their tiny teeth will have
+              trouble chewing.
+
+            </p>
+          </div>
+        </details>
+
+        <details>
+          <summary>When to Take Your Dog Off of Puppy Food</summary>
+          <div class="faq-answer">
+            <p> A puppy is ready to transition from puppy food to adult dog food once they have reached skeletal
+              maturity. While the conventional wisdom is that this transition point happens at one year of age, the
+              actual point can vary depending on your dog’s breed and size.
+            </p>
+            <p> Medium-size m breed dogs are typically considered adult dogs at one year of age. Toy and small breeds
+              may reach maturity slightly earlier. Large and giant breed dogs, however, can take longer to reach
+              adulthood, and may continue to grow until two years of age.
+            </p>
+          </div>
+        </details>
+        <br>
+        <h2> The Difference Between Puppy, Adult and Senior Dog Food </h2>
+        <p> Dogs have different nutritional needs at different stages of life. So, their diets need to change to
+          accommodate those needs. The advantage of life stage nutrition is that the foods are formulated to provide
+          complete and balanced nutrition for dogs at specific stages of life. </p>
+        <ul>
+          <li>
+            <h2> Puppy Food </h2>
+            <p> Since puppies’ bodies are doing more (a lot more) at this stage, they need a diet formulated for puppies
+              that gives them more of certain nutrients than they will need as adults.
+              For example, the American Association of Feed Control Officials (AAFCO) recommends puppies consume about
+              1.2 x more protein on a caloric basis than adult dogs. Puppies also need more fat in their diets. AAFCO
+              recommends puppies consume 1.5 x more fat on a caloric basis than adult dogs.</p>
+          </li>
+          <p>Here are some recommended puppy food options that provide the essential nutrients for healthy growth and
+            development:
+          </p>
+          <div class="food-recommand-grid">
+            <div class="food-card">
+              <img class="img-food" src="../../../../../assets/puppy1.png">
+              <p class="name-food"> Royal Canin Mini Puppy </p>
+              <a
+                href="https://www.zooplus.ro/shop/caini/hrana_uscata_caini/royal_canin_size/mini/241862?variantId=241862.15&gad_source=1&gclid=Cj0KCQjwiYOxBhC5ARIsAIvdH50m_3np72Ob8SfIwvpw4ZpXLsiynM4XmU72-0odFCSsx8vmA5zFaXsaAtHaEALw_wcB&activeVariant=241862.15">
+                Cick here to buy </a>
+            </div>
+
+            <div class="food-card">
+              <img class="img-food" src="../../../../../assets/pupy2.png">
+              <p class="name-food"> Pro Plan Sport Development Formula Dry Puppy Food </p>
+              <a href="https://www.purina.com/dogs/shop/pro-plan-large-breed-puppy-30-18-chicken-dry-dog-food">
+                Cick here to buy </a>
+            </div>
+
+            <div class="food-card">
+              <img class="img-food" src="../../../../../assets/puppy3.png">
+              <p class="name-food"> Royal Canin Mini Puppy in Gravy
+              </p>
+              <a
+                href="https://www.zooplus.ro/shop/caini/hrana_umeda_caini/royal_canin/size_mini/695951?variantId=695951.1&abd=true&gad_source=1&gclid=Cj0KCQjwiYOxBhC5ARIsAIvdH53Q3yLAS9yyNjpyP-yyeRACouPhQmsYLM36-eHLt_uBXiPAr3djOncaAiuTEALw_wcB&activeVariant=695951.1">
+                Cick here to buy </a>
+            </div>
+
+          </div>
+
+          <br>
+          <li><h2> Adult Dog Food </h2>
+            <p> While the goal of a quality puppy food is to fuel healthy growth, the role of a complete and balanced
+              adult dog food is to help dogs maintain optimal overall body condition and health during their adult
+              years.</p>
+            <p>Here are some recommended dog food options for adult dogs that are formulated to meet their nutritional
+              needs for maintaining optimal health and vitality:
+
+            </p>
+            <div class="food-recommand-grid">
+              <div class="food-card">
+                <img class="img-food" src="../../../../../assets/adult1.png">
+                <p class="name-food"> Pro Plan Complete Essentials Adult Shredded Turkey, Peas & Brown Rice Entrée in
+                  Gravy Wet Dog Food
+                </p>
+                <a
+                  href="https://www.purina.com/dogs/shop/pro-plan-complete-essentials-shredded-turkey-peas-brown-rice-gravy-wet-dog-food">
+                  Cick here to buy </a>
+              </div>
+
+              <div class="food-card">
+                <img class="img-food" src="../../../../../assets/adult2.png">
+                <p class="name-food"> Pro Plan Weight Management Small Breed Dry Dog Food</p>
+                <a
+                  href="https://www.purina.com/dogs/shop/pro-plan-specialized-weight-management-small-breed-chicken-rice-probiotics-dry-dog-food">
+                  Cick here to buy </a>
+              </div>
+
+              <div class="food-card">
+                <img class="img-food" src="../../../../../assets/adult3.png">
+                <p class="name-food"> Pedigree Complete Nutrition Grilled Steak & Vegetable Flavor Dog Kibble Adult Dry
+                  Dog Food
+                </p>
+                <a
+                  href="https://www.chewy.com/pedigree-complete-nutrition-grilled/dp/141433">
+                  Cick here to buy </a>
+              </div>
+            </div>
+          </li>
+
+          <br>
+          <li>
+            <h2>Senior Dog Food</h2>
+            <p> As dogs reach their senior years (age 7 or older, depending on breed), they may become less active, and
+              their bodies may start to show signs of age. A dog food complete and balanced for senior dogs will provide
+              nutritional support tailored to help their bodies maintain lean muscle mass, a healthy weight, joint
+              health and mobility, and more.
+            </p>
+            <div class="food-recommand-grid">
+              <div class="food-card">
+                <img class="img-food" src="../../../../../assets/senior1.png">
+                <p class="name-food"> Pro Plan Complete Essentials Adult 7+ Beef & Rice Dry Dog Food
+                </p>
+                <a
+                  href="https://www.purina.com/dogs/shop/pro-plan-senior-beef-and-rice-dry-dog-food">
+                  Cick here to buy </a>
+              </div>
+
+              <div class="food-card">
+                <img class="img-food" src="../../../../../assets/senior2.png">
+                <p class="name-food"> Hill's Science Plan Senior 11+ Small & Mini Chicken</p>
+                <a
+                  href="https://www.zooplus.ro/shop/caini/hrana_uscata_caini/hills_science_plan/senior/905409?variantId=905409.0&gad_source=1&gclid=Cj0KCQjwiYOxBhC5ARIsAIvdH51R3PGzYTYlFwyb3G-TrD11VeEQuL-10dmLBaKop1SbL_yfLQ9SrVEaAnJNEALw_wcB&activeVariant=905409.0">
+                  Cick here to buy </a>
+              </div>
+
+              <div class="food-card">
+                <img class="img-food" src="../../../../../assets/senior3.png">
+                <p class="name-food"> Pro Plan BRIGHT MIND Adult 7+ Beef & Brown Rice Entrée Wet Dog Food
+                </p>
+                <a
+                  href="https://www.purina.com/dogs/shop/pro-plan-bright-mind-senior-beef-brown-rice-wet-dog-food">
+                  Cick here to buy </a>
+              </div>
+            </div>
+
+          </li>
+        </ul>
+
+        <br>
+        <h2> Dry Dog Food vs. Wet Dog Food: Which Is Better? </h2>
+        <p> When choosing between dry and wet dog food, it's important to consider your dog’s health, dietary needs, and
+          your lifestyle. Both forms have their pros and cons.
+        </p>
+
+        <table style="width:100%; border-collapse: separate; border-spacing: 20px;">
+          <tr>
+            <th></th>
+            <th>Wet Food</th>
+            <th>Dry Food</th>
+          </tr>
+          <tr>
+            <td>Advantages</td>
+            <td>
+              - Increased palatability<br>
+              - Provides additional hydration<br>
+              - Easier to chew, suitable for puppies, seniors, and dogs with dental issues
+            </td>
+            <td>
+              - Cost-effective<br>
+              - Convenient storage and longer shelf life<br>
+              - Helps in maintaining dental health by reducing plaque
+            </td>
+          </tr>
+          <tr>
+            <td>Disadvantages</td>
+            <td>
+              - More expensive<br>
+              - Requires refrigeration after opening and should be used quickly<br>
+              - Lower calorie content per gram, requiring more food to meet caloric needs
+            </td>
+            <td>
+              - Lower palatability for some dogs<br>
+              - Less hydrating, requires ensuring adequate water intake<br>
+              - Some dogs may find it harder to chew
+            </td>
+          </tr>
+        </table>
+
+        <br>
+        <p>
+
+          In conclusion, while there are various options and considerations when it comes to feeding puppies, the most
+          important step is consulting with a veterinarian. A professional can provide personalized advice based on your
+          puppy’s specific health needs, breed, and growth requirements.</p>
+        <p> Remember, each puppy is unique, and what works for one may not work for another. Therefore, it is crucial to
+          make informed decisions about their diet by seeking guidance from a veterinarian. This ensures that your puppy
+          receives the optimal nutrition necessary for a healthy and happy development.</p>
+        <button (click)="toggleTextDisplay()" class="show-button" mat-button>Show Less</button>
+      </div>
+    </div>
+
+
+    <div class="tips-and-food">
+      <div class="tips">
+        <img class="adopting-image" src="../../../assets/purina-find-food.png">
+
+        <h3 class="tips-title">Purina Pet food finder</h3>
+        <p class="tips-text" > This handy tool finds the best food for your pet from Purina.</p>
+        <hr>
+        <button (click)="redirectToPurina()" class="tips-button" mat-button>
+          <h3 class="learn-more">Read More</h3></button>
+      </div>
+      <div class="tips">
+        <img class="adopting-image" src="../../../assets/royal.png">
+
+        <h3 class="tips-title">Royal Canin food finder</h3>
+        <p  class="tips-text"> Find the perfect diet for your pet in just a few clicks</p>
+        <hr>
+        <button (click)="redirectToRoyal()" class="tips-button" mat-button>
+          <h3 class="learn-more">Read More</h3></button>
+      </div>
+    </div>
+    <div class="see-animals">
+      <h1 (click)="goToAnimalsPage()" *ngIf="showAnimals.length > 0" class="see-animals"> Pets Available for Adoption
+        > </h1>
+      <div class="animal-grid">
+
+        <div *ngFor="let animal of showAnimals; let isLast = last"
+             [class]="isLast ? 'animal-card-last' : 'animal-card'">
+          <a (click)="navigateToAnimalDetails(animal)">
+            <ng-container *ngIf="isLast ; else notLastTemplate">
+              <div (click)="goToAnimalsPage()">
+                <div class="animal-image">
+                  <mat-icon class="centered-icon">search</mat-icon>
+
+                  <p class="centered-text">300+ pets available on Pawppies </p>
+                </div>
+
+                <div class="animal-last">
+                  <p class="meet-animals-text">MEET THEM</p>
+                </div>
+              </div>
+            </ng-container>
+          </a>
+
+          <ng-template #notLastTemplate>
+            <button (click)="likeAnimal($event, animal)" *ngIf="user" [ngClass]="{ 'liked': isLiked(animal) }"
+                    class="like-button">
+              <mat-icon>{{ isLiked(animal) ? 'favorite' : 'favorite_border' }}</mat-icon>
+            </button>
+
+            <img [src]='animal.animalImages[0].url' class="animal-image">
+            <div class="animal-details">
+              <p class="animal-name"> {{ animal.name }} </p>
+              <p class="animal-other-details"> {{ animal.age }}, {{ animal.breedDetails.name }} </p>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="side-container">
+
+    <!--    start quizz-->
+    <div class="quiz">
+      <img class="quiz-img" src="../../../../assets/good_match.png">
+      <h2 style="text-align: center; margin-bottom: 0; margin-top: 15px"> Find your best </h2>
+      <h2 style="text-align: center; margin-bottom: 10px"> match </h2>
+      <p class="text-quiz"> It only takes 60 seconds. </p>
+
+      <button (click)="goToQuizPage()" class="start-quiz-btn" mat-button>GET STARTED</button>
+    </div>
+
+
+    <div class="search-center">
+      <form (ngSubmit)="performSearch()" class="search-form">
+        <h2>Find Pet-Adoption Centers by:</h2>
+
+        <!--      //city-->
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon matPrefix>location_city</mat-icon>
+            City
+          </mat-label>
+          <input [(ngModel)]="searchData.city" matInput
+                 name="email" placeholder="Enter your email"/>
+        </mat-form-field>
+
+        <!--        //country/-->
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon>public</mat-icon>
+            Country
+          </mat-label>
+          <mat-select [(ngModel)]="searchData.country" name="country" placeholder="Select Country">
+            <mat-option *ngFor="let country of countries" [value]="country.name">
+              {{ country.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+        <!--        //name-->
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon matPrefix>business</mat-icon>
+            Name
+          </mat-label>
+          <input [(ngModel)]="searchData.name" matInput
+                 name="email" placeholder="Enter name"/>
+        </mat-form-field>
+
+        <button class="start-quiz-btn" mat-flat-button type="submit">
+          SEARCH
+        </button>
+      </form>
+    </div>
+  </div>
+
+</div>
+</body>
