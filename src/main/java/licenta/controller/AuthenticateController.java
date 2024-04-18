@@ -84,6 +84,7 @@ public class AuthenticateController {
                 .street(user.getStreet())
                 .notifications(user.getNotifications())
                 .adoptionRequests(user.getAdoptionRequests())
+                .bestMatchAnimals(user.getBestMatchAnimals())
                 .build();
     }
 }

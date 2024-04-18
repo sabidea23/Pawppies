@@ -16,8 +16,6 @@
   <div class="right-container">
     <button (click)="goToAnimalsFromAnimalCenterPage()" class="btn-show-animals" mat-button>
       <h3 class="btn-learn"> VIEW OUR PETS </h3>
-
-
     </button>
 
     <div class="contact-container">
@@ -71,7 +69,7 @@
       </ul>
 
     </div>
-    <div class="see-animals">
+    <div class="see-animals" *ngIf="animalCenterAnimals.length > 0">
 
       <h1 (click)="goToAnimalsFromAnimalCenterPage()" class="see-animals"> More animals
         from {{animalCenter.name}} > </h1>
@@ -110,7 +108,5 @@
       </div>
     </div>
   </div>
-
-
 </div>
 </body>

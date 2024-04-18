@@ -28,6 +28,7 @@ public class UserResponseDTO {
     private Set<UserRole> userRoles;
     private Collection<? extends GrantedAuthority> authorities;
     private Set<Animal> adoptedAnimals;
+    private Set<Animal> bestMatchAnimals;
     private Set<AdoptionRequest> adoptionRequests;
     private Set<Notification> notifications;
 }

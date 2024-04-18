@@ -63,6 +63,7 @@ public class UserServiceImpl implements UserService {
                 .adoptedAnimals(new HashSet<>())
                 .notifications(new HashSet<>())
                 .adoptionRequests(new HashSet<>())
+                .bestMatchAnimals(new HashSet<>())
                 .build();
 
         User savedUser = this.userRepository.save(newUser);

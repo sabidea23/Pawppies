@@ -169,6 +169,10 @@ public class Animal {
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private User adoptionUser;
 
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    private User animalBestForUser;
+
     @OneToMany(mappedBy = "adoptionRequestAnimal", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<AdoptionRequest> adoptionRequests;

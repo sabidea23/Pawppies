@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {AnimalService} from "../../services/animal.service.";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ImageProcessingService} from "../../services/image-processing.service";
@@ -20,26 +20,20 @@ export class AnimalDetailsComponent {
   numberAnimalsLeft: any;
   requestsByUser: any = null;
 
-  constructor(private adoptionRequest:AdoptionRequestService,
-
-              private login: LoginService, private snack: MatSnackBar, private sanitizer: DomSanitizer,
-              private imageProcessingService: ImageProcessingService, private router: Router,  private route: ActivatedRoute,
-              private animalService: AnimalService) {
+  constructor(private adoptionRequest: AdoptionRequestService, private login: LoginService, private snack: MatSnackBar, private sanitizer: DomSanitizer, private imageProcessingService: ImageProcessingService, private router: Router, private route: ActivatedRoute, private animalService: AnimalService) {
     this.animalId = JSON.parse(this.route.snapshot.paramMap.get('animalId') || '{}');
-    this.animalService.getAnimal(this.animalId).subscribe(data => {
-      this.animal = data;
-      this.getImagesForAnimals();
+    this.animalService.getAnimal(this.animalId).subscribe({
+      next: (data) => {
+        this.animal = data;
+        this.getImagesForAnimals();
+        this.checkAlreadySubmittedRequest();
+      }
     });
-    this.checkAlreadySubmittedRequest();
   }
 
 
   ngOnInit() {
-
     this.startSlideShow();
-
-    this.getFavouriteAnimals();
-
     this.numberAnimalsLeft = this.animals.length - this.showAnimals.length;
   }
 
@@ -55,7 +49,7 @@ export class AnimalDetailsComponent {
   }
 
   getImagesForAnimals() {
-      this.animal = this.imageProcessingService.createImage(this.animal);
+    this.animal = this.imageProcessingService.createImage(this.animal);
   }
 
   currentImageIndex = 0;
@@ -120,7 +114,7 @@ export class AnimalDetailsComponent {
     if (this.animal.type == 'Dog') {
       this.router.navigate(['/breed-dog', {dogBreedId: this.animal.breedDetails.id}]).then((_) => {
       });
-    } else if (this.animal.type == 'Cat')  {
+    } else if (this.animal.type == 'Cat') {
       this.router.navigate(['/breed-cat', {catBreedId: this.animal.breedDetails.id}]).then((_) => {
       });
     }
@@ -179,22 +173,8 @@ export class AnimalDetailsComponent {
     }
   }
 
-  getFavouriteAnimals() {
-    this.animalService.getAnimals().subscribe({
-      next: (data) => {
-        this.animals = data;
-        // @ts-ignore
-        // @ts-ignore
-        this.animals = this.animals.filter(animal => animal.isAdopted == false)
-        this.displayRandomAnimals();
-        this.displayAnimalsFromAnimalCenter();
-        this.getimagesShowAnimals();
-      }, error: (_) => {
-      },
-    });
-  }
 
-  animalCenterAnimals:any[] = [];
+  animalCenterAnimals: any[] = [];
 
   displayAnimalsFromAnimalCenter(): void {
     // @ts-ignore
@@ -240,8 +220,7 @@ export class AnimalDetailsComponent {
   startAdoptionProcess() {
     if (!this.user) {
       this.router.navigate(['/login']);
-    }
-    else {
+    } else {
       this.router.navigate(['/adoption-request', {animalId: this.animal.id}]);
     }
   }
