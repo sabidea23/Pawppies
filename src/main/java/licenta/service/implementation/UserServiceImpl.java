@@ -14,10 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -57,7 +54,7 @@ public class UserServiceImpl implements UserService {
                 .phone(userRequest.getPhone())
                 .latitude(userRequest.getLatitude())
                 .longitude(userRequest.getLongitude())
-                .recentlyViewedAnimals(new LinkedList<>())
+                .recentlyViewedAnimals(new LinkedHashSet<>())
                 .userRoles(new HashSet<>())
                 .animalCenters(new HashSet<>())
                 .adoptedAnimals(new HashSet<>())
@@ -152,13 +149,17 @@ public class UserServiceImpl implements UserService {
         }
 
         if (user.getRecentlyViewedAnimals() == null) {
-            user.setRecentlyViewedAnimals(new LinkedList<>());
+            user.setRecentlyViewedAnimals(new LinkedHashSet<>());
         }
 
         if (!user.getRecentlyViewedAnimals().contains(animalId)) {
             if (user.getRecentlyViewedAnimals().size() >= 5) {
-                user.getRecentlyViewedAnimals().remove(0);
+                Optional<Long> firstElement = user.getRecentlyViewedAnimals().stream().findFirst();
+                firstElement.ifPresent(element -> {
+                    user.getRecentlyViewedAnimals().remove(element);
+                });
             }
+
             user.getRecentlyViewedAnimals().add(animalId);
             userRepository.save(user);
         }

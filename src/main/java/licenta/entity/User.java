@@ -61,7 +61,7 @@ public class User implements UserDetails {
     private Set<UserRole> userRoles = new HashSet<>();
     @JsonIgnore
     @ElementCollection(fetch = FetchType.EAGER)
-    private List<Long> recentlyViewedAnimals = new ArrayList<>();
+    private Set<Long> recentlyViewedAnimals = new LinkedHashSet<>();
     @Column
     private String city;
     @Column

@@ -23,7 +23,7 @@ public class UserResponseDTO {
     private String city;
     private String country;
     private String street;
-    private List<Long> recentlyViewedAnimals;
+    private Set<Long> recentlyViewedAnimals;
     private Set<AnimalCenter> animalCenters;
     private Set<UserRole> userRoles;
     private Collection<? extends GrantedAuthority> authorities;

@@ -582,6 +582,8 @@ export class AnimalListComponent implements OnInit {
       this.userService.addRecentlyViewedAnimal(this.user.id, animal.id).subscribe({
         next: () => {
           console.log('Animal added to recently viewed');
+          this.router.navigate(['/animal-details', {animalId: animal.id}]);
+
         },
         error: (error) => {
           console.error('Error adding animal to recently viewed', error);
@@ -589,7 +591,6 @@ export class AnimalListComponent implements OnInit {
       });
     }
 
-    this.router.navigate(['/animal-details', {animalId: animal.id}]);
   }
 
   uniqueAnimalIds: Set<number> = new Set();
