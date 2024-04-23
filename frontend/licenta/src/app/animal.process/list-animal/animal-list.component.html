@@ -22,10 +22,7 @@
                 [ngClass]="{'pressed': pressedButton ['typePuppy/Kitten'] }" class="button-filter" name="age"
                 role="checkbox" value="Puppy/Kitten"> Puppy/Kitten
         </button>
-        <button (click)="applyFilter('age', 'Young')  ; toggleButton('typeYoung') "
-                [ngClass]="{'pressed': pressedButton ['typeYoung']}" class="button-filter" name="age"
-                role="checkbox" value="Young"> Young
-        </button>
+
         <button (click)="applyFilter('age', 'Adult') ; toggleButton('typeAdult')"
                 [ngClass]="{'pressed': pressedButton ['typeAdult'] }" class="button-filter" name="age"
                 role="checkbox" value="Adult"> Adult

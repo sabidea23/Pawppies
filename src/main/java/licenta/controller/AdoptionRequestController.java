@@ -4,8 +4,10 @@ import licenta.dto.AdoptionRequestDTO;
 import licenta.entity.AdoptionRequest;
 import licenta.entity.Animal;
 import licenta.entity.User;
+import licenta.exeptions.ForbiddenActionForRole;
 import licenta.service.AnimalRequestsService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,8 +44,7 @@ public class AdoptionRequestController {
     }
 
     @GetMapping("/animal/{animalId}/user/{userId}")
-    public ResponseEntity<AdoptionRequest> getAdoptionRequestFromUserAndAnimalIds(@PathVariable Long animalId,
-                                                                                  @PathVariable Long userId) {
+    public ResponseEntity<AdoptionRequest> getAdoptionRequestFromUserAndAnimalIds(@PathVariable Long animalId, @PathVariable Long userId) {
         return ResponseEntity.ok(animalRequestsService.getAdoptionRequestFromUserAndAnimalIds(animalId, userId));
     }
 
@@ -73,8 +74,13 @@ public class AdoptionRequestController {
     }
 
     @PutMapping("/update-pending/{requestId}")
-    public ResponseEntity<AdoptionRequest> updatePendingRequests(@PathVariable Long requestId) {
-        return ResponseEntity.ok(animalRequestsService.updatePendingRequests(requestId));
+    public ResponseEntity<AdoptionRequest> updatePendingRequests(@PathVariable Long requestId, Authentication authentication) {
+
+        if (authentication != null && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("SUPPLIER"))) {
+            return ResponseEntity.ok(animalRequestsService.updatePendingRequests(requestId));
+        } else {
+            throw new ForbiddenActionForRole("You do not have the right permissions to do this action");
+        }
     }
 
     @DeleteMapping("/delete/{requestId}")
@@ -84,15 +90,25 @@ public class AdoptionRequestController {
     }
 
     @PutMapping("/accept/{requestId}")
-    public ResponseEntity<Void> acceptRequest(@PathVariable Long requestId) {
-        animalRequestsService.acceptRequest(requestId);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Void> acceptRequest(@PathVariable Long requestId, Authentication authentication) {
+        if (authentication != null && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("SUPPLIER"))) {
+            animalRequestsService.acceptRequest(requestId);
+            return ResponseEntity.ok().build();
+        } else {
+            throw new ForbiddenActionForRole("You do not have the right permissions to do this action");
+        }
     }
 
     @PutMapping("/reject/{requestId}")
-    public ResponseEntity<Void> rejectRequest(@PathVariable Long requestId) {
-        animalRequestsService.rejectRequest(requestId);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Void> rejectRequest(@PathVariable Long requestId, Authentication authentication) {
+
+        if (authentication != null && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("SUPPLIER"))) {
+
+            animalRequestsService.rejectRequest(requestId);
+            return ResponseEntity.ok().build();
+        } else {
+            throw new ForbiddenActionForRole("You do not have the right permissions to do this action");
+        }
     }
 
     @DeleteMapping("/cancel/{requestId}")

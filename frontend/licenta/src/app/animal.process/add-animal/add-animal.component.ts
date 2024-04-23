@@ -74,7 +74,6 @@ export class AddAnimalComponent implements OnInit {
     hasPreviousOwners: false
   };
 
-  isOtherSelected: boolean = false;
 
   breed: any = undefined;
 
@@ -167,9 +166,9 @@ export class AddAnimalComponent implements OnInit {
 
   getAgeOptions(animalType: string): string[] {
     if (animalType === 'Dog') {
-      return ['Puppy', 'Young', 'Adult', 'Senior']; // Sunt doar exemple, pune valorile dorite
+      return ['Puppy', 'Adult', 'Senior']; // Sunt doar exemple, pune valorile dorite
     } else if (animalType === 'Cat') {
-      return ['Kitten', 'Young', 'Adult', 'Senior']; // Sunt doar exemple, pune valorile dorite
+      return ['Kitten', 'Adult', 'Senior']; // Sunt doar exemple, pune valorile dorite
     } else return ['Young', 'Adult', 'Senior'];
   }
 

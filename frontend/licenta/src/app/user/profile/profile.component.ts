@@ -16,7 +16,6 @@ import {ImageProcessingService} from "../../services/image-processing.service";
 })
 export class ProfileComponent implements OnInit {
 
-
   public countries: any = countries;
 
   editForm = new FormGroup({
@@ -55,6 +54,8 @@ export class ProfileComponent implements OnInit {
 
     this.user = this.login.getUser();
     this.getUserRequests();
+    console.log(this.user)
+
     const section = JSON.parse(this.route.snapshot.paramMap.get('section') || '{}');
     if (section == 3) {
       this.selectedTab = 'adoptionRequests';
@@ -99,7 +100,6 @@ export class ProfileComponent implements OnInit {
             this.requests = completeRequests;
             this.getImagesForAnimals();
             this.getNumberRequestsForAllAnimals(); // Ensure each request has the count of previous requests
-
           });
 
         } else {

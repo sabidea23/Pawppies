@@ -418,8 +418,6 @@ export class AnimalListComponent implements OnInit {
     let age: string;
     if (animal.age == "Kitten" || animal.age == 'Puppy')
       age = 'Puppy/Kitten';
-    else if (animal.age == "Young")
-      age = 'Young';
     else if (animal.age == 'Senior')
       age = 'Senior';
     else

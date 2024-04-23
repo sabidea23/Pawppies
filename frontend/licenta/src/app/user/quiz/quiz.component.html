@@ -1,1 +1,160 @@
-<p>quiz works!</p>
+<body>
+<div class="main-container">
+  <form (ngSubmit)="formSubmit()" [formGroup]="preferencesData" class="login-form">
+    <div class="top-form">
+      <h1>Thanks for your interest, {{user.firstName}} {{user.lastName}}</h1>
+      <h2>Let’s find the perfect match for you!</h2>
+    </div>
+
+    <h3>Tell us a bit about yourself:</h3>
+
+    <!-- Type -->
+    <mat-form-field appearance="fill">
+      <mat-label>Type</mat-label>
+      <mat-select formControlName="type">
+        <mat-option value="Dog">Dog</mat-option>
+        <mat-option value="Cat">Cat</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="preferencesData.get('type')?.value" appearance="fill">
+      <mat-label>
+        Animal Age
+      </mat-label>
+      <mat-select formControlName="age">
+        <mat-option *ngFor="let age of getAgeOptions(preferencesData.get('type')?.value)" [value]="age">{{age}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Gender -->
+    <mat-form-field appearance="fill">
+      <mat-label>Gender</mat-label>
+      <mat-select formControlName="gender">
+        <mat-option value="Male">Male</mat-option>
+        <mat-option value="Female">Female</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Size -->
+    <mat-form-field appearance="fill">
+      <mat-label>Size</mat-label>
+      <mat-select formControlName="size">
+        <mat-option value="Small">Small</mat-option>
+        <mat-option value="Medium">Medium</mat-option>
+        <mat-option value="Large">Large</mat-option>
+        <mat-option value="Extra Large">Extra Large</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Coat Length -->
+    <mat-form-field appearance="fill">
+      <mat-label>Coat Length</mat-label>
+      <mat-select formControlName="coatLength">
+        <mat-option value="Hairless">Hairless</mat-option>
+        <mat-option value="Short">Short</mat-option>
+        <mat-option value="Medium">Medium</mat-option>
+        <mat-option value="Long">Long</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Lifestyle Checkboxes -->
+    <mat-form-field appearance="fill">
+      <mat-label>Activity Level</mat-label>
+      <mat-select formControlName="activityLevel">
+        <mat-option value="Low">Low</mat-option>
+        <mat-option value="Moderate">Moderate</mat-option>
+        <mat-option value="High">High</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Grooming Requirements</mat-label>
+      <mat-select formControlName="groomingRequirements">
+        <mat-option value="Low">Low</mat-option>
+        <mat-option value="Moderate">Moderate</mat-option>
+        <mat-option value="High">High</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div>
+      <label>Child-friendly:</label>
+      <mat-checkbox formControlName="friendlinessToChildrenYes">Yes</mat-checkbox>
+      <mat-checkbox formControlName="friendlinessToChildrenNo">No</mat-checkbox>
+    </div>
+    <div>
+      <label>Other Animals Friendly:</label>
+      <mat-checkbox formControlName="friendlinessToOtherAnimalsYes">Yes</mat-checkbox>
+      <mat-checkbox formControlName="friendlinessToOtherAnimalsNo">No</mat-checkbox>
+    </div>
+    <div>
+      <label>Affectionate:</label>
+      <mat-checkbox formControlName="affectionForOwnersYes">Yes</mat-checkbox>
+      <mat-checkbox formControlName="affectionForOwnersNo">No</mat-checkbox>
+    </div>
+
+    <!-- Health Checkboxes -->
+    <div>
+      <label>Has Special Needs:</label>
+      <mat-checkbox formControlName="hasSpecialNeedsYes">Yes</mat-checkbox>
+      <mat-checkbox formControlName="hasSpecialNeedsNo">No</mat-checkbox>
+    </div>
+
+    <div>
+      <label>Fully Vaccinated:</label>
+      <mat-checkbox formControlName="isFullyVaccinatedYes">Yes</mat-checkbox>
+      <mat-checkbox formControlName="isFullyVaccinatedNo">No</mat-checkbox>
+    </div>
+
+    <!-- Dog-specific -->
+    <div *ngIf="preferencesData.get('type')?.value === 'Dog'">
+      <mat-form-field appearance="fill">
+        <mat-label>Exercise Requirements</mat-label>
+        <mat-select formControlName="exerciseRequirements">
+          <mat-option value="Low">Low</mat-option>
+          <mat-option value="Moderate">Moderate</mat-option>
+          <mat-option value="High">High</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <label>Trained:</label>
+        <mat-checkbox formControlName="isTrainedYes">Yes</mat-checkbox>
+        <mat-checkbox formControlName="isTrainedNo">No</mat-checkbox>
+      </div>
+      <div>
+        <label>Watchful:</label>
+        <mat-checkbox formControlName="watchfulnessYes">Yes</mat-checkbox>
+        <mat-checkbox formControlName="watchfulnessNo">No</mat-checkbox>
+      </div>
+    </div>
+
+    <!-- Cat-specific -->
+    <div *ngIf="preferencesData.get('type')?.value === 'Cat'">
+      <mat-form-field appearance="fill">
+        <mat-label>Need for Attention </mat-label>
+        <mat-select formControlName="needForAttention">
+          <mat-option value="Low">Low</mat-option>
+          <mat-option value="Moderate">Moderate</mat-option>
+          <mat-option value="High">High</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <label>Independent:</label>
+        <mat-checkbox formControlName="independenceYes">Yes</mat-checkbox>
+        <mat-checkbox formControlName="independenceNo">No</mat-checkbox>
+      </div>
+      <div>
+        <label>Intelligent:</label>
+        <mat-checkbox formControlName="intelligenceYes">Yes</mat-checkbox>
+        <mat-checkbox formControlName="intelligenceNo">No</mat-checkbox>
+      </div>
+    </div>
+
+
+    <div class="button-login">
+      <button class="login-button" mat-flat-button type="submit">
+        SEND YOUR INQUIRY
+      </button>
+    </div>
+  </form>
+</div>
+</body>
