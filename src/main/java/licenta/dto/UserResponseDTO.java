@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 
 @Builder
@@ -31,4 +30,5 @@ public class UserResponseDTO {
     private Set<Animal> bestMatchAnimals;
     private Set<AdoptionRequest> adoptionRequests;
     private Set<Notification> notifications;
+    private Preferences preferences;
 }

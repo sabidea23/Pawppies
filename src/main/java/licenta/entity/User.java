@@ -59,28 +59,40 @@ public class User implements UserDetails {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
     @JsonIgnore
     private Set<UserRole> userRoles = new HashSet<>();
+
     @JsonIgnore
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<Long> recentlyViewedAnimals = new LinkedHashSet<>();
+
     @Column
     private String city;
+
     @Column
     private String country;
+
     @Column
     private String street;
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "adoptionUser")
     @JsonIgnore
     private Set<Animal> adoptedAnimals;
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "animalBestForUser")
     @JsonIgnore
     private Set<Animal> bestMatchAnimals;
-    @OneToMany(mappedBy = "adoptionRequestUser", cascade = CascadeType.ALL)
 
+    @OneToMany(mappedBy = "adoptionRequestUser", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<AdoptionRequest> adoptionRequests;
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "userNotificated")
     @JsonIgnore
     private Set<Notification> notifications;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "preferences_id", referencedColumnName = "id")
+    @JsonIgnore
+    private Preferences animalPreferences;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -1,6 +1,7 @@
 package licenta.service.implementation;
 
 import licenta.dto.UserRequestDTO;
+import licenta.entity.Preferences;
 import licenta.exeptions.UserAlreadyExists;
 import licenta.exeptions.UserNotFoundException;
 import licenta.entity.Role;
@@ -61,6 +62,7 @@ public class UserServiceImpl implements UserService {
                 .notifications(new HashSet<>())
                 .adoptionRequests(new HashSet<>())
                 .bestMatchAnimals(new HashSet<>())
+                .animalPreferences(new Preferences())
                 .build();
 
         User savedUser = this.userRepository.save(newUser);
@@ -93,7 +95,7 @@ public class UserServiceImpl implements UserService {
         user.setStreet(userRequestDTO.getStreet());
         user.setCity(userRequestDTO.getCity());
         user.setCountry(userRequestDTO.getCountry());
-
+        user.setAnimalPreferences(userRequestDTO.getPreferences());
         if (userRequestDTO.getPassword() != null && !userRequestDTO.getPassword().isEmpty()) {
             user.setPassword(this.bCryptPasswordEncoder.encode(userRequestDTO.getPassword()));
         }

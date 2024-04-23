@@ -85,6 +85,7 @@ public class AuthenticateController {
                 .notifications(user.getNotifications())
                 .adoptionRequests(user.getAdoptionRequests())
                 .bestMatchAnimals(user.getBestMatchAnimals())
+                .preferences(user.getAnimalPreferences())
                 .build();
     }
 }

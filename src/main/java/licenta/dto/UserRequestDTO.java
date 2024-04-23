@@ -1,5 +1,6 @@
 package licenta.dto;
 
+import licenta.entity.Preferences;
 import licenta.entity.Role;
 import licenta.entity.UserRole;
 import lombok.Data;
@@ -24,8 +25,11 @@ public class UserRequestDTO {
     private String city;
     private String country;
     private String street;
+    private Preferences preferences;
+
     public UserRequestDTO(Long id, String username, String password, String firstName, String lastName, String email,
-                          String phone, Double latitude, Double longitude, String role, String city, String country, String street) {
+                          String phone, Double latitude, Double longitude, String role, String city, String country,
+                          String street, Preferences preferences) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -39,6 +43,7 @@ public class UserRequestDTO {
         this.city = city;
         this.country = country;
         this.street = street;
+        this.preferences = preferences;
     }
 }
 
