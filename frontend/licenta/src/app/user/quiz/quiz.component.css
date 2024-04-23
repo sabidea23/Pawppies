@@ -12,7 +12,6 @@ body {
   padding-top: 50px;
   padding-bottom: 20px;
   caret-color: transparent;
-  background-image: url("../../../assets/adoption-request.png");
   background-repeat: no-repeat;
   background-size: 100%;
 }
@@ -82,7 +81,7 @@ button:hover {
 .custom-mat-form-field {
   display: flex;
   flex-direction: row;
-  width: 500px;
+  width: 700px;
   caret-color: transparent;
   height: 70px;
   padding-top: 0;
@@ -92,8 +91,12 @@ button:hover {
   gap: 50px;
 }
 
+
+
 .phone-number {
   margin-top: 15px;
+  font-weight: 500;
+  max-width: 500px;
 }
 .mat-form-field-infix {
   padding-top: 0;
@@ -135,5 +138,12 @@ h1 {
 .buton-login {
   display: flex;
   align-content: center;
+  justify-content: center;
+}
+
+.button-login {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: center;
 }

@@ -23,13 +23,12 @@ public class Preferences {
     private String age;
     private String size;
     private String gender;
-    private String coatLength;
 
     //compatibilitate cu stilul de viata
     private String activityLevel; //or playfullness
     private Boolean friendlinessToChildren;
     private Boolean friendlinessToOtherAnimals;
-    private Boolean affectionForOwners;
+    private String affectionForOwners;
     private String groomingRequirements;
 
 

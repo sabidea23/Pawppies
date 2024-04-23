@@ -382,8 +382,7 @@ export class AnimalListComponent implements OnInit {
       coatLength = 'Hairless'
     else if (animal.coatLength == 'Short')
       coatLength = 'Short'
-    else if (animal.coatLength == 'Medium')
-      coatLength = 'Medium'
+
     else if (animal.coatLength == 'Long')
       coatLength = 'Long'
     return !(this.filters.coatLength && this.filters.coatLength.length > 0 && !this.filters.coatLength.includes(coatLength));
@@ -396,10 +395,8 @@ export class AnimalListComponent implements OnInit {
       size = 'Small'
     else if (animal.size.startsWith('Medium'))
       size = 'Medium'
-    else if (animal.size.startsWith('Large'))
-      size = 'Large'
     else
-      size = 'Extra Large'
+      size = 'Large'
 
     return !(this.filters.size && this.filters.size.length > 0 && !this.filters.size.includes(size));
   }

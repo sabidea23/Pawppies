@@ -173,12 +173,8 @@ export class AddAnimalComponent implements OnInit {
   }
 
   getSizeOptions(animalType: string): string[] {
-    if (animalType === 'Dog') {
-      return ['Small (0-25 ibs)', 'Medium (26-60 ibs)', 'Large (61-100) ibs', 'Extra Large (101 ibs or more)']; // Sunt doar exemple, pune valorile dorite
-    } else if (animalType === 'Cat') {
-      return ['Small (0-6 ibs)', 'Medium (7-11 ibs)', 'Large (12-17) ibs', 'Extra Large (18 ibs or more)'];
-    }
-    return ['Small=', 'Medium', 'Large', 'Extra Large'];
+
+    return ['Small', 'Medium', 'Large', ];
   }
 
   // @ts-ignore

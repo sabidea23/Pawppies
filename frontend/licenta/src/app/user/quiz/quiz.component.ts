@@ -3,63 +3,47 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {LoginService} from "../../services/login.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {UserService} from "../../services/user.service";
+import Swal from "sweetalert2";
 
 @Component({
-  selector: 'app-quiz',
-  templateUrl: './quiz.component.html',
-  styleUrls: ['./quiz.component.css']
+  selector: 'app-quiz', templateUrl: './quiz.component.html', styleUrls: ['./quiz.component.css']
 })
 export class QuizComponent {
   preferencesData = new FormGroup({
-    //type
     type: new FormControl('', [Validators.required]),
-
-    //general info
     age: new FormControl('', [Validators.required]),
     gender: new FormControl('', [Validators.required]),
     size: new FormControl('', [Validators.required]),
     coatLength: new FormControl('', [Validators.required]),
-
-    //lifestyle
     activityLevel: new FormControl(''),
-
-    friendlinessToChildrenYes: new FormControl(''),
-    friendlinessToChildrenNo: new FormControl(''),
-
-    friendlinessToOtherAnimalsNo: new FormControl('', [Validators.required]),
-    friendlinessToOtherAnimalsYes: new FormControl('', [Validators.required]),
-    affectionForOwnersYes: new FormControl('', [Validators.required]),
-    affectionForOwnersNo: new FormControl('', [Validators.required]),
+    friendlinessToChildrenYes: new FormControl(false),
+    friendlinessToChildrenNo: new FormControl(false),
+    friendlinessToOtherAnimalsNo: new FormControl(false),
+    friendlinessToOtherAnimalsYes: new FormControl(false),
+    affectionForOwners: new FormControl('', [Validators.required]),
     groomingRequirements: new FormControl('', [Validators.required]),
-
-    //health
-    hasSpecialNeedsNo: new FormControl('', [Validators.required]),
-    hasSpecialNeedsYes: new FormControl('', [Validators.required]),
-    isFullyVaccinatedYes: new FormControl('', [Validators.required]),
-    isFullyVaccinatedNo: new FormControl('', [Validators.required]),
-
-    //dog
+    hasSpecialNeedsNo: new FormControl(false),
+    hasSpecialNeedsYes: new FormControl(false),
+    isFullyVaccinatedYes: new FormControl(false),
+    isFullyVaccinatedNo: new FormControl(false),
     exerciseRequirements: new FormControl('', [Validators.required]),
-
-    isTrainedYes: new FormControl('', [Validators.required]),
-    isTrainedNo: new FormControl('', [Validators.required]),
-    watchfulnessNo: new FormControl('', [Validators.required]),
-    watchfulnessYes: new FormControl('', [Validators.required]),
-
-    //cat
+    isTrainedYes: new FormControl(false),
+    isTrainedNo: new FormControl(false),
+    watchfulnessNo: new FormControl(false),
+    watchfulnessYes: new FormControl(false),
     needForAttention: new FormControl('', [Validators.required]),
-
-    intelligenceYes: new FormControl('', [Validators.required]),
-    intelligenceNo: new FormControl('', [Validators.required]),
-
-    independenceYes: new FormControl('', [Validators.required]),
-    independenceNo: new FormControl('', [Validators.required]),
+    intelligenceYes: new FormControl(false),
+    intelligenceNo: new FormControl(false),
+    independenceYes: new FormControl(false),
+    independenceNo: new FormControl(false),
   });
 
   user = this.login.getUser();
 
-  constructor( private route: ActivatedRoute,  private snack: MatSnackBar, private login: LoginService, private router: Router) {
+  constructor(private userService: UserService, private route: ActivatedRoute, private snack: MatSnackBar, private login: LoginService, private router: Router) {
   }
+
   getAgeOptions(animalType: any): string[] {
     if (animalType === 'Dog') {
       return ['Puppy', 'Adult', 'Senior']; // Sunt doar exemple, pune valorile dorite
@@ -67,11 +51,60 @@ export class QuizComponent {
       return ['Kitten', 'Adult', 'Senior']; // Sunt doar exemple, pune valorile dorite
     } else return ['Young', 'Adult', 'Senior'];
   }
+
   ngOnInit(): void {
 
   }
 
   formSubmit() {
+    const preferences = {
+      type: this.preferencesData.get('type')?.value,
+      age: this.preferencesData.get('age')?.value,
+      gender: this.preferencesData.get('gender')?.value,
+      size: this.preferencesData.get('size')?.value,
+      activityLevel: this.preferencesData.get('activityLevel')?.value,
+      groomingRequirements: this.preferencesData.get('groomingRequirements')?.value,
+      friendlinessToChildren: this.preferencesData.get('friendlinessToChildrenYes')?.value,
+      friendlinessToOtherAnimals: this.preferencesData.get('friendlinessToOtherAnimalsYes')?.value,
+      affectionForOwners: this.preferencesData.get('affectionForOwners')?.value,
+      hasSpecialNeeds: this.preferencesData.get('hasSpecialNeedsYes')?.value,
+      isFullyVaccinated: this.preferencesData.get('isFullyVaccinatedYes')?.value,
+      exerciseRequirements: this.preferencesData.get('exerciseRequirements')?.value,
+      isTrained: this.preferencesData.get('isTrainedYes')?.value,
+      watchfulness: this.preferencesData.get('watchfulnessYes')?.value,
+      needForAttention: this.preferencesData.get('needForAttention')?.value,
+      intelligence: this.preferencesData.get('intelligenceYes')?.value,
+      independence: this.preferencesData.get('independenceYes')?.value,
+    };
+
+    const updatedUser = {
+      ...this.user, preferences: preferences
+    };
+
+    const backedUpAuthorities = this.user.authorities;
+    this.user.authorities = undefined;
+
+    this.userService.updateUser(updatedUser).subscribe({
+      next: () => {
+        this.user.authorities = backedUpAuthorities;
+        this.login.setUser(this.user);
+        Swal.fire({
+          title: 'Success!',
+          text: 'Preferences submitted successfully',
+          icon: 'success',
+          background: 'rgb(230, 230, 230)',
+        }).then((_) => {
+          const user_role = this.login.getUserRole();
+          this.router
+            .navigate(['/profile'])
+            .then((_) => {
+            });
+        });
+      }, error: (err) => {
+        this.snack.open('Failed to update preferences. Please try again.', 'OK', {duration: 3000});
+        console.error('Update error:', err);
+      }
+    });
   }
 
 }
