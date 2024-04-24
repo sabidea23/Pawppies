@@ -585,7 +585,10 @@ export class AnimalListComponent implements OnInit {
         }
       });
     }
+    else {
+      this.router.navigate(['/animal-details', {animalId: animal.id}]);
 
+    }
   }
 
   uniqueAnimalIds: Set<number> = new Set();

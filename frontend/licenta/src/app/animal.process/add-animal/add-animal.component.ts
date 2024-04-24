@@ -132,7 +132,7 @@ export class AddAnimalComponent implements OnInit {
     this.dogBreedService.getAllBreeds().subscribe({
       next: (data) => {
         // @ts-ignore
-        this.breed = data.find(b => b.name === this.petProfile.inputBreed);
+        this.breed = data.find(b => b.name === this.petProfile.inputBreed.trim());
         this.animal.breedDetails = this.breed;
 
         const animalFormData = this.prepareFormData(this.animal);

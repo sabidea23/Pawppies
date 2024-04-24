@@ -186,9 +186,9 @@
 
   <div class="content-container">
     <div class="header-container">
-      <h1 *ngIf="!animalCenter && !userId">Animals available for adoption: {{animals.length}} animals </h1>
+      <h1 *ngIf="!animalCenter && !userId">Animals available for adoption: {{animalFiltered.length}} animals </h1>
       <h1 *ngIf="userId"> My Favorites: {{animals.length}} animals </h1>
-      <h1 *ngIf="animalCenter">Animals from {{ animalCenter.name }}: {{paginatedDogBreeds.length}} animals</h1>
+      <h1 *ngIf="animalCenter">Animals from {{ animalCenter.name }}: {{animalFiltered.length}} animals</h1>
 
       <button (click)="goToAddAnimal()"
               *ngIf=" animalCenterId && getUserRole() === 'SUPPLIER' && animalCenter.admin.id == user.id"

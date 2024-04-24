@@ -4,9 +4,11 @@ import licenta.dto.UserRequestDTO;
 import licenta.entity.Role;
 import licenta.entity.User;
 import licenta.entity.UserRole;
+import licenta.exeptions.ForbiddenActionForRole;
 import licenta.exeptions.UserNotFoundException;
 import licenta.service.UserService;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
@@ -39,8 +41,14 @@ public class UserController {
 
     @GetMapping("/")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public List<User> getAllUsers() {
-        return this.userService.getUsers();
+    public List<User> getAllUsers(Authentication authentication) {
+        if (authentication != null && authentication.getAuthorities().stream()
+                .anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+            return this.userService.getUsers();
+
+        } else {
+            throw new ForbiddenActionForRole("You do not have the right permissions to do this action");
+        }
     }
 
     @PutMapping("/{username}/role/{roleName}")
@@ -68,8 +76,13 @@ public class UserController {
 
     @DeleteMapping("/{userId}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void deleteUserById(@PathVariable("userId") Long userid) {
-        this.userService.deleteUser(userid);
+    public void deleteUserById(@PathVariable("userId") Long userid, Authentication authentication) {
+        if (authentication != null && authentication.getAuthorities().stream()
+                .anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+            this.userService.deleteUser(userid);
+        } else {
+            throw new ForbiddenActionForRole("You do not have the right permissions to do this action");
+        }
     }
 
     @PostMapping("/{userId}/viewed/{animalId}")

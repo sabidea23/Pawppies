@@ -139,7 +139,6 @@ export class FeedCatComponent {
         this.animals = this.animals.filter(animal => animal.isAdopted == false)
         console.log(this.animals)
         // @ts-ignore
-        this.animals = this.animals.filter(animal => animal.breedDetails.animalType == 'CAT')
         this.displayRandomAnimals();
         this.getimagesShowAnimals();
       }, error: (_) => {

@@ -94,6 +94,7 @@ h2 {
 }
 
 .request-card {
+  height: 700px;
   border: 2px solid #EFEEF1;
   border-radius: 10px;
   margin: 10px;
@@ -124,6 +125,7 @@ img {
   align-content: flex-end;
   justify-content: flex-end;
   padding: 20px;
+  margin-top: 120px;
 }
 
 .cancel-button {
