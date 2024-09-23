@@ -1,0 +1,206 @@
+<div id="mz-gallery-container">
+  <div id="mz-gallery">
+    <div class="images">
+
+      <div *ngIf="animal?.animalImages.length" class="image-container">
+        <button (click)="moveToPreviousImage()" mat-icon-button>
+          <mat-icon class="images-icon">navigate_before</mat-icon>
+        </button>
+        <div id="mz-gallery-container">
+          <div id="mz-gallery">
+            <!-- Verifică dacă există imagini în array și afișează imaginea anterioară -->
+            <img *ngIf="imageExists()" [src]="animal.animalImages[getPreviousImageIndex()].url"
+                 alt="Previous Animal Image"
+                 class="lateral-picture">
+
+            <!-- Afișează imaginea curentă -->
+            <img [src]="animal.animalImages[currentImageIndex].url" alt="Current Animal Image" class="central-picture">
+
+            <!-- Verifică dacă există imagini în array și afișează imaginea următoare -->
+            <img *ngIf="imageExists()" [src]="animal.animalImages[getNextImageIndex()].url" alt="Next Animal Image"
+                 class="lateral-picture">
+          </div>
+        </div>
+
+        <button (click)="moveToNextImage()" mat-icon-button>
+          <mat-icon class="images-icon">navigate_next</mat-icon>
+        </button>
+      </div>
+
+      <div class="actions">
+        <button (click)="slideShowInterval ? stopSlideShow() : startSlideShow()" mat-icon-button>
+          <mat-icon class="images-icon">{{ slideShowInterval ? 'pause' : 'play_arrow' }}</mat-icon>
+        </button>
+        <button (click)="toggleFullScreen()" mat-icon-button>
+          <mat-icon class="images-icon">fullscreen</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<body>
+
+<div class="container">
+  <div class="main-container">
+
+    <div class="content-container">
+      <h1> {{animal.name}} </h1>
+      <ul>
+        <li>
+          <button (click)="navigateToBreedPage()" mat-button><h2 style="color:#6504B5; margin-top: 5px">
+            <u>{{animal.breedDetails.name}} </u></h2></button>
+        </li>
+        <hr>
+        <li><h2>  {{animal.gender}}, {{animal.age}}, {{animal.size}}</h2></li>
+        <hr>
+        <li><h2> {{animal.color}}</h2></li>
+      </ul>
+
+      <hr>
+      <h3>About {{animal.name}} </h3>
+      <ul>
+        <li>
+          <p class="title-description">DESCRIPTION</p>
+          <h2>{{animal.description}}</h2>
+        </li>
+
+        <li>
+          <p class="title-description">HEALTH</p>
+          <h2>{{animal.health}}</h2>
+          <h2> {{animal.name}} is fully vaccinated: {{animal.isFullyVaccinated ? 'Yes' : 'No'}}</h2>
+          <h2 *ngIf="animal.isFullyVaccinated">{{animal.vaccinationDetails}}</h2>
+          <h2> {{animal.name}} has special needs: {{animal.hasSpecialNeeds ? 'Yes' : 'No'}}</h2>
+          <h2 *ngIf="animal.hasSpecialNeeds">{{animal.specialNeedsDetails}}</h2>
+        </li>
+
+        <li>
+          <p class="title-description">TRAINING</p>
+          <h2>The animals is trained: {{animal.isTrained ? 'Yes' : 'No'}}</h2>
+          <h2 *ngIf="animal.isTrained">{{animal.trainedDetails}}</h2>
+        </li>
+
+        <li>
+          <p class="title-description">GOOD IN A HOME WITH</p>
+          <h2>{{animal.goodInHome}}</h2>
+        </li>
+
+        <li>
+          <p class="title-description">SHEDS</p>
+          <h2>{{animal.sheds ? 'Yes' : 'No'}}</h2>
+        </li>
+
+        <li>
+          <p class="title-description">MAINTENANCE COSTS</p>
+          <h2>{{animal.maintenanceCosts}}</h2>
+        </li>
+
+        <li>
+          <p class="title-description">PREFERRED FOOD</p>
+          <h2>{{animal.preferredFoodDescription}}</h2>
+        </li>
+
+        <li>
+          <p class="title-description">PREVIOUS OWNERS</p>
+          <h2>{{animal.hasPreviousOwners ? 'Yes' : 'No'}}</h2>
+        </li>
+
+        <li>
+          <p class="title-description">BREED DETAILS</p>
+          <h2> {{animal.breedDetails.description}}</h2>
+          <h2> For more information about this breed,
+            <a (click)="navigateToBreedPage()" mat-button><h2 style="color:#6504B5; margin-top: 5px">
+              <u>click here </u></h2></a>
+          </h2>
+        </li>
+      </ul>
+      <hr>
+      <p class="title-description">
+        <mat-icon class="clopotel">notifications</mat-icon>
+        <i> Pawppies recommends that you should always read all the information about a pet before starting an adoption
+          process.
+        </i></p>
+    </div>
+
+    <div class="side-container">
+      <div class="adopt-animal" *ngIf="requestsByUser; else noRequest">
+        <p class="text-adopt">You have already submitted a request for {{animal.name}}</p>
+        <button (click)="goToProfileRequests()" class="start-quiz-btn" mat-button>SEE STATUS FOR ALL REQUESTS</button>
+        <button (click)="navigateToFaqs()" class="read-faqs" mat-button>READ FAQs ABOUT ADOPTION</button>
+      </div>
+
+      <ng-template class="adopt-animal" #noRequest>
+        <div class="adopt-animal">
+          <p class="text-adopt">Considering {{animal.name}} for adoption?</p>
+          <button (click)="startAdoptionProcess()" class="start-quiz-btn" mat-button>START ADOPTION PROCESS</button>
+          <button (click)="navigateToFaqs()" class="read-faqs" mat-button>READ FAQs ABOUT ADOPTION</button>
+        </div>
+      </ng-template>
+
+      <div class="anima-center-details">
+        <img class="image-grid" src="../../../assets/logo-shelter.png">
+        <div class="animal-center">
+          <h1 class="title-center"> {{animal.animalCenter.name}}</h1>
+          <iframe
+            [src]="getSafeUrl()"
+            class="map"
+            height="350"
+            style="border:0"
+            width="500">
+          </iframe>
+
+          <div class="contact-container">
+            <mat-icon class="clopotel">place</mat-icon>
+            <h2 *ngIf="animal.animalCenter.city && animal.animalCenter.country"> {{animal.animalCenter.city}},
+              {{animal.animalCenter.country}} </h2>
+          </div>
+          <div class="contact-container">
+            <mat-icon class="clopotel">contact_mail</mat-icon>
+            <h2 *ngIf="animal.animalCenter.contact"> {{animal.animalCenter.contact}}</h2>
+          </div>
+          <div class="contact-container">
+            <mat-icon class="clopotel">phone</mat-icon>
+            <h2 *ngIf="animal.animalCenter.phone"> {{animal.animalCenter.phone}}</h2>
+          </div>
+          <button (click)="redirectToAnimalCenter()" class="more-about-center" mat-button>MORE ABOUT US</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tips-and-food">
+    <div class="tips">
+      <img *ngIf="animal.type == 'Dog'" class="adopting-image" src="../../../assets/adopting-a-dog.png">
+      <img *ngIf="animal.type == 'Cat'" class="adopting-image" src="../../../assets/adopting-a-cat.png">
+
+      <h3 class="tips-title">Tips for the first 30 days of {{animal.type}} adoption</h3>
+      <p> Help your {{animal.type}} make the transition to a new home</p>
+      <hr>
+      <button (click)="redirectToAdoptDogs()" *ngIf="animal.type == 'Dog'" class="tips-button" mat-button>
+        <h3 class="learn-more">Read More</h3></button>
+      <button (click)="redirecttoAdoptCats()" *ngIf="animal.type == 'Cat'" class="tips-button" mat-button>
+        <h3 class="learn-more">Read More</h3></button>
+    </div>
+    <div class="tips">
+      <img class="adopting-image" src="../../../assets/purina-find-food.png">
+
+      <h3 class="tips-title">Purina Pet food finder</h3>
+      <p> This handy tool finds the best food for your pet from Purina.</p>
+      <hr>
+      <button (click)="redirectToPurina()" class="tips-button" mat-button>
+        <h3 class="learn-more">Read More</h3></button>
+    </div>
+    <div class="tips">
+      <img class="adopting-image" src="../../../assets/royal.png">
+
+      <h3 class="tips-title">Royal Canin food finder</h3>
+      <p> Find the perfect diet for your pet in just a few clicks</p>
+      <hr>
+      <button (click)="redirectToRoyal()" class="tips-button" mat-button>
+        <h3 class="learn-more">Read More</h3></button>
+    </div>
+  </div>
+
+
+</div>
+</body>
+

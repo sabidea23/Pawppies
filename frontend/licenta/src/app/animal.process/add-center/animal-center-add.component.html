@@ -1,0 +1,242 @@
+<body>
+<mat-card *ngIf="user">
+  <mat-card-content style="font-family: 'Montserrat', sans-serif;">
+    <h2>Add a new Animal Shelter</h2>
+    <h4>Complete the details below to introduce a new shelter</h4>
+    <form (ngSubmit)="formSubmit()" [formGroup]="addCenterForm" class="form-directions">
+      <div class="login-form">
+        <div class="left-description">
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon matPrefix>store</mat-icon>
+              Center Name
+            </mat-label>
+            <input formControlName="name" matInput placeholder="Center Name"/>
+            <mat-error *ngIf="addCenterForm.get('name')?.hasError('required')">Center name is required.</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon matPrefix>location_city</mat-icon>
+              Center City
+            </mat-label>
+            <input formControlName="city" matInput placeholder="Center City, State/Prov"/>
+            <mat-error *ngIf="addCenterForm.get('city')?.hasError('required')">City is required.</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon matPrefix>public</mat-icon>
+              Country
+            </mat-label>
+            <mat-select formControlName="country" placeholder="Select Country">
+              <mat-option *ngFor="let country of countries" [value]="country.name">
+                {{ country.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="addCenterForm.get('country')?.hasError('required')">Country is required.</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon matPrefix>explore</mat-icon>
+              Longitude
+            </mat-label>
+            <input formControlName="longitude" matInput placeholder="Longitude"/>
+            <mat-error *ngIf="addCenterForm.get('longitude')?.hasError('required')">Longitude is required.</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon matPrefix>explore</mat-icon>
+              Latitude
+            </mat-label>
+            <input formControlName="latitude" matInput placeholder="Latitude"/>
+            <mat-error *ngIf="addCenterForm.get('latitude')?.hasError('required')">Latitude is required.</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon matPrefix>perm_contact_calendar</mat-icon>
+              Email
+            </mat-label>
+            <input formControlName="contact" matInput placeholder="Email"/>
+            <mat-error *ngIf="addCenterForm.get('contact')?.hasError('required')">Email is required.</mat-error>
+            <mat-error *ngIf="addCenterForm.get('contact')?.hasError('email')">Enter a valid email.</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon matPrefix>phone</mat-icon>
+              Phone
+            </mat-label>
+            <input formControlName="phone" matInput placeholder="Phone"/>
+            <mat-error *ngIf="addCenterForm.get('phone')?.hasError('required')">Phone is required.</mat-error>
+            <mat-error *ngIf="addCenterForm.get('phone')?.hasError('pattern')">Enter a valid phone number.</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="textarea-input">
+            <mat-label>
+              <mat-icon matPrefix>assignment</mat-icon>
+              Mission
+            </mat-label>
+            <textarea formControlName="mission" matInput placeholder="Center's Mission"></textarea>
+            <mat-error *ngIf="addCenterForm.get('mission')?.hasError('required')">Mission is required.</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="right-description">
+          <!-- Repeat the structure for each day of the week with opening and closing time -->
+          <div class="day-schedule">
+            <h3>
+              <mat-icon matPrefix>alarm</mat-icon>
+              Monday
+            </h3>
+            <mat-form-field appearance="fill">
+              <mat-label>Opening Time</mat-label>
+              <input formControlName="mondayOpen" matInput placeholder="HH:MM" type="time"/>
+              <mat-error *ngIf="addCenterForm.get('mondayOpen')?.hasError('required')">Opening time is required.
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Closing Time</mat-label>
+              <input formControlName="mondayClose" matInput placeholder="HH:MM" type="time"/>
+              <mat-error *ngIf="addCenterForm.get('mondayClose')?.hasError('required')">Closing time is required.
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <!-- Repeat blocks similar to Monday for other days of the week -->
+          <div class="day-schedule">
+            <h3>
+              <mat-icon matPrefix>alarm</mat-icon>
+              Tuesday
+            </h3>
+            <mat-form-field appearance="fill">
+              <mat-label>Opening Time</mat-label>
+              <input formControlName="tuesdayOpen" matInput placeholder="HH:MM" type="time"/>
+              <mat-error *ngIf="addCenterForm.get('tuesdayOpen')?.hasError('required')">Opening time is required.
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Closing Time</mat-label>
+              <input formControlName="tuesdayClose" matInput placeholder="HH:MM" type="time"/>
+              <mat-error *ngIf="addCenterForm.get('tuesdayClose')?.hasError('required')">Closing time is required.
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="day-schedule">
+            <h3>
+              <mat-icon matPrefix>alarm</mat-icon>
+              Wednesday
+            </h3>
+            <mat-form-field appearance="fill">
+              <mat-label>Opening Time</mat-label>
+              <input formControlName="wednesdayOpen" matInput placeholder="HH:MM" type="time"/>
+              <mat-error *ngIf="addCenterForm.get('wednesdayOpen')?.hasError('required')">Opening time is required.
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Closing Time</mat-label>
+              <input formControlName="wednesdayClose" matInput placeholder="HH:MM" type="time"/>
+              <mat-error *ngIf="addCenterForm.get('wednesdayClose')?.hasError('required')">Closing time is required.
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="day-schedule">
+            <h3>
+              <mat-icon matPrefix>alarm</mat-icon>
+              Thursday
+            </h3>
+            <mat-form-field appearance="fill">
+              <mat-label>Opening Time</mat-label>
+              <input formControlName="thursdayOpen" matInput placeholder="HH:MM" type="time"/>
+              <mat-error *ngIf="addCenterForm.get('thursdayOpen')?.hasError('required')">Opening time is required.
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Closing Time</mat-label>
+              <input formControlName="thursdayClose" matInput placeholder="HH:MM" type="time"/>
+              <mat-error *ngIf="addCenterForm.get('thursdayClose')?.hasError('required')">Closing time is required.
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="day-schedule">
+            <h3>
+              <mat-icon matPrefix>alarm</mat-icon>
+              Friday
+            </h3>
+            <mat-form-field appearance="fill">
+              <mat-label>Opening Time</mat-label>
+              <input formControlName="fridayOpen" matInput placeholder="HH:MM" type="time"/>
+              <mat-error *ngIf="addCenterForm.get('fridayOpen')?.hasError('required')">Opening time is required.
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Closing Time</mat-label>
+              <input formControlName="fridayClose" matInput placeholder="HH:MM" type="time"/>
+              <mat-error *ngIf="addCenterForm.get('fridayClose')?.hasError('required')">Closing time is required.
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="day-schedule">
+            <h3>
+              <mat-icon matPrefix>alarm</mat-icon>
+              Saturday
+            </h3>
+            <mat-form-field appearance="fill">
+              <mat-label>Opening Time</mat-label>
+              <input formControlName="saturdayOpen" matInput placeholder="HH:MM" type="time"/>
+              <mat-error *ngIf="addCenterForm.get('saturdayOpen')?.hasError('required')">Opening time is required.
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Closing Time</mat-label>
+              <input formControlName="saturdayClose" matInput placeholder="HH:MM" type="time"/>
+              <mat-error *ngIf="addCenterForm.get('saturdayClose')?.hasError('required')">Closing time is required.
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="day-schedule">
+            <h3>
+              <mat-icon matPrefix>alarm</mat-icon>
+              Sunday
+            </h3>
+            <mat-form-field appearance="fill">
+              <mat-label>Opening Time</mat-label>
+              <input formControlName="sundayOpen" matInput placeholder="HH:MM" type="time"/>
+              <mat-error *ngIf="addCenterForm.get('sundayOpen')?.hasError('required')">Opening time is required.
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Closing Time</mat-label>
+              <input formControlName="sundayClose" matInput placeholder="HH:MM" type="time"/>
+              <mat-error *ngIf="addCenterForm.get('sundayClose')?.hasError('required')">Closing time is required.
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class="button-container">
+        <button [disabled]="!addCenterForm.valid" class="login-button" mat-raised-button type="submit">ADD</button>
+        <button (click)="clearForm()" class="cancel-button" mat-button type="button">CLEAR</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+</body>
+

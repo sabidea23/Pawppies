@@ -1,0 +1,41 @@
+<body>
+
+<div class="main-container">
+  <h1>All Users</h1>
+
+  <div class="search-container">
+    <span class="search-icon"><i class="material-icons">search</i></span>
+    <input (ngModelChange)="searchUser(searchItem)" [(ngModel)]="searchItem" class="search-input"
+           placeholder="Search User" type="search">
+  </div>
+
+  <div *ngFor="let user of filteredUsers; let i = index" [hidden]="user.id === admin.id" class="user-row">
+    <div *ngIf="(i % 2 === 0)" class="user-container">
+      <div class="user-details">
+        <button (click)="deleteUser(user.id)" class="delete-button">×</button>
+        <p><strong>Name:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Phone:</strong> {{ user.phone }}</p>
+        <mat-chip-listbox>
+          <mat-chip-option (click)="changeRole(user, role)" *ngFor="let role of roles"
+                           [selected]="role === getUserRole(user) ? true : null">{{ role }}
+          </mat-chip-option>
+        </mat-chip-listbox>
+      </div>
+
+
+      <div *ngIf="filteredUsers[i + 1]" class="user-details">
+        <button (click)="deleteUser(user.id)" class="delete-button">×</button>
+        <p><strong>Name:</strong> {{ filteredUsers[i + 1].username }}</p>
+        <p><strong>Email:</strong> {{ filteredUsers[i + 1].email }}</p>
+        <p><strong>Phone:</strong> {{ filteredUsers[i + 1].phone }}</p>
+        <mat-chip-listbox>
+          <mat-chip-option (click)="changeRole(filteredUsers[i + 1], role)" *ngFor="let role of roles"
+                           [selected]="role === getUserRole(filteredUsers[i + 1]) ? true : null">{{ role }}
+          </mat-chip-option>
+        </mat-chip-listbox>
+      </div>
+    </div>
+  </div>
+</div>
+</body>

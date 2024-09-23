@@ -1,0 +1,412 @@
+
+body {
+  background-color: #EFEEF1;
+  padding-bottom: 20px;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 40px;
+  margin: auto;
+  padding: 20px;
+  caret-color: transparent;
+  justify-content: center;
+}
+
+
+.content-container {
+  font-family: 'Montserrat', sans-serif;
+  flex: 0 0 78%;
+  max-width: 1000px;
+  padding: 20px;
+  background-color: white;
+}
+
+.side-container {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.search-form {
+  padding: 16px 24px;
+  caret-color: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-input-element {
+  caret-color: transparent;
+  height: 40px;
+  margin: 0;
+}
+
+mat-form-field {
+  caret-color: transparent;
+  width: 100%;
+}
+
+h2 {
+  caret-color: transparent;
+  display: block;
+}
+
+button {
+  caret-color: transparent;
+  margin-top: 20px;
+}
+
+.container {
+  caret-color: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+.social-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+mat-icon {
+  margin-top: -30px;
+  margin-right: 8px;
+}
+
+p {
+  caret-color: transparent;
+  color: #3e403f;
+  font-size: 15px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Stiluri globale pentru toate mat-form-field-urile */
+mat-form-field {
+  border-radius: 4px; /* Adaugă borduri rotunjite pentru estetică */
+  width: 100%; /* Asigură-te că form-field-urile ocupă întreaga lățime */
+  padding: 0; /* Îndepărtează orice padding implicit */
+}
+
+/* Stilizează liniile subliniate ale câmpurilor de formular */
+.mat-form-field-underline {
+  height: 1px; /* Subțirează linia de subliniere */
+  background-color: transparent; /* Ascunde linia de subliniere când câmpul nu este activ */
+}
+
+/* Stilizează eticheta (label) */
+.mat-form-field-label {
+  color: #666; /* Schimbă culoarea etichetei */
+}
+
+/* Stilizează câmpurile de intrare */
+.mat-input-element {
+  padding: 8px; /* Ajustează paddingul pentru a controla înălțimea câmpurilor */
+}
+
+/* Reduce dimensiunea câmpurilor de formular pentru a le face mai subțiri */
+.custom-mat-form-field {
+  height: 80px; /* Ajustează înălțimea după cum dorești */
+}
+
+/* Stiluri pentru când câmpul de formular nu este activ */
+.mat-form-field-appearance-fill .mat-form-field-underline {
+  background-color: white; /* O linie mai subțire când câmpul nu este activ */
+}
+
+
+.mat-input-element {
+  caret-color: transparent;
+  height: 40px;
+  margin: 0;
+}
+
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filter-chip {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: flex-start;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  background-color: #f2f2f2;
+  font-size: 14px;
+  padding: 5px 10px;
+}
+
+.filter-text {
+  margin-top: 10px
+}
+
+.close-btn {
+  display: flex;
+  border: 0px;
+  max-width: 50px;
+  padding-top: 17px;
+  max-height: 20px;
+}
+
+.line-with-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: -10px;
+}
+
+.text {
+  white-space: nowrap;
+  color: #666666;
+  font-size: 14px;
+}
+
+.animal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+  padding: 1rem;
+}
+
+.animal-card {
+  width: 300px;
+  height: 400px;
+  position: relative;
+  border: 3px solid #ddd;
+  border-radius: 8px; /* Rotunjirea colțurilor */
+  overflow: hidden;
+  transition: border-color 0.3s ease; /* Adaugă tranziție pentru efectul de hover */
+}
+
+.like-button {
+  position: absolute;
+  right: 3px;
+  border: none;
+  background-color: transparent; /* Fundalul butonului este transparent */
+  cursor: pointer;
+  border-radius: 50%; /* Face butonul rotund */
+  width: 36px; /* Lățimea butonului */
+  height: 36px; /* Înălțimea butonului */
+  margin: 10px;
+  transition: transform 0.2s; /* Adaugă o tranziție pentru transform */
+}
+
+/* Animație la hover */
+.like-button:hover {
+  transform: scale(1.1); /* Mărește butonul ușor când mouse-ul este deasupra */
+}
+
+mat-icon {
+  margin-top: 5px;
+  color: #6504B5; /* Culoarea pentru când este apreciat */
+}
+
+/* Animație la click */
+.like-button:active {
+  transform: scale(0.9); /* Micșorează butonul când este apăsat */
+}
+
+button,
+button:active,
+button:focus {
+  outline: none;
+}
+
+
+
+input[type="button"] {
+  border: none;
+  outline:none;
+}
+
+.liked {
+  color: #6504B5; /* Culoarea pentru când este apreciat */
+}
+
+
+.animal-card:hover {
+  border-color: #6504B5; /* Schimbă culoarea la hover */
+}
+
+.animal-image{
+  width: 100%;
+  height: 65%;
+}
+
+.animal-details {
+  padding: 0.5rem;
+}
+
+.animal-name {
+  margin: 0;
+  font-size: 1.3rem;
+  font-family: 'Montserrat', sans-serif;
+  color: #6504B5;
+  font-weight: bold;
+}
+
+.animal-available {
+  margin-top: -8px;
+  font-size: 13px;
+  font-family: 'Montserrat', sans-serif;
+  color: #6504B5;
+  font-weight: bold;
+}
+
+.number-dogs {
+  font-family: 'Montserrat', sans-serif;
+  color: #4a4553;
+  margin-left: 25px;
+}
+
+.search-dog {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.centered-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #EFEEF1;
+  padding: 20px;
+  border-radius: 5px;
+  border: 1px solid black;
+  width: 600px;
+  opacity: 90%;
+}
+
+
+
+input[type="text"] {
+  margin-top: 10px;
+  padding: 5px;
+}
+
+.search-text {
+  color: #4a4553;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.special-dogs {
+  padding-top: 20px;
+  text-align: center;
+  background-color: #EFEEF1; /* Culoarea specificată */
+}
+
+.dog-boxes {
+  display: flex;
+  justify-content: center; /* Acesta va distribui casetele uniform pe lățimea containerului */
+  gap: 20px;
+  padding-bottom: 20px;
+}
+
+.dog-box {
+  border: 1px solid #94939b;
+  flex-basis: 13%; /* Acesta va controla lățimea box-ului, dar va permite să fie flexibil */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrează elementele pe orizontală */
+  background-color: white; /* Adaugă o culoare de fundal pentru box-uri */
+}
+
+.dog-box img {
+  height: 155px;
+  width: 100%; /* Ajustează imaginea să fie 70% din lățimea box-ului */
+}
+
+.dog-box p {
+  font-weight: bold;
+  color: #4a4553;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 10px;
+  text-align: center; /* Alinează textul în centru */
+  padding: 0 5px; /* Adaugă padding pentru a nu avea textul lipit de margini */
+}
+
+.dog-box:hover{
+  color: white;
+  background-color: #6504B5;
+  font-family: 'Montserrat', sans-serif;
+  display: block;
+}
+
+.dog-box:hover p{
+  font-weight: bold;
+  color: white;
+}
+
+
+.button-filter {
+  border: 1px solid #6504B5;
+  background-color: white;
+  margin-top: 0px;
+  text-align: left;
+  border-radius: 4px; /* Adaugă borduri rotunjite pentru estetică */
+  padding: -2px;
+}
+
+h3 {
+  margin-bottom: 5px;
+  margin-top: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+}
+
+
+.button-filter {
+  width: 100%;
+  background-color: white;
+  color: black;
+  /* Adăugați orice alte stiluri necesare pentru buton */
+}
+
+.button-filter.pressed {
+  background-color: #6504B5;
+  color: white;
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination-button {
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  width: 150px;
+  border-radius: 20px; /* Oferă butoanelor formă rotundă */
+  background-color: #6504B5;
+  font-weight: bold;
+}
+
+.pagination-button:hover {
+  background-color: #410078; /* Schimbă culoarea la hover */
+}
+
+.pagination-button.prev {
+  margin-right: 20px;
+}
+
+.pagination-button.next {
+  margin-left: 20px;
+}

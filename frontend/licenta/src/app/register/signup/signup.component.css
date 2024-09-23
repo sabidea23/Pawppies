@@ -1,0 +1,121 @@
+mat-card {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  caret-color: transparent;
+}
+
+mat-form-field {
+  caret-color: transparent;
+  width: 100%;
+}
+
+body {
+  background-color: #EFEEF1;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  caret-color: transparent;
+  background-image: url("../../../assets/register.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+h2 {
+  caret-color: transparent;
+  display: block;
+  text-align: center;
+}
+
+button {
+  caret-color: transparent;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.container {
+  caret-color: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+.social-buttons {
+  caret-color: transparent;
+  display: flex;
+  justify-content: space-around;
+}
+
+mat-icon {
+  margin-right: 8px;
+}
+
+p {
+  caret-color: transparent;
+  color: #3e403f;
+  font-size: 15px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+button:hover {
+  caret-color: transparent;
+  transform: translatey(3px);
+  box-shadow: none;
+}
+
+.custom-mat-form-field {
+  caret-color: transparent;
+  position: relative;
+  width: 80%;
+  max-height: 150px;
+}
+
+.custom-mat-form-field input {
+  margin-left: 20px;
+}
+
+.custom-mat-form-field button {
+  right: 0;
+  top: 0;
+  margin: 12px;
+}
+
+.login-button {
+  background-color: #6504B5;
+  color: #FFFFFF;
+  margin-top: 20px;
+  border-radius: 20px;
+  width: 80%;
+  box-shadow: none;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  caret-color: transparent;
+}
+
+
+.custom-mat-form-field {
+  caret-color: transparent;
+  height: 80px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.mat-form-field-infix {
+  caret-color: transparent;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.mat-form-field-label-wrapper {
+  top: -5px;
+  caret-color: transparent;
+}
+
+.mat-input-element {
+  caret-color: transparent;
+  height: 40px;
+  margin: 0;
+}

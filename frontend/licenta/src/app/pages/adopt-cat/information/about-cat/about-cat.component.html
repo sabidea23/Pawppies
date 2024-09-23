@@ -1,0 +1,233 @@
+<body>
+
+<div class="main-container">
+
+  <div class="content-container">
+
+    <div class="container">
+      <div *ngIf="!isFullTextShown">
+        <h1>Cat & Kitten Adoption</h1>
+        <h2>I’m Adopting a Cat. Now What? </h2>
+        <p> Be prepared should be your mantra when bringing a new pet into your home. Cats are particularly sensitive to new surroundings and some may hide under a bed or in a closet for days or even weeks.</p>
+        <p> You can avoid pitfalls with your new critter and help him or her adapt more easily by following these guidelines:</p>
+        <h2> Before You Bring Your Cat Home:</h2>
+        <ul>
+        <li> Cats are territorial, and coming into a new home leaves them feeling really uneasy. There's all that unexplored space, and who knows what may lurk there. Do him a favor and provide a small area to call his own for the first few days or weeks. A bathroom or laundry room works well. Furnish the room with cat amenities, such as food, water and a litter box. You'll want to spend time with your cat, so make sure there's a comfortable place for you to sit as well.</li>
+          <br>   <li> Fill a litter box with one or two inches of litter and place it in his room where he can use it undisturbed. After all, everyone deserves a modicum of privacy when pottying, and giving him that will help forestall litter box aversion.</li>
+        </ul>
+        <button (click)="toggleTextDisplay()" class="show-button" mat-button>Show More</button>
+      </div>
+
+      <div *ngIf="isFullTextShown">
+        <h1>Cat & Kitten Adoption</h1>
+        <h2>I’m Adopting a Cat. Now What? </h2>
+        <p> Be prepared should be your mantra when bringing a new pet into your home. Cats are particularly sensitive to new surroundings and some may hide under a bed or in a closet for days or even weeks.</p>
+        <p> You can avoid pitfalls with your new critter and help him or her adapt more easily by following these guidelines:</p>
+        <h2> Before You Bring Your Cat Home:</h2>
+        <ul>
+          <li> Cats are territorial, and coming into a new home leaves them feeling really uneasy. There's all that unexplored space, and who knows what may lurk there. Do him a favor and provide a small area to call his own for the first few days or weeks. A bathroom or laundry room works well. Furnish the room with cat amenities, such as food, water and a litter box. You'll want to spend time with your cat, so make sure there's a comfortable place for you to sit as well.</li>
+         <br> <li> Fill a litter box with one or two inches of litter and place it in his room where he can use it undisturbed. After all, everyone deserves a modicum of privacy when pottying, and giving him that will help forestall litter box aversion.</li>
+        <br>  <li> Set up a feeding station with food and water bowls. Locate it away from the litter box. </li>
+          <br><li> Cats love to get away from it all in small places, and you can provide one for your new cat as his own little safe haven. If he came home in a cat carrier, that might be a good choice. You can also make one by cutting a doorway for her in the end of a box. If you prefer, you can buy a covered cat bed at a pet supply store. In either case, make sure the space is big enough for the cat to stand up and turn around in. Cat "feng shui" probably requires that he or she be able to see the door to the room from his hidey hole, so he won't be startled.</li>
+          <br> <li> A cat's claws need to be worn down, and they do this by scratching on things. Since you prefer that it not be your chairs and sofa, provide your cat with a socially acceptable scratching place. Some types are made of corrugated cardboard and lie on the floor; others are posts which have to be tall enough so that the cat can extend himself upward to scratch. You can encourage your cat (once he has arrived) to use the post by sprinkling it with catnip or dangling a toy at the top. He'll get the idea. You'll probably want a scratching post in each room where there is soft furniture, perhaps blocking access to it. You can also install sticky tape (available at pet supply stores) to corners of upholstered furniture to dissuade scratching.</li>
+        </ul>
+
+        <h2> First Day: </h2>
+        <p> Now, you are ready for your cat's homecoming. Preferably, bring her home in a cat carrier. It will feel safer to her. She has seen a lot of excitement, so take her directly to her new room. (Make sure the toilet lid is down, if she's to acclimate in your bathroom.) Ideally, you would restrict her exposure to the whole family, but naturally, everyone is going to want to see her. Remind them of the ground rules you've set up.</p>
+        <ul>
+        <li>Sit on the floor and let her come to you. Don't force her. Just let her get acquainted on her own time. If she doesn't approach, leave her alone and try again later. Some cats are particularly frightened, and she may retreat to her hidey hole and not come out when you're around at all. She may only come out at night when the house is quiet. Give her time. </li>
+        <br> <li> Your newly adopted cat may not eat much or at all at first. It's best to give your cat the same food she had at the shelter or in her foster home, at least at first. Keeping some things familiar will make her feel more secure. Be sure to change her water frequently and make sure that she is drinking. If your cat hasn't eaten for a few days, call your vet to ask for advice.</li>
+        </ul>
+
+        <h2> Following Weeks: </h2>
+        <p> It may take your cat a week or two to adjust. Be patient.</p>
+        <ul>
+        <li> Within a week of being adopted, take your newly adopted cat for her first wellness visit with a veterinarian. If you have a record of immunizations from the shelter, take it with you. </li>
+        <br> <li> As your cat adjusts, she'll show signs that she wants to explore outside her safe haven. Make sure other pets or family members won't startle her while she gradually expands her territory. She may be ready to play, so you can furnish some toys. Many cats like feather wands from the pet supply store, but homemade toys are often favored. A wad of a tissue paper to bat around or a paper bag to hide in can be fun.</li>
+        </ul>
+
+        <p>Congratulations! If you follow these tips, you'll be on your way to having a well-adjusted feline family member. </p>
+        <button (click)="toggleTextDisplay()" class="show-button" mat-button>Show Less</button>
+      </div>
+    </div>
+
+    <div class="see-about">
+      <div class="about-grid">
+        <div class="about-card">
+          <a (click)="navigateToCatBreedsPage()">
+            <img class="about-image" src="../../../../assets/cat-breeds-about.png">
+            <div class="about-detail">
+              <p class="title-about"> Cat breeds
+              </p>
+              <p class="text-about">
+                Explore cat breeds details here!
+              </p>
+            </div>
+          </a>
+        </div>
+
+        <div class="about-card">
+          <a (click)="navigateToFeedingCat()">
+            <img class="about-image" src="../../../../assets/feeding-cat.png">
+            <div class="about-detail">
+              <p class="title-about"> Feeding your cat
+              </p>
+              <p class="text-about"> Nourishing Your Feline Friend
+              </p>
+            </div>
+          </a>
+        </div>
+
+        <div class="about-card">
+          <a (click)="navigateToCatHealth()">
+            <img class="about-image" src="../../../../assets/cat-health.png">
+            <div class="about-detail">
+              <p class="title-about"> Cat health
+              </p>
+              <p class="text-about"> Ensuring Your Cat's Well-being
+              </p>
+            </div>
+          </a>
+        </div>
+
+        <div class="about-card">
+          <a (click)="navigateToKidsCat()">
+            <img class="about-image" src="../../../../assets/kids-cat.png">
+            <div class="about-detail">
+              <p class="title-about"> Best Cats For Kids
+              </p>
+              <p class="text-about"> Discover Perfect Cats for Children
+              </p>
+            </div>
+          </a>
+        </div>
+
+        <div class="about-card">
+          <a (click)="naviateTooAdoptCats()">
+            <img class="about-image" src="../../../../assets/adopt-cat.png">
+            <div class="about-detail">
+              <p class="title-about"> Adopt a cat
+              </p>
+              <p class="text-about"> Find your perfect cat adoption match.
+              </p>
+            </div>
+          </a>
+        </div>
+
+        <div class="about-card">
+          <a (click)="navigateToCutestCat()">
+            <img class="about-image" src="../../../../assets/cute-cat.png">
+            <div class="about-detail">
+              <p class="title-about"> Cutest cat breeds
+              </p>
+              <p class="text-about"> Meet the World's Cutest Cats
+              </p>
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="see-animals">
+      <h1 (click)="goToAnimalsPage()" *ngIf="showAnimals.length > 0" class="see-animals"> Animals Available for Adoption
+        > </h1>
+      <div class="animal-grid">
+
+        <div *ngFor="let animal of showAnimals; let isLast = last"
+             [class]="isLast ? 'animal-card-last' : 'animal-card'">
+          <a (click)="navigateToAnimalDetails(animal)">
+            <ng-container *ngIf="isLast ; else notLastTemplate">
+              <div (click)="goToAnimalsPage()">
+                <div class="animal-image">
+                  <mat-icon class="centered-icon">search</mat-icon>
+
+                  <p class="centered-text">300+ pets available on Pawppies </p>
+                </div>
+
+                <div class="animal-last">
+                  <p class="meet-animals-text">MEET THEM</p>
+                </div>
+              </div>
+            </ng-container>
+          </a>
+
+          <ng-template #notLastTemplate>
+            <button (click)="likeAnimal($event, animal)" *ngIf="user" [ngClass]="{ 'liked': isLiked(animal) }"
+                    class="like-button">
+              <mat-icon>{{ isLiked(animal) ? 'favorite' : 'favorite_border' }}</mat-icon>
+            </button>
+
+            <img [src]='animal.animalImages[0].url' class="animal-image">
+            <div class="animal-details">
+              <p class="animal-name"> {{ animal.name }} </p>
+              <p class="animal-other-details"> {{ animal.age }}, {{ animal.breedDetails.name }} </p>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="side-container">
+
+    <!--    start quizz-->
+    <div class="quiz">
+      <img class="quiz-img" src="../../../../assets/good_match.png">
+      <h2 style="text-align: center; margin-bottom: 0; margin-top: 15px"> Find your best </h2>
+      <h2 style="text-align: center; margin-bottom: 10px"> match </h2>
+      <p class="text-quiz"> It only takes 60 seconds. </p>
+
+      <button (click)="goToQuizPage()" class="start-quiz-btn" mat-button>GET STARTED</button>
+    </div>
+
+
+    <div class="search-center">
+      <form (ngSubmit)="performSearch()" class="search-form">
+        <h2>Find Pet-Adoption Centers by:</h2>
+
+        <!--      //city-->
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon matPrefix>location_city</mat-icon>
+            City
+          </mat-label>
+          <input [(ngModel)]="searchData.city" matInput
+                 name="email" placeholder="Enter your email"/>
+        </mat-form-field>
+
+        <!--        //country/-->
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon>public</mat-icon>
+            Country
+          </mat-label>
+          <mat-select [(ngModel)]="searchData.country" name="country" placeholder="Select Country">
+            <mat-option *ngFor="let country of countries" [value]="country.name">
+              {{ country.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+        <!--        //name-->
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon matPrefix>business</mat-icon>
+            Name
+          </mat-label>
+          <input [(ngModel)]="searchData.name" matInput
+                 name="email" placeholder="Enter name"/>
+        </mat-form-field>
+
+        <button class="start-quiz-btn" mat-flat-button type="submit">
+          SEARCH
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="see-animals">
+  </div>
+</div>
+</body>

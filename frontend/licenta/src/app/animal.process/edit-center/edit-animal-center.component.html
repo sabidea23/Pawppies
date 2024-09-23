@@ -1,0 +1,226 @@
+<mat-card>
+  <mat-card-content style="font-family: 'Montserrat', sans-serif;">
+    <form (ngSubmit)="save()" class="form-directions">
+      <h2>Edit Animal Center</h2>
+
+      <div class="login-form">
+          <div class="left-description">
+
+
+            <mat-form-field appearance="fill" class="custom-mat-form-field">
+              <mat-label>
+                <mat-icon matPrefix>business</mat-icon>
+                Name
+              </mat-label>
+              <input [(ngModel)]="editData.name" matInput name="name" placeholder="Enter Animal Center Name" required/>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="custom-mat-form-field">
+              <mat-label>
+                <mat-icon matPrefix>location_city</mat-icon>
+                City
+              </mat-label>
+              <input [(ngModel)]="editData.city" matInput name="city" placeholder="Enter Animal Center City" required/>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="custom-mat-form-field">
+              <mat-label>
+                <mat-icon>public</mat-icon>
+                Country
+              </mat-label>
+              <mat-select [(ngModel)]="editData.country" name="country" placeholder="Select Country">
+                <mat-option *ngFor="let country of countries" [value]="country.name">
+                  {{ country.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="custom-mat-form-field">
+              <mat-label>
+                <mat-icon matPrefix>place</mat-icon>
+                Longitude
+              </mat-label>
+              <input [(ngModel)]="editData.longitude" matInput name="longitude"
+                     placeholder="Enter Animal Center Longitude" required/>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="custom-mat-form-field">
+              <mat-label>
+                <mat-icon matPrefix>place</mat-icon>
+                Latitude
+              </mat-label>
+              <input [(ngModel)]="editData.latitude" matInput name="latitude" placeholder="Enter Animal Center Latitude"
+                     required/>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="custom-mat-form-field">
+              <mat-label>
+                <mat-icon matPrefix>contact_phone</mat-icon>
+                Email
+              </mat-label>
+              <input [(ngModel)]="editData.contact" matInput
+                     name="contact" placeholder="Enter Animal Center Email" required/>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="custom-mat-form-field">
+              <mat-label>
+                <mat-icon matPrefix>phone</mat-icon>
+                Phone
+              </mat-label>
+              <input [(ngModel)]="editData.phone" matInput
+                     name="contact" placeholder="Enter Animal Center Phone" required/>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="textarea-input">
+              <mat-label>
+                <mat-icon>assignment</mat-icon>
+                Mission
+              </mat-label>
+              <textarea [(ngModel)]="editData.mission" matInput name="mission"
+                        placeholder="Center's Mission"></textarea>
+            </mat-form-field>
+          </div>
+          <div class="right-description">
+            <!-- Luni -->
+            <div class="day-schedule">
+              <h3>
+                <mat-icon>alarm</mat-icon>
+                Monday
+              </h3>
+              <mat-form-field appearance="fill" class="time-fields">
+                <mat-label>Opening Time</mat-label>
+                <input [(ngModel)]="openingHours.mondayOpen" matInput name="mondayOpen" placeholder="HH:MM"
+                       type="time"/>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill" class="time-fields">
+                <mat-label>Closing Time</mat-label>
+                <input [(ngModel)]="openingHours.mondayClose" matInput name="mondayClose" placeholder="HH:MM"
+                       type="time"/>
+              </mat-form-field>
+            </div>
+
+            <!-- marti -->
+            <div class="day-schedule">
+              <h3>
+                <mat-icon>alarm</mat-icon>
+                Tuesday
+              </h3>
+              <mat-form-field appearance="fill" class="time-fields">
+                <mat-label>Opening Time</mat-label>
+                <input [(ngModel)]="openingHours.tuesdayOpen" matInput name="tuesdayOpen" placeholder="HH:MM"
+                       type="time"/>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill" class="time-fields">
+                <mat-label>Closing Time</mat-label>
+                <input [(ngModel)]="openingHours.tuesdayClose" matInput name="tuesdayClose" placeholder="HH:MM"
+                       type="time"/>
+              </mat-form-field>
+            </div>
+
+            <!-- Miercuri -->
+            <div class="day-schedule">
+              <h3>
+                <mat-icon>alarm</mat-icon>
+                Wednesday
+              </h3>
+              <mat-form-field appearance="fill" class="time-fields" >
+                <mat-label>Opening Time</mat-label>
+                <input [(ngModel)]="openingHours.wednesdayOpen" matInput name="wednesdayOpen" placeholder="HH:MM"
+                       type="time"/>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill" class="time-fields">
+                <mat-label>Closing Time</mat-label>
+                <input [(ngModel)]="openingHours.wednesdayClose" matInput name="wednesdayClose" placeholder="HH:MM"
+                       type="time"/>
+              </mat-form-field>
+            </div>
+
+            <!-- joi -->
+            <div class="day-schedule">
+              <h3>
+                <mat-icon>alarm</mat-icon>
+                Thursday
+              </h3>
+              <mat-form-field appearance="fill" class="time-fields">
+                <mat-label>Opening Time</mat-label>
+                <input [(ngModel)]="openingHours.thursdayOpen" matInput name="thursdayOpen" placeholder="HH:MM"
+                       type="time"/>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill" class="time-fields">
+                <mat-label>Closing Time</mat-label>
+                <input [(ngModel)]="openingHours.thursdayClose" matInput name="thursdayClose" placeholder="HH:MM"
+                       type="time"/>
+              </mat-form-field>
+            </div>
+
+            <!-- vineri -->
+            <div class="day-schedule">
+              <h3>
+                <mat-icon>alarm</mat-icon>
+                Friday
+              </h3>
+              <mat-form-field appearance="fill" class="time-fields">
+                <mat-label>Opening Time</mat-label>
+                <input [(ngModel)]="openingHours.fridayOpen" matInput name="fridayOpen" placeholder="HH:MM"
+                       type="time"/>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill" class="time-fields">
+                <mat-label>Closing Time</mat-label>
+                <input [(ngModel)]="openingHours.fridayClose" matInput name="fridayClose" placeholder="HH:MM"
+                       type="time"/>
+              </mat-form-field>
+            </div>
+
+            <!-- sAMBATA -->
+            <div class="day-schedule">
+              <h3>
+                <mat-icon>alarm</mat-icon>
+                Saturday
+              </h3>
+              <mat-form-field appearance="fill" class="time-fields">
+                <mat-label>Opening Time</mat-label>
+                <input [(ngModel)]="openingHours.saturdayOpen" matInput name="saturdayOpen" placeholder="HH:MM"
+                       type="time"/>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill" class="time-fields">
+                <mat-label>Closing Time</mat-label>
+                <input [(ngModel)]="openingHours.saturdayClose" matInput name="saturdayClose" placeholder="HH:MM"
+                       type="time"/>
+              </mat-form-field>
+            </div>
+
+            <!-- duminica -->
+            <div class="day-schedule">
+              <h3>
+                <mat-icon>alarm</mat-icon>
+                Sunday
+              </h3>
+              <mat-form-field appearance="fill" class="time-fields">
+                <mat-label>Opening Time</mat-label>
+                <input [(ngModel)]="openingHours.sundayOpen" matInput name="sundayOpen" placeholder="HH:MM"
+                       type="time"/>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill" class="time-fields">
+                <mat-label>Closing Time</mat-label>
+                <input [(ngModel)]="openingHours.sundayClose" matInput name="sundayClose" placeholder="HH:MM"
+                       type="time"/>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+      <div class="button-container">
+        <button class="login-button"  mat-button>UPDATE</button>
+        <button class="cancel-button" mat-button>CANCEL</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+

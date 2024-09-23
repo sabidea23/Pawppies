@@ -1,0 +1,402 @@
+
+.central-picture {
+  width: 360px; /* sau lățimea dorită */
+  height: 380px; /* sau înălțimea dorită */
+}
+
+.image-container {
+  padding-top: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.images-icon {
+  color: #EFEEF1;
+}
+
+.images {
+  background-color: black;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.lateral-picture {
+  width: 250px;
+  height: 350px; /* sau înălțimea dorită */
+  filter: brightness(0.4);
+}
+
+
+body {
+  background-color: #EFEEF1;
+  padding-bottom: 20px;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-container {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 20px;
+  caret-color: transparent;
+  justify-content: center;
+}
+
+.see-animals {
+  text-align: center;
+  margin-top: 20px;
+  color: #6504B5;
+}
+
+.see-animals:hover {
+  margin-top: 20px;
+  color: #410078;
+}
+
+.tips-and-food {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+}
+.content-container {
+  font-family: 'Montserrat', sans-serif;
+  flex: 0 0 78%;
+  width: 1000px;
+  padding: 20px;
+  background-color: white;
+}
+
+.side-container {
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+h1 {
+  font-weight: bold;
+  color: #6504B5;
+  caret-color: transparent;
+  display: block;
+  font-size: 40px;
+}
+
+h2 {
+  font-weight: normal;
+  color: #3e403f;
+}
+
+h3 {
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.title-description {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.distance {
+  height: 70px;
+}
+
+.clopotel {
+  color: #3e403f;
+}
+
+.adopt-animal {
+  border-radius: 10px;
+  background-color: #6504B5;
+  width: 500px;
+  height: 260px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding-top: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-adopt {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.start-quiz-btn {
+  background-color: white;
+  color: #6504B5; /* Culoarea textului alb */
+  border: 3px solid #6504B5;
+  border-radius: 25px; /* Colțuri foarte rotunjite */
+  margin-bottom: 25px;
+  padding: 25px 30px; /* Spațiere internă pentru a mări butonul */
+  font-size: 16px; /* Mărimea fontului pentru text */
+  font-weight: bold; /* Textul bold */
+  box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.25); /* Umbră pentru 3D effect */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Tranziție animată pentru hover */
+  width: 80%;;
+}
+
+.start-quiz-btn:hover {
+  color: white;
+  background-color: #410078; /* Culoarea de fundal se schimbă la hover */
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.25); /* Umbra crește la hover */
+}
+
+.read-faqs {
+  background-color: #6504B5;
+  color: white; /* Culoarea textului alb */
+  border: 3px white #6504B5;
+  border-radius: 25px; /* Colțuri foarte rotunjite */
+  margin-bottom: 25px;
+  padding: 25px 30px; /* Spațiere internă pentru a mări butonul */
+  font-size: 16px; /* Mărimea fontului pentru text */
+  font-weight: bold; /* Textul bold */
+  box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.25); /* Umbră pentru 3D effect */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Tranziție animată pentru hover */
+  width: 80%;;
+}
+
+.read-faqs:hover {
+  color: white;
+  background-color: #410078; /* Culoarea de fundal se schimbă la hover */
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.25); /* Umbra crește la hover */
+}
+
+.image-grid {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1px solid #6504B5;
+  z-index: 3;
+}
+
+.anima-center-details {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.animal-center {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  border-radius: 10px;
+  padding-top: 80px;
+  margin-top: -60px;
+
+}
+
+.title-center {
+  text-align: center;
+}
+.contact-container {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.more-about-center {
+  border: 2px solid #94939b;
+  background-color: white;
+  color: #3e403f; /* Culoarea textului alb */
+  border-radius: 25px; /* Colțuri foarte rotunjite */
+  margin-bottom: 25px;
+  padding: 25px 30px; /* Spațiere internă pentru a mări butonul */
+  font-size: 16px; /* Mărimea fontului pentru text */
+  font-weight: bold; /* Textul bold */
+  box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.25); /* Umbră pentru 3D effect */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Tranziție animată pentru hover */
+  width: 80%;;
+}
+
+.more-about-center:hover {
+  color: white;
+  background-color: #3e403f; /* Culoarea de fundal se schimbă la hover */
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.25); /* Umbra crește la hover */
+}
+
+
+.tips {
+  background-color: white;
+  width: 500px;
+  height: 470px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #94939b;
+}
+
+.tips:hover {
+  border: 3px solid #6504B5;
+}
+
+.adopting-image {
+  width: 495px;
+  height: 300px;
+}
+
+
+.tips-title {
+  color: #3e403f;
+  margin-top: 15px;
+  font-weight: 500;
+  font-size: 23px;
+}
+
+
+.animal-grid {
+  display: flex;
+  flex-direction: row;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.animal-card {
+  width: 250px;
+  height: 300px;
+  position: relative;
+  border: 3px solid #ddd;
+  border-radius: 8px; /* Rotunjirea colțurilor */
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+
+.like-button {
+  position: absolute;
+  right: 3px;
+  border: none;
+  background-color: transparent; /* Fundalul butonului este transparent */
+  border-radius: 50%; /* Face butonul rotund */
+  width: 36px; /* Lățimea butonului */
+  height: 36px; /* Înălțimea butonului */
+  background-color: white;
+  margin: 10px;
+  transition: transform 0.2s; /* Adaugă o tranziție pentru transform */
+}
+
+/* Animație la hover */
+.like-button:hover {
+  transform: scale(1.1); /* Mărește butonul ușor când mouse-ul este deasupra */
+}
+
+
+/* Animație la click */
+.like-button:active {
+  transform: scale(0.9); /* Micșorează butonul când este apăsat */
+}
+
+button,
+button:active,
+button:focus {
+  outline: none;
+}
+
+input[type="button"] {
+  border: none;
+  outline: none;
+}
+
+/* Clasa adăugată când animal-ul este apreciat */
+.liked {
+  color: #6504B5; /* Culoarea pentru când este apreciat */
+}
+
+.animal-card:hover {
+  border-color: #6504B5; /* Schimbă culoarea la hover */
+}
+
+.animal-image {
+  width: 100%;
+  height: 75%;
+  display: block;
+}
+
+.animal-details {
+  padding: 0.5rem;
+}
+
+.animal-last {
+  margin-top: 40px;
+  padding: 20px;
+  border: 1px solid black;
+}
+
+
+.animal-last:hover {
+  background-color: #410078;
+}
+
+.animal-name {
+  margin: 0;
+  font-size: 1.3rem;
+  font-family: 'Montserrat', sans-serif;
+  color: #6504B5;
+  font-weight: bold;
+}
+
+.animal-card-last {
+  background-color: #6504B5;
+
+}
+
+.animal-card-last {
+  width: 250px;
+  height: 300px;
+  position: relative;
+  border: 3px solid #ddd;
+  border-radius: 8px; /* Rotunjirea colțurilor */
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+
+.centered-icon {
+  margin-top: 50px;
+  color: white; /* Setează culoarea iconului la alb */
+  height: 50px;
+  width: 50px;
+  font-size: 70px;
+}
+
+.centered-text {
+  /* Centrează textul și adaugă spațiu deasupra pentru a-l separa de icon */
+  margin-top: 20px;
+  color: white;
+  font-size: 17px;
+}
+
+.meet-animals-text {
+
+  color: white;
+}
+

@@ -1,0 +1,483 @@
+body {
+  background-color: #EFEEF1;
+  padding-bottom: 20px;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+
+}
+
+.centers-table {
+  padding: 20px;
+  caret-color: transparent;
+  width: 100%;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.mat-cell, .mat-header-cell {
+  caret-color: transparent;
+  padding: 8px;
+  text-align: left;
+}
+
+.mat-row, .mat-header-row {
+  caret-color: transparent;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.search-icon {
+  color: #410078;
+}
+
+th {
+  caret-color: transparent;
+  background-color: #EFEEF1;
+  text-align: center;
+}
+
+
+.mat-header-row, .mat-header-cell {
+  caret-color: transparent;
+  background-color: #EFEEF1;
+  color: #410078;
+}
+
+.confirm-button-class {
+  color: #FFFFFF;
+  margin-top: 20px;
+  border-radius: 20px;
+  width: 100%;
+  box-shadow: none;
+}
+
+
+.cancel-button-class {
+  color: #FFFFFF;
+  margin-top: 20px;
+  border-radius: 20px;
+  width: 100%;
+  box-shadow: none;
+}
+
+* {
+  caret-color: transparent;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 40px;
+  margin: auto;
+  padding: 20px;
+  caret-color: transparent;
+  justify-content: center;
+}
+
+
+.content-container {
+  font-family: 'Montserrat', sans-serif;
+  flex: 0 0 78%;
+  max-width: 1000px;
+  padding: 20px;
+  background-color: white;
+}
+
+.side-container {
+  padding-bottom: 20px;
+  font-family: 'Montserrat', sans-serif;
+  background-color: white;
+  max-width: 300px;
+}
+
+.search-form {
+  margin-top: 0;
+  padding: 0px 24px;
+  caret-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mat-input-element {
+  caret-color: transparent;
+  height: 40px;
+  margin: 0;
+}
+
+mat-form-field {
+  caret-color: transparent;
+  width: 100%;
+}
+
+h2 {
+  margin-top: 15px;
+  caret-color: transparent;
+  display: block;
+}
+
+h1 {
+  margin-top: 15px;
+  caret-color: transparent;
+  display: block;
+  font-weight: 500;
+}
+
+.container {
+  caret-color: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+.social-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+mat-icon {
+  margin-top: -30px;
+  margin-right: 8px;
+}
+
+p {
+  caret-color: transparent;
+  color: #3e403f;
+  font-size: 15px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+
+.login-button {
+  caret-color: transparent;
+  background-color: #6504B5;
+  color: #FFFFFF;
+  margin-top: 20px;
+  border-radius: 20px;
+  width: 100%; /* Ocupă întreaga lățime a containerului */
+  box-shadow: none; /* Înlătură orice umbre dacă există */
+}
+
+.login-button.reset {
+  background-color: #EFEEF1;
+  color: #6504B5;
+}
+
+/* Stiluri globale pentru toate mat-form-field-urile */
+mat-form-field {
+  border-radius: 4px; /* Adaugă borduri rotunjite pentru estetică */
+  width: 100%; /* Asigură-te că form-field-urile ocupă întreaga lățime */
+  padding: 0; /* Îndepărtează orice padding implicit */
+}
+
+/* Stilizează liniile subliniate ale câmpurilor de formular */
+.mat-form-field-underline {
+  height: 1px; /* Subțirează linia de subliniere */
+  background-color: transparent; /* Ascunde linia de subliniere când câmpul nu este activ */
+}
+
+/* Stilizează eticheta (label) */
+.mat-form-field-label {
+  color: #666; /* Schimbă culoarea etichetei */
+}
+
+/* Stilizează câmpurile de intrare */
+.mat-input-element {
+  padding: 8px; /* Ajustează paddingul pentru a controla înălțimea câmpurilor */
+}
+
+
+.custom-mat-form-field {
+  height: 80px; /* Ajustează înălțimea după cum dorești */
+}
+
+/* Stiluri pentru când câmpul de formular nu este activ */
+.mat-form-field-appearance-fill .mat-form-field-underline {
+  background-color: white; /* O linie mai subțire când câmpul nu este activ */
+}
+
+
+.mat-input-element {
+  caret-color: transparent;
+  height: 40px;
+  margin: 0;
+}
+
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filter-chip {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: flex-start;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  background-color: #f2f2f2;
+  font-size: 14px;
+  padding: 5px 10px;
+}
+
+.filter-text {
+  margin-top: 10px
+}
+
+.close-btn {
+  display: flex;
+  border: 0px;
+  max-width: 50px;
+  padding-top: 17px;
+  max-height: 20px;
+}
+
+.line-with-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: -10px;
+}
+
+.text {
+  white-space: nowrap;
+  color: #666666;
+  font-size: 14px;
+}
+
+.animal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  padding: 1rem;
+}
+
+.animal-card {
+  height: 300px;
+  position: relative;
+  border: 3px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+
+.like-button {
+  position: absolute;
+  right: 3px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 50%; /* Face butonul rotund */
+  width: 36px; /* Lățimea butonului */
+  height: 36px; /* Înălțimea butonului */
+  background-color: white;
+  margin: 10px;
+  transition: transform 0.2s;
+}
+
+.like-button:hover {
+  transform: scale(1.1);
+}
+
+mat-icon {
+  margin-top: 5px;
+  color: #6504B5;
+}
+
+.like-button:active {
+  transform: scale(0.9);
+}
+
+button,
+button:active,
+button:focus {
+  outline: none;
+}
+
+input[type="button"] {
+  border: none;
+  outline: none;
+}
+
+
+.liked {
+  color: #6504B5;
+}
+
+
+.animal-card:hover {
+  border-color: #6504B5;
+}
+
+.animal-image {
+  width: 100%;
+  height: 75%;
+  display: block;
+}
+
+.animal-details {
+  width: 150px;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.animal-name {
+  max-width: 200px;
+  margin: 0;
+  font-size: 1.3rem;
+  font-family: 'Montserrat', sans-serif;
+  color: #6504B5;
+  font-weight: bold;
+  text-align: center;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-animal-center-button {
+  margin-top: 0;
+  text-align: center;
+  margin-bottom: 16px;
+  border-radius: 20px;
+  width: 200px;
+  box-shadow: none;
+  font-size: 14px;
+  color: white;
+  background-color: #6504B5;
+  padding: 10px 20px;
+}
+
+
+.description {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-group-sort {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.button-filter {
+  border: 1px solid #6504B5;
+  background-color: white;
+  margin-top: 0;
+  text-align: left;
+  border-radius: 4px;
+  padding: -2px;
+}
+
+.button-sort {
+  border: 2px solid #6504B5;
+  background-color: white;
+  margin-top: 0;
+  text-align: left;
+  border-radius: 4px;
+  padding: -2px;
+  height: 30px;
+  font-size: 18px;
+  width: 300px;
+}
+
+.button-filter {
+  width: 250px;
+  background-color: white;
+  color: black;
+}
+
+.button-filter.pressed {
+  background-color: #6504B5;
+  color: white;
+}
+
+h3 {
+  margin-bottom: 5px;
+  margin-top: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+}
+
+.chip-container {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px; /* Asigură un spațiu mic între chips-uri */
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  background-color: #6504B5; /* Culoare mov pentru fundal */
+  color: white; /* Textul în culoare albă */
+  font-size: 14px; /* Dimensiunea textului din chip */
+  cursor: default;
+  border-radius: 10px;
+}
+
+.chip .close {
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.options-container {
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  width: 10%;
+  max-height: 150px; /* Limitarea înălțimii containerului */
+  overflow-y: auto; /* Adaugă scroll vertical dacă este necesar */
+  z-index: 1000;
+}
+
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination-button {
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  width: 150px;
+  border-radius: 20px; /* Oferă butoanelor formă rotundă */
+  background-color: #6504B5;
+  font-weight: bold;
+}
+
+.pagination-button:hover {
+  background-color: #410078; /* Schimbă culoarea la hover */
+}
+
+.pagination-button.prev {
+  margin-right: 20px;
+}
+
+.pagination-button.next {
+  margin-left: 20px;
+}
+
+.sort-title {
+  margin-top: 0px;
+}

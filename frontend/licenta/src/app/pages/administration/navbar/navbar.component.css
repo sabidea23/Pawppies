@@ -1,0 +1,244 @@
+/* Fonts Form Google Font ::- https://fonts.google.com/  -:: */
+@import url('https://fonts.googleapis.com/css?family=Abel|Abril+Fatface|Alegreya|Arima+Madurai|Dancing+Script|Dosis|Merriweather|Oleo+Script|Overlock|PT+Serif|Pacifico|Playball|Playfair+Display|Share|Unica+One|Vibur');
+
+
+.example-spacer {
+  flex: 1 1 auto;
+  z-index: 999;
+}
+
+.example-spacer.fixed {
+  position: fixed;
+}
+
+.example-icon {
+  font-family: 'Montserrat', sans-serif; /* Aplică fontul Montserrat */
+  font-size: 1em; /* Mărește dimensiunea fontului */
+  color: #6504B5; /* Setează culoarea textului */
+  margin: 10px 20px 20px 10px;
+  font-weight: bold;
+}
+
+.example-icon:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.menu-button button {
+  font-family: 'Montserrat', sans-serif; /* Aplică fontul Montserrat */
+  font-size: 1em; /* Mărește dimensiunea fontului */
+  color: #6504B5; /* Setează culoarea textului */
+  display: flex; /* Utilizează flexbox pentru alinierea textului și a săgeții */
+  align-items: center; /* Centrează elementele pe verticală */
+  justify-content: space-between; /* Plasează textul și săgeata la capetele opuse */
+}
+
+.menu-button:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.example-icon.register {
+  margin-right: 40px;
+}
+
+.title {
+  font-size: 25px;
+  margin-left: 10px;
+}
+
+/* Stiluri pentru navbar */
+.top-nav {
+  padding: 0;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  width: 100%;
+  justify-content: space-between; /* Aliniază copiii la capetele opuse ale containerului */
+  align-items: center; /* Centrează elementele vertical */
+}
+
+/* Stiluri pentru primul rând din navbar */
+.top-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.menu-button {
+  margin-left: 20px;
+}
+
+.auth-buttons {
+  margin-left: auto;
+  color: #6504B5;
+  font-size: 0.8em; /* Dimensiunea fontului redusă */
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 5px;
+  display: flex;
+}
+
+/* Stiluri pentru sub-menu (al doilea rând) */
+.sub-menu {
+  display: flex;
+  background-color: #6504B5; /* Culoarea de fundal pe întregul rând */
+  padding: 15px;
+  justify-content: space-between;
+  align-items: center; /* Asigură alinierea verticală a elementelor în interiorul sub-menu */
+  width: 100%; /* Extinde sub-menu pe întreaga lățime a părintelui */
+  font-family: 'Montserrat', sans-serif;
+  height: 100%;
+  color: white; /* Setează culoarea textului la alb */
+  animation: fadeIn 0.4s; /* Schimbă durata după preferințe */
+}
+
+.sub-menu-item {
+  color: white !important;
+  margin-right: 20px;
+  font-size: 0.85em; /* Dimensiunea fontului redusă */
+
+}
+
+.sub-menu-item:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.menu-button mat-icon {
+  color: #6504B5; /* Culoarea săgeții */
+}
+
+.rotate {
+  transform: rotate(180deg); /* Rotește săgeata cu 180 grade când submenu-ul este deschis */
+}
+
+/* Stiluri pentru butonul utilizatorului */
+.user-menu button {
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif; /* Aplică fontul Montserrat */
+  font-size: 1.1em; /* Mărește dimensiunea fontului */
+  transition: background-color 0.3s, color 0.3s; /* Adaugă tranziție pentru culoare și fundal */
+}
+
+.user-menu mat-icon {
+  transition: color 0.3s; /* Adaugă tranziție pentru culoarea iconiței */
+}
+
+/* Când butonul este activ */
+.user-menu button.active {
+  background-color: #6504B5; /* Culoarea de fundal când este apăsat */
+  color: white; /* Culoarea textului când este apăsat */
+}
+                           r
+.user-menu button.active mat-icon {
+  color: white; /* Culoarea iconiței când butonul este activ */
+}
+
+
+.mat-mdc-menu-content {
+  padding: 0 0 0 0 !important;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+mat mat-icon.heart-icon {
+  color: #6504B5; /* Culoarea inițială */
+}
+
+.heart-icon mat-icon {
+  margin-top: 17px;;
+  font-size: 22px; /* Ajustați această valoare după preferințe */
+  width: 20px;
+  color: #6504B5; /* Culoarea inițială a inimii */
+  margin-right: 0;
+}
+
+.heart-icon:hover mat-icon {
+  color: #FF1053; /* Culoare la survolare */
+}
+
+.notification-icon mat-icon{
+  margin-top: 17px;;
+  font-size: 22px; /* Ajustați această valoare după preferințe */
+  width: 20px;
+  color: #6504B5; /* Culoarea inițială a inimii */
+  padding-top: -50px;
+}
+
+.notification-icon:hover mat-icon{
+  color: #410078;
+}
+
+.mat-menu-content {
+  max-height: 300px;
+  overflow: auto;
+  width: 1600px;
+}
+
+.menu-notification {
+  height: 300px;
+  top: -100px
+}
+
+.details-notifications {
+  padding: 15px;
+  padding-top: 10px;
+  border: 1px solid #EFEEF1;
+}
+
+.details-notifications:hover {
+  padding: 15px;
+  padding-top: 10px;
+  background-color: #EFEEF1;
+  display: flex;
+  flex-direction: column;
+}
+
+.title-notifications {
+  padding: 15px;
+  padding-bottom: 0;
+}
+
+h2 {
+  margin: 0;
+  padding: 0;
+  color: #6504B5;
+  padding-bottom: 15px;
+}
+
+hr {
+  margin: 0;
+}
+
+.no-notification-yet{
+  padding: 15px;
+}
+
+.top-notification {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.notification-title-date {
+  display: flex;
+  flex-direction: column;
+}
+
+.nnotification-author {
+  font-size: 14px;
+  font-weight: bold;
+  color: #6504B5;
+  margin: 0;
+}
+
+.nnotification-date {
+  font-size: 9px;
+  color: #666666;
+  margin: 0;
+
+}

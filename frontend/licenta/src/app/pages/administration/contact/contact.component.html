@@ -1,0 +1,229 @@
+<body>
+
+<div class="container">
+  <div class="main-container">
+
+    <div class="content-container">
+      <h1>Contact Us</h1>
+
+      <p>
+        Welcome to our "Contact Us" page! We are here to assist you with any inquiries, support needs, or feedback you
+        might have. Your questions and comments are invaluable to us, and we are committed to providing you with prompt
+        and effective responses. </p>
+
+      <p> Whether you need more information about our services, require assistance with our website, or wish to share
+        your experiences and suggestions, this is the place to reach out. We are dedicated to ensuring your experience
+        with us is positive and fulfilling. </p>
+
+      <p> Please use the form below to send us your messages. Our team is eager to hear from you and will respond as
+        swiftly as possible. Your insights help us to continually improve and serve you better. Thank you for choosing
+        to contact us – we look forward to assisting you! </p>
+      <details>
+        <summary>ARE YOU LOOKING FOR A NEW PET?</summary>
+        <div class="faq-answer">
+          <p>Pawppies.com is a searchable list of pets from thousands of shelters and foster groups. Begin your search
+            using our Pet Search (at the top of this page). Since Pawppies is updated on a daily basis, we recommend you
+            keep checking back or save your query so we’ll send you an automatic e-mail when new pets are added that
+            match your search (after you search for a pet, click on “Save This Query” at the bottom of the page).
+            You can also search by using our
+            <button (click)="goToAnimalsPage()" mat-button> Animal List.</button>
+          </p>
+        </div>
+      </details>
+
+      <details>
+        <summary>ARE YOU TRYING TO FIND A HOME FOR YOUR PET?</summary>
+        <div class="faq-answer">
+          <p>Congratulations on your efforts to help this animal. First, please read Tips on Finding a Home for a Pet.
+            This library article will guide you through the steps to finding a suitable home. You may want to look
+            through our list of adoption groups to find those in your area. Contact them directly to find out what
+            assistance, if any, they may be able to offer you.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>DID YOU INQUIRE ABOUT A PET LISTING, BUT DIDN'T RECEIVE A RESPONSE?</summary>
+        <div class="faq-answer">
+          <p>We know it can be frustrating when you don't get a response from a shelter or rescue group. Many of the pet
+            listings on Pawppies are maintained by volunteers. They may only
+            be able to review and respond to requests a few times per week, sometimes less. Many of our groups also
+            receive several applications and inquiries for each pet they have available, which causes delays as it can
+            take time to review each application or
+            inquiry. We’re certain they do want to find the best possible homes for their pets. </p>
+          <p> We hope this negative experience will not affect your decision to adopt a pet in need. We urge you to
+            continue your search for other pets who match your criteria. Thank you for taking the time to contact us and
+            for thinking adoption first. </p>
+        </div>
+      </details>
+
+      <details>
+        <summary>DO YOU HAVE CONCERNS ABOUT THE HEALTH OR SAFETY OF A LISTED PET?</summary>
+        <div class="faq-answer">
+          <p>Pawppies is a website for nearly 13,000 independent animal shelters and rescue groups to post their
+            adoptable pets. If you are concerned about the welfare of any animal, you may want to consider contacting
+            your local authorities for assistance. </p></div>
+      </details>
+
+      <details>
+        <summary>HOW DO I REGISTER MY ANIMAL CENTER ON THE PLATFORM</summary>
+        <div class="faq-answer">
+          <p>To register your animal center, sign up as a supplier, fill in the necessary information about your center,
+            and once verified, you can start adding your animals to the platform.</p>
+        </div>
+      </details>
+
+      <div class="contact">
+        <h2>Still have a question? For all other inquiries, send us your request.</h2>
+        <input class="toggle-checkbox" hidden id="toggle-contact" type="checkbox">
+        <label class="contact-btn-label" for="toggle-contact">CONTACT US</label>
+
+        <div class="contact-form">
+          <form (ngSubmit)="submitContactForm()" class="search-form" id="contact-form">
+
+            <mat-form-field appearance="fill" class="custom-mat-form-field">
+              <mat-label>
+                <mat-icon matPrefix>person</mat-icon>
+                First Name
+              </mat-label>
+              <input [(ngModel)]="contactData.inputFirstName" matInput
+                     name="firstname" placeholder="Enter your firstname"/>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="custom-mat-form-field">
+              <mat-label>
+                <mat-icon matPrefix>person_outline</mat-icon>
+                Last Name
+              </mat-label>
+              <input [(ngModel)]="contactData.inputLastName" matInput
+                     name="lastName" placeholder="Enter your lastName"/>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="custom-mat-form-field">
+              <mat-label>
+                <mat-icon matPrefix>email</mat-icon>
+                Email
+              </mat-label>
+              <input [(ngModel)]="contactData.inputEmail" matInput
+                     name="email" placeholder="Enter your email"/>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="custom-mat-form-field">
+              <mat-label>
+                <mat-icon>subject</mat-icon>
+                What is your message regarding?
+              </mat-label>
+              <mat-select [(ngModel)]="contactData.inputSubject" name="type">
+                <mat-option value="Pet Listings">Pet Listings</mat-option>
+                <mat-option value="Technical question">Technical question</mat-option>
+                <mat-option value="Concerns about shelters/animals">Concerns about shelters/animals</mat-option>
+                <mat-option value="Technical question">Technical question</mat-option>
+                <mat-option value="Others">All other request</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="custom-mat-form-field-text description">
+              <mat-label>
+                <mat-icon>message</mat-icon>
+                Message
+              </mat-label>
+              <textarea [(ngModel)]="contactData.inputMessage" matInput
+                        name="message" placeholder="Add your message here"></textarea>
+            </mat-form-field>
+
+            <button class="contact-btn" mat-button type="submit">SEND REQUEST</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-container">
+
+      <div class="quiz">
+        <img class="quiz-img" src="../../../../assets/good_match.png">
+        <h2 style="text-align: center; margin-bottom: 0; margin-top: 15px"> Find your best </h2>
+        <h2 style="text-align: center; margin-bottom: 10px"> match </h2>
+        <p class="text-quiz"> It only takes 60 seconds. </p>
+
+        <button (click)="goToQuizPage()" class="start-quiz-btn" mat-button>GET STARTED</button>
+      </div>
+
+      <div class="search-center">
+        <form (ngSubmit)="performSearch()" class="search-form">
+          <h2>Find Pet-Adoption Centers by:</h2>
+
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon matPrefix>location_city</mat-icon>
+              City
+            </mat-label>
+            <input [(ngModel)]="searchData.city" matInput
+                   name="email" placeholder="Enter your email"/>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon>public</mat-icon>
+              Country
+            </mat-label>
+            <mat-select [(ngModel)]="searchData.country" name="country" placeholder="Select Country">
+              <mat-option *ngFor="let country of countries" [value]="country.name">
+                {{ country.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon matPrefix>business</mat-icon>
+              Name
+            </mat-label>
+            <input [(ngModel)]="searchData.name" matInput
+                   name="email" placeholder="Enter name"/>
+          </mat-form-field>
+
+          <button class="start-quiz-btn" mat-flat-button type="submit">
+            SEARCH
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+  <div class="see-animals">
+
+    <h1 (click)="goToAnimalsPage()" class="see-animals"> Pets Available for Adoption > </h1>
+
+    <div class="animal-grid">
+      <div *ngFor="let animal of showAnimals; let isLast = last" [class]="isLast ? 'animal-card-last' : 'animal-card'">
+        <a (click)="navigateToAnimalDetails(animal)">
+          <ng-container *ngIf="isLast ; else notLastTemplate">
+            <div (click)="goToAnimalsPage()">
+              <div class="animal-image">
+                <mat-icon class="centered-icon">search</mat-icon>
+
+                <p class="centered-text">300+ pets available on Pawppies </p>
+              </div>
+
+              <div class="animal-last">
+                <p class="meet-animals-text">MEET THEM</p>
+              </div>
+            </div>
+          </ng-container>
+        </a>
+        <ng-template #notLastTemplate>
+          <button (click)="likeAnimal($event, animal)" *ngIf="user" [ngClass]="{ 'liked': isLiked(animal) }"
+                  class="like-button">
+            <mat-icon>{{ isLiked(animal) ? 'favorite' : 'favorite_border' }}</mat-icon>
+          </button>
+
+          <img [src]='animal.animalImages[0].url' class="animal-image">
+          <div class="animal-details">
+            <p class="animal-name"> {{ animal.name }} </p>
+            <p class="animal-other-details"> {{ animal.age }}, {{ animal.breedDetails.name  }} </p>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+</body>

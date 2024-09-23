@@ -1,0 +1,72 @@
+/* styles.css */
+.mat-mdc-menu-panel.custom-menu {
+  background-color: #410078; /* Culoarea de fundal dorită */
+  animation: fadeIn 0.4s; /* Schimbă durata după preferințe */
+  width: 185px;
+  overflow-x: hidden;
+  overflow-scrolling: unset;
+}
+
+.mat-mdc-menu-panel.custom-menu.submeniu {
+  margin-top:12px;
+  margin-left: -5px;
+  background-color: #410078; /* Culoarea de fundal dorită */
+  animation: fadeIn 0.4s; /* Schimbă durata după preferințe */
+  width: 260px;
+  overflow-x: hidden;
+  overflow-scrolling: unset;
+}
+
+
+.mat-mdc-menu-item.mat-menu-customize-item:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.mat-mdc-menu-item.mat-menu-customize-item {
+  text-align: left;
+  overflow-x: hidden;
+  overflow-scrolling: unset;
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif; /* Aplică fontul Montserrat */
+  font-size: 1.2em; /* Mărește dimensiunea fontului */
+  color: white;
+  display: block;
+  animation: fadeIn 0.4s; /* Schimbă durata după preferințe */
+  margin-left: 5px;
+}
+
+.mat-button-focus-overlay {
+  display: none !important;
+}
+
+.mat-button-ripple {
+  display: none !important;
+}
+
+button.mat-button:focus {
+  outline: none !important;
+}
+
+* {
+  caret-color: transparent;
+  font-family: 'Montserrat', sans-serif; /* Aplică fontul Montserrat */
+}
+
+.cdk-overlay-container .menu-notification {
+  top: 60px;
+}
+
+
+.mat-mdc-menu-content .menu-notification {
+  height: 600px;
+  background-color: #666666;
+  padding-top: 0;
+}
+
+.mat-mdc-menu-panel.menu-notification {
+  max-height: 400px;
+  width: 800px;
+  overflow-x: hidden;
+  overflow-scrolling: unset;
+}

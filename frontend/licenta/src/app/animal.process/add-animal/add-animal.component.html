@@ -1,0 +1,247 @@
+<body>
+<mat-card *ngIf="user">
+  <mat-card-content style="font-family: 'Montserrat', sans-serif;">
+    <form (ngSubmit)="formSubmit()" class="login-form">
+
+      <h2>Add a New Friend to Our Family</h2>
+
+      <h4> complete the details below to introduce a new animal</h4>
+      <div class="fields-container">
+
+        <div class="left-container">
+          <mat-form-field class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon>badge</mat-icon>
+              Animal Name
+            </mat-label>
+            <input [(ngModel)]="petProfile.inputName" matInput name="name" placeholder="E.g., Max, Bella"/>
+            <button (click)="petProfile.inputName=''" mat-icon-button matSuffix>
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon>category</mat-icon>
+              Animal Type
+            </mat-label>
+            <mat-select [(ngModel)]="petProfile.inputType" name="type">
+              <mat-option value="Dog">Dog</mat-option>
+              <mat-option value="Cat">Cat</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field  appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon>merge_type</mat-icon>
+              Animal Breed
+            </mat-label>
+            <mat-select [(ngModel)]="petProfile.inputBreed" name="breed">
+              <mat-option *ngFor="let breed of getBreedOptions(petProfile.inputType)"
+                          [value]="breed">{{ breed }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon>wc</mat-icon>
+              Animal Gender
+            </mat-label>
+            <mat-select [(ngModel)]="petProfile.inputGender" name="gender">
+              <mat-option value="Male">Male</mat-option>
+              <mat-option value="Female">Female</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field *ngIf="petProfile.inputType" appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon>cake</mat-icon>
+              Animal Age
+            </mat-label>
+            <mat-select [(ngModel)]="petProfile.inputAge" name="age">
+              <mat-option *ngFor="let age of getAgeOptions(petProfile.inputType)" [value]="age">{{age}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field *ngIf="petProfile.inputType" appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon>aspect_ratio</mat-icon>
+              Animal Size
+            </mat-label>
+            <mat-select [(ngModel)]="petProfile.inputSize" name="size">
+              <mat-option *ngFor="let size of getSizeOptions(petProfile.inputType)" [value]="size">{{size}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon>texture</mat-icon>
+              Animal Coat Length
+            </mat-label>
+            <mat-select [(ngModel)]="petProfile.inputCoatLength" name="coatlength">
+              <mat-option value="Hairless">Hairless</mat-option>
+              <mat-option value="Short">Short</mat-option>
+              <mat-option value="Long">Long</mat-option> <!-- Am schimbat "Large" cu "Long" -->
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon>pets</mat-icon>
+              Good With
+            </mat-label>
+            <mat-select [(ngModel)]="petProfile.inputGoodInHome" multiple name="goodInHome">
+              <mat-option value="Dogs">Other Dogs</mat-option>
+              <mat-option value="Cats">Other Cats</mat-option>
+              <mat-option value="Children">Children</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="custom-mat-form-field">
+            <mat-label>
+              Fully Vaccinated
+            </mat-label>
+            <mat-checkbox [(ngModel)]="petProfile.inputIsFullyVaccinated" name="isFullyVaccinated">
+              Yes
+            </mat-checkbox>
+          </div>
+
+          <mat-form-field appearance="fill" class="custom-mat-form-field-text" *ngIf="petProfile.inputIsFullyVaccinated">
+            <mat-label>
+              <mat-icon>description</mat-icon>
+              Vaccination Details
+            </mat-label>
+            <textarea [(ngModel)]="petProfile.inputVaccinationDetails" class="vaccinationDetails" matInput
+                      name="vaccinationDetails" placeholder="Add a detailed description"></textarea>
+          </mat-form-field>
+
+          <div class="custom-mat-form-field">
+            <mat-label>
+              Has Special Needs
+            </mat-label>
+            <mat-checkbox [(ngModel)]="petProfile.inputHasSpecialNeeds"  name="hasSpecialNeeds">
+              Yes
+            </mat-checkbox>
+          </div>
+
+          <mat-form-field appearance="fill" class="custom-mat-form-field-text" *ngIf="petProfile.inputHasSpecialNeeds">
+            <mat-label>
+              <mat-icon>description</mat-icon>
+              Special Needs Details
+            </mat-label>
+            <textarea [(ngModel)]="petProfile.inputSpecialNeedsDetails" class="textarea-input" matInput
+                      name="specialNeedsDetails" placeholder="Add a detailed description"></textarea>
+          </mat-form-field>
+
+
+          <div class="custom-mat-form-field-text">
+            <mat-label>
+              Has Previous Owners
+            </mat-label>
+            <mat-checkbox [(ngModel)]="petProfile.inputHasPreviousOwners" name="hasPreviousOwners">
+              Yes
+            </mat-checkbox>
+          </div>
+
+          <div class="custom-mat-form-field">
+            <mat-label>
+              Sheds
+            </mat-label>
+            <mat-checkbox [(ngModel)]="petProfile.inputSheds"  name="sheds">
+              Yes
+            </mat-checkbox>
+          </div>
+        </div>
+
+        <div class="right-container">
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon>palette</mat-icon>
+              Color
+            </mat-label>
+            <mat-select [(ngModel)]="petProfile.inputColors" multiple name="colors">
+              <mat-option *ngFor="let color of colorOptions" [value]="color">{{ color }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="custom-mat-form-field">
+            <mat-label>
+              Is Trained
+            </mat-label>
+            <mat-checkbox [(ngModel)]="petProfile.inputIsTrained" name="isTrained">
+              Yes
+            </mat-checkbox>
+          </div>
+
+          <mat-form-field appearance="fill" class="custom-mat-form-field-text" *ngIf="petProfile.inputIsTrained">
+            <mat-label>
+              <mat-icon>description</mat-icon>
+              Trained Details
+            </mat-label>
+            <textarea [(ngModel)]="petProfile.inputTrainedDetails" class="textarea-input" matInput
+                      name="trainedDetails" placeholder="Add a detailed description"></textarea>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="custom-mat-form-field-text">
+            <mat-label>
+              <mat-icon>description</mat-icon>
+              Maintanance Costs
+            </mat-label>
+            <mat-select [(ngModel)]="petProfile.inputMaintenanceCosts"  name="maintenanceCosts">
+              <mat-option value="Low">Low</mat-option>
+              <mat-option value="Hight">Hight</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="custom-mat-form-field-text">
+            <mat-label>
+              <mat-icon>description</mat-icon>
+              Preferred Food Description
+            </mat-label>
+            <textarea [(ngModel)]="petProfile.inputPreferredFoodDescription" class="textarea-input" matInput
+                      name="preferredFoodDescription" placeholder="Add a detailed description"></textarea>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="custom-mat-form-field-text">
+            <mat-label>
+              <mat-icon>description</mat-icon>
+              Description
+            </mat-label>
+            <textarea [(ngModel)]="petProfile.inputDescription" class="textarea-input" matInput
+                      name="description" placeholder="Add a detailed description"></textarea>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="custom-mat-form-field-text">
+            <mat-label>
+              <mat-icon>local_hospital</mat-icon>
+              Health Information
+            </mat-label>
+            <textarea [(ngModel)]="petProfile.inputHealth" class="textarea-input" matInput maxlength="2000"
+                      name="health" placeholder="Provide any health-related information"></textarea>
+          </mat-form-field>
+
+          <input #selectFile (change)="onFileSelected($event)" class="input-images" multiple type="file">
+
+          <div class="image-grid">
+            <div *ngFor="let file of animal.animalImages; let i = index" class="image-container">
+              <img [src]='file.url || "../../../assets/background-animal.png"'
+                   [style.background]="'url(../../../assets/background-animal.png)'">
+              <button (click)="deleteImage(i)" class="delete-button">-</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="button-container">
+        <button [disabled]="!isFormValid()" class="login-button" mat-raised-button type="submit">
+          ADD
+        </button>
+        <button (click)="clearForm()" class="cancel-button" mat-raised-button type="button">
+          CLEAR
+        </button>
+      </div>
+    </form>
+
+  </mat-card-content>
+</mat-card>
+</body>

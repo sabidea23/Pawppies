@@ -1,0 +1,264 @@
+<body>
+
+<div class="main-container">
+
+  <div class="content-container">
+
+    <div class="container">
+      <div *ngIf="!isFullTextShown">
+        <h1>Dog & Puppy Adoption </h1>
+        <h2> Embarking on a Journey Together </h2>
+        <p>
+          Adopting a dog is a deeply fulfilling experience that can bring a lot of joy into your life, but it also
+          involves significant responsibilities. In the initial days after bringing your new companion home, it's
+          essential to focus on creating a safe, welcoming environment that helps your dog feel secure and loved.
+          Introduce them to their new home gradually, allowing them to explore their new surroundings at their own
+          pace. </p>
+        <p> Here’s some guidance to help you through the first few days after adoption and beyond, ensuring a smooth
+          transition for both you and your new furry friend:</p>
+
+        <h2> Choosing the Right Dog</h2>
+        <ul>
+          <li><b> Consider Your Lifestyle:</b> Match a dog’s energy level, size, and temperament with your lifestyle.
+            Active breeds need more exercise, while other dogs may be content with cozy cuddles and short walks.
+          </li>
+        <br>
+        <li><b> Family Matters:</b> Consider the needs of everyone in your household, including other pets. Some dogs
+          are better with children or other animals.
+        </li>
+        <br>
+        <li><b> Long-Term Commitment:</b> Remember that dogs can live 10-20 years depending on the breed, so think
+          long-term about your ability to care for them.
+        </li>
+        </ul>
+        <button (click)="toggleTextDisplay()" class="show-button" mat-button>Show More</button>
+      </div>
+
+      <div *ngIf="isFullTextShown">
+        <h1>Dog & Puppy Adoption </h1>
+        <h2> Embarking on a Journey Together </h2>
+        <p>
+          Adopting a dog is a deeply fulfilling experience that can bring a lot of joy into your life, but it also
+          involves significant responsibilities. In the initial days after bringing your new companion home, it's
+          essential to focus on creating a safe, welcoming environment that helps your dog feel secure and loved.
+          Introduce them to their new home gradually, allowing them to explore their new surroundings at their own
+          pace. </p>
+        <p> Here’s some guidance to help you through the first few days after adoption and beyond, ensuring a smooth
+          transition for both you and your new furry friend:</p>
+
+        <h2> Choosing the Right Dog</h2>
+        <ul>
+          <li><b> Consider Your Lifestyle:</b> Match a dog’s energy level, size, and temperament with your lifestyle.
+            Active breeds need more exercise, while other dogs may be content with cozy cuddles and short walks.
+          </li>
+
+        <br>
+        <li><b> Family Matters:</b> Consider the needs of everyone in your household, including other pets. Some dogs
+          are better with children or other animals.
+        </li>
+        <br>
+        <li><b> Long-Term Commitment:</b> Remember that dogs can live 10-20 years depending on the breed, so think
+          long-term about your ability to care for them.
+        </li>
+        </ul>
+        <h2> The First Few Days After Adoption:</h2>
+        <p> The initial days after bringing your dog home are crucial for their adjustment. Creating a calm and welcoming environment helps them feel secure and loved in their new home.</p>
+        <ul >
+          <li> <b> Prepare Your Home:</b> Create a welcoming space with a bed, food, water bowls, and toys. Establish a specific area for your dog to eat and another to relieve itself.</li>
+          <br> <li> <b>Establish a Routine: </b>  Dogs thrive on routine. Set specific times for walks, meals, and bedtime to help your dog adjust.</li>
+          <br> <li> <b> Visit a Veterinarian:</b> Schedule a check-up within the first week. Your vet can verify health, administer necessary vaccinations, and offer advice on diet and care.</li>
+        </ul>
+
+        <h2>
+          Bonding and Training</h2>
+        <p> Establishing a strong bond with your new dog begins with understanding and patience. Training your new companion sets the foundation for a trusting and lasting relationship.</p>
+        <ul>
+          <li> <b> Build Trust:</b> Spend quality time together to build a bond. Play games, groom, and gently interact to help your dog feel secure.</li>
+          <br> <li> <b> Basic Training:</b> Teach basic commands like sit, stay, come, and down. Use positive reinforcement techniques such as treats and praises.</li>
+          <br> <li><b>Socialization: </b>  Gradually introduce your dog to a variety of people, pets, and environments to ensure they become well-adjusted adults.</li>
+        </ul>
+        <p>
+          Congratulations on your new furry family member! Adopting a dog is a rewarding journey that enhances your life with joy and companionship. As you embark on this exciting adventure, remember that patience and love are key to building a lasting bond. Welcome to the wonderful world of pet parenthood!</p>
+        <button (click)="toggleTextDisplay()" class="show-button" mat-button>Show Less</button>
+      </div>
+    </div>
+
+    <div class="see-about">
+      <div class="about-grid">
+        <div class="about-card">
+          <a (click)="navigateToCatBreedsPage()">
+            <img class="about-image" src="../../../../assets/dog-brreds-about.png">
+            <div class="about-detail">
+              <p class="title-about"> Dog breeds
+              </p>
+              <p class="text-about">
+                Explore dog breeds details here!
+              </p>
+            </div>
+          </a>
+        </div>
+
+        <div class="about-card">
+          <a (click)="navigateToFeedingCat()">
+            <img class="about-image" src="../../../../assets/feed-dog.png">
+            <div class="about-detail">
+              <p class="title-about"> Feeding your dog
+              </p>
+              <p class="text-about"> Nourishing Your Canine Friend
+              </p>
+            </div>
+          </a>
+        </div>
+
+        <div class="about-card">
+          <a (click)="navigateToCatHealth()">
+            <img class="about-image" src="../../../../assets/health-dog.png">
+            <div class="about-detail">
+              <p class="title-about"> Dog health
+              </p>
+              <p class="text-about"> Ensuring Your Dog's Well-being
+              </p>
+            </div>
+          </a>
+        </div>
+
+        <div class="about-card">
+          <a (click)="navigateToKidsCat()">
+            <img class="about-image" src="../../../../assets/kids-dog.png">
+            <div class="about-detail">
+              <p class="title-about"> Best Dog For Kids
+              </p>
+              <p class="text-about"> Discover Perfect Dogs for Children
+              </p>
+            </div>
+          </a>
+        </div>
+        <div class="about-card">
+          <a (click)="naviateTooAdoptCats()">
+            <img class="about-image" src="../../../../assets/adopt-dog.png">
+            <div class="about-detail">
+              <p class="title-about"> Adopt a dog
+              </p>
+              <p class="text-about"> Find your perfect dog adoption match.
+              </p>
+            </div>
+          </a>
+        </div>
+
+        <div class="about-card">
+          <a (click)="navigateToCutestCat()">
+            <img class="about-image" src="../../../../assets/cute.png">
+            <div class="about-detail">
+              <p class="title-about"> Cutest dog breeds
+              </p>
+              <p class="text-about"> Meet the World's Cutest Dogs
+              </p>
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="see-animals">
+      <h1 (click)="goToAnimalsPage()" *ngIf="showAnimals.length > 0" class="see-animals"> Animals Available for Adoption
+        > </h1>
+      <div class="animal-grid">
+
+        <div *ngFor="let animal of showAnimals; let isLast = last"
+             [class]="isLast ? 'animal-card-last' : 'animal-card'">
+          <a (click)="navigateToAnimalDetails(animal)">
+            <ng-container *ngIf="isLast ; else notLastTemplate">
+              <div (click)="goToAnimalsPage()">
+                <div class="animal-image">
+                  <mat-icon class="centered-icon">search</mat-icon>
+
+                  <p class="centered-text">300+ pets available on Pawppies </p>
+                </div>
+
+                <div class="animal-last">
+                  <p class="meet-animals-text">MEET THEM</p>
+                </div>
+              </div>
+            </ng-container>
+          </a>
+
+          <ng-template #notLastTemplate>
+            <button (click)="likeAnimal($event, animal)" *ngIf="user" [ngClass]="{ 'liked': isLiked(animal) }"
+                    class="like-button">
+              <mat-icon>{{ isLiked(animal) ? 'favorite' : 'favorite_border' }}</mat-icon>
+            </button>
+
+            <img [src]='animal.animalImages[0].url' class="animal-image">
+            <div class="animal-details">
+              <p class="animal-name"> {{ animal.name }} </p>
+              <p class="animal-other-details"> {{ animal.age }}, {{ animal.breedDetails.name }} </p>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="side-container">
+
+    <!--    start quizz-->
+    <div class="quiz">
+      <img class="quiz-img" src="../../../../assets/good_match.png">
+      <h2 style="text-align: center; margin-bottom: 0; margin-top: 15px"> Find your best </h2>
+      <h2 style="text-align: center; margin-bottom: 10px"> match </h2>
+      <p class="text-quiz"> It only takes 60 seconds. </p>
+
+      <button (click)="goToQuizPage()" class="start-quiz-btn" mat-button>GET STARTED</button>
+    </div>
+
+
+    <div class="search-center">
+      <form (ngSubmit)="performSearch()" class="search-form">
+        <h2>Find Pet-Adoption Centers by:</h2>
+
+        <!--      //city-->
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon matPrefix>location_city</mat-icon>
+            City
+          </mat-label>
+          <input [(ngModel)]="searchData.city" matInput
+                 name="email" placeholder="Enter your email"/>
+        </mat-form-field>
+
+        <!--        //country/-->
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon>public</mat-icon>
+            Country
+          </mat-label>
+          <mat-select [(ngModel)]="searchData.country" name="country" placeholder="Select Country">
+            <mat-option *ngFor="let country of countries" [value]="country.name">
+              {{ country.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+        <!--        //name-->
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon matPrefix>business</mat-icon>
+            Name
+          </mat-label>
+          <input [(ngModel)]="searchData.name" matInput
+                 name="email" placeholder="Enter name"/>
+        </mat-form-field>
+
+        <button class="start-quiz-btn" mat-flat-button type="submit">
+          SEARCH
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="see-animals">
+  </div>
+</div>
+</body>

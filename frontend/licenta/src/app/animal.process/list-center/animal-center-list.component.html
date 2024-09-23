@@ -1,0 +1,200 @@
+<body>
+<div class="main-container">
+  <div class="content-container">
+
+    <div class="header-container">
+      <h1>Helping Homeless Pet Owners Keep Their Pets</h1>
+      <button (click)="navigateToAddAnimalCenter()" *ngIf="getUserRole() == 'SUPPLIER'" class="add-animal-center-button"
+              mat-raised-button>
+        ADD CENTER
+      </button>
+    </div>
+
+    <div *ngIf="searchFilters.length > 0" class="filter-container">
+      <div *ngFor="let filter of searchFilters">
+        <p *ngIf="filter.value" class="filter-chip">
+          <button (click)="deleteFilter(filter)" class="btn bg-transparent close-btn">
+            <mat-icon>close</mat-icon>
+          </button>
+          <span class="filter-text"><b>{{ filter.type }}:</b> {{ filter.value }}</span>
+        </p>
+      </div>
+    </div>
+
+    <table *ngIf="(filteredAnimalCenters.length != 0)" [dataSource]="filteredAnimalCenters" class="centers-table"
+           mat-table>
+
+      <ng-container matColumnDef="animalCenter">
+        <th *matHeaderCellDef>ORGANIZATION</th>
+        <td *matCellDef="let animalCenter" mat-cell>
+          <span (click)="navigateToCenterDetails(animalCenter)" class="clickable-text">{{ animalCenter.name }}</span>
+        </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="petList">
+        <th *matHeaderCellDef>PET LIST</th>
+        <td *matCellDef="let animalCenter" mat-cell>
+          <button (click)="goToAnimalsPage(animalCenter)" mat-button>
+            <mat-icon class="sticker-icon">pets</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Coloana pentru oraș/stat -->
+      <ng-container matColumnDef="cityState">
+        <th *matHeaderCellDef>CITY/STATE</th>
+        <td *matCellDef="let animalCenter" mat-cell>{{ animalCenter.city }},  {{animalCenter.country}}</td>
+      </ng-container>
+
+      <!-- Coloana pentru contact -->
+      <ng-container matColumnDef="contact">
+        <th *matHeaderCellDef>CONTACT</th>
+        <td *matCellDef="let animalCenter" mat-cell>{{ animalCenter.contact }}</td>
+      </ng-container>
+
+      <!-- Coloana pentru acțiunea Show on Map -->
+      <ng-container matColumnDef="showOnMap">
+        <th *matHeaderCellDef>MAP</th>
+        <td *matCellDef="let animalCenter" mat-cell>
+          <button (click)="showOnMap(animalCenter)" class="btn bg-transparent" mat-button>
+            <mat-icon>map</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Coloana pentru Editare -->
+      <ng-container matColumnDef="edit">
+        <th *matHeaderCellDef>EDIT</th>
+        <td *matCellDef="let animalCenter" mat-cell>
+          <button (click)="editAnimalCenter(animalCenter)"
+                  *ngIf="getUserRole() == 'SUPPLIER' && animalCenter.admin.id == user.id" class="btn bg-transparent"
+                  mat-button>
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Coloana pentru Ștergere -->
+      <ng-container matColumnDef="delete">
+        <th *matHeaderCellDef>DELETE</th>
+        <td *matCellDef="let animalCenter" mat-cell>
+          <button (click)="deleteAnimalCenter(animalCenter)"
+                  *ngIf="getUserRole() == 'SUPPLIER' && animalCenter.admin.id == user.id"
+                  class="btn bg-transparent" mat-button>
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr *matHeaderRowDef="getHeader()" mat-header-row></tr>
+      <tr *matRowDef="let row; columns: getHeader()"
+          mat-row></tr>
+    </table>
+
+    <h2 *ngIf="filteredAnimalCenters.length == 0"> No results found.</h2>
+    <mat-paginator (page)="handlePageEvent($event)"
+                   [length]="totalElements"
+                   [pageSizeOptions]="[5, 10, 20]"
+                   [pageSize]="10">
+    </mat-paginator>
+
+    <hr>
+    <p>Pets bring a great deal of joy and comfort, as well as better health, to their owner's lives, but financial
+      problems can leave pet owners scrambling to hold onto pets, or any sense of normalcy. Sandy Swank, the director of
+      housing and homeless services for Inter-Faith Ministries in Wichita, Kansas, says in a Wichita Eagle interview
+      that homeless pet owners can find themselves faced with the painful decision of leaving a beloved pet behind in
+      order to get a meal and spend a night in a shelter, or sleeping on the street.
+    </p>
+
+    <h1> Help with pet care costs </h1>
+    <p> Wilson was not able to find help feeding or caring for Free during the transition to homelessness, but he
+      managed to keep Free with him until he got back on his feet. According to Wilson, Free comforted him during the
+      darkest time of his life and gave him a reason to keep fighting. However, if assistance, such as the programs
+      mentioned below, had been available for Wilson and Free, the impact of losing their home might have been lessened,
+      making it easier for them to stay together.
+    </p>
+    <ul>
+      <li><b> Veterinary care assistance: </b> Programs such as Project Care, MSPCA, and Pets of the Homeless provide
+        pets of homeless individuals with veterinary care. This helps ensure the health of the animals, which is
+        important. Some shelters accept people with pets only if their pet is vaccinated.
+      </li>
+      <li><b> Pet food assistance:</b> Programs such as a pet food drive program or Pet Food Stamps reach out to
+        financially challenged and homeless pet owners by providing food for hungry pets.
+      </li>
+    </ul>
+    <p> Homeless pet owners can seek help from these programs, or they can contact local veterinarians and shelters for
+      help in finding ways to protect and keep their pets. Individuals interested in helping people who are down on
+      their luck and facing homelessness with their pets can contact any of these organizations through their websites,
+      or check with their local veterinarian, mission, or animal shelter for ways to help.
+    </p>
+  </div>
+
+  <div class="side-container">
+    <form (ngSubmit)="performSearch()" class="search-form">
+      <h2>Find Pet-Adoption Centers by:</h2>
+
+      <!--      //city-->
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
+        <mat-label>
+          <mat-icon matPrefix>location_city</mat-icon>
+          City
+        </mat-label>
+        <input [(ngModel)]="searchData.city" matInput
+               name="email" placeholder="Enter your email"/>
+      </mat-form-field>
+
+      <!--        //country/-->
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
+        <mat-label>
+          <mat-icon>public</mat-icon>
+          Country
+        </mat-label>
+        <mat-select [(ngModel)]="searchData.country" name="country" placeholder="Select Country">
+          <mat-option *ngFor="let country of countries" [value]="country.name">
+            {{ country.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!--        //name-->
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
+        <mat-label>
+          <mat-icon matPrefix>business</mat-icon>
+          Name
+        </mat-label>
+        <input [(ngModel)]="searchData.name" matInput
+               name="email" placeholder="Enter name"/>
+      </mat-form-field>
+
+
+      <mat-form-field *ngIf="user" appearance="fill" class="custom-mat-form-field">
+        <mat-label>
+          <mat-icon matPrefix>business</mat-icon>
+          Max Distance
+        </mat-label>
+        <mat-select [(ngModel)]="searchData.distance" name="distance">
+          <mat-option value="5"><5 km</mat-option>
+          <mat-option value="10"><10 km</mat-option>
+          <mat-option value="50"><50 km</mat-option>
+          <mat-option value="100"><100 km</mat-option>
+          <mat-option value="0">More</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <button class="login-button" mat-flat-button type="submit">
+        SEARCH
+      </button>
+
+      <div class="line-with-text">
+        <div class="text">OR</div>
+      </div>
+
+      <button (click)="showAllCenters()" class="login-button reset" mat-flat-button>
+        SHOW ALL
+      </button>
+    </form>
+
+  </div>
+</div>
+</body>

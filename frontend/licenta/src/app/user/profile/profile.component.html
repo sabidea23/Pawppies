@@ -1,0 +1,264 @@
+<body>
+
+<div class="container">
+  <div class="main-container">
+    <div class="content-container">
+
+      <h1>My account details </h1>
+
+      <div class="menu">
+        <button (click)="selectTab('aboutMe')" mat-button><h2> About me</h2></button>
+        <button (click)="selectTab('accountDetails')"
+                mat-button><h2> Account Details </h2></button>
+        <button (click)="selectTab('adopterProfile')" mat-button><h2> Adopter
+          Profile </h2></button>
+        <button (click)="selectTab('animalsAdopted')"
+                mat-button><h2> Animals Adopted </h2></button>
+        <button (click)="selectTab('adoptionRequests')" mat-button><h2> Adoption Requests </h2></button>
+      </div>
+
+      <div *ngIf="selectedTab === 'adoptionRequests'" class="form-details">
+        <h2> Adoption Requests Status: </h2>
+        <div *ngIf="requests" class="request-container">
+          <mat-card (click)="goToAnimalPage(request.animal)" *ngFor="let request of requests" class="request-card">
+            <mat-card-header>
+              <mat-card-title>{{ request.animal.name }}</mat-card-title>
+              <mat-card-subtitle>
+                Requested on: {{ request.requestedDate | date:'mediumDate' }}
+              </mat-card-subtitle>
+            </mat-card-header>
+
+            <img [src]="request.animal.animalImages[0]?.url" alt="Animal image" class="image-container">
+            <mat-card-content class="content-request">
+              <p><strong>Reason for adoption:</strong> {{ request.reason }}</p>
+              <p><strong>Status: </strong> <span
+                [ngClass]="{'status-pending': request.status === 'PENDING'}">{{ request.status }}</span>
+              <p *ngIf="request.status === 'SUBMITTED'">
+                There are currently {{ request.numberRequestsBefore }} other adoption requests for this animal submitted before yours.
+              </p>
+              <p *ngIf="request.status == 'PENDING'"> {{request.animal.name}} is waiting for your visit starting
+                <b> {{request.pendingDate | date:'mediumDate'}}  </b> to
+                <b>  {{ calculateDueDate(request.pendingDate) | date:'mediumDate'}} </b></p>
+            </mat-card-content>
+
+            <div class="butons-container">
+              <button (click)="cancelRequest($event, request.id)" class="cancel-button" mat-button>CANCEL REQUEST
+              </button>
+            </div>
+          </mat-card>
+
+        </div>
+
+        <div *ngIf="requests.length < 1">
+          <hr>
+          <h2> You have no adoption requests submitted at this moment.</h2>
+          <button (click)="goToAnimalsPage()" class="update-button" mat-button>SEE ANIMALS</button>
+        </div>
+      </div>
+
+      <div *ngIf="selectedTab === 'adopterProfile'" class="form-details">
+        <h2> Start completing your Adopter Profile now! </h2>
+        <button (click)="goToQuizPage()" class="update-button" mat-button>START QUIZ</button>
+      </div>
+
+      <div *ngIf="selectedTab === 'animalsAdopted'" class="form-details">
+
+        <h2> Animals Adopted: </h2>
+        <div *ngIf="user.adoptedAnimals.length > 0" class="request-container">
+          <mat-card *ngFor="let animalAdopted of user.adoptedAnimals" class="request-card">
+
+            <mat-card-header>
+              <mat-card-title>{{ animalAdopted.name }}</mat-card-title>
+              <mat-card-subtitle>
+                {{ animalAdopted.type }}, {{animalAdopted.gender}}, {{animalAdopted.size}}
+              </mat-card-subtitle>
+            </mat-card-header>
+
+            <img [src]='animalAdopted.animalImages[0].url'>
+            <mat-card-content>
+              <p> {{animalAdopted.description}}</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+        <div *ngIf="user.adoptedAnimals.length < 1">
+          <hr>
+          <h2> You have no animals adopted at this moment.
+            Start your journey to find the perfect animal companion for you. </h2>
+          <button (click)="goToAnimalsPage()" class="update-button" mat-button>SEARCH</button>
+        </div>
+
+      </div>
+
+      <form (ngSubmit)="formSubmit()" *ngIf="selectedTab === 'accountDetails'" [formGroup]="editForm"
+            class="form-details">
+        <h2> HOW CAN YOU BE REACHED? </h2>
+        <div class="name">
+          <!-- Email -->
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon>email</mat-icon>
+              Email
+            </mat-label>
+            <input [(ngModel)]="userInput.email" formControlName="email" matInput name="email" placeholder="Email"/>
+            <button (click)="userInput.email=''" mat-icon-button matSuffix>
+              <mat-icon>close</mat-icon>
+            </button>
+            <mat-error *ngIf="editForm.get('email')?.hasError('required')">
+              Email is required.
+            </mat-error>
+            <mat-error *ngIf="editForm.get('email')?.hasError('email')">
+              Email format is not valid.
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Phone -->
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon>call</mat-icon>
+              Phone
+            </mat-label>
+            <input [(ngModel)]="userInput.phone" formControlName="phone" matInput name="phone" placeholder="Phone"/>
+            <button (click)="userInput.phone=''" mat-icon-button matSuffix>
+              <mat-icon>close</mat-icon>
+            </button>
+            <mat-error *ngIf="editForm.get('phone')?.hasError('required')">
+              Phone number is required.
+            </mat-error>
+            <mat-error *ngIf="editForm.get('phone')?.hasError('pattern')">
+              Phone number format is not valid.
+            </mat-error>
+
+          </mat-form-field>
+        </div>
+
+        <!-- New Password -->
+        <h2>CHANGE PASSWORD </h2>
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon>vpn_key</mat-icon>
+            New Password
+          </mat-label>
+          <input [(ngModel)]="userInput.password" clas="form-input" formControlName="password" matInput name="password"
+                 placeholder="New Password" type="password"/>
+          <button (click)="userInput.password=''" mat-icon-button matSuffix>
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="editForm.get('password')?.hasError('required')">
+            Password is required.
+          </mat-error>
+          <mat-error *ngIf="editForm.get('password')?.hasError('minlength')">
+            Password must be at least 8 characters long.
+          </mat-error>
+          <mat-error *ngIf="editForm.get('password')?.hasError('pattern')">
+            Must contain upper, lower case letters, numbers.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon>vpn_key</mat-icon>
+            Confirm Password
+          </mat-label>
+          <input [(ngModel)]="userInput.confirmPassword" clas="form-input" formControlName="confirmPassword" matInput
+                 name="confirmPassword"
+                 placeholder="Confirm New Password" type="password"/>
+          <button (click)="userInput.confirmPassword=''" mat-icon-button matSuffix>
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="editForm.get('confirmPassword')?.hasError('required')">
+            Confirming your password is required.
+          </mat-error>
+        </mat-form-field>
+        <button class="update-button" mat-raised-button type="submit">
+          UPDATE
+        </button>
+      </form>
+
+      <form (ngSubmit)="formSubmit()" *ngIf="selectedTab === 'aboutMe'" [formGroup]="editForm" class="form-details">
+
+        <h2> WHAT IS YOUR NAME? </h2>
+        <div class="name">
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon>first_page</mat-icon>
+              First Name
+            </mat-label>
+            <input [(ngModel)]="userInput.firstName" formControlName="firstname" matInput name="firstName"
+                   placeholder="First Name"/>
+            <button (click)="userInput.firstName=''" mat-icon-button matSuffix>
+              <mat-icon>close</mat-icon>
+            </button>
+            <mat-error *ngIf="editForm.get('firstName')?.hasError('required')">
+              First name is required.
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Last Name -->
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon>last_page</mat-icon>
+              Last Name
+            </mat-label>
+            <input [(ngModel)]="userInput.lastName" formControlName="lastname" matInput name="lastName"
+                   placeholder="Last Name"/>
+            <button (click)="userInput.lastName=''" mat-icon-button matSuffix>
+              <mat-icon>close</mat-icon>
+            </button>
+            <mat-error *ngIf="editForm.get('lastName')?.hasError('required')">
+              Last name is required.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <hr>
+
+        <h2>WHERE DO YOU LIVE? </h2>
+
+        <div class="name">
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon>location_city</mat-icon>
+              City
+            </mat-label>
+            <input [(ngModel)]="userInput.city" clas="form-input" formControlName="city" matInput name="city"
+                   placeholder="City"/>
+            <button (click)="userInput.city=''" mat-icon-button matSuffix>
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>
+              <mat-icon>public</mat-icon>
+              Country
+            </mat-label>
+            <mat-select [(ngModel)]="userInput.country" formControlName="country" name="country"
+                        placeholder="Select Country">
+              <mat-option *ngFor="let country of countries" [value]="country.name">
+                {{ country.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon>add_road</mat-icon>
+            Street
+          </mat-label>
+          <input [(ngModel)]="userInput.street" clas="form-input" formControlName="street" matInput name="street"
+                 placeholder="Street"/>
+          <button (click)="userInput.street=''" mat-icon-button matSuffix>
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <button class="update-button" mat-raised-button type="submit">
+          UPDATE
+        </button>
+      </form>
+
+    </div>
+  </div>
+</div>
+</body>

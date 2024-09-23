@@ -1,0 +1,397 @@
+<body>
+
+<div class="main-container">
+
+  <div class="content-container">
+
+    <div class="container">
+      <div *ngIf="!isFullTextShown">
+        <h1>Dog & Puppy Health </h1>
+        <h2>Puppy and Dog Vaccinations: A Schedule for Every Life Stage </h2>
+        <p>Dog vaccinations are critical to ensuring your four-legged friend stays healthy from puppyhood into their
+          senior years. Vaccines are the safest and most cost-effective way to protect your dog from many infectious
+          preventable diseases.</p>
+        <p> The science behind canine vaccinations has progressed significantly over the past decade, enhancing both
+          their safety and efficacy against existing and emerging pathogens. Here’s why vaccinating a dog is important.
+        </p>
+        <h2> What Are the Common Dog Vaccinations? </h2>
+        <p> Dog vaccinations are split into two general categories: core vaccines and noncore vaccines.
+        </p>
+        <img class="vaccination" src="../../../../../assets/vaccination.png">
+        <br>
+        <button (click)="toggleTextDisplay()" class="show-button" mat-button>Show More</button>
+      </div>
+
+      <div *ngIf="isFullTextShown">
+        <h1>Dog & Puppy Health </h1>
+        <h2>Puppy and Dog Vaccinations: A Schedule for Every Life Stage </h2>
+        <p>Dog vaccinations are critical to ensuring your four-legged friend stays healthy from puppyhood into their
+          senior years. Vaccines are the safest and most cost-effective way to protect your dog from many infectious
+          preventable diseases.</p>
+        <p> The science behind canine vaccinations has progressed significantly over the past decade, enhancing both
+          their safety and efficacy against existing and emerging pathogens. Here’s why vaccinating a dog is important.
+        </p>
+        <h2> What Are the Common Dog Vaccinations? </h2>
+        <p> Dog vaccinations are split into two general categories: core vaccines and noncore vaccines.
+        </p>
+        <img class="vaccination" src="../../../../../assets/vaccination.png">
+        <br>
+        <h2> Core Vaccines </h2>
+        <ul>
+          <li> Canine distemper/adenovirus-2 (hepatitis)/parvovirus/parainfluenza vaccine (given as one vaccine,
+            commonly referred to as DA2PP, DHPP, or DAPP)
+          </li>
+          <li> Rabies virus vaccine</li>
+        </ul>
+
+        <h2> Noncore Vaccines </h2>
+        <p>Noncore vaccines (also called lifestyle vaccines) are considered optional and given based on factors such as
+          your pet’s lifestyle and where you live. Several noncore vaccines protect against highly contagious or
+          potentially life-threatening diseases.
+        </p>
+
+        <p>To determine which lifestyle vaccines are appropriate for your dog, your vet will look at a variety of
+          factors, including:
+        </p>
+        <ul>
+          <li> Geographic location and risk of disease in these areas
+          </li>
+
+          <li> Whether your pet goes to doggy day care, dog parks, or boarding or grooming facilities
+          </li>
+
+          <li> Whether your pet’s lifestyle includes traveling, going on hikes, or being exposed to wilderness or bodies
+            of water
+          </li>
+
+          <li> The overall health of your pet
+          </li>
+        </ul>
+
+        <h2> Puppy Vaccine Schedule </h2>
+        <p> For puppy vaccines to provide necessary protection, they’re given every two to four weeks until a puppy is
+          at least 16 weeks old. Some dogs in high-risk areas may benefit from receiving the last vaccines around 18–20
+          weeks old.
+        </p>
+        <p>Here’s an example of what a typical puppy shot schedule looks like:
+        </p>
+        <table>
+          <tr>
+            <th>Age</th>
+            <th>Core Vaccines</th>
+            <th>Noncore Vaccines</th>
+          </tr>
+          <tr>
+            <td>6–8 Weeks</td>
+            <td>DAP</td>
+            <td>Bordetella<br>Parainfluenza (often included in DAP combo vaccine)</td>
+          </tr>
+          <tr>
+            <td>10–12 Weeks</td>
+            <td>DAP</td>
+            <td>Leptospirosis<br>Lyme<br>Canine influenza</td>
+          </tr>
+          <tr>
+            <td>14–16 Weeks</td>
+            <td>DAP (vets prefer giving final DAP vaccine at 16 weeks or later)</td>
+            <td>Rabies vaccine (may be given earlier if required by law)<br>Leptospirosis<br>Lyme</td>
+          </tr>
+        </table>
+        <p>Ultimately, it’s important to consult with your veterinarian to identify the appropriate schedule for puppy
+          vaccines for your specific pet.
+        </p>
+
+        <h2> Adult Dog Vaccine Schedule </h2>
+        <p>Adult dogs need their core vaccines (DAP and rabies vaccines) in addition to any noncore vaccines decided
+          upon between you and your veterinarian. A dog vaccination schedule for an adult dog may look like this:
+        </p>
+        <table>
+          <tr>
+            <th>Frequency</th>
+            <th>Core Vaccines</th>
+            <th>Noncore Vaccines</th>
+          </tr>
+          <tr>
+            <td>Annual vaccines for dogs</td>
+            <td>Rabies (initial vaccine)</td>
+            <td>Leptospirosis<br>Lyme<br>Canine influenza<br>Bordetella (sometimes given every 6 months)</td>
+          </tr>
+          <tr>
+            <td>Dog vaccines given every 3 years</td>
+            <td>DAP<br>Rabies (after initial vaccine, given every 3 years)</td>
+            <td>No 3-year noncore vaccines are available at this time.</td>
+          </tr>
+        </table>
+
+        <p>If your dog is overdue or if it’s their first time getting a vaccine, your vet may recommend a booster
+          vaccine or an annual schedule so your pet is fully protected.
+        </p>
+
+        <h2> What Diseases Do Dog Vaccines Prevent? </h2>
+        <p>Keeping up with your dog vaccinations is the best way to protect your pup from many different illnesses,
+          including:
+        </p>
+        <ul>
+          <li><h2> Rabies</h2>
+            <p> Rabies is a virus that causes neurologic disease that is fatal for domestic pets, wildlife, and people.
+              It’s most notably transmitted through a bite from an infected animal. If your dog has rabies, it can be
+              transmitted to you or other people through bite wounds.
+            </p>
+
+            <p>The rabies vaccine is required by law in the U.S. And despite the excellent vaccination system we have,
+              there are still animals and people that come down with rabies every year.
+            </p>
+            <img class="vaccination" src="../../../../../assets/veterinar.png">
+          </li>
+
+          <li>
+            <h2> Distemper/Adenovirus (Hepatitis)/Parvovirus (DAP) </h2>
+            <p> The DAP vaccine protects against a combination of diseases that can spread quickly among dogs and have
+              serious implications for canines, including severe illness and death.
+            </p>
+          </li>
+
+          <li><h2> Bordetella and Canine Parainfluenza </h2>
+            <p> Bordetella and canine parainfluenza virus are two agents associated with a highly contagious cough
+              commonly known as kennel cough, or canine infectious respiratory disease complex (CIRDC).
+            </p>
+            <p> Diseases from these agents typically resolve on their own but sometimes can lead to pneumonia or more
+              severe respiratory disease. Because kennel cough is so contagious, boarding and doggy day care facilities
+              across the U.S. require your pet to have this vaccine.
+            </p>
+          </li>
+        </ul>
+
+        <h1> Dog neutering – a guide to castration and spaying </h1>
+        <h2> What is neutering? </h2>
+        <p>Neutering is a routine procedure that involves removing your dog’s sex organs to prevent unwanted
+          pregnancies, pregnancy related illness, and conditions such as testicular, ovarian, and mammary cancers. The
+          male procedure is called castration, and the female procedure is called spaying.
+        </p>
+        <h2> Why neuter? </h2>
+        <p> Some of the benefits of neutering include: </p>
+        <p><b> The benefits of neutering a female dog include: </b></p>
+        <ul>
+          <li> Prevents seasons</li>
+          <li> Prevents pregnancy</li>
+          <li> Prevents womb infections (pyometra)</li>
+          <li> Prevents false pregnancies</li>
+        </ul>
+
+        <br>
+        <p><b> The benefits of neutering a male dog include: </b></p>
+        <ul>Prevents testicular cancer
+          <li> Prevents testicular cancer</li>
+          <li> Reduces the chance of prostate problems such as Benign Prostatic Hyperplasia (BPH) later in life</li>
+          <li> Reduces the urge to seek out a female dog to mate with, and therefore reduces the urge to roam away from
+            home
+          </li>
+        </ul>
+
+        <h2> What will happen when my dog is neutered? </h2>
+        <h2> Before </h2>
+        <ul>
+          <li><b> Food – </b> you will need to starve your dog for 6-8 hours before they go under anaesthetic, i.e. give
+            them dinner the night before, but no breakfast or treats on the morning of their operation. This is to make
+            sure their stomach is empty so they don’t regurgitate and choke under anaesthetic.
+          </li>
+          <li><b> Water</b> – you can leave water down for your dog until 2-3 hours before they go in for their
+            operation, i.e. take it away at 6-7am the morning of their surgery.
+          </li>
+          <li><b>Health </b> – if your dog has been poorly in the days leading up to their operation, let your vet know
+            so they can give them a check over and make sure they are fit for surgery.
+          </li>
+        </ul>
+        <br>
+
+        <h2>The operation </h2>
+        <ul>
+          <li>Your vet will check your dog over, give them a light sedative and some pain relief, and settle them in a
+            warm, comfortable kennel.
+          </li>
+          <li> Once the sedative has taken effect, your dog will be put under a full/general anaesthetic.
+          </li>
+          <li> They will then be carefully monitored, while their surgery site is clipped and cleaned ready for the
+            procedure.
+          </li>
+          <li> If your dog is female, your vet will make a small incision along the middle of her tummy so her ovaries
+            and womb can be carefully removed.
+          </li>
+          <li> If your dog is male, your vet will make a small incision just above the testicles so that both testicles
+            can be carefully removed.
+          </li>
+        </ul>
+
+        <h2> FAQs </h2>
+        <details>
+          <summary> Will neutering make my dog fat?</summary>
+          <div class="faq-answer">
+            <p> Due to the hormonal changes associated with neutering, your dog will need around 30% less calories once
+              they have been spayed or castrated. We recommend that you reduce your dog’s portion sizes, or find a food
+              specifically for neutered dogs, which is naturally lower in calories. If your dog is putting on weight
+              after neutering, talk to your vet or vet nurse about the best ways to keep them in shape.
+
+            </p>
+          </div>
+        </details>
+
+        <details>
+          <summary> Will neutering change my dog’s personality?</summary>
+          <div class="faq-answer">
+            <p> If your pet is confident, happy and well socialised, then it’s very unlikely that neutering them will
+              change their behaviour or personality.
+
+            </p>
+            <p> However, if they are under-confident, fearful, or have behavioural problems, neutering could make them
+              worse. This is because sex-hormones such as testosterone, tend to boost confidence, so a reduction in
+              these hormones away at the wrong time might reduce your dog’s confidence, making them more fearful and/or
+              aggressive.
+
+            </p>
+          </div>
+        </details>
+
+        <details>
+          <summary>When is the best time to neuter a large/giant breed dog?</summary>
+          <div class="faq-answer">
+            <p> If your dog is a large or giant breed, your vet may advise waiting until they are a bit older before
+              neutering them. This is because they are likely to take longer to reach their adult size, and their growth
+              plates (which control bone growth), take a few months longer to close. There is some evidence to show that
+              neutering large/giant breed dogs at 4-6 months can lead to joint problems in later life. Always speak to
+              your vet about the best time to neuter your dog.
+
+            </p>
+          </div>
+        </details>
+
+
+        <details>
+          <summary> Does neutering help reduce aggression in dogs?
+          </summary>
+          <div class="faq-answer">
+            <p> We now know that neutering doesn’t prevent aggression in dogs, and in some circumstances, can even make
+              it worse. If your dog is showing signs of aggression, we advise speaking to your vet and an ABTC
+              accredited pet behaviourist ASAP – getting help early is extremely important.
+
+            </p>
+          </div>
+        </details>
+
+        <details>
+          <summary> I am a PDSA client, how do I get my dog neutered?
+          </summary>
+          <div class="faq-answer">
+            <p> We face a huge demand for our services at PDSA, and although our priority is urgent and lifesaving
+              treatment, wherever possible we also provide preventive services such as neutering. To find out whether
+              your local PDSA is offering neutering visit our eligibility checker. If your local PDSA is unable to offer
+              neutering at present, we recommend that you try another local vet practice. Don’t worry, if you are
+              registered with PDSA client and have your dog neutered elsewhere, you will stay registered with us should
+              they become unwell at any point.
+
+            </p>
+          </div>
+        </details>
+        <button (click)="toggleTextDisplay()" class="show-button" mat-button>Show Less</button>
+      </div>
+    </div>
+
+    <div class="see-animals">
+      <h1 (click)="goToAnimalsPage()" *ngIf="showAnimals.length > 0" class="see-animals"> Animals Available for Adoption
+        > </h1>
+      <div class="animal-grid">
+
+        <div *ngFor="let animal of showAnimals; let isLast = last"
+             [class]="isLast ? 'animal-card-last' : 'animal-card'">
+          <a (click)="navigateToAnimalDetails(animal)">
+            <ng-container *ngIf="isLast ; else notLastTemplate">
+              <div (click)="goToAnimalsPage()">
+                <div class="animal-image">
+                  <mat-icon class="centered-icon">search</mat-icon>
+
+                  <p class="centered-text">300+ pets available on Pawppies </p>
+                </div>
+
+                <div class="animal-last">
+                  <p class="meet-animals-text">MEET THEM</p>
+                </div>
+              </div>
+            </ng-container>
+          </a>
+
+          <ng-template #notLastTemplate>
+            <button (click)="likeAnimal($event, animal)" *ngIf="user" [ngClass]="{ 'liked': isLiked(animal) }"
+                    class="like-button">
+              <mat-icon>{{ isLiked(animal) ? 'favorite' : 'favorite_border' }}</mat-icon>
+            </button>
+
+            <img [src]='animal.animalImages[0].url' class="animal-image">
+            <div class="animal-details">
+              <p class="animal-name"> {{ animal.name }} </p>
+              <p class="animal-other-details"> {{ animal.age }}, {{ animal.breedDetails.name }} </p>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="side-container">
+
+    <!--    start quizz-->
+    <div class="quiz">
+      <img class="quiz-img" src="../../../../assets/good_match.png">
+      <h2 style="text-align: center; margin-bottom: 0; margin-top: 15px"> Find your best </h2>
+      <h2 style="text-align: center; margin-bottom: 10px"> match </h2>
+      <p class="text-quiz"> It only takes 60 seconds. </p>
+
+      <button (click)="goToQuizPage()" class="start-quiz-btn" mat-button>GET STARTED</button>
+    </div>
+
+
+    <div class="search-center">
+      <form (ngSubmit)="performSearch()" class="search-form">
+        <h2>Find Pet-Adoption Centers by:</h2>
+
+        <!--      //city-->
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon matPrefix>location_city</mat-icon>
+            City
+          </mat-label>
+          <input [(ngModel)]="searchData.city" matInput
+                 name="email" placeholder="Enter your email"/>
+        </mat-form-field>
+
+        <!--        //country/-->
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon>public</mat-icon>
+            Country
+          </mat-label>
+          <mat-select [(ngModel)]="searchData.country" name="country" placeholder="Select Country">
+            <mat-option *ngFor="let country of countries" [value]="country.name">
+              {{ country.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+        <!--        //name-->
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon matPrefix>business</mat-icon>
+            Name
+          </mat-label>
+          <input [(ngModel)]="searchData.name" matInput
+                 name="email" placeholder="Enter name"/>
+        </mat-form-field>
+
+        <button class="start-quiz-btn" mat-flat-button type="submit">
+          SEARCH
+        </button>
+      </form>
+    </div>
+  </div>
+
+</div>
+</body>

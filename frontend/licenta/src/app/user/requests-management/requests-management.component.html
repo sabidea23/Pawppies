@@ -1,0 +1,130 @@
+<body>
+
+<div class="main-container">
+  <div class="side-container">
+    <form class="search-form">
+      <h2>Filter Requests by:</h2>
+      <div class="filter-group">
+
+        <h3> STATUS </h3>
+        <button (click)="applyFilter('status', 'SUBMITTED') ; toggleButton('statusSubmitted')"
+                [ngClass]="{'pressed': pressedButton ['statusSubmitted'] }" class="button-filter" name="status"
+                role="checkbox" value="SUBMITTED"> SUBMITTED
+        </button>
+        <button (click)="applyFilter('status', 'PENDING')  ; toggleButton('typePending') "
+                [ngClass]="{'pressed': pressedButton ['typePending']}" class="button-filter" name="status"
+                role="checkbox" value="PENDING"> PENDING
+        </button>
+      </div>
+    </form>
+
+    <div class="search-form">
+      <div class="filter-group">
+        <h3> ANIMAL NAME </h3>
+        <input (keyup.enter)="addSearchTerm(searchTerm)" [(ngModel)]="searchTerm" class="button-filter"
+               placeholder="Search by animal name..."
+               type="text">
+        <div class="chip-container">
+          <div *ngFor="let name of searchTerms" class="chip">
+            {{ name }}
+            <span (click)="removeSearchTerm(name)" class="close">x</span>
+          </div>
+        </div>
+
+
+        <h3> USER NAME </h3>
+        <input (keyup.enter)="addUserSearchTerm(usernameFilter)" [(ngModel)]="usernameFilter" class="button-filter"
+               matInput placeholder="Search by username..."/>
+        <div class="chip-container">
+          <div *ngFor="let name of userSearchTerms" class="chip">
+            {{ name }}
+            <span (click)="removeUserSearchTerm(name)" class="close">x</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="content-container">
+
+    <h1>Adoption Requests for {{ user.animalCenters[0]?.name }}</h1>
+
+    <div *ngIf="dataSource.data">
+      <h2 *ngIf="dataSource.data.length < 1"> No requests for this moment. </h2>
+    </div>
+
+    <div  *ngIf="dataSource.data.length > 0">
+
+    <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      <ng-container matColumnDef="requestId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="id"> <b> Request ID </b></th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="userName">
+        <mat-header-cell *matHeaderCellDef><b> Username </b></mat-header-cell>
+        <mat-cell *matCellDef="let request"><b> {{request.user.username}}  </b></mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="reason">
+        <mat-header-cell *matHeaderCellDef><b> Adoption Reason </b></mat-header-cell>
+        <mat-cell *matCellDef="let request"> {{request.reason}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="postedDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="requestedDate"> <b>Request Date</b> </th>
+        <td mat-cell *matCellDef="let element"> {{element.requestedDate | date:'mediumDate'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="animalName">
+        <mat-header-cell *matHeaderCellDef><b> Animal Name </b></mat-header-cell>
+        <mat-cell *matCellDef="let request">
+          <button (click)="redirectToAnimalPage(request)" mat-flat-button><b> {{request.animal.name}} </b></button>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef><b> Status </b></mat-header-cell>
+        <mat-cell *matCellDef="let request" class="buttons-request"><b> {{request.status}} </b>
+          <p *ngIf="request.status == 'PENDING'"> from {{request.pendingDate | date:'mediumDate'}} </p>
+          <p *ngIf="request.status == 'PENDING'">
+            to {{ calculateDueDate(request.pendingDate) | date:'mediumDate'}} </p>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef><b> Actions </b></mat-header-cell>
+        <mat-cell *matCellDef="let request" class="buttons-request">
+          <button *ngIf="!request.isPendingDisabled && request.status != 'PENDING'" (click)="setPending(request.id)" mat-flat-button class="button-accept">
+            SET PENDING
+          </button>
+          <p *ngIf="request.status == 'SUBMITTED' && request.isPendingDisabled"> This animal is in pending to be visited by another user</p>
+
+          <button (click)="acceptRequest(request.id)" *ngIf="request.status === 'PENDING'" class="button-accept"
+                  mat-flat-button>ACCEPT
+          </button>
+          <button (click)="rejectRequest(request.id)" *ngIf="request.status === 'PENDING'" class="button-reject"
+                  mat-flat-button>REJECT
+          </button>
+        </mat-cell>
+      </ng-container>
+
+
+      <ng-container matColumnDef="userInfo">
+        <mat-header-cell *matHeaderCellDef><b> Contact </b></mat-header-cell>
+        <mat-cell *matCellDef="let request"> {{ request.user.firstName }} {{ request.user.lastName }}
+          , {{ request.user.email }}, {{ request.user.phone }} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+
+  </div>
+</div>
+</body>

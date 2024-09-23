@@ -1,0 +1,491 @@
+<body>
+
+<div class="main-container">
+
+  <div class="content-container">
+
+    <div class="container">
+      <div *ngIf="!isFullTextShown">
+        <h1>Cat & Kitten Feeding </h1>
+        <h2> How Much Should I Feed My Cat?</h2>
+        <p>How much to feed your cat depends on several factors, including her age, lifestyle and even the type of food.
+        </p>
+        <p> Whether you’re new to cat ownership or you’ve changed your cat’s food, figuring out how much she needs to
+          eat each day isn’t as straightforward as you might think.
+        </p>
+
+        <h2> Determining How Much to Feed a Cat </h2>
+        <p> Different cats have different nutritional needs based on their size, life stage and more. Here are some
+          factors to consider when deciding how much food your cat should eat.
+        </p>
+        <ul>
+          <li><b> Age & Life Stage:</b> Kittens have different nutritional needs than adults or senior cats. Pregnant or
+            nursing cats also have different needs.
+          </li>
+          <br>
+          <li><b> Weight:</b> “If your cat is not at her ideal body condition, you may need to adjust what and how much
+            you feed her,” says Dr. Callie Harris, DVM.
+          </li>
+          <br>
+          <li><b> Activity Levels:</b> Cats who are active and playful throughout the day may need more calories than
+            those who prefer to spend their time napping.
+          </li>
+          <br>
+          <li><b> Indoor vs. Outdoor:</b> Indoor cats may not get as much exercise as an outdoor cat would, so they need
+            fewer calories. Outdoor (or indoor/outdoor) cats living in regions with cold winters may need more food in
+            the cold months.
+          </li>
+          <p> The best way to determine how much food your cat needs is to talk with your veterinarian. They can tell
+            you how much food your cat needs based on the above factors.
+
+          </p>
+        </ul>
+        <button (click)="toggleTextDisplay()" class="show-button" mat-button>Show More</button>
+      </div>
+
+      <div *ngIf="isFullTextShown">
+        <h1>Cat & Kitten Feeding </h1>
+        <h2> How Much Should I Feed My Cat?</h2>
+        <p>How much to feed your cat depends on several factors, including her age, lifestyle and even the type of food.
+        </p>
+        <p> Whether you’re new to cat ownership or you’ve changed your cat’s food, figuring out how much she needs to
+          eat each day isn’t as straightforward as you might think.
+        </p>
+
+        <h2> Determining How Much to Feed a Cat </h2>
+        <p> Different cats have different nutritional needs based on their size, life stage and more. Here are some
+          factors to consider when deciding how much food your cat should eat.
+        </p>
+        <ul>
+          <li><b> Age & Life Stage:</b> Kittens have different nutritional needs than adults or senior cats. Pregnant or
+            nursing cats also have different needs.
+          </li>
+          <br>
+          <li><b> Weight:</b> “If your cat is not at her ideal body condition, you may need to adjust what and how much
+            you feed her,” says Dr. Callie Harris, DVM.
+          </li>
+          <br>
+          <li><b> Activity Levels:</b> Cats who are active and playful throughout the day may need more calories than
+            those who prefer to spend their time napping.
+          </li>
+          <br>
+          <li><b> Indoor vs. Outdoor:</b> Indoor cats may not get as much exercise as an outdoor cat would, so they need
+            fewer calories. Outdoor (or indoor/outdoor) cats living in regions with cold winters may need more food in
+            the cold months.
+          </li>
+          <p> The best way to determine how much food your cat needs is to talk with your veterinarian. They can tell
+            you how much food your cat needs based on the above factors.
+
+          </p>
+        </ul>
+
+        <h2> How Much Should a Cat Eat a Day?</h2>
+        <p> Dry and wet cat food differ in calories as well as portion sizes. You’ll want to ensure you’re feeding an
+          appropriate amount of food, whether you feed dry, wet or a combination of both.
+
+          The label on the food packaging can give you a general idea of how much food your cat needs. The
+          recommendations may include ranges, so you’ll need to figure out where your cat fits within those ranges. You
+          can always adjust to meet your cat’s needs.</p>
+        <p> If you have questions about how much of a particular food to feed your cat, you can also visit the
+          manufacturer’s website or call them directly. As always, your veterinarian can also help you navigate how much
+          to feed your cat.
+        </p>
+
+        <p>Feeding recommendations are required on all cat food packaging, but they don’t all look the same. Pay close
+          attention to the chart on your cat’s food label to ensure you’re feeding her the right amount based on her age
+          and weight.
+        </p>
+        <p> Here’s a sample cat feeding chart, similar to what you’ll find on cat food labels:
+        </p>
+        <table style="width:100%; border-collapse: separate; border-spacing: 10px;">
+          <tr>
+            <th>Weight (lbs)</th>
+            <th>Dry Food Amount (cups)</th>
+          </tr>
+          <tr>
+            <td>5 to 9</td>
+            <td>1/3 to 2/3</td>
+          </tr>
+          <tr>
+            <td>10 to 14</td>
+            <td>3/4 to 1</td>
+          </tr>
+        </table>
+
+        <br>
+        <h2> FAQs about feeding your cat </h2>
+
+        <details>
+          <summary>What is a cat's natural diet?</summary>
+          <div class="faq-answer">
+            <p> A cat’s natural diet is one rich in meat or fish, because a cat is a true carnivore. In order to
+              replicate such a diet for domestic cats, cat food should contain natural sources of essential amino acids,
+              such as taurine, and be free from artificial flavours or additives, and other such nasties.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>What is the best natural wet cat food?</summary>
+          <div class="faq-answer">
+            <p> The best natural wet cat food should mirror the freshly caught prey a cat would naturally enjoy in the
+              wild. The cat will often leave behind the bits it does not want such as intestines, head and other
+              derivatives. At Encore we remove the hard work for your cat by only using the finest cuts of meat in our
+              wet foods. All our cuts of meat have come from animals which been veterinary inspected and passed fit for
+              human consumption. So, when feeding Encore, you can be assured that you are feeding the best you can give
+              to your cat.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>How many cat treats should your feed your cat?</summary>
+          <div class="faq-answer">
+            <p> Treats should not make up more than 20% of your cat’s daily diet. You can feed as many treats as you
+              like as long as you do not exceed this ratio. Unlike many other treats that include additional sugars and
+              additives, Encore Tuna loins contain only one ingredient- Tuna, making them a tasty and healthy treat for
+              your cat.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>What does complementary cat food mean?</summary>
+          <div class="faq-answer">
+            Complementary cat food contains many essential nutrients to keep your cat healthy, but it does not contain
+            all the nutrients a cat requires as part of a complete and balanced diet. This means that one of your cat’s
+            meals each day should be a complete food in order to balance the nutrients. When feeding Encore
+            complementary wet food, we recommend that you also have a bowl of Encore dry food available for your cat to
+            enjoy.
+          </div>
+        </details>
+
+        <details>
+          <summary>What is a cat's natural diet?</summary>
+          <div class="faq-answer">
+            <p> A cat’s natural diet is one rich in meat or fish, because a cat is a true carnivore. In order to
+              replicate such a diet for domestic cats, cat food should contain natural sources of essential amino acids,
+              such as taurine, and be free from artificial flavours or additives, and other such nasties.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>When should I switch my kitten to adult cat food?</summary>
+          <div class="faq-answer">
+            <p> Kittens should be switched to adult cat food when they reach maturity, usually around one year of age.
+              However, this can vary depending on the breed, so it's best to consult with a vet.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary> Can I feed my senior cat the same food as my adult cat?</summary>
+          <div class="faq-answer">
+            <p> Senior cats have different nutritional needs than younger adults. They may need food with lower calorie
+              content to prevent weight gain and supplements for joint health. There are specially formulated senior cat
+              foods that you should consider for your aging cat.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary> What type of food should I feed a kitten?</summary>
+          <div class="faq-answer">
+            <p> Kittens require food that is high in protein and fat to support rapid growth and development. Look for
+              kitten-specific formulas that cater to this life stage's nutritional needs. It's essential to feed them
+              small, frequent meals throughout the day.</p>
+          </div>
+        </details>
+
+        <br>
+        <h2> The Difference Between Puppy, Adult and Senior Cat Food </h2>
+        <p>Cats at different life stages have distinct nutritional requirements, and their diets should be formulated to
+          match these specific needs.
+
+        </p>
+        <ul>
+          <li>
+            <h2> Kittens (Under 1 year) </h2>
+            <p><b> Kitten Food: </b> Kittens need food that's high in protein and calories to support their rapid growth
+              and development. Their diet should include more amino acids, such as taurine, which are crucial for heart
+              and eye health. Kitten food is usually richer and contains more vitamins and minerals in specific
+              proportions to aid in their development.</p>
+          </li>
+          <p>Here are some recommended kittens food options that provide the essential nutrients for healthy growth and
+            development:
+          </p>
+          <div class="food-recommand-grid">
+            <div class="food-card">
+              <img class="img-food" src="../../../../../assets/kittens1.png">
+              <p class="name-food">Pro Plan Development Free Wet Cat Food</p>
+              <a
+                href="https://www.purina.com/cats/shop/pro-plan-development-kitten-grain-free-chicken-liver-wet-cat-food">
+                Cick here to buy </a>
+            </div>
+
+            <div class="food-card">
+              <img class="img-food" src="../../../../../assets/kittens2.png">
+              <p class="name-food"> Pro Plan Development Kitten Formula Dry Cat Food</p>
+              <a
+                href="https://www.purina.com/cats/shop/pro-plan-kitten-development-shredded-blend-chicken-rice-probiotics-dry-cat-food">
+                Cick here to buy </a>
+            </div>
+
+            <div class="food-card">
+              <img class="img-food" src="../../../../../assets/kittens3.png">
+              <p class="name-food"> Royal Canin Kitten
+              </p>
+              <a
+                href="https://www.zooplus.ro/shop/pisici/hrana_uscata_pisici/royal_canin_feline/kitten/243190?variantId=243190.31&abd=true&gad_source=1&gclid=Cj0KCQjwiYOxBhC5ARIsAIvdH50hsvQRwSu9eyHRhOPz0t16ZicEiLGKvCmAwjNQa4VnWCcDJpA42b8aAs7jEALw_wcB&activeVariant=243190.31">
+                Cick here to buy </a>
+            </div>
+
+          </div>
+
+          <br>
+          <li><h2> Adult Cats (1-7 years): </h2>
+            <p><b> Adult Cat Food: </b> Adult cats require a well-balanced diet that maintains their health, energy, and
+              body condition. This usually means a stable intake of proteins, fats, and carbohydrates, as well as
+              essential vitamins and minerals. Portion control is crucial to prevent weight gain. Both dry and wet foods
+              are suitable for adult cats, depending on their preference and hydration needs.</p>
+            <p>Here are some recommended cat food options for adult cats that are formulated to meet their nutritional
+              needs for maintaining optimal health and vitality:
+
+            </p>
+            <div class="food-recommand-grid">
+              <div class="food-card">
+                <img class="img-food" src="../../../../../assets/aadult-cat1.png">
+                <p class="name-food"> Royal Canin Indoor
+                </p>
+                <a
+                  href="https://www.zooplus.ro/shop/pisici/hrana_uscata_pisici/royal_canin_feline/health_indoor/243191?activeVariant=243191.17&mkt_source=1870027&utm_source=pce&utm_medium=kelkoo&utm_content=Hran%C4%83%20uscat%C4%83%20pentru%20pisici&utm_term=Royal%20Canin&product_id=243191.17&utm_campaign=pce">
+                  Cick here to buy </a>
+              </div>
+
+              <div class="food-card">
+                <img class="img-food" src="../../../../../assets/adult-cat2.png">
+                <p class="name-food">Hill's Science Plan Dry Adult Cat Food Chicken 1.5kg
+                </p>
+                <a
+                  href="https://www.petsathome.com/shop/en/pets/hills-science-plan-dry-adult-cat-food-chicken-flavour-15kg">
+                  Cick here to buy </a>
+              </div>
+
+              <div class="food-card">
+                <img class="img-food" src="../../../../../assets/adult-cat3.png">
+                <p class="name-food"> Pro Plan Adult Cat With Chicken 1.5kg
+                </p>
+                <a
+                  href="https://www.allpetshop.ro/pro-plan-cat-adult-pui-1kg?gad_source=1&gclid=Cj0KCQjwiYOxBhC5ARIsAIvdH51qD6zoOe0EOfDILw9UbFBGlqEIk968P_IIDytVz4pLyH2Zt4v1E4kaAr0-EALw_wcB">
+                  Cick here to buy </a>
+              </div>
+            </div>
+          </li>
+
+          <br>
+          <li>
+            <h2>Senior Cats (7+ years): </h2>
+            <p><b> Senior Cat Food: </b> cats age, their metabolism slows down, and they may become less active. Senior
+              cat foods are generally lower in calories but still provide all the necessary nutrients, with an emphasis
+              on easy digestibility and joint support ingredients like glucosamine. Additionally, these foods often have
+              supplements to support kidney function and other common health concerns in older cats.
+            </p>
+            <div class="food-recommand-grid">
+              <div class="food-card">
+                <img class="img-food" src="../../../../../assets/senior-cat1.png">
+                <p class="name-food"> Sanabelle Senior 400g
+                </p>
+                <a
+                  href="https://www.allpetshop.ro/sanabelle-senior-400g?gad_source=1&gclid=Cj0KCQjwiYOxBhC5ARIsAIvdH53aogIBIVdkx2qeIQb9k72Bs3127eeEYBWgKQhluRVamSKDybaUrq0aAjGFEALw_wcB">
+                  Cick here to buy </a>
+              </div>
+
+              <div class="food-card">
+                <img class="img-food" src="../../../../../assets/senior-cat2.png">
+                <p class="name-food"> Royal Canin Ageing 12+
+                </p>
+                <a
+                  href="https://www.zooplus.ro/shop/pisici/hrana_uscata_pisici/royal_canin_feline/health_specialty/243303?activeVariant=243303.13&mkt_source=1870027&utm_source=pce&utm_medium=kelkoo&utm_content=Hran%C4%83%20uscat%C4%83%20pentru%20pisici&utm_term=Royal%20Canin&product_id=243303.13&utm_campaign=pce">
+                  Cick here to buy </a>
+              </div>
+
+              <div class="food-card">
+                <img class="img-food" src="../../../../../assets/senior-cat3.png">
+                <p class="name-food"> Lynx Senior, hypoallergenic dry food for older cats
+                </p>
+                <a
+                  href="https://romania.husse.com/lynx-senior">
+                  Cick here to buy </a>
+              </div>
+            </div>
+
+          </li>
+        </ul>
+
+        <br>
+        <h2> Dry cat Food vs. Wet cat Food: Which Is Better? </h2>
+        <p> When choosing between dry and wet cat food, it's important to consider your cat’s health, dietary needs, and
+          your lifestyle. Both forms have their pros and cons.
+        </p>
+        <table style="width:100%; border-collapse: separate; border-spacing: 15px;">
+          <tr>
+            <th></th>
+            <th>Wet Food</th>
+            <th>Dry Food</th>
+          </tr>
+          <tr>
+            <td>Advantages</td>
+            <td>
+              - Higher moisture content aids hydration<br>
+              - Often more appealing in taste and texture<br>
+              - May be easier to eat for older cats or those with dental problems<br>
+              - Can be beneficial for urinary tract health
+            </td>
+            <td>
+              - More economical and cost-effective<br>
+              - Convenient, as it doesn’t spoil quickly<br>
+              - Can be left out for free-feeding<br>
+              - Helps in dental health by reducing tartar build-up
+            </td>
+          </tr>
+          <tr>
+            <td>Disadvantages</td>
+            <td>
+              - More expensive per serving<br>
+              - Can spoil if left out too long<br>
+              - Might contribute to dental plaque if not supplemented with dental care options
+            </td>
+            <td>
+              - Lower moisture content requires a close watch on hydration levels<br>
+              - Some cats may overeat when free-fed, leading to obesity<br>
+              - Might be less palatable for some cats
+            </td>
+          </tr>
+        </table>
+
+        <br>
+        <p> No matter the age or type of food, it's essential to provide fresh, clean water at all times and to monitor
+          your cat's health and weight. Adjust portions and food types as needed, and always consult with a veterinarian
+          before making significant changes to your cat's diet, as they can provide the best guidance for your cat's
+          individual needs.
+        </p>
+        <button (click)="toggleTextDisplay()" class="show-button" mat-button>Show Less</button>
+      </div>
+    </div>
+
+
+    <div class="tips-and-food">
+      <div class="tips">
+        <img class="adopting-image" src="../../../assets/purina-find-food.png">
+
+        <h3 class="tips-title">Purina Pet food finder</h3>
+        <p class="tips-text"> This handy tool finds the best food for your pet from Purina.</p>
+        <hr>
+        <button (click)="redirectToPurina()" class="tips-button" mat-button>
+          <h3 class="learn-more">Read More</h3></button>
+      </div>
+      <div class="tips">
+        <img class="adopting-image" src="../../../assets/royal.png">
+
+        <h3 class="tips-title">Royal Canin food finder</h3>
+        <p class="tips-text"> Find the perfect diet for your pet in just a few clicks</p>
+        <hr>
+        <button (click)="redirectToRoyal()" class="tips-button" mat-button>
+          <h3 class="learn-more">Read More</h3></button>
+      </div>
+    </div>
+    <div class="see-animals">
+      <h1 (click)="goToAnimalsPage()" *ngIf="showAnimals.length > 0" class="see-animals"> Animals Available for Adoption
+        > </h1>
+      <div class="animal-grid">
+
+        <div *ngFor="let animal of showAnimals; let isLast = last"
+             [class]="isLast ? 'animal-card-last' : 'animal-card'">
+          <a (click)="navigateToAnimalDetails(animal)">
+            <ng-container *ngIf="isLast ; else notLastTemplate">
+              <div (click)="goToAnimalsPage()">
+                <div class="animal-image">
+                  <mat-icon class="centered-icon">search</mat-icon>
+
+                  <p class="centered-text">300+ pets available on Pawppies </p>
+                </div>
+
+                <div class="animal-last">
+                  <p class="meet-animals-text">MEET THEM</p>
+                </div>
+              </div>
+            </ng-container>
+          </a>
+
+          <ng-template #notLastTemplate>
+            <button (click)="likeAnimal($event, animal)" *ngIf="user" [ngClass]="{ 'liked': isLiked(animal) }"
+                    class="like-button">
+              <mat-icon>{{ isLiked(animal) ? 'favorite' : 'favorite_border' }}</mat-icon>
+            </button>
+
+            <img [src]='animal.animalImages[0].url' class="animal-image">
+            <div class="animal-details">
+              <p class="animal-name"> {{ animal.name }} </p>
+              <p class="animal-other-details"> {{ animal.age }}, {{ animal.breedDetails.name }} </p>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="side-container">
+
+    <!--    start quizz-->
+    <div class="quiz">
+      <img class="quiz-img" src="../../../../assets/good_match.png">
+      <h2 style="text-align: center; margin-bottom: 0; margin-top: 15px"> Find your best </h2>
+      <h2 style="text-align: center; margin-bottom: 10px"> match </h2>
+      <p class="text-quiz"> It only takes 60 seconds. </p>
+
+      <button (click)="goToQuizPage()" class="start-quiz-btn" mat-button>GET STARTED</button>
+    </div>
+
+
+    <div class="search-center">
+      <form (ngSubmit)="performSearch()" class="search-form">
+        <h2>Find Pet-Adoption Centers by:</h2>
+
+        <!--      //city-->
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon matPrefix>location_city</mat-icon>
+            City
+          </mat-label>
+          <input [(ngModel)]="searchData.city" matInput
+                 name="email" placeholder="Enter your email"/>
+        </mat-form-field>
+
+        <!--        //country/-->
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon>public</mat-icon>
+            Country
+          </mat-label>
+          <mat-select [(ngModel)]="searchData.country" name="country" placeholder="Select Country">
+            <mat-option *ngFor="let country of countries" [value]="country.name">
+              {{ country.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+        <!--        //name-->
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon matPrefix>business</mat-icon>
+            Name
+          </mat-label>
+          <input [(ngModel)]="searchData.name" matInput
+                 name="email" placeholder="Enter name"/>
+        </mat-form-field>
+
+        <button class="start-quiz-btn" mat-flat-button type="submit">
+          SEARCH
+        </button>
+      </form>
+    </div>
+  </div>
+
+</div>
+</body>

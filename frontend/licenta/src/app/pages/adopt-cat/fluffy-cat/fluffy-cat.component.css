@@ -1,0 +1,174 @@
+
+body {
+  background-color: #EFEEF1;
+  padding-bottom: 20px;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 20px;
+  caret-color: transparent;
+  justify-content: center;
+}
+
+.see-animals {
+  text-align: center;
+  margin-top: 20px;
+  color: #6504B5;
+}
+
+.see-animals:hover {
+  margin-top: 20px;
+  color: #410078;
+}
+
+.content-container {
+  font-family: 'Montserrat', sans-serif;
+  padding: 25px;
+  background-color: white;
+  width: 1200px;
+}
+
+.side-container {
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+h1 {
+  color: #4a4553;
+  font-weight: bold;
+  caret-color: transparent;
+  font-size: 30px;
+}
+
+p, ol {
+  font-size: large;
+  color: #4a4553;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 20px;
+}
+
+.text-quiz {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.quiz {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Alinează orizontal la centru */
+  align-items: center; /* Alinează vertical la centru, dacă este necesar */
+  background-color: white;
+}
+
+.search-center {
+  background-color: white;
+}
+
+.start-quiz-btn {
+  background-color: #6504B5;
+  color: white; /* Culoarea textului alb */
+  border-radius: 25px; /* Colțuri foarte rotunjite */
+  margin-bottom: 25px;
+  padding: 25px 30px; /* Spațiere internă pentru a mări butonul */
+  font-size: 16px; /* Mărimea fontului pentru text */
+  font-weight: bold; /* Textul bold */
+  box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.25); /* Umbră pentru 3D effect */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Tranziție animată pentru hover */
+  width: 80%;;
+}
+
+.start-quiz-btn:hover {
+  background-color: #410078; /* Culoarea de fundal se schimbă la hover */
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.25); /* Umbra crește la hover */
+}
+
+.show-button {
+  font-size: 20px;
+  font-weight: 500;
+  color: #6504B5;
+  margin-bottom: 15px;
+}
+
+.cute-dog-picture {
+  margin-bottom: 20px;
+  width: 50%;
+  height: 50%;
+  display: block;
+  align-self: center;
+}
+
+.image-container {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+.animal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.animal-card {
+  width: 280px;
+  height: 350px;
+  position: relative;
+  border: 3px solid #ddd;
+  border-radius: 8px; /* Rotunjirea colțurilor */
+  overflow: hidden;
+  transition: border-color 0.3s ease; /* Adaugă tranziție pentru efectul de hover */
+}
+
+
+.animal-card:hover {
+  border-color: #6504B5; /* Schimbă culoarea la hover */
+}
+
+.animal-image {
+  width: 100%;
+  height: 65%;
+}
+
+.animal-details {
+  padding: 0.5rem;
+}
+
+.animal-name {
+  margin: 0;
+  font-size: 1.3rem;
+  font-family: 'Montserrat', sans-serif;
+  color: #6504B5;
+  font-weight: bold;
+  text-align: center;
+}
+
+.animal-available {
+  margin-top: -8px;
+  font-size: 13px;
+  font-family: 'Montserrat', sans-serif;
+  color: #6504B5;
+  font-weight: bold;
+}
+
+.number-dogs {
+  font-family: 'Montserrat', sans-serif;
+  color: #4a4553;
+  margin-left: 25px;
+}
+

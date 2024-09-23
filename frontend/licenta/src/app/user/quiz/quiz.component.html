@@ -1,0 +1,210 @@
+<body>
+<div class="main-container">
+  <form (ngSubmit)="formSubmit()" [formGroup]="preferencesData" class="login-form">
+    <div class="top-form">
+      <h1>Thanks for your interest, {{user.firstName}} {{user.lastName}}</h1>
+      <h2>Let’s find the perfect match for you!</h2>
+    </div>
+
+    <h2>Tell us a bit about yourself:</h2>
+
+    <!-- Type -->
+    <div class="custom-mat-form-field">
+      <h3 class="phone-number"><b> I’d like to adopt a </b></h3>
+    <mat-form-field appearance="fill">
+      <mat-label>Type</mat-label>
+      <mat-select formControlName="type">
+        <mat-option value="Dog">Dog</mat-option>
+        <mat-option value="Cat">Cat</mat-option>
+      </mat-select>
+    </mat-form-field>
+    </div>
+
+    <div  class="custom-mat-form-field" *ngIf="preferencesData.get('type')?.value">
+      <h3 class="phone-number">What age range are you considering for your {{preferencesData.get('type')?.value | lowercase}}?</h3>
+      <mat-form-field appearance="fill">
+        <mat-label>
+          Animal Age
+        </mat-label>
+        <mat-select formControlName="age">
+          <mat-option *ngFor="let age of getAgeOptions(preferencesData.get('type')?.value)"
+                      [value]="age">{{age}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+
+    <!-- Gender -->
+    <div class="custom-mat-form-field">
+      <h3 class="phone-number">Do you have a gender preference for your new pet?</h3>
+      <mat-form-field appearance="fill">
+        <mat-label>Gender</mat-label>
+        <mat-select formControlName="gender">
+          <mat-option value="Male">Male</mat-option>
+          <mat-option value="Female">Female</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+
+    <!-- Size -->
+    <div class="custom-mat-form-field">
+      <h3  class="phone-number">Could you describe the living
+        space where your new pet will reside? This will help us suggest a pet size that would be most comfortable for both of you.</h3>
+
+      <mat-form-field  class="field-class" appearance="fill">
+        <mat-label>Size</mat-label>
+        <mat-select formControlName="size">
+          <mat-option value="Small">Small</mat-option>
+          <mat-option value="Medium">Medium</mat-option>
+          <mat-option value="Large">Large</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <br>
+    <h2>Tell us about your lifestyle:</h2>
+
+    <div   class="custom-mat-form-field">
+      <h3 class="phone-number">How active do you prefer your new pet to be? Consider your daily routine and leisure time
+        when selecting an activity level.</h3>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Activity Level</mat-label>
+        <mat-select formControlName="activityLevel">
+          <mat-option value="Low">Low</mat-option>
+          <mat-option value="High">High</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div   class="custom-mat-form-field">
+      <h3 class="phone-number">How much time are you willing to dedicate to grooming your pet? Please select a grooming
+        level that fits into your lifestyle.</h3>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Grooming Requirements</mat-label>
+        <mat-select formControlName="groomingRequirements">
+          <mat-option value="Low">Low</mat-option>
+          <mat-option value="High">High</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+
+    <div  class="custom-mat-form-field">
+      <h3 class="phone-number">Will your new pet be around children?</h3>
+      <mat-checkbox formControlName="friendlinessToChildrenYes">Yes</mat-checkbox>
+      <mat-checkbox formControlName="friendlinessToChildrenNo">No</mat-checkbox>
+    </div>
+
+    <div  class="custom-mat-form-field">
+      <h3 class="phone-number"> Do you have other pets, or will your new pet interact with other animals? </h3>
+      <mat-checkbox formControlName="friendlinessToOtherAnimalsYes">Yes</mat-checkbox>
+      <mat-checkbox formControlName="friendlinessToOtherAnimalsNo">No</mat-checkbox>
+    </div>
+
+    <div   class="custom-mat-form-field">
+      <h3 class="phone-number">How affectionate would you like your pet to be? Some pets are more independent, while
+        others may require more affection and closeness.</h3>
+
+      <mat-form-field appearance="fill">
+        <mat-label> Affection for owner</mat-label>
+        <mat-select formControlName="affectionForOwners">
+          <mat-option value="Low">Low</mat-option>
+          <mat-option value="High">High</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <br>
+
+    <h2>Tell us about your the animal health:</h2>
+
+    <!-- Health Checkboxes -->
+    <div class="custom-mat-form-field">
+      <h3 class="phone-number">Are you open to adopting a pet with special needs? This may include additional medical care,
+        diet, or lifestyle adjustments.</h3>
+      <mat-checkbox formControlName="hasSpecialNeedsYes">Yes</mat-checkbox>
+      <mat-checkbox formControlName="hasSpecialNeedsNo">No</mat-checkbox>
+    </div>
+
+    <div class="custom-mat-form-field">
+      <h3 class="phone-number">Do you prefer a pet that is fully vaccinated? This is an important consideration for
+        the health and well-being of both the pet and your family. </h3>
+      <mat-checkbox formControlName="isFullyVaccinatedYes">Yes</mat-checkbox>
+      <mat-checkbox formControlName="isFullyVaccinatedNo">No</mat-checkbox>
+    </div>
+
+    <br>
+    <!-- Dog-specific -->
+
+    <div *ngIf="preferencesData.get('type')?.value === 'Dog'">
+      <h2>Tell us about your the animal behavior:</h2>
+      <div  class="custom-mat-form-field">
+        <h3 class="phone-number">Dogs often require regular exercise. How much exercise are you able to provide?
+          Choose a level that matches your own activity.</h3>
+        <mat-form-field appearance="fill">
+          <mat-label>Exercise Requirements</mat-label>
+          <mat-select formControlName="exerciseRequirements">
+            <mat-option value="Low">Low</mat-option>
+            <mat-option value="High">High</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+
+      <div class="custom-mat-form-field">
+        <h3 class="phone-number">Would you prefer a dog that has already received training? </h3>
+
+        <mat-checkbox formControlName="isTrainedYes">Yes</mat-checkbox>
+        <mat-checkbox formControlName="isTrainedNo">No</mat-checkbox>
+      </div>
+
+      <div class="custom-mat-form-field">
+        <h3 class="phone-number">Do you prefer a dog that is watchful and alert? This can be important if you are
+          looking for a dog to provide a sense of security.</h3>
+        <mat-checkbox formControlName="watchfulnessYes">Yes</mat-checkbox>
+        <mat-checkbox formControlName="watchfulnessNo">No</mat-checkbox>
+      </div>
+    </div>
+
+    <!-- Cat-specific -->
+    <div *ngIf="preferencesData.get('type')?.value === 'Cat'">
+      <h2>Tell us about your the animal behavior:</h2>
+      <div class="custom-mat-form-field">
+        <h3 class="phone-number">Cats vary in their need for human interaction. How much attention do you want your
+          cat to need from you?</h3>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Need for Attention</mat-label>
+          <mat-select formControlName="needForAttention">
+            <mat-option value="Low">Low</mat-option>
+            <mat-option value="High">High</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="custom-mat-form-field">
+        <h3 class="phone-number">Would you prefer a more independent cat than one that relies more on human interaction?</h3>
+        <mat-checkbox formControlName="independenceYes">Yes</mat-checkbox>
+        <mat-checkbox formControlName="independenceNo">No</mat-checkbox>
+      </div>
+
+      <div class="custom-mat-form-field">
+        <h3 class="phone-number">Intelligence in cats can influence their behavior and how they interact with their
+          environment. Would you prefer a cat that is particularly intelligent and engaging?</h3>
+        <mat-checkbox formControlName="intelligenceYes">Yes</mat-checkbox>
+        <mat-checkbox formControlName="intelligenceNo">No</mat-checkbox>
+      </div>
+
+    </div>
+
+    <br><br>
+    <div class="button-login">
+      <button class="login-button" mat-flat-button type="submit">
+        SUMBIT YOUR PREFERENES
+      </button>
+    </div>
+  </form>
+</div>
+</body>

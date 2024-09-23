@@ -1,0 +1,112 @@
+<div class="top-container">
+  <div class="left-container">
+    <div class="image-container">
+      <img class="image-grid" src="../../../assets/logo-shelter.png">
+    </div>
+    <div class="details-container">
+      <h1> {{animalCenter.name}}</h1>
+      <div class="location-container">
+        <mat-icon>location_on</mat-icon>
+        <h2> {{animalCenter.city}} , {{animalCenter.country}}</h2>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="right-container">
+    <button (click)="goToAnimalsFromAnimalCenterPage()" class="btn-show-animals" mat-button>
+      <h3 class="btn-learn"> VIEW OUR PETS </h3>
+    </button>
+
+    <div class="contact-container">
+      <mat-icon>contact_mail</mat-icon>
+      <h2> {{animalCenter.contact}}</h2>
+    </div>
+
+    <div class="phone-container">
+      <mat-icon>phone</mat-icon>
+      <h2> {{animalCenter.phone}}</h2>
+    </div>
+
+  </div>
+</div>
+
+<div class="map-container">
+  <button (click)="showDirections()" class="directions-button">SHOW DIRECTIONS</button>
+  <iframe
+    [src]="getSafeUrl()"
+    class="map"
+    height="350">
+  </iframe>
+</div>
+
+<body>
+<div class="main-container">
+  <div class="details-container">
+    <div class="mission-container">
+      <h1> Our Mission </h1>
+
+      <p> {{animalCenter.mission}}</p>
+    </div>
+
+    <div class="mission-container">
+      <h1>Opening Hours:</h1>
+      <ul>
+        <li><p><b>Monday:</b> {{animalCenter.openingHours.mondayOpen}} - {{animalCenter.openingHours.mondayClose}}</p>
+        </li>
+        <li><p><b>Tuesday: </b> {{animalCenter.openingHours.tuesdayOpen}} - {{animalCenter.openingHours.tuesdayClose}}
+        </p></li>
+        <li><p><b> Wednesday:</b> {{animalCenter.openingHours.wednesdayOpen}}
+          - {{animalCenter.openingHours.wednesdayClose}}</p></li>
+        <li><p><b>Thursday: </b>{{animalCenter.openingHours.thursdayOpen}} - {{animalCenter.openingHours.thursdayClose}}
+        </p></li>
+        <li><p><b> Friday: </b>{{animalCenter.openingHours.fridayOpen}} - {{animalCenter.openingHours.fridayClose}}</p>
+        </li>
+        <li><p><b> Saturday: </b> {{animalCenter.openingHours.saturdayOpen}}
+          - {{animalCenter.openingHours.saturdayClose}}</p></li>
+        <li><p><b> Sunday: </b> {{animalCenter.openingHours.sundayOpen}} - {{animalCenter.openingHours.sundayClose}}</p>
+        </li>
+      </ul>
+
+    </div>
+    <div class="see-animals" *ngIf="animalCenterAnimals.length > 0">
+
+      <h1 (click)="goToAnimalsFromAnimalCenterPage()" class="see-animals"> More animals
+        from {{animalCenter.name}} > </h1>
+
+      <div class="animal-grid">
+        <div *ngFor="let animal of animalCenterAnimals; let isLast = last"
+             [class]="isLast ? 'animal-card-last' : 'animal-card'">
+          <a (click)="navigateToAnimalDetails(animal)">
+            <ng-container *ngIf="isLast ; else notLastTemplate">
+              <div (click)="goToAnimalsFromAnimalCenterPage()">
+                <div class="animal-image">
+                  <mat-icon class="centered-icon">search</mat-icon>
+
+                  <p class="centered-text">300+ pets available on Pawppies </p>
+                </div>
+
+                <div class="animal-last">
+                  <p class="meet-animals-text">MEET THEM</p>
+                </div>
+              </div>
+            </ng-container>
+          </a>
+          <ng-template #notLastTemplate>
+            <button (click)="likeAnimal($event, animal)" *ngIf="user" [ngClass]="{ 'liked': isLiked(animal) }"
+                    class="like-button">
+              <mat-icon>{{ isLiked(animal) ? 'favorite' : 'favorite_border' }}</mat-icon>
+            </button>
+
+            <img [src]='animal.animalImages[0].url' class="animal-image">
+            <div class="animal-details">
+              <p class="animal-name"> {{ animal.name }} </p>
+              <p class="animal-other-details"> {{ animal.age }}, {{ animal.breedDetails.name }} </p>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>

@@ -1,0 +1,159 @@
+mat-card {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  caret-color: transparent;
+}
+
+mat-form-field {
+  caret-color: transparent;
+  width: 100%;
+}
+
+h2 {
+  caret-color: transparent;
+  display: block;
+  text-align: center;
+}
+
+button {
+  caret-color: transparent;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.container {
+  caret-color: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+.social-buttons {
+  caret-color: transparent;
+  display: flex;
+  justify-content: space-around;
+}
+
+mat-icon {
+  caret-color: transparent;
+  margin-right: 8px;
+}
+
+
+p {
+  caret-color: transparent;
+  color: #3e403f;
+  font-size: 15px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+button:hover {
+  caret-color: transparent;
+  transform: translatey(3px);
+  box-shadow: none;
+}
+
+.custom-mat-form-field {
+  caret-color: transparent;
+  position: relative;
+  width: 100%;
+  max-height: 150px;
+}
+
+.custom-mat-form-field input, mat-select, textarea {
+  caret-color: transparent;
+}
+
+
+.custom-mat-form-field button {
+  caret-color: transparent;
+  right: 0;
+  top: 0;
+  margin: 12px;
+}
+
+.login-button {
+  background-color: #6504B5;
+  color: #FFFFFF;
+  margin-top: 20px;
+  border-radius: 20px;
+  width: 100%;
+  box-shadow: none;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.custom-mat-form-field {
+  height: 80px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.mat-form-field-infix {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.mat-form-field-label-wrapper {
+  top: -5px;
+}
+
+.mat-input-element {
+  height: 40px;
+  margin: 0;
+}
+
+.cancel-button-class {
+  background-color: #EFEEF1;
+  border: 1px solid purple;
+  border-radius: 4px;
+  box-shadow: none;
+}
+
+.confirm-button-class {
+  background-color: #6504B5; /* culoarea roșie pentru butonul de update */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center; /* Centrarea butoanelor orizontal */
+  flex-direction: column;
+}
+
+* {
+  caret-color: transparent;
+}
+
+.login-button {
+  caret-color: transparent;
+  background-color: #6504B5;
+  color: #FFFFFF;
+  margin-top: 20px;
+  border-radius: 20px;
+  width: 200px; /* Ocupă întreaga lățime a containerului */
+  box-shadow: none; /* Înlătură orice umbre dacă există */
+}
+
+.login-button:hover {
+  background-color: #410078;
+}
+
+.cancel-button {
+  caret-color: transparent;
+  background-color: #EFEEF1;
+  color: #6504B5;
+  margin-top: 20px;
+  border-radius: 20px;
+  width: 200px; /* Ocupă întreaga lățime a containerului */
+  box-shadow: none; /* Înlătură orice umbre dacă există */
+  border: 2px solid #6504B5;
+}

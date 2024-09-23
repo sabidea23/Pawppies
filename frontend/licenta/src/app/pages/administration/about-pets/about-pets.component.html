@@ -1,0 +1,200 @@
+<body>
+
+<div class="main-container">
+
+  <div class="content-container">
+
+    <div class="container">
+      <h1>ABOUT PAWPPIES </h1>
+      <h2>Pawppies's Mission</h2>
+      <p>
+        Pawppies is an online, searchable database of animals who need homes. It is also a directory of nearly 11,000
+        animal shelters and adoption organizations across Europe. Organizations maintain their own
+        home pages and available-pet databases.
+      </p>
+
+      <button (click)="goToPawppiesMission()" class="Learn-btn" mat-button>
+        LEARN MORE
+      </button>
+    </div>
+
+    <div class="see-about">
+      <div class="about-grid">
+        <div class="about-card">
+          <a (click)="navigateToAnimalCenters()">
+            <img src="../../../../assets/animal-centers.png" class="about-image">
+            <div class="about-detail">
+              <p class="title-about"> Animal Centers
+              </p>
+              <p class="text-about">
+                See animal shelters list to find the best place
+              </p>
+            </div>
+          </a>
+        </div>
+
+        <div class="about-card">
+          <a (click)="navigateToDogBreedsPage()">
+            <img class="about-image" src="../../../../assets/dog-brreds-about.png">
+            <div class="about-detail">
+              <p class="title-about"> Dog breeds
+              </p>
+              <p class="text-about">  Find the best dog breed
+              </p>
+            </div>
+          </a>
+        </div>
+
+        <div class="about-card">
+          <a (click)="navigateToCatBreedsPage()">
+            <img class="about-image" src="../../../../assets/cat-breeds-about.png">
+            <div class="about-detail">
+              <p class="title-about"> Cat breeds
+              </p>
+              <p class="text-about"> Find the best cat breed
+              </p>
+            </div>
+          </a>
+        </div>
+
+        <div class="about-card">
+          <a (click)="navigateToFAQSPage()">
+            <img class="about-image" src="../../../../assets/faqs-about.png">
+            <div class="about-detail">
+              <p class="title-about">  FAQs
+              </p>
+              <p class="text-about"> Find the answers to all your questions
+              </p>
+            </div>
+          </a>
+        </div>
+
+        <div class="about-card">
+          <a (click)="navigateToCatAdoption()">
+            <img class="about-image" src="../../../../assets/cat-adoption.png">
+            <div class="about-detail">
+              <p class="title-about"> Adopt a cat
+              </p>
+              <p class="text-about"> Find your perfect cat adoption match.
+              </p>
+            </div>
+          </a>
+        </div>
+
+        <div class="about-card">
+          <a (click)="navigateToDogAdoptionPage()">
+            <img class="about-image" src="../../../../assets/dog-brreds-about.png">
+            <div class="about-detail">
+              <p class="title-about">  Dog Adoption
+              </p>
+              <p class="text-about"> Explore options for dog adoption.
+              </p>
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="see-animals">
+      <h1 (click)="goToAnimalsPage()" *ngIf="showAnimals.length > 0" class="see-animals"> Pets Available for Adoption
+        > </h1>
+      <div class="animal-grid">
+
+        <div *ngFor="let animal of showAnimals; let isLast = last"
+             [class]="isLast ? 'animal-card-last' : 'animal-card'">
+          <a (click)="navigateToAnimalDetails(animal)">
+            <ng-container *ngIf="isLast ; else notLastTemplate">
+              <div (click)="goToAnimalsPage()">
+                <div class="animal-image">
+                  <mat-icon class="centered-icon">search</mat-icon>
+
+                  <p class="centered-text">300+ pets available on Pawppies </p>
+                </div>
+
+                <div class="animal-last">
+                  <p class="meet-animals-text">MEET THEM</p>
+                </div>
+              </div>
+            </ng-container>
+          </a>
+
+          <ng-template #notLastTemplate>
+            <button (click)="likeAnimal($event, animal)" *ngIf="user" [ngClass]="{ 'liked': isLiked(animal) }"
+                    class="like-button">
+              <mat-icon>{{ isLiked(animal) ? 'favorite' : 'favorite_border' }}</mat-icon>
+            </button>
+
+            <img [src]='animal.animalImages[0].url' class="animal-image">
+            <div class="animal-details">
+              <p class="animal-name"> {{ animal.name }} </p>
+              <p class="animal-other-details"> {{ animal.age }}, {{ animal.breedDetails.name }} </p>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="side-container">
+
+    <!--    start quizz-->
+    <div class="quiz">
+      <img class="quiz-img" src="../../../../assets/good_match.png">
+      <h2 style="text-align: center; margin-bottom: 0; margin-top: 15px"> Find your best </h2>
+      <h2 style="text-align: center; margin-bottom: 10px"> match </h2>
+      <p class="text-quiz"> It only takes 60 seconds. </p>
+
+      <button (click)="goToQuizPage()" class="start-quiz-btn" mat-button>GET STARTED</button>
+    </div>
+
+
+    <div class="search-center">
+      <form (ngSubmit)="performSearch()" class="search-form">
+        <h2>Find Pet-Adoption Centers by:</h2>
+
+        <!--      //city-->
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon matPrefix>location_city</mat-icon>
+            City
+          </mat-label>
+          <input [(ngModel)]="searchData.city" matInput
+                 name="email" placeholder="Enter your email"/>
+        </mat-form-field>
+
+        <!--        //country/-->
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon>public</mat-icon>
+            Country
+          </mat-label>
+          <mat-select [(ngModel)]="searchData.country" name="country" placeholder="Select Country">
+            <mat-option *ngFor="let country of countries" [value]="country.name">
+              {{ country.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+        <!--        //name-->
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>
+            <mat-icon matPrefix>business</mat-icon>
+            Name
+          </mat-label>
+          <input [(ngModel)]="searchData.name" matInput
+                 name="email" placeholder="Enter name"/>
+        </mat-form-field>
+
+        <button class="start-quiz-btn" mat-flat-button type="submit">
+          SEARCH
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="see-animals">
+  </div>
+</div>
+</body>
